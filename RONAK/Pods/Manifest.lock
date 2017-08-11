@@ -1,0 +1,98 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - CocoaLumberjack (2.4.0):
+    - CocoaLumberjack/Default (= 2.4.0)
+    - CocoaLumberjack/Extensions (= 2.4.0)
+  - CocoaLumberjack/Core (2.4.0)
+  - CocoaLumberjack/Default (2.4.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.4.0):
+    - CocoaLumberjack/Default
+  - JSONModel (1.7.0)
+  - SalesforceAnalytics (5.2.0):
+    - SalesforceAnalytics/SalesforceAnalytics (= 5.2.0)
+  - SalesforceAnalytics/SalesforceAnalytics (5.2.0):
+    - CocoaLumberjack (~> 2.4.0)
+  - SalesforceSDKCore (5.2.0):
+    - SalesforceSDKCore/SalesforceSDKCore (= 5.2.0)
+  - SalesforceSDKCore/SalesforceSDKCore (5.2.0):
+    - SalesforceAnalytics
+    - SalesforceSDKCore/SalesforceSDKCore/arc (= 5.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/base (= 5.2.0)
+    - SalesforceSDKCore/SalesforceSDKCore/no-arc (= 5.2.0)
+  - SalesforceSDKCore/SalesforceSDKCore/arc (5.2.0):
+    - SalesforceAnalytics
+    - SalesforceSDKCore/SalesforceSDKCore/base
+    - SalesforceSDKCore/SalesforceSDKCore/no-arc
+  - SalesforceSDKCore/SalesforceSDKCore/base (5.2.0):
+    - SalesforceAnalytics
+  - SalesforceSDKCore/SalesforceSDKCore/no-arc (5.2.0):
+    - SalesforceAnalytics
+    - SalesforceSDKCore/SalesforceSDKCore/base
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SmartStore (5.2.0):
+    - SmartStore/SmartStore (= 5.2.0)
+  - SmartStore/SmartStore (5.2.0):
+    - SalesforceSDKCore
+    - SQLCipher/fts (~> 3.4.0)
+  - SmartSync (5.2.0):
+    - SmartSync/SmartSync (= 5.2.0)
+  - SmartSync/SmartSync (5.2.0):
+    - SalesforceSDKCore
+    - SmartStore
+  - SQLCipher/common (3.4.1)
+  - SQLCipher/fts (3.4.1):
+    - SQLCipher/common
+  - UIDevice-PasscodeStatus (0.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - JSONModel
+  - SalesforceAnalytics (from `mobile_sdk/SalesforceMobileSDK-iOS`)
+  - SalesforceSDKCore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
+  - SDWebImage (~> 3.8)
+  - SmartStore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
+  - SmartSync (from `mobile_sdk/SalesforceMobileSDK-iOS`)
+  - UIDevice-PasscodeStatus (~> 0.0.2)
+
+EXTERNAL SOURCES:
+  SalesforceAnalytics:
+    :path: mobile_sdk/SalesforceMobileSDK-iOS
+  SalesforceSDKCore:
+    :path: mobile_sdk/SalesforceMobileSDK-iOS
+  SmartStore:
+    :path: mobile_sdk/SalesforceMobileSDK-iOS
+  SmartSync:
+    :path: mobile_sdk/SalesforceMobileSDK-iOS
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
+  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  SalesforceAnalytics: 9c415d350f3acf6f41d45077436226c4b19008d1
+  SalesforceSDKCore: f2523c9d55e2cc719f188d9dc4bf2362de9b7762
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SmartStore: 4c0a568644008ff0f876791df162f4be51a8a5fa
+  SmartSync: 822e24b5d7de8b7d105441121ec5503bda70441b
+  SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
+  UIDevice-PasscodeStatus: 250b63a271e85223105ff4c1626056ce3aab3305
+
+PODFILE CHECKSUM: cf6a178b13bc207818da3c5aabcca47cccd2c97e
+
+COCOAPODS: 1.3.0.beta.2

@@ -1,0 +1,619 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F8D5EA31B6C0568005E64D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EA21B6C0568005E64D4 /* main.m */; };
+		4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EA51B6C0568005E64D4 /* AppDelegate.m */; };
+		4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EC71B6C0F94005E64D4 /* InitialViewController.m */; };
+		4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */; };
+		BB98467CCA978EFA6D0B1208 /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */; };
+		CEA8CA021F071A9D00448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA011F071A9D00448B51 /* Images.xcassets */; };
+		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
+		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
+		F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = F64D6A101F39FA35001E8AD6 /* RESTCalls.m */; };
+		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
+		F6CD273C1F1811750082C6D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6CD273B1F1811750082C6D0 /* Main.storyboard */; };
+		F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CD273E1F1816F00082C6D0 /* SignInViewController.m */; };
+		F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE41F25C295003AF699 /* CustomerDataModel.m */; };
+		F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE81F25C886003AF699 /* ServerAPIManager.m */; };
+		F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADC9E1F196A2800DC635E /* MenuViewController.m */; };
+		F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCC71F19D1DA00DC635E /* CustomersViewController.m */; };
+		F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCCA1F19D24A00DC635E /* CustomerCell.m */; };
+		F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCCE1F19DA0700DC635E /* CustomButton.m */; };
+		F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD11F19DA1800DC635E /* CustomLabel.m */; };
+		F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD41F19DA3100DC635E /* CustomTextField.m */; };
+		F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */; };
+		F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */; };
+		F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F277E8C1DC7F5DF00E5A77C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		4F8D5E9D1B6C0568005E64D4 /* RONAK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RONAK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F8D5EA11B6C0568005E64D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F8D5EA21B6C0568005E64D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F8D5EA41B6C0568005E64D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F8D5EA51B6C0568005E64D4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F8D5EC61B6C0F94005E64D4 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		4F8D5EC71B6C0F94005E64D4 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		4F8D5EC91B6C0FE4005E64D4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RONAK.entitlements; sourceTree = "<group>"; };
+		5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RONAK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.release.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.release.xcconfig"; sourceTree = "<group>"; };
+		90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
+		CEA8CA011F071A9D00448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/salesforcemobilesdk-ios/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
+		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
+		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
+		F64D6A0F1F39FA35001E8AD6 /* RESTCalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTCalls.h; sourceTree = "<group>"; };
+		F64D6A101F39FA35001E8AD6 /* RESTCalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTCalls.m; sourceTree = "<group>"; };
+		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F6CD273B1F1811750082C6D0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F6CD273D1F1816F00082C6D0 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		F6CD273E1F1816F00082C6D0 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		F6D10AE31F25C295003AF699 /* CustomerDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDataModel.h; sourceTree = "<group>"; };
+		F6D10AE41F25C295003AF699 /* CustomerDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDataModel.m; sourceTree = "<group>"; };
+		F6D10AE71F25C886003AF699 /* ServerAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPIManager.h; sourceTree = "<group>"; };
+		F6D10AE81F25C886003AF699 /* ServerAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAPIManager.m; sourceTree = "<group>"; };
+		F6DADC9D1F196A2800DC635E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		F6DADC9E1F196A2800DC635E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		F6DADCC61F19D1DA00DC635E /* CustomersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomersViewController.h; sourceTree = "<group>"; };
+		F6DADCC71F19D1DA00DC635E /* CustomersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomersViewController.m; sourceTree = "<group>"; };
+		F6DADCC91F19D24A00DC635E /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
+		F6DADCCA1F19D24A00DC635E /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
+		F6DADCCD1F19DA0700DC635E /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		F6DADCCE1F19DA0700DC635E /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
+		F6DADCD01F19DA1800DC635E /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
+		F6DADCD11F19DA1800DC635E /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
+		F6DADCD31F19DA3100DC635E /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
+		F6DADCD41F19DA3100DC635E /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
+		F6DADCDC1F19DC4800DC635E /* RONAK.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RONAK.pch; sourceTree = "<group>"; };
+		F6DADCDD1F19DD8000DC635E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		F6DADCE41F1A22BF00DC635E /* HeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderReusableView.h; sourceTree = "<group>"; };
+		F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderReusableView.m; sourceTree = "<group>"; };
+		F6DADCE91F1A24C800DC635E /* YMCollectionIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMCollectionIndexView.h; sourceTree = "<group>"; };
+		F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCollectionIndexView.m; sourceTree = "<group>"; };
+		F6DADCED1F1A3A7900DC635E /* ShippingAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingAddressViewController.h; sourceTree = "<group>"; };
+		F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingAddressViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F8D5E9A1B6C0568005E64D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB98467CCA978EFA6D0B1208 /* Pods_RONAK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37B95F29A292887A2CC072C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F60A77521F39E716008CB094 /* LocalAuthentication.framework */,
+				5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F8D5E941B6C0568005E64D4 = {
+			isa = PBXGroup;
+			children = (
+				4F8D5E9F1B6C0568005E64D4 /* RONAK */,
+				4F8D5E9E1B6C0568005E64D4 /* Products */,
+				95FC818BCB0A26B1EC67A6D7 /* Pods */,
+				37B95F29A292887A2CC072C3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4F8D5E9E1B6C0568005E64D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F8D5E9D1B6C0568005E64D4 /* RONAK.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F8D5E9F1B6C0568005E64D4 /* RONAK */ = {
+			isa = PBXGroup;
+			children = (
+				4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */,
+				F6DADCDC1F19DC4800DC635E /* RONAK.pch */,
+				F6DADCDD1F19DD8000DC635E /* Constants.h */,
+				F6D10AE71F25C886003AF699 /* ServerAPIManager.h */,
+				F6D10AE81F25C886003AF699 /* ServerAPIManager.m */,
+				F64D6A0F1F39FA35001E8AD6 /* RESTCalls.h */,
+				F64D6A101F39FA35001E8AD6 /* RESTCalls.m */,
+				F6404EE21F2124F400530188 /* SF.OTF */,
+				4F8D5ECC1B6C1021005E64D4 /* Classes */,
+				4F8D5EA01B6C0568005E64D4 /* Supporting Files */,
+			);
+			path = RONAK;
+			sourceTree = "<group>";
+		};
+		4F8D5EA01B6C0568005E64D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CEA8CA011F071A9D00448B51 /* Images.xcassets */,
+				4F8D5EA11B6C0568005E64D4 /* Info.plist */,
+				4F277E8C1DC7F5DF00E5A77C /* Prefix.pch */,
+				4F8D5EA21B6C0568005E64D4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F8D5ECC1B6C1021005E64D4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F64F10E61F2E5802001BC880 /* Loading */,
+				F6404EE51F212BDD00530188 /* Categories */,
+				F6DADCE71F1A249F00DC635E /* Features */,
+				F6DADCD61F19DA5E00DC635E /* SalesForce */,
+				F6B71A691F3CB86F002AE0FB /* SignInVC */,
+				F6B71A681F3CB865002AE0FB /* MenuVC */,
+				F6D10AEB1F25F3A5003AF699 /* CustomerVC */,
+				F6B71A671F3CB84F002AE0FB /* Shipping AddressVC */,
+				F6DADCCC1F19D9EA00DC635E /* CustomComponents */,
+				F6CD273B1F1811750082C6D0 /* Main.storyboard */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		95FC818BCB0A26B1EC67A6D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */,
+				641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F6404EE51F212BDD00530188 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				F6404EE61F212BEF00530188 /* UITextField+Padding.h */,
+				F6404EE71F212BEF00530188 /* UITextField+Padding.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		F64F10E61F2E5802001BC880 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				F64F10E31F2E57FD001BC880 /* LoadingView.h */,
+				F64F10E41F2E57FD001BC880 /* LoadingView.m */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
+		F6B71A671F3CB84F002AE0FB /* Shipping AddressVC */ = {
+			isa = PBXGroup;
+			children = (
+				F6DADCED1F1A3A7900DC635E /* ShippingAddressViewController.h */,
+				F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */,
+			);
+			name = "Shipping AddressVC";
+			sourceTree = "<group>";
+		};
+		F6B71A681F3CB865002AE0FB /* MenuVC */ = {
+			isa = PBXGroup;
+			children = (
+				F6DADC9D1F196A2800DC635E /* MenuViewController.h */,
+				F6DADC9E1F196A2800DC635E /* MenuViewController.m */,
+			);
+			name = MenuVC;
+			sourceTree = "<group>";
+		};
+		F6B71A691F3CB86F002AE0FB /* SignInVC */ = {
+			isa = PBXGroup;
+			children = (
+				F6CD273D1F1816F00082C6D0 /* SignInViewController.h */,
+				F6CD273E1F1816F00082C6D0 /* SignInViewController.m */,
+			);
+			name = SignInVC;
+			sourceTree = "<group>";
+		};
+		F6D10AEB1F25F3A5003AF699 /* CustomerVC */ = {
+			isa = PBXGroup;
+			children = (
+				F6DADCC61F19D1DA00DC635E /* CustomersViewController.h */,
+				F6DADCC71F19D1DA00DC635E /* CustomersViewController.m */,
+				F6DADCEC1F1A2C8D00DC635E /* CustomerCell */,
+				F6D10AEC1F25F3B1003AF699 /* DataModel */,
+			);
+			name = CustomerVC;
+			sourceTree = "<group>";
+		};
+		F6D10AEC1F25F3B1003AF699 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F6D10AE31F25C295003AF699 /* CustomerDataModel.h */,
+				F6D10AE41F25C295003AF699 /* CustomerDataModel.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		F6DADCCC1F19D9EA00DC635E /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F6DADCCD1F19DA0700DC635E /* CustomButton.h */,
+				F6DADCCE1F19DA0700DC635E /* CustomButton.m */,
+				F6DADCD01F19DA1800DC635E /* CustomLabel.h */,
+				F6DADCD11F19DA1800DC635E /* CustomLabel.m */,
+				F6DADCD31F19DA3100DC635E /* CustomTextField.h */,
+				F6DADCD41F19DA3100DC635E /* CustomTextField.m */,
+			);
+			name = CustomComponents;
+			sourceTree = "<group>";
+		};
+		F6DADCD61F19DA5E00DC635E /* SalesForce */ = {
+			isa = PBXGroup;
+			children = (
+				4F8D5EA41B6C0568005E64D4 /* AppDelegate.h */,
+				4F8D5EA51B6C0568005E64D4 /* AppDelegate.m */,
+				4F8D5EC91B6C0FE4005E64D4 /* RootViewController.h */,
+				4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */,
+				4F8D5EC61B6C0F94005E64D4 /* InitialViewController.h */,
+				4F8D5EC71B6C0F94005E64D4 /* InitialViewController.m */,
+			);
+			name = SalesForce;
+			sourceTree = "<group>";
+		};
+		F6DADCE71F1A249F00DC635E /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				F6DADCE91F1A24C800DC635E /* YMCollectionIndexView.h */,
+				F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */,
+			);
+			name = Features;
+			sourceTree = "<group>";
+		};
+		F6DADCEC1F1A2C8D00DC635E /* CustomerCell */ = {
+			isa = PBXGroup;
+			children = (
+				F6DADCC91F19D24A00DC635E /* CustomerCell.h */,
+				F6DADCCA1F19D24A00DC635E /* CustomerCell.m */,
+				F6DADCE41F1A22BF00DC635E /* HeaderReusableView.h */,
+				F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */,
+			);
+			name = CustomerCell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F8D5E9C1B6C0568005E64D4 /* RONAK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "RONAK" */;
+			buildPhases = (
+				39F115428CDB04A31C62D5B3 /* [CP] Check Pods Manifest.lock */,
+				4F8D5E991B6C0568005E64D4 /* Sources */,
+				4F8D5E9A1B6C0568005E64D4 /* Frameworks */,
+				4F8D5E9B1B6C0568005E64D4 /* Resources */,
+				E57672B616CE5ACD1EACF7C8 /* [CP] Copy Pods Resources */,
+				2C3DEFD85FBF17C45ABBF316 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RONAK;
+			productName = RONAK;
+			productReference = 4F8D5E9D1B6C0568005E64D4 /* RONAK.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F8D5E951B6C0568005E64D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = RONAKOrganizationName;
+				TargetAttributes = {
+					4F8D5E9C1B6C0568005E64D4 = {
+						CreatedOnToolsVersion = 6.4;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 4F8D5E981B6C0568005E64D4 /* Build configuration list for PBXProject "RONAK" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F8D5E941B6C0568005E64D4;
+			productRefGroup = 4F8D5E9E1B6C0568005E64D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F8D5E9C1B6C0568005E64D4 /* RONAK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F8D5E9B1B6C0568005E64D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6404EE31F2124F400530188 /* SF.OTF in Resources */,
+				CEA8CA021F071A9D00448B51 /* Images.xcassets in Resources */,
+				F6CD273C1F1811750082C6D0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C3DEFD85FBF17C45ABBF316 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
+				"${BUILT_PRODUCTS_DIR}/SalesforceAnalytics/SalesforceAnalytics.framework",
+				"${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework",
+				"${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework",
+				"${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework",
+				"${BUILT_PRODUCTS_DIR}/UIDevice-PasscodeStatus/UIDevice_PasscodeStatus.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceAnalytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceSDKCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartStore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIDevice_PasscodeStatus.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39F115428CDB04A31C62D5B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RONAK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E57672B616CE5ACD1EACF7C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F8D5E991B6C0568005E64D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */,
+				F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */,
+				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
+				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
+				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
+				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
+				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
+				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
+				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
+				F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */,
+				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
+				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
+				F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */,
+				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
+				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
+				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
+				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
+				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
+				F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4F8D5EBE1B6C0568005E64D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F8D5EBF1B6C0568005E64D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F8D5EC11B6C0568005E64D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = AYEU8SS399;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
+				INFOPLIST_FILE = RONAK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bodhtree.ronak.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		4F8D5EC21B6C0568005E64D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = AYEU8SS399;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
+				INFOPLIST_FILE = RONAK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bodhtree.ronak.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F8D5E981B6C0568005E64D4 /* Build configuration list for PBXProject "RONAK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F8D5EBE1B6C0568005E64D4 /* Debug */,
+				4F8D5EBF1B6C0568005E64D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "RONAK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F8D5EC11B6C0568005E64D4 /* Debug */,
+				4F8D5EC21B6C0568005E64D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F8D5E951B6C0568005E64D4 /* Project object */;
+}
