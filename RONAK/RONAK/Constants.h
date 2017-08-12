@@ -43,7 +43,7 @@
 
 //CustomersData
 #define savedCustomersList @"savedCustomersList"
-
+#define selectedCustomersList [RONAKSharedClass sharedInstance].selectedCustomersArray
 
 //Paths
 #define fileManager [NSFileManager defaultManager]

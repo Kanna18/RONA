@@ -21,8 +21,11 @@
     self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.ShippingAddress.street,data.ShippingAddress.state,data.ShippingAddress.postalCode,data.ShippingAddress.country];
     self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.Account_Balance__c];
     self.selectedImage.backgroundColor=[UIColor grayColor];
-    self.cstData=data;
     
+    long int due=[data.X181_240__c integerValue]+[data.X241_300__c integerValue]+[data.X301_360__c integerValue]+[data.X361__c integerValue];
+    _amountLabel.text=[NSString stringWithFormat:@"180+=₹%lu",due];
+    self.cstData=data;
+
 }
 -(void)loadSelectedCustomerFromArrat:(NSMutableArray*)arr
 {
@@ -49,16 +52,6 @@
 }
 -(void)saveSelectedCustomertoArray:(NSMutableArray*)arr
 {
-    
-   /*if([arr containsObject:self.cstData.BP_Code__c])
-    {
-        [arr removeObject:self.cstData.BP_Code__c];
-    }
-    else
-    {
-        [arr addObject:self.cstData.BP_Code__c];
-    }*/
-    
     if([arr containsObject:self.cstData])
     {
         [arr removeObject:self.cstData];

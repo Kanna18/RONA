@@ -43,7 +43,29 @@
     @property (nonatomic) NSString<Optional>* state;
     @property (nonatomic) NSString<Optional>* stateCode;
     @property (nonatomic) NSString<Optional>* street;
+@end
 
+
+@protocol Recodrs;
+@interface Recodrs : JSONModel
+    @property (nonatomic) Attributes<Optional>* attributes;
+    @property (nonatomic) NSString<Optional>* CustomerName__c;
+    @property (nonatomic) NSString<Optional>* Id;
+    @property (nonatomic) NSString<Optional>* Name;
+    @property (nonatomic) NSString<Optional>* Block__c;
+    @property (nonatomic) NSString<Optional>* CardCode__c;
+    @property (nonatomic) NSString<Optional>* City__c;
+    @property (nonatomic) NSString<Optional>* Country__c;
+    @property (nonatomic) NSString<Optional>* State__c;
+    @property (nonatomic) NSString<Optional>* Street__c;
+    @property (nonatomic) NSString<Optional>* Street_No__c;
+    @property (nonatomic) NSString<Optional>* Zipcode__c;
+@end
+
+@interface Ship_to_Party__r : JSONModel
+    @property (nonatomic) NSString<Optional>* totalSize;
+    @property (nonatomic) NSString<Optional>* done;
+    @property (nonatomic) NSArray<Recodrs *><Optional>* records;
 @end
 
 @interface CustomerDataModel : JSONModel
@@ -56,6 +78,7 @@
     @property (nonatomic) NSString<Optional>* BillingPostalCode;
     @property (nonatomic) NSString<Optional>* BillingState;
     @property (nonatomic) NSString<Optional>* BillingStreet;
+    @property (nonatomic) NSString<Optional>* Category_Type__c;
     @property (nonatomic) NSString<Optional>* Category__c;
     @property (nonatomic) NSString<Optional>* Credit_Limit__c;
     @property (nonatomic) NSString<Optional>* Discount__c;
@@ -71,12 +94,27 @@
     @property (nonatomic) NSString<Optional>* ShippingPostalCode;
     @property (nonatomic) NSString<Optional>* ShippingState;
     @property (nonatomic) NSString<Optional>* ShippingStreet;
-    @property (nonatomic) NSString<Optional>* Telephone_1__c;
     @property (nonatomic) NSString<Optional>* Group_No__c;
     @property (nonatomic) NSString<Optional>* Group_Type__c;
     @property (nonatomic) NSString<Optional>* BP_Code__c;
-    @property (nonatomic) NSString<Optional>* E_Mail__c;
     @property (nonatomic) NSString<Optional>* Contact_Person__c;
+    @property (nonatomic) NSString<Optional>* X0_30__c ;
+    @property (nonatomic) NSString<Optional>* Ageing_Date__c;
+    @property (nonatomic) NSString<Optional>* X121_150__c;
+    @property (nonatomic) NSString<Optional>* X151_180__c;
+    @property (nonatomic) NSString<Optional>* X181_240__c;
+    @property (nonatomic) NSString<Optional>* X241_300__c;
+    @property (nonatomic) NSString<Optional>* X301_360__c;
+    @property (nonatomic) NSString<Optional>* X31_60__c;
+    @property (nonatomic) NSString<Optional>* X361__c;
+    @property (nonatomic) NSString<Optional>* X61_90__c;
+    @property (nonatomic) NSString<Optional>* X91_120__c;
+    @property (nonatomic) NSString<Optional>* Customer_Name__c;
     @property (nonatomic) NSString<Optional>* Id;
+    @property (nonatomic) Ship_to_Party__r<Optional>* Ship_to_Party__r;
+
+
+@property (nonatomic) NSString<Optional>* Telephone_1__c;
+@property (nonatomic) NSString<Optional>* E_Mail__c;
 
 @end

@@ -124,6 +124,10 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     //
 
 //    [[SalesforceSDKManager sharedManager] launch];
+    
+    [[UILabel appearance] setFont:sfFont(17.0)];
+    [[UIButton appearance].titleLabel setFont:sfFont(17.0)];
+    [[UITextField appearance] setFont:sfFont(17.0)];
     return YES;
 }
 

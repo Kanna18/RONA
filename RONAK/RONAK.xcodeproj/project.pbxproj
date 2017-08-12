@@ -30,6 +30,12 @@
 		F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */; };
 		F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */; };
 		F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */; };
+		F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */; };
+		F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */; };
+		F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */; };
+		F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */; };
+		F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */; };
+		F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +89,18 @@
 		F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCollectionIndexView.m; sourceTree = "<group>"; };
 		F6DADCED1F1A3A7900DC635E /* ShippingAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingAddressViewController.h; sourceTree = "<group>"; };
 		F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingAddressViewController.m; sourceTree = "<group>"; };
+		F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFilterController.h; sourceTree = "<group>"; };
+		F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFilterController.m; sourceTree = "<group>"; };
+		F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondFilterController.h; sourceTree = "<group>"; };
+		F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondFilterController.m; sourceTree = "<group>"; };
+		F6EDC4471F3D948300F9DFCC /* CustomTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTVCell.h; sourceTree = "<group>"; };
+		F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTVCell.m; sourceTree = "<group>"; };
+		F6EDC44C1F3EA19F00F9DFCC /* RONAKSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RONAKSharedClass.h; sourceTree = "<group>"; };
+		F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RONAKSharedClass.m; sourceTree = "<group>"; };
+		F6EDC4501F3F3D5E00F9DFCC /* AllFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllFiltersViewController.h; sourceTree = "<group>"; };
+		F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllFiltersViewController.m; sourceTree = "<group>"; };
+		F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsListController.h; sourceTree = "<group>"; };
+		F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsListController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,15 +173,20 @@
 		4F8D5ECC1B6C1021005E64D4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F6EDC44C1F3EA19F00F9DFCC /* RONAKSharedClass.h */,
+				F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */,
+				F6DADCD61F19DA5E00DC635E /* SalesForce */,
+				F6DADCE71F1A249F00DC635E /* Features */,
 				F64F10E61F2E5802001BC880 /* Loading */,
 				F6404EE51F212BDD00530188 /* Categories */,
-				F6DADCE71F1A249F00DC635E /* Features */,
-				F6DADCD61F19DA5E00DC635E /* SalesForce */,
+				F6DADCCC1F19D9EA00DC635E /* CustomComponents */,
 				F6B71A691F3CB86F002AE0FB /* SignInVC */,
 				F6B71A681F3CB865002AE0FB /* MenuVC */,
 				F6D10AEB1F25F3A5003AF699 /* CustomerVC */,
 				F6B71A671F3CB84F002AE0FB /* Shipping AddressVC */,
-				F6DADCCC1F19D9EA00DC635E /* CustomComponents */,
+				F6EDC4461F3D906200F9DFCC /* Filters */,
+				F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */,
+				F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */,
 				F6CD273B1F1811750082C6D0 /* Main.storyboard */,
 			);
 			name = Classes;
@@ -287,6 +310,29 @@
 				F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */,
 			);
 			name = CustomerCell;
+			sourceTree = "<group>";
+		};
+		F6EDC4461F3D906200F9DFCC /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				F6EDC4501F3F3D5E00F9DFCC /* AllFiltersViewController.h */,
+				F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */,
+				F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */,
+				F6EDC4471F3D948300F9DFCC /* CustomTVCell.h */,
+				F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+		F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */ = {
+			isa = PBXGroup;
+			children = (
+				F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */,
+				F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */,
+				F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */,
+				F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */,
+			);
+			name = DefaultFilters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,11 +490,16 @@
 				F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */,
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
+				F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */,
+				F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */,
+				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
 				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
+				F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
+				F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */,
 				F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
@@ -458,6 +509,7 @@
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
+				F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */,
 				F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

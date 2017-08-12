@@ -18,7 +18,7 @@ static NSString *reuse=@"reuseCustomerCell";
     
     NSArray *alphabets;
     ServerAPIManager *serverAPI;
-    NSMutableArray *customersList, *cvDataSectionArr,*cvAlphabetSectionArr,*selectedCustomerList;
+    NSMutableArray *customersList, *cvDataSectionArr,*cvAlphabetSectionArr;
     LoadingView *load;
     RESTCalls *rest;
     CGFloat scr_width,scr_height;
@@ -46,7 +46,7 @@ static NSString *reuse=@"reuseCustomerCell";
     
     serverAPI=[ServerAPIManager sharedinstance];
     customersList=[[NSMutableArray alloc]init];
-    selectedCustomerList=[[NSMutableArray alloc]init];
+//    selectedCustomerList=[[NSMutableArray alloc]init];
     
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
@@ -152,16 +152,14 @@ static NSString *reuse=@"reuseCustomerCell";
     [_searchTextField setRightPadding];
  
     // the space between the image and text
-    CGFloat width = _appointmentsBtn.frame.size.width;
-    CGFloat height = _appointmentsBtn.frame.size.height;
+
     
     // lower the text and push it left so it appears centered
     //  below the image
-    _appointmentsBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+
     
     // raise the image and push it right so it appears centered
     //  above the text
-    _appointmentsBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     // increase the content height to avoid clipping
 }
@@ -182,9 +180,10 @@ static NSString *reuse=@"reuseCustomerCell";
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
 
+    
     CustomerCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:reuse forIndexPath:indexPath];
     [cell bindData:cvDataSectionArr[indexPath.section][indexPath.row]];
-    [cell loadSelectedCustomerFromArrat:selectedCustomerList];
+    [cell loadSelectedCustomerFromArrat:selectedCustomersList];
     if(indexPath.row%2==0)
     {
         cell.trailingContraint.constant=scr_width/20.0;
@@ -206,7 +205,7 @@ static NSString *reuse=@"reuseCustomerCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomerCell *cell=(CustomerCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    [cell saveSelectedCustomertoArray:selectedCustomerList];
+    [cell saveSelectedCustomertoArray:selectedCustomersList];
     [self.collectionView reloadData];
     [self showSelectedCustmrsInScrlView];
     
@@ -290,9 +289,9 @@ static NSString *reuse=@"reuseCustomerCell";
     
     int X=scr_width/20,Y=0;
     CustomLabel *lbl;
-    for (int i=0; i<selectedCustomerList.count; i++)
+    for (int i=0; i<selectedCustomersList.count; i++)
     {
-        CustomerDataModel *cst=selectedCustomerList[i];
+        CustomerDataModel *cst=selectedCustomersList[i];
         lbl=[[CustomLabel alloc]init];
         [_scrollView_selCustmr addSubview:lbl];
         lbl.text=[cst.Name stringByAppendingString:@","];

@@ -20,7 +20,19 @@
 
 @end
 
+@implementation Recodrs
+
+
+@end
+
+@implementation Ship_to_Party__r
+
+
+@end
+
 
 @implementation CustomerDataModel
 
 @end
+
+

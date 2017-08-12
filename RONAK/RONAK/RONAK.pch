@@ -21,5 +21,9 @@
 #import "UITextField+Padding.h"
 #import "LoadingView.h"
 #import "RESTCalls.h"
+#import "RONAKSharedClass.h"
+#import "CustomerDataModel.h"
+
+
 
 #endif /* RONAK_pch */
