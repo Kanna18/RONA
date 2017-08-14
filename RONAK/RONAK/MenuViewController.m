@@ -19,6 +19,24 @@
     // Do any additional setup after loading the view.
 
     [self defaultComponentsStyle];
+  
+}
+-(void)viewWillAppear:(BOOL)animate
+{
+    [super viewWillAppear:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelay:0.2];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    
+    for (CustomButton *cst in self.view.subviews)
+    {
+        if([cst isKindOfClass:[CustomButton class]])
+        {
+            cst.frame=CGRectMake(100, 100, 30, 30);
+        }
+    }
+    [UIView commitAnimations];
 }
 
 -(void)defaultComponentsStyle

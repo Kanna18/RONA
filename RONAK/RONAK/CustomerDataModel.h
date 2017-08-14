@@ -47,6 +47,7 @@
 
 
 @protocol Recodrs;
+
 @interface Recodrs : JSONModel
     @property (nonatomic) Attributes<Optional>* attributes;
     @property (nonatomic) NSString<Optional>* CustomerName__c;
@@ -65,7 +66,7 @@
 @interface Ship_to_Party__r : JSONModel
     @property (nonatomic) NSString<Optional>* totalSize;
     @property (nonatomic) NSString<Optional>* done;
-    @property (nonatomic) NSArray<Recodrs *><Optional>* records;
+    @property (nonatomic) NSArray<Recodrs>* records;
 @end
 
 @interface CustomerDataModel : JSONModel

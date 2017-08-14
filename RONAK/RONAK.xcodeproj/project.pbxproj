@@ -30,6 +30,8 @@
 		F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */; };
 		F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */; };
 		F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */; };
+		F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */; };
+		F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */; };
 		F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */; };
 		F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */; };
 		F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */; };
@@ -89,6 +91,10 @@
 		F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCollectionIndexView.m; sourceTree = "<group>"; };
 		F6DADCED1F1A3A7900DC635E /* ShippingAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingAddressViewController.h; sourceTree = "<group>"; };
 		F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingAddressViewController.m; sourceTree = "<group>"; };
+		F6DFC8B91F4097F30058A5B5 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
+		F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
+		F6DFC8BC1F4098120058A5B5 /* CustomerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewCell.h; sourceTree = "<group>"; };
+		F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewCell.m; sourceTree = "<group>"; };
 		F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFilterController.h; sourceTree = "<group>"; };
 		F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFilterController.m; sourceTree = "<group>"; };
 		F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondFilterController.h; sourceTree = "<group>"; };
@@ -187,6 +193,10 @@
 				F6EDC4461F3D906200F9DFCC /* Filters */,
 				F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */,
 				F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */,
+				F6DFC8B91F4097F30058A5B5 /* ProductCollectionViewCell.h */,
+				F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */,
+				F6DFC8BC1F4098120058A5B5 /* CustomerViewCell.h */,
+				F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */,
 				F6CD273B1F1811750082C6D0 /* Main.storyboard */,
 			);
 			name = Classes;
@@ -493,6 +503,7 @@
 				F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */,
 				F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */,
 				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
+				F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */,
 				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
@@ -502,6 +513,7 @@
 				F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */,
 				F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
+				F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
 				F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,

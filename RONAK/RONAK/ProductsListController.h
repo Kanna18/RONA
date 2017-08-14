@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductCollectionViewCell.h"
+#import "CustomerViewCell.h"
+
 
 @interface ProductsListController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UICollectionView *productsCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *customersCollectionView;
 
 @end
