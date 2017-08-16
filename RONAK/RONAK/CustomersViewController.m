@@ -50,16 +50,16 @@ static NSString *reuse=@"reuseCustomerCell";
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
-            [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
-            NSLog(@"%@",[docPath stringByAppendingPathComponent:customersFilePath]);
-        }
-        else{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        
+//        if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
+//            [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
+//            NSLog(@"%@",[docPath stringByAppendingPathComponent:customersFilePath]);
+//        }
+//        else{
             [self restServiceForCustomerList];
-        }
-    });
+//        }
+//    });
 
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -114,27 +114,20 @@ static NSString *reuse=@"reuseCustomerCell";
 {
     NSDictionary *headers=@{@"content-type":@"application/x-www-form-urlencoded (OR) application/json",
                             @"authorization":[NSString stringWithFormat:@"Bearer %@",defaultGet(kaccess_token)]};
-    [serverAPI  processRequest:rest_customersList_B params:@{@"brand":@"Fila"} requestType:@"GET" cusHeaders:headers successBlock:^(id responseObj) {
-        
-        
+    [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"GET" cusHeaders:headers successBlock:^(id responseObj) {
         NSString *dictstr=[NSJSONSerialization JSONObjectWithData:responseObj options: NSJSONReadingAllowFragments error:nil];
         NSData *jsonData=[dictstr dataUsingEncoding:NSUTF8StringEncoding];
         NSError *cerr;
         [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
         [self getListofAllCustomers:jsonData];
-        
-        
     } andErrorBlock:^(NSError *error) {
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-        
             [load stop];
             [load waringLabelText:@"Error Loading" onView:self.view];
-            
         });
-        
     }];
 }
+
 -(void)getListofAllCustomers:(NSData*)cList
 {
     NSArray *arr=[NSJSONSerialization JSONObjectWithData:cList options:0 error:nil];

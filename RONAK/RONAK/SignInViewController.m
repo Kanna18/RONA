@@ -30,6 +30,9 @@
     load =[[LoadingView alloc]init];
     
     [self defaultUserNameandPasswordSave:NO load:YES delete:NO];
+    
+    NSLog(@"%@",docPath);
+    
 }
 
 - (void)didReceiveMemoryWarning {

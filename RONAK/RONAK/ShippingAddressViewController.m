@@ -21,6 +21,11 @@
     [self scrollViewDisplayListofCstmrs];
     _customerNamelbl.font=sfFont(28);
     
+    _pdcLbl.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pdcLabelTapped:)];
+    tap.numberOfTapsRequired=1;
+    [_pdcLbl addGestureRecognizer:tap];
 }
 
 -(void)scrollViewDisplayListofCstmrs
@@ -62,22 +67,17 @@
     [btn setBackgroundColor:[UIColor blueColor]];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     CustomerDataModel *cst=btn.cstData;    
-    
     _customerNamelbl.text=cst.Name;
     _creditLimitLbl.text=cst.Credit_Limit__c;
     _acntBalanceLbl.text=cst.Account_Balance__c;
-    
     NSString *status=[cst.Active__c isEqualToString:@"Y"]?@"Active":@"Inactive";
     _statusLbl.text=status;
-    
     _Lbl90.text=[NSString stringWithFormat:@"%0.2f",[cst.X0_30__c floatValue]+[cst.X31_60__c floatValue]+[cst.X61_90__c floatValue]];
     _lbl150.text=[NSString stringWithFormat:@"%0.2f",[cst.X91_120__c floatValue]+[cst.X121_150__c floatValue]];
     _lbl180.text=[NSString stringWithFormat:@"%0.2f",[cst.X151_180__c floatValue]];
     _lbl360.text=[NSString stringWithFormat:@"%0.2f",[cst.X181_240__c floatValue]+[cst.X241_300__c floatValue]+[cst.X301_360__c floatValue]];
     _lbl360Above.text=[NSString stringWithFormat:@"%0.2f",[cst.X361__c floatValue]];
-    
     _lblTotal.text=[NSString stringWithFormat:@"%0.2f",[_Lbl90.text floatValue]+[_lbl150.text floatValue]+[_lbl180.text floatValue]+[_lbl360.text floatValue]+[_lbl360Above.text floatValue]];
-    
     [self showaddresses:btn];
     
 }
