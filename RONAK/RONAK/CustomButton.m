@@ -24,4 +24,5 @@
     [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
 }
 
+
 @end

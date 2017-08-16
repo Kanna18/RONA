@@ -17,6 +17,9 @@
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = F64D6A101F39FA35001E8AD6 /* RESTCalls.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
+		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
+		F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10F31F43ED10005C2432 /* PDCViewController.m */; };
+		F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10F71F43ED92005C2432 /* PDCCell.m */; };
 		F6CD273C1F1811750082C6D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6CD273B1F1811750082C6D0 /* Main.storyboard */; };
 		F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CD273E1F1816F00082C6D0 /* SignInViewController.m */; };
 		F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE41F25C295003AF699 /* CustomerDataModel.m */; };
@@ -30,6 +33,8 @@
 		F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCE51F1A22BF00DC635E /* HeaderReusableView.m */; };
 		F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */; };
 		F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */; };
+		F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */; };
+		F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */; };
 		F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */; };
 		F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */; };
 		F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */; };
@@ -62,6 +67,12 @@
 		F64D6A101F39FA35001E8AD6 /* RESTCalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTCalls.m; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDataModel.h; sourceTree = "<group>"; };
+		F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDataModel.m; sourceTree = "<group>"; };
+		F69A10F21F43ED10005C2432 /* PDCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCViewController.h; sourceTree = "<group>"; };
+		F69A10F31F43ED10005C2432 /* PDCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCViewController.m; sourceTree = "<group>"; };
+		F69A10F61F43ED92005C2432 /* PDCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCCell.h; sourceTree = "<group>"; };
+		F69A10F71F43ED92005C2432 /* PDCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCCell.m; sourceTree = "<group>"; };
 		F6CD273B1F1811750082C6D0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F6CD273D1F1816F00082C6D0 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		F6CD273E1F1816F00082C6D0 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
@@ -89,6 +100,10 @@
 		F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCollectionIndexView.m; sourceTree = "<group>"; };
 		F6DADCED1F1A3A7900DC635E /* ShippingAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShippingAddressViewController.h; sourceTree = "<group>"; };
 		F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShippingAddressViewController.m; sourceTree = "<group>"; };
+		F6DFC8B91F4097F30058A5B5 /* ProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCollectionViewCell.h; sourceTree = "<group>"; };
+		F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
+		F6DFC8BC1F4098120058A5B5 /* CustomerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewCell.h; sourceTree = "<group>"; };
+		F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewCell.m; sourceTree = "<group>"; };
 		F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFilterController.h; sourceTree = "<group>"; };
 		F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFilterController.m; sourceTree = "<group>"; };
 		F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondFilterController.h; sourceTree = "<group>"; };
@@ -184,10 +199,12 @@
 				F6B71A681F3CB865002AE0FB /* MenuVC */,
 				F6D10AEB1F25F3A5003AF699 /* CustomerVC */,
 				F6B71A671F3CB84F002AE0FB /* Shipping AddressVC */,
+				F69A10F51F43ED1A005C2432 /* PDCVC */,
 				F6EDC4461F3D906200F9DFCC /* Filters */,
-				F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */,
-				F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */,
+				F69A10E81F428D45005C2432 /* OrderTaking */,
 				F6CD273B1F1811750082C6D0 /* Main.storyboard */,
+				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
+				F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -217,6 +234,30 @@
 				F64F10E41F2E57FD001BC880 /* LoadingView.m */,
 			);
 			name = Loading;
+			sourceTree = "<group>";
+		};
+		F69A10E81F428D45005C2432 /* OrderTaking */ = {
+			isa = PBXGroup;
+			children = (
+				F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */,
+				F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */,
+				F6DFC8B91F4097F30058A5B5 /* ProductCollectionViewCell.h */,
+				F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */,
+				F6DFC8BC1F4098120058A5B5 /* CustomerViewCell.h */,
+				F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */,
+			);
+			name = OrderTaking;
+			sourceTree = "<group>";
+		};
+		F69A10F51F43ED1A005C2432 /* PDCVC */ = {
+			isa = PBXGroup;
+			children = (
+				F69A10F21F43ED10005C2432 /* PDCViewController.h */,
+				F69A10F31F43ED10005C2432 /* PDCViewController.m */,
+				F69A10F61F43ED92005C2432 /* PDCCell.h */,
+				F69A10F71F43ED92005C2432 /* PDCCell.m */,
+			);
+			name = PDCVC;
 			sourceTree = "<group>";
 		};
 		F6B71A671F3CB84F002AE0FB /* Shipping AddressVC */ = {
@@ -488,11 +529,13 @@
 			files = (
 				F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */,
 				F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */,
+				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
 				F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */,
 				F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */,
 				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
+				F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */,
 				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
@@ -502,6 +545,7 @@
 				F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */,
 				F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
+				F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
 				F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
@@ -510,6 +554,8 @@
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
 				F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */,
+				F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */,
+				F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */,
 				F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

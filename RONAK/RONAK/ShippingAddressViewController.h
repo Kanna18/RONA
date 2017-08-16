@@ -23,8 +23,12 @@
 @property (strong, nonatomic) IBOutlet CustomLabel *lbl180;
 @property (strong, nonatomic) IBOutlet CustomLabel *lbl360;
 @property (strong, nonatomic) IBOutlet CustomLabel *lbl360Above;
+@property (strong, nonatomic) IBOutlet CustomLabel *lblTotal;
+
 
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNamelbl;
+
+@property CustomerDataModel *cst;
 
 - (IBAction)backClick:(id)sender;
 @end

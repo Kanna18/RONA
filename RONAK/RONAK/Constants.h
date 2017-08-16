@@ -32,7 +32,8 @@
 #define rest_clientID_B  @"3MVG959Nd8JMmavR0MNi_h5fdNCoOUDS_ypUngOOSVfBs_SR13nYZOUVEL_EicYnkB2zIviYaiVt.APVTqGXq&client_secret=1609466711200752982"
 #define rest_redirectURI_B @"sfdc://success"
 #define rest_customersList_B @"https://cs57.salesforce.com/services/apexrest/CustomerMaster/getCustomerMasterDetails"
-#define rest_itemList_B @"https://cs57.salesforce.com/services/apexrest/ProductDetails/"
+#define rest_ProductList_B @"https://cs57.salesforce.com/services/apexrest/ProductDetails/"
+
 
 //constants to save in defaults
 #define kaccess_token @"access_token"
@@ -50,6 +51,7 @@
 #define docPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]stringByAppendingString:@"/"]
 #define cachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]stringByAppendingString:@"/"]
 #define customersFilePath @"Customers.json"
+#define productFilePath @"Products.json"
 
 #endif /* Constants_h */
 
