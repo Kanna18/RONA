@@ -7,12 +7,16 @@
 //
 
 #import "ShippingAddressViewController.h"
+#import "PDCViewController.h"
 
 @interface ShippingAddressViewController ()
 
 @end
 
-@implementation ShippingAddressViewController
+@implementation ShippingAddressViewController{
+    
+    LoadingView *load;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,8 +30,22 @@
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pdcLabelTapped:)];
     tap.numberOfTapsRequired=1;
     [_pdcLbl addGestureRecognizer:tap];
+    
+    load=[[LoadingView alloc]init];
 }
-
+-(void)pdcLabelTapped:(id*)sender
+{
+    if(_cst.PDC__r.records.count>0)
+    {
+        PDCViewController *pdcVC=[self.storyboard instantiateViewControllerWithIdentifier:@"pdcVC"];
+        pdcVC.cst=_cst;
+        [self.navigationController pushViewController:pdcVC animated:YES];
+    }
+    else
+    {
+        [load waringLabelText:@"No PDC Details" onView:self.view];
+    }
+}
 -(void)scrollViewDisplayListofCstmrs
 {
     __block int X=0,Y=0;
@@ -64,6 +82,8 @@
 }
 -(void)fillLabelsWithText:(CustomButton*)btn{
     
+    _cst=btn.cstData;
+    
     [btn setBackgroundColor:[UIColor blueColor]];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     CustomerDataModel *cst=btn.cstData;    
@@ -78,6 +98,15 @@
     _lbl360.text=[NSString stringWithFormat:@"%0.2f",[cst.X181_240__c floatValue]+[cst.X241_300__c floatValue]+[cst.X301_360__c floatValue]];
     _lbl360Above.text=[NSString stringWithFormat:@"%0.2f",[cst.X361__c floatValue]];
     _lblTotal.text=[NSString stringWithFormat:@"%0.2f",[_Lbl90.text floatValue]+[_lbl150.text floatValue]+[_lbl180.text floatValue]+[_lbl360.text floatValue]+[_lbl360Above.text floatValue]];
+    
+    float pdcAmount = 0.0;
+    for (int i=0; i<cst.PDC__r.records.count; i++)
+    {
+        PDCRecodrs *rec=cst.PDC__r.records[i];
+        pdcAmount+=[rec.Amount__c floatValue];
+    }
+    _pdcLbl.text=[NSString stringWithFormat:@"%0.1f",pdcAmount];
+    
     [self showaddresses:btn];
     
 }

@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _listTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    _customerNmLbl.text=_cst.Name;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +41,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return _cst.PDC__r.records.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,9 +53,17 @@
         cell=[[PDCCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reus];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    [cell bindData:_cst.PDC__r.records[indexPath.row]];
     return cell;
 }
 
 
 
+- (IBAction)backClick:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)homeClick:(id)sender {
+}
 @end

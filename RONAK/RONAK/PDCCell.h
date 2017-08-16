@@ -15,4 +15,7 @@
 @property (strong, nonatomic) IBOutlet CustomLabel *amount;
 @property (strong, nonatomic) IBOutlet CustomLabel *cheQueType;
 
+@property PDCRecodrs *record;
+
+-(void)bindData:(PDCRecodrs*)rec;
 @end

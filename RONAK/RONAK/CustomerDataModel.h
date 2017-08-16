@@ -63,14 +63,38 @@
     @property (nonatomic) NSString<Optional>* Zipcode__c;
 @end
 
+
+
+
 @interface Ship_to_Party__r : JSONModel
     @property (nonatomic) NSString<Optional>* totalSize;
     @property (nonatomic) NSString<Optional>* done;
     @property (nonatomic) NSArray<Recodrs>* records;
 @end
 
-@interface CustomerDataModel : JSONModel
 
+@protocol PDCRecodrs;
+@interface PDCRecodrs : JSONModel
+@property (nonatomic) Attributes<Optional>* attributes;
+@property (nonatomic) NSString<Optional>* BPName__c;
+@property (nonatomic) NSString<Optional>* Id;
+@property (nonatomic) NSString<Optional>* Name;
+@property (nonatomic) NSString<Optional>* Amount__c;
+@property (nonatomic) NSString<Optional>* Card_Code__c;
+@property (nonatomic) NSString<Optional>* Cheque_Date__c;
+@property (nonatomic) NSString<Optional>* Cheque_No__c;
+@property (nonatomic) NSString<Optional>* Customer_Bank__c;
+@property (nonatomic) NSString<Optional>* Requested_Deposit_On__c;
+@end
+
+@interface PDC__r : JSONModel
+@property (nonatomic) NSString<Optional>* totalSize;
+@property (nonatomic) NSString<Optional>* done;
+@property (nonatomic) NSArray<PDCRecodrs>* records;
+@end
+
+
+@interface CustomerDataModel : JSONModel
     @property (nonatomic) Attributes* attributes;
     @property (nonatomic) NSString<Optional>* Account_Balance__c;
     @property (nonatomic) NSString<Optional>* Active__c;
@@ -113,7 +137,7 @@
     @property (nonatomic) NSString<Optional>* Customer_Name__c;
     @property (nonatomic) NSString<Optional>* Id;
     @property (nonatomic) Ship_to_Party__r<Optional>* Ship_to_Party__r;
-
+    @property (nonatomic) PDC__r<Optional>* PDC__r;
 
 @property (nonatomic) NSString<Optional>* Telephone_1__c;
 @property (nonatomic) NSString<Optional>* E_Mail__c;

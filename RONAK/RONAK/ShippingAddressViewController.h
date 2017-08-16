@@ -28,5 +28,7 @@
 
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNamelbl;
 
+@property CustomerDataModel *cst;
+
 - (IBAction)backClick:(id)sender;
 @end

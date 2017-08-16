@@ -22,14 +22,14 @@
     self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.Account_Balance__c];
     self.selectedImage.backgroundColor=[UIColor grayColor];
     
-    float due=[data.X181_240__c floatValue]+[data.X241_300__c floatValue]+[data.X301_360__c floatValue]+[data.X361__c floatValue];
+    float due=[data.X181_240__c floatValue]+[data.X241_300__c floatValue]+[data.X301_360__c floatValue]+[data.X361__c floatValue]+[data.X0_30__c floatValue]+[data.X31_60__c floatValue]+[data.X61_90__c floatValue]+[data.X91_120__c floatValue]+[data.X121_150__c floatValue]+[data.X151_180__c floatValue];
     
-    if(due>0)
+    if(due>0||due<0)
     {
         _amountLabel.textColor=[UIColor redColor];
     }
     else{
-        _amountLabel.textColor=[UIColor blackColor];
+        _amountLabel.textColor=[UIColor greenColor];
     }
     _amountLabel.text=[NSString stringWithFormat:@"180+=₹%f",due];
     self.cstData=data;

@@ -11,5 +11,8 @@
 @interface PDCViewController : UIViewController
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNmLbl;
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
+- (IBAction)backClick:(id)sender;
+- (IBAction)homeClick:(id)sender;
 
+@property CustomerDataModel *cst;
 @end
