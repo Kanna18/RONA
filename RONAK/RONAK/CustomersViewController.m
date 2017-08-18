@@ -33,6 +33,9 @@ static NSString *reuse=@"reuseCustomerCell";
     load=[[LoadingView alloc]init];
     rest=[[RESTCalls alloc]init];
     
+    _searchTextField.delegate=self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabled) name:UITextFieldTextDidChangeNotification object:nil];
+        
     UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.sectionHeadersPinToVisibleBounds=YES;
     collectionViewLayout.minimumInteritemSpacing = 0;
@@ -46,28 +49,39 @@ static NSString *reuse=@"reuseCustomerCell";
     
     serverAPI=[ServerAPIManager sharedinstance];
     customersList=[[NSMutableArray alloc]init];
-    
+    NSLog(@"%@",docPath);    
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
     
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
-//            [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
-//            NSLog(@"%@",[docPath stringByAppendingPathComponent:customersFilePath]);
-//        }
-//        else{
-            [self restServiceForCustomerList];
-//        }
-//    });
 
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
+            [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
+            NSLog(@"%@",[docPath stringByAppendingPathComponent:customersFilePath]);
+        }
+        else{
+            [self restServiceForCustomerList];
+        }
+    });
+
+    
 }
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     scr_width=_collectionView.frame.size.width;
     scr_height=_collectionView.frame.size.height;
-    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:UITextFieldTextDidChangeNotification];
+}
+
+-(void)searchEnabled{
+    NSLog(@"%@",_searchTextField.text);
+    [self sortCustomersintoSectionsandSearchFunctionality:_searchTextField.text];
 }
 /*-(void)viewWillLayoutSubviews
 {
@@ -82,25 +96,38 @@ static NSString *reuse=@"reuseCustomerCell";
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
--(void)sortCustomersintoSections{
-    
+-(void)sortCustomersintoSectionsandSearchFunctionality:(NSString*)searchStr
+{
     cvDataSectionArr=[[NSMutableArray alloc]init];
     cvAlphabetSectionArr=[[NSMutableArray alloc]init];
-    for (NSString *ele in alphabets)
+    if(!(searchStr.length>0))
     {
-        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF.Name BEGINSWITH[c] %@",ele];
-        NSArray *arr=[customersList filteredArrayUsingPredicate:predicate];
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES];
-        NSArray *sortedArr=[arr sortedArrayUsingDescriptors:@[sortDescriptor]];
-
-        if(sortedArr.count>0)
+        for (NSString *ele in alphabets)
         {
-            [cvDataSectionArr addObject:sortedArr];
-            [cvAlphabetSectionArr addObject:ele];
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF.Name BEGINSWITH[c] %@",ele];
+            NSArray *arr=[customersList filteredArrayUsingPredicate:predicate];
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES];
+            NSArray *sortedArr=[arr sortedArrayUsingDescriptors:@[sortDescriptor]];
+            
+            if(sortedArr.count>0)
+            {
+                [cvDataSectionArr addObject:sortedArr];
+                [cvAlphabetSectionArr addObject:ele];
+            }
         }
     }
+    else if(searchStr)
+    {
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"(SELF.Name BEGINSWITH[c] %@) OR (SELF.Name contains[c] %@)",searchStr,searchStr];
+        NSArray *arr=[customersList filteredArrayUsingPredicate:predicate];
+        [cvDataSectionArr addObject:arr];
+        [cvAlphabetSectionArr addObject:@""];
+    }
     [self.collectionView reloadData];
+    [self alphabetsScrollIndex];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -114,7 +141,9 @@ static NSString *reuse=@"reuseCustomerCell";
 {
     NSDictionary *headers=@{@"content-type":@"application/x-www-form-urlencoded (OR) application/json",
                             @"authorization":[NSString stringWithFormat:@"Bearer %@",defaultGet(kaccess_token)]};
-    [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"GET" cusHeaders:headers successBlock:^(id responseObj) {
+    [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"POST" cusHeaders:headers successBlock:^(id responseObj) {
+        
+        
         NSString *dictstr=[NSJSONSerialization JSONObjectWithData:responseObj options: NSJSONReadingAllowFragments error:nil];
         NSData *jsonData=[dictstr dataUsingEncoding:NSUTF8StringEncoding];
         NSError *cerr;
@@ -134,7 +163,7 @@ static NSString *reuse=@"reuseCustomerCell";
     NSError *err;
     customersList=[CustomerDataModel arrayOfModelsFromDictionaries:arr error:&err];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self sortCustomersintoSections];
+        [self sortCustomersintoSectionsandSearchFunctionality:nil];
         [load stop];
     });
 }
@@ -144,19 +173,8 @@ static NSString *reuse=@"reuseCustomerCell";
 -(void)defaultComponentsStyle
 {
     [_searchTextField setPadding];
-    [_searchTextField setRightPadding];
- 
-    // the space between the image and text
+//    [_searchTextField setRightPadding];
 
-    
-    // lower the text and push it left so it appears centered
-    //  below the image
-
-    
-    // raise the image and push it right so it appears centered
-    //  above the text
-    
-    // increase the content height to avoid clipping
 }
 
 
@@ -309,6 +327,28 @@ static NSString *reuse=@"reuseCustomerCell";
     }
     _scrollView_selCustmr.contentSize=CGSizeMake(X+lbl.intrinsicContentSize.width, 0);    
 }
-
-
+-(void)alphabetsScrollIndex
+{
+    int Xa=0, Ya=0;
+    CGFloat height=_aplhabetsIndexScroll.frame.size.height;
+    for (int i=0; i<cvAlphabetSectionArr.count; i++)
+    {
+        CustomButton *letter=[CustomButton buttonWithType:UIButtonTypeCustom];
+        letter.frame=CGRectMake(Xa, Ya, 40, height/cvAlphabetSectionArr.count);
+        [letter setTitle:cvAlphabetSectionArr[i] forState:UIControlStateNormal];
+        [letter setBackgroundColor:[UIColor clearColor]];
+        [letter setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        Ya+=height/cvAlphabetSectionArr.count;
+        [_aplhabetsIndexScroll addSubview:letter];
+        letter.tag=i+100;
+        [letter addTarget:self action:@selector(clickedOnAlphabet:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+-(void)clickedOnAlphabet:(CustomButton*)sender
+{
+    
+    NSIndexPath *nextItem = [NSIndexPath indexPathForItem:0 inSection:sender.tag-100];
+    [self.collectionView scrollToItemAtIndexPath:nextItem atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    
+}
 @end

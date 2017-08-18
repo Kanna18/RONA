@@ -11,7 +11,7 @@
 #import "HeaderReusableView.h"
 #import "CustomerDataModel.h"
 
-@interface CustomersViewController : UIViewController
+@interface CustomersViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTextField *searchTextField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -20,11 +20,15 @@
 - (IBAction)addCustomer:(id)sender;
 - (IBAction)gemMarketing:(id)sender;
 
+
+
+
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
 @property (strong, nonatomic) IBOutlet UIButton *addCustomerBtn;
 @property (strong, nonatomic) IBOutlet UIButton *geomarketingBtn;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView_selCustmr;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *aplhabetsIndexScroll;
 
 @end
