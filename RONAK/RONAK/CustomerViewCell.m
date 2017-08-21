@@ -27,12 +27,14 @@
     
     Count++;
     _countLabel.text=[NSString stringWithFormat:@"%d",Count];
+    self.backgroundColor=[UIColor redColor];
     
 }
 - (IBAction)decrementClick:(id)sender {
     if(Count>0)
     Count--;
     _countLabel.text=[NSString stringWithFormat:@"%d",Count];
+    self.backgroundColor=[UIColor clearColor];
 }
 
 -(void)drawBorders:(id)element{

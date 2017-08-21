@@ -25,14 +25,23 @@
     customersViewLayout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
     customersViewLayout.minimumInteritemSpacing = 0;
     customersViewLayout.minimumLineSpacing = 0;
+
+    [self defaultShapesOfComponents];
+}
+
+-(void)defaultShapesOfComponents
+{
+    [self drawBorders:_pSymbol];
+    [self drawBorders:_saleBtn];
+    [self drawBorders:_allColoursBtn];
     
-    for (CustomButton *cst in self.view.subviews)
-    {
-        if([cst isKindOfClass:[CustomButton class]])
-        {
-            [self drawBorders:cst];
-        }
-    }
+    _searchEveryWhereOptn.layer.cornerRadius=10;
+    _searchEveryWhereOptn.clipsToBounds=YES;
+    _discountLbl.font=sfFont(42);
+    
+    _discountVw.layer.borderWidth=2.0;
+    _discountVw.layer.borderColor=[UIColor blackColor].CGColor;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +57,16 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 {
-    return 10;
+    if(collectionView==self.customersCollectionView)
+    {
+        return 14;
+    }
+    if(collectionView==self.productsCollectionView)
+    {
+        return 12;
+    }
+    return 0;
+    
 }
 
 
@@ -57,12 +75,19 @@
     if(collectionView==self.productsCollectionView)
     {
         ProductCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"productCVCell" forIndexPath:indexPath];
+        if(cell==nil)
+        {
+            cell=[[ProductCollectionViewCell alloc]init];
+        }
         return cell;
     }
     if(collectionView==self.customersCollectionView)
     {
         CustomerViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"customerViewCellReuse" forIndexPath:indexPath];
-        
+        if(cell==nil)
+        {
+            cell=[[CustomerViewCell alloc]init];
+        }
         cell.layer.borderWidth=1.0f;
         cell.layer.borderColor=[UIColor lightGrayColor].CGColor;
         return cell;
@@ -71,7 +96,8 @@
     
 }
 -(void)drawBorders:(id)element{
-    if([element isKindOfClass:[CustomButton class]])
+    
+    if([element isKindOfClass:[CustomButton class]]||[element isKindOfClass:[UIButton class]])
     {
         CustomButton *cst=element;
         cst.layer.borderColor=[UIColor lightGrayColor].CGColor;
@@ -81,6 +107,8 @@
         cst.layer.shadowRadius=1.0f;
         cst.layer.shadowOpacity=1.0f;
     }
+    
+    
 }
 
 /*
@@ -93,4 +121,6 @@
 }
 */
 
+- (IBAction)searchEveryWhereClick:(id)sender {
+}
 @end
