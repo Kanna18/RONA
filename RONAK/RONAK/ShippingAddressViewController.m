@@ -53,15 +53,18 @@
         
         CustomerDataModel *cst=selectedCustomersList[idx];
         CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
+        btn.titleLabel.lineBreakMode=NSLineBreakByClipping;
+        btn.titleLabel.font=sfFont(20);
         [btn setTitle:cst.Name forState:UIControlStateNormal];
-        btn.frame=CGRectMake(X, Y, btn.titleLabel.intrinsicContentSize.width+20, 40);
+//        btn.titleLabel.intrinsicContentSize.width+2
+        btn.frame=CGRectMake(X, Y, 200, 30);
         btn.cstData=cst;
-        [btn setBackgroundColor:[UIColor grayColor]];
+        [btn setBackgroundColor:GrayLight];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(clikedOnCustomer:) forControlEvents:UIControlEventTouchUpInside];
         [_scrollView_Cmlist addSubview:btn];
-        X+=btn.titleLabel.intrinsicContentSize.width+25;
-        
+        X+=210;
+
         if(idx==0){
             [self fillLabelsWithText:btn];
         }
@@ -74,7 +77,7 @@
     for (CustomButton *btn in _scrollView_Cmlist.subviews) {
         if([btn isKindOfClass:[CustomButton class]])
         {
-            [btn setBackgroundColor:[UIColor grayColor]];
+            [btn setBackgroundColor:GrayLight];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
     }
@@ -82,9 +85,16 @@
 }
 -(void)fillLabelsWithText:(CustomButton*)btn{
     
-    _cst=btn.cstData;
+    [UIView transitionWithView: self.view
+                           duration: 0.35f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations: ^(void)
+          {
+          }
+                    completion: nil];
     
-    [btn setBackgroundColor:[UIColor blueColor]];
+    _cst=btn.cstData;
+    [btn setBackgroundColor:BlueClr];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     CustomerDataModel *cst=btn.cstData;    
     _customerNamelbl.text=cst.Name;
@@ -112,8 +122,16 @@
 }
 
 -(void)showaddresses:(CustomButton*)btn{
-    CustomerDataModel *cst=btn.cstData;
     
+    
+    for (id sub in _billAddress_scrlView.subviews) {
+        [sub removeFromSuperview];
+    }
+    for (id sub in _shipAddress_scrlView.subviews) {
+        [sub removeFromSuperview];
+    }
+    
+    CustomerDataModel *cst=btn.cstData;
     NSString *billAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\n%@.",cst.BillingStreet,cst.BillingState,cst.BillingCity,cst.BillingPostalCode];
     
     UITextView *textVi=[[UITextView alloc]initWithFrame:CGRectMake(10, 10, _billAddress_scrlView.frame.size.width-10, _billAddress_scrlView.frame.size.height-10)];
@@ -125,7 +143,7 @@
     
     //Shipping address.
     NSArray *arr=cst.Ship_to_Party__r.records;
-    int vX=40 , vY=10 , bX=0, bY=15;
+    int vX=20 , vY=5 , bX=0, bY=15;
     for (int i=0; i<arr.count; i++)
     {
         Recodrs *rec=(Recodrs*)arr[i];
@@ -136,33 +154,44 @@
         textVi.font=sfFont(18);
         textVi.userInteractionEnabled=NO;
         
-        UIButton *btn=[UIButton buttonWithType:UIButtonTypeSystem];
-        btn.frame=CGRectMake(bX, bY, 30, 30);
+        CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
+        btn.cstData=cst;
+        btn.frame=CGRectMake(bX, bY, 15, 15);
+        btn.tag=100+i;
         [_shipAddress_scrlView addSubview:btn];
-        btn.tag=100;
         [btn addTarget:self action:@selector(selectedAddress:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundColor:[UIColor lightGrayColor]];
+        [btn setBackgroundColor:GrayLight];
+        [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         vY+=_billAddress_scrlView.frame.size.height-20;
         bY+=_billAddress_scrlView.frame.size.height-20;
+        
+        if([cst.defaultsCustomer.defaultAddressIndex isEqual:[NSNumber numberWithInteger:i]])
+        {
+//            btn.backgroundColor=BlueClr;
+            [btn setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
+        }
     }
     _shipAddress_scrlView.showsVerticalScrollIndicator=YES;
     _shipAddress_scrlView.contentSize=CGSizeMake(0, vY+20);
 
     
 }
--(void)selectedAddress:(UIButton*)sender
+-(void)selectedAddress:(CustomButton*)sender
 {
-    for (UIButton *btn in _shipAddress_scrlView.subviews)
+    for (CustomButton *btn in _shipAddress_scrlView.subviews)
     {
-        if([btn isKindOfClass:[UIButton class]])
+        if([btn isKindOfClass:[CustomButton class]])
         {
             if(btn.tag)
             {
-                [btn setBackgroundColor:[UIColor grayColor]];
+                [btn setBackgroundColor:GrayLight];
+                [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
             }
         }
     }
-    sender.backgroundColor=[UIColor blueColor];
+    sender.cstData.defaultsCustomer.defaultAddressIndex=[NSNumber numberWithInteger:sender.tag-100];
+    //sender.backgroundColor=BlueClr;
+    [sender setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

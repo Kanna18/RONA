@@ -9,9 +9,10 @@
 #import "HeaderReusableView.h"
 
 @implementation HeaderReusableView
-
-- (IBAction)headerrrowClick:(id)sender
+-(void)awakeFromNib
 {
-    
+    self.layer.cornerRadius=5.0f;
+    self.clipsToBounds=YES;
 }
+
 @end

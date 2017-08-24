@@ -49,7 +49,6 @@ static NSString *reuse=@"reuseCustomerCell";
     
     serverAPI=[ServerAPIManager sharedinstance];
     customersList=[[NSMutableArray alloc]init];
-    NSLog(@"%@",docPath);    
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
     
@@ -58,14 +57,22 @@ static NSString *reuse=@"reuseCustomerCell";
         
         if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
             [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
-            NSLog(@"%@",[docPath stringByAppendingPathComponent:customersFilePath]);
         }
         else{
             [self restServiceForCustomerList];
         }
     });
-
     
+    UISwipeGestureRecognizer *l2rswipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(pustToVC:)];
+    l2rswipe.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:l2rswipe];
+    [self.collectionView addGestureRecognizer:l2rswipe];
+    
+}
+-(void)pustToVC:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [selectedCustomersList removeAllObjects];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -80,7 +87,7 @@ static NSString *reuse=@"reuseCustomerCell";
 }
 
 -(void)searchEnabled{
-    NSLog(@"%@",_searchTextField.text);
+    NSLog(@"SearchField Text->%@",_searchTextField.text);
     [self sortCustomersintoSectionsandSearchFunctionality:_searchTextField.text];
 }
 /*-(void)viewWillLayoutSubviews
@@ -141,6 +148,8 @@ static NSString *reuse=@"reuseCustomerCell";
 {
     NSDictionary *headers=@{@"content-type":@"application/x-www-form-urlencoded (OR) application/json",
                             @"authorization":[NSString stringWithFormat:@"Bearer %@",defaultGet(kaccess_token)]};
+    
+
     [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"POST" cusHeaders:headers successBlock:^(id responseObj) {
         
         
@@ -173,6 +182,7 @@ static NSString *reuse=@"reuseCustomerCell";
 -(void)defaultComponentsStyle
 {
     [_searchTextField setPadding];
+    _scrollView_selCustmr.layer.cornerRadius=5.0f;
 //    [_searchTextField setRightPadding];
 
 }
@@ -314,12 +324,13 @@ static NSString *reuse=@"reuseCustomerCell";
         [lbl removeFromSuperview];
     }
     
-    int X=scr_width/20,Y=0;
+    int X=scr_width/10,Y=5;
     CustomLabel *lbl;
     for (int i=0; i<selectedCustomersList.count; i++)
     {
         CustomerDataModel *cst=selectedCustomersList[i];
         lbl=[[CustomLabel alloc]init];
+        lbl.font=sfFont(14);
         [_scrollView_selCustmr addSubview:lbl];
         lbl.text=[cst.Name stringByAppendingString:@","];
         lbl.frame=CGRectMake(X, Y, lbl.intrinsicContentSize.width, 30);
@@ -338,7 +349,7 @@ static NSString *reuse=@"reuseCustomerCell";
         letter.frame=CGRectMake(Xa, Ya, 40, height/cvAlphabetSectionArr.count);
         [letter setTitle:cvAlphabetSectionArr[i] forState:UIControlStateNormal];
         [letter setBackgroundColor:[UIColor clearColor]];
-        [letter setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [letter setTitleColor:RGB(76,188,206) forState:UIControlStateNormal];
         Ya+=height/cvAlphabetSectionArr.count;
         [_aplhabetsIndexScroll addSubview:letter];
         letter.tag=i+100;

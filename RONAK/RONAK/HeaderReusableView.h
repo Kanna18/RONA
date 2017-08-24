@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HeaderReusableView : UICollectionReusableView
-@property (weak, nonatomic) IBOutlet UIButton *headerArrow;
-- (IBAction)headerrrowClick:(id)sender;
 @property (weak, nonatomic) IBOutlet CustomLabel *alphabetCell;
 
 @end

@@ -42,8 +42,6 @@ enum HTTPMethod {
     manager.responseSerializer.acceptableContentTypes=[manager.responseSerializer.acceptableContentTypes setByAddingObject:@"application/json"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-
-    
     if(headersDict){
         
         AFSecurityPolicy* policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
@@ -58,9 +56,6 @@ enum HTTPMethod {
         
     }
     
-    
-    //    [manager.requestSerializer setValue:@"1485153968695" forHTTPHeaderField:@"APP_ID"];
-    //    manager.requestSerializer.timeoutInterval=5;
     if ([type isEqualToString:@"POST"]) {
         
         [manager POST:path parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

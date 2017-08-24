@@ -22,11 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    DownloadProducts *dw=[[DownloadProducts alloc]init];
     _filterTable.delegate=self;
     _filterTable.dataSource=self;
     _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-    height=50;
+    height=61;
     filtersArr=@[@{  @"heading":@"SampleWare House",
                      @"options":@[@"North",
                                   @"South",
@@ -35,20 +37,10 @@
                                   @"East",
                                   @"Main",
                                   @"Amish Ajmera"]},
-                 @{  @"heading":@"Stock Warehouse",
-                     @"options":@[@"North",
-                                  @"South",
-                                  @"West",
-                                  @"Mumbai",
-                                  @"East",
-                                  @"Main",
-                                  @"Amish Ajmera"]},
+                 @{ @"heading":@"Stock Warehouse",
+                     @"options":[dw getFilterFor:@"stock_Warehouse__c"]},
                  @{ @"heading":@"Stock",
-                    @"options":@[@"Jul-17",
-                                 @"Apr-17",
-                                 @"Jan-17",
-                                 @"Oct-17",
-                                 @"Jul-17"]}];
+                    @"options":[dw getFilterFor:@"stock__c"]}];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -107,27 +99,28 @@
         return 61;
     }
 }
--(void)getbuttonStatus:(UIButton *)sender cell:(UITableViewCell *)cell
+-(void)getbuttonStatus:(UIButton *)sender cell:(CustomTVCell *)cell
 {
+    [_filterTable reloadData];
+    [self.filterTable beginUpdates];
     if(sender.selected==YES){
-        height=356;
+        height=height=cell.optionsArray.count*44+140;
     }
     else{
         height=61;
     }
     Section=sender.tag;
+    [self.filterTable endUpdates];
     
-    [UIView transitionWithView: _filterTable
-                      duration: 0.35f
-                       options: UIViewAnimationOptionTransitionCrossDissolve
-                    animations: ^(void)
-     {
-         [_filterTable reloadData];
-     }
-                    completion: nil];
-    //    [_filterTable reloadData];
+//    [UIView transitionWithView: _filterTable
+//                      duration: 1.0f
+//                       options: UIViewAnimationOptionTransitionFlipFromRight
+//                    animations: ^(void)
+//     {
+//     }
+//                    completion: nil];
+    //
     //    [_filterTable reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationFade];
-    
 }
 /*
  #pragma mark - Navigation

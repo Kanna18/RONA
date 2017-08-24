@@ -23,38 +23,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    DownloadProducts *dw=[[DownloadProducts alloc]init];
+
+    
     _filterTable.delegate=self;
     _filterTable.dataSource=self;
     _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-    height=50;
+    
+    
+    height=61;
     filtersArr=@[@{  @"heading":@"Brand",
-                     @"options":@[@"IDEE",
-                            @"IMAGE",
-                            @"POLICE",
-                            @"GUESS",
-                            @"CHOPARD",
-                            @"FILA",
-                            @"FLAIR",
-                            @"DUNHILL",
-                            @"CAROLINA",
-                            @"HERRERA",
-                            @"LANVIN",
-                            @"ESPEE",
-                              @"UCB"]},
+                     @"options":[dw getFilterFor:@"brand__c"]},
                  @{  @"heading":@"Categories",
-                     @"options":@[@"Frames",
-                                 @"Sunglasses",
-                                 @"Cases",
-                                 @"Cleaning Cloth",
-                                 @"POP",
-                                   @"Spares"]},
+                     @"options":[dw getFilterFor:@"category__c"]},
                  @{ @"heading":@"Collection",
-                    @"options":@[@"Jul-17",
-                                 @"Apr-17",
-                                 @"Jan-17",
-                                 @"Oct-17",
-                                   @"Jul-17"]}];
+                    @"options":[dw getFilterFor:@"collection__c"]}];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -100,6 +86,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView reloadData];
 }
 
@@ -113,30 +100,20 @@
         return 61;
     }
 }
--(void)getbuttonStatus:(UIButton *)sender cell:(UITableViewCell *)cell
+-(void)getbuttonStatus:(UIButton *)sender cell:(CustomTVCell *)cell
 {
+    [_filterTable reloadData];
+    [self.filterTable beginUpdates];
     if(sender.selected==YES){
-        height=356;
+        height=cell.optionsArray.count*44+140;
     }
     else{
         height=61;
     }
     Section=sender.tag;
+    [self.filterTable endUpdates];
     
-    [_filterTable reloadData];
-//    [UIView transitionWithView: _filterTable
-//                      duration: 0.35f
-//                       options: UIViewAnimationOptionTransitionCrossDissolve
-//                    animations: ^(void)
-//    {
-//        [_filterTable reloadData];
-//    }
-//                    completion: nil];
-//    [_filterTable reloadData];
-//    NSRange range = NSMakeRange(0, [self numberOfSectionsInTableView:self.filterTable]);
-//    NSIndexSet *sections = [NSIndexSet indexSetWithIndexesInRange:range];
-//    [self.filterTable reloadSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
-//    [_filterTable reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationFade];
+  
 
 }
 /*

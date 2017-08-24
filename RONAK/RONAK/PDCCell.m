@@ -13,6 +13,17 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    for (CustomLabel *lbl in self.contentView.subviews)
+    {
+        if([lbl isKindOfClass:[CustomLabel class]])
+        {
+            lbl.layer.borderColor=[[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
+            lbl.layer.borderWidth=1.0f;
+            lbl.clipsToBounds=YES;
+            
+        }
+    }
 }
 
 -(void)bindData:(PDCRecodrs*)rec
@@ -21,9 +32,6 @@
     _chequeDate.text=rec.Cheque_Date__c;
     _amount.text=rec.Amount__c;
     _drawOn.text=rec.Customer_Bank__c;
-    
-    
-    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

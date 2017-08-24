@@ -93,6 +93,9 @@
 @property (nonatomic) NSArray<PDCRecodrs>* records;
 @end
 
+@interface CustomerDefauls : NSObject
+@property (nonatomic) NSNumber *defaultAddressIndex;
+@end
 
 @interface CustomerDataModel : JSONModel
     @property (nonatomic) Attributes* attributes;
@@ -139,7 +142,10 @@
     @property (nonatomic) Ship_to_Party__r<Optional>* Ship_to_Party__r;
     @property (nonatomic) PDC__r<Optional>* PDC__r;
 
-@property (nonatomic) NSString<Optional>* Telephone_1__c;
-@property (nonatomic) NSString<Optional>* E_Mail__c;
+
+    @property (nonatomic) NSString<Optional>* Telephone_1__c;
+    @property (nonatomic) NSString<Optional>* E_Mail__c;
+
+    @property (nonatomic) CustomerDefauls<Optional>* defaultsCustomer;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AllFiltersViewController.h"
-
 @interface AllFiltersViewController ()
 
 @end
@@ -26,6 +25,12 @@
     serverAPI=[ServerAPIManager sharedinstance];
     rest=[[RESTCalls alloc]init];
     load=[[LoadingView alloc]init];
+    
+    for (int i=0; i<[[RONAKSharedClass sharedInstance].selectedCustomersArray count]; i++)
+    {
+        CustomerDataModel *cst=[RONAKSharedClass sharedInstance].selectedCustomersArray[i];
+        NSLog(@"%@",cst.defaultsCustomer.defaultAddressIndex);
+    }
     
 }
 

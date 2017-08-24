@@ -53,6 +53,21 @@
 #define customersFilePath @"Customers.json"
 #define productFilePath @"Products.json"
 
+
+//colorCodes
+
+#define RGB(r,g,b) [[UIColor alloc]initWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define GreenClr RGB(0, 165, 80)
+#define BlueClr RGB(0, 122, 255)
+#define RedClr RGB(237, 29, 36)
+#define GrayLight RGB(228, 230, 232)
+#define GrayLight1 RGB(193, 196, 201)
+#define Blacktitle RGB(69, 69, 69)
+#define BlackDull RGB((96, 96, 96)
+
+
+
+
 #endif /* Constants_h */
 
 

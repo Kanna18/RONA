@@ -12,11 +12,17 @@
 
 @end
 
-@implementation ProductsListController
+@implementation ProductsListController{
+    
+    NSArray *imagesArray;
+    int index;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    index=0;
+    imagesArray=@[@"Angel1",@"Angel2",@"Angel3",@"Angel4",@"Angel5",@"Angel6"];
     
     UICollectionViewFlowLayout *productsViewLayout = (UICollectionViewFlowLayout*)self.productsCollectionView.collectionViewLayout;
     productsViewLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
@@ -27,6 +33,7 @@
     customersViewLayout.minimumLineSpacing = 0;
 
     [self defaultShapesOfComponents];
+    _detailedImageView.image=[UIImage imageNamed:imagesArray[index]];
 }
 
 -(void)defaultShapesOfComponents
@@ -123,4 +130,29 @@
 
 - (IBAction)searchEveryWhereClick:(id)sender {
 }
+- (IBAction)dismissViewController:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)listImagesArray:(id)sender
+{
+    UIButton *but=sender;
+    switch (but.tag) {
+        case 100:
+            if(!(index<=0))
+            index--;
+            break;
+            
+        case 200:
+            if(index<imagesArray.count-1)
+            index++;
+            break;
+            
+        default:
+            break;
+    }
+    _detailedImageView.image=[UIImage imageNamed:imagesArray[index]];
+}
+
 @end

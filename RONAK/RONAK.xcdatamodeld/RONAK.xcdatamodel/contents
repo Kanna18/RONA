@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Att" representedClassName="Att" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Filters" inverseName="attribute" inverseEntity="Filters" syncable="YES"/>
+    </entity>
+    <entity name="Filters" representedClassName="Filters" syncable="YES">
+        <attribute name="active_Form__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="brand__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collection__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="collection_Name__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="custom__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="delivery_Month__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="drawing_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="factory_Company__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flex_Temple__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foreign_Name__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frame_Material__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frame_Structure__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="front_Color__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="group_Name__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inactive__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inactive_From__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inactive_To__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Description__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Group_Product_Family__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_No__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lens_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lens_Color__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lens_Description__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo_Color__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo_Size__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo_Type__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mRP__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order_Month__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shape__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stock__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stock_Warehouse__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temple_Color__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temple_Material__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips_Color__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wS_Price__c" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Att" inverseName="filters" inverseEntity="Att" syncable="YES"/>
+        <relationship name="itemMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemMaster" inverseName="filters" inverseEntity="ItemMaster" syncable="YES"/>
+    </entity>
+    <entity name="ItemMaster" representedClassName="ItemMaster" syncable="YES">
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Filters" inverseName="itemMaster" inverseEntity="Filters" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Att" positionX="-198" positionY="297" width="128" height="90"/>
+        <element name="Filters" positionX="88" positionY="45" width="128" height="703"/>
+        <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="90"/>
+    </elements>
+</model>

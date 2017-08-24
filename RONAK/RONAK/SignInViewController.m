@@ -129,17 +129,20 @@
 -(void)getAccessToken{
     
     
+    
+    
+    
     NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,_emailTf.text,_passwordTF.text];
     [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)
     {
         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObj options:0 error:nil];
         if(dict[@"access_token"])
         {
+            default(dict[@"access_token"], kaccess_token);
             dispatch_async(dispatch_get_main_queue(), ^{
                 
             [load stop];
-            default(dict[@"access_token"], kaccess_token);
-                MenuViewController *menu=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
+            MenuViewController *menu=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
                 [self.navigationController pushViewController:menu animated:YES];
             });
         }
@@ -151,7 +154,7 @@
             });
             
         }
-            NSLog(@"%@",dict);
+            NSLog(@"authToken Dictionary-->%@",dict);
         
         } andErrorBlock:^(NSError *error) {
             

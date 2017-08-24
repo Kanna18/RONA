@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "DownloadProducts.h"
 
 @interface MenuViewController ()
 
@@ -19,6 +20,10 @@
     // Do any additional setup after loading the view.
 
     [self defaultComponentsStyle];
+    
+    DownloadProducts *dwn=[[DownloadProducts alloc]init];
+    
+    [dwn downloadStockWareHouseSavetoCoreData];
   
 }
 -(void)viewWillAppear:(BOOL)animate

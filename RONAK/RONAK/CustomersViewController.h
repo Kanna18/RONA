@@ -13,6 +13,7 @@
 
 @interface CustomersViewController : UIViewController<UITextFieldDelegate>
 
+@property (strong, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet CustomTextField *searchTextField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 

@@ -23,7 +23,7 @@
 #import "RESTCalls.h"
 #import "RONAKSharedClass.h"
 #import "CustomerDataModel.h"
-
-
+#import <CoreData/CoreData.h>
+#import "DownloadProducts.h"
 
 #endif /* RONAK_pch */

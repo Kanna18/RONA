@@ -39,8 +39,30 @@
 @end
 
 
-@implementation CustomerDataModel
+@implementation CustomerDefauls
 
+-(instancetype)init
+{
+    self=[super init];
+    if(self)
+    {
+        self.defaultAddressIndex=[NSNumber numberWithInt:0];
+    }
+    return self;
+}
+
+@end
+
+@implementation CustomerDataModel
+-(instancetype)init
+{
+    self=[super init];
+    if(self)
+    {
+        _defaultsCustomer=[[CustomerDefauls alloc]init];
+    }
+    return self;
+}
 @end
 
 
