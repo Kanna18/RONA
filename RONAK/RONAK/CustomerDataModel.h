@@ -95,6 +95,10 @@
 
 @interface CustomerDefauls : NSObject
 @property (nonatomic) NSNumber *defaultAddressIndex;
+@property (nonatomic) NSMutableArray *itemsCount;
+@property (nonatomic) NSString *discount;
+@property (nonatomic) NSString *dateFuture;
+
 @end
 
 @interface CustomerDataModel : JSONModel

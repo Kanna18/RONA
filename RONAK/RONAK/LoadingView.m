@@ -67,6 +67,7 @@
 
 -(void)WithView:(UIView*)view with_message:(NSString*)text
 {
+
     self.frame=CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
     self.backgroundColor=[UIColor whiteColor];
     self.activityIndicatorViewStyle=UIActivityIndicatorViewStyleWhiteLarge;
@@ -96,6 +97,7 @@
 
 -(void)waringLabelText:(NSString*)msg onView:(UIView*)view
 {
+    
     
     [view addSubview:warningLabel];
     warningLabel.hidden=NO;

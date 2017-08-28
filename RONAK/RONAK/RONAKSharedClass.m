@@ -25,6 +25,10 @@
     if (self = [super init]) {
         
         _selectedCustomersArray=[[NSMutableArray alloc]init];
+        _selectedFilter=[[SelectedFilters alloc]init];
+        _filterdProductsArray=[[NSMutableArray alloc]init];;
+        _delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        _context=_delegate.managedObjectContext;
     }
     return self;
 }

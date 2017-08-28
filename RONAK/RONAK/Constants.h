@@ -32,7 +32,7 @@
 #define rest_clientID_B  @"3MVG959Nd8JMmavR0MNi_h5fdNCoOUDS_ypUngOOSVfBs_SR13nYZOUVEL_EicYnkB2zIviYaiVt.APVTqGXq&client_secret=1609466711200752982"
 #define rest_redirectURI_B @"sfdc://success"
 #define rest_customersList_B @"https://cs57.salesforce.com/services/apexrest/CustomerMaster/getCustomerMasterDetails"
-#define rest_ProductList_B @"https://cs57.salesforce.com/services/apexrest/ProductDetails/"
+#define rest_ProductList_B @"https://cs57.salesforce.com/services/apexrest/SampleProductDetails/"
 
 
 //constants to save in defaults
@@ -45,6 +45,7 @@
 //CustomersData
 #define savedCustomersList @"savedCustomersList"
 #define selectedCustomersList [RONAKSharedClass sharedInstance].selectedCustomersArray
+#define ronakGlobal [RONAKSharedClass sharedInstance]
 
 //Paths
 #define fileManager [NSFileManager defaultManager]
@@ -65,6 +66,35 @@
 #define Blacktitle RGB(69, 69, 69)
 #define BlackDull RGB((96, 96, 96)
 
+
+//Filtertypes
+#define kBrand @"Brand"
+#define kCategories @"Categories"
+#define kCollection @"Collection"
+#define kSampleWareHouse @"SampleWare House"
+#define kStockWareHouse @"StockWare House"
+
+//AdvancedFirstFilter
+#define kLensDescription @"Lens Description"
+#define kWSPrice @"WS Price"
+#define kShape @"Shape"
+#define kGender @"Gender"
+#define kFrameMaterial @"Frame Material"
+#define kTempleMaterial @"Temple Material"
+#define kTempleColour @"Temple Colour"
+#define kTipColor @"Tip Color"
+//AdvancedF2
+#define kDiscount @"Discount"
+#define kMRP @"MRP"
+#define kRim @"Rim"
+#define kSize @"Size"
+#define kLensMaterial @"Lens Material"
+#define kFrontColor @"Front Color"
+#define kLensColor @"Lens Color"
+
+
+
+#define  firstTimeLaunching @"FirstTime"
 
 
 

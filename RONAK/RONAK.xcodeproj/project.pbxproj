@@ -15,11 +15,31 @@
 		CEA8CA021F071A9D00448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA011F071A9D00448B51 /* Images.xcassets */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
+		F6496B901F52A22400028FF0 /* Filters+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B8D1F52A22400028FF0 /* Filters+CoreDataClass.m */; };
+		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
+		F6496B9D1F52F8D800028FF0 /* Filters+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B9C1F52F8D800028FF0 /* Filters+CoreDataProperties.m */; };
+		F6496BAC1F53BF7E00028FF0 /* Discount.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BAA1F53BF7E00028FF0 /* Discount.m */; };
+		F6496BAD1F53BF7E00028FF0 /* Discount.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6496BAB1F53BF7E00028FF0 /* Discount.xib */; };
+		F6496BB01F53C19D00028FF0 /* righticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F6496BAF1F53C19D00028FF0 /* righticon.png */; };
+		F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6496BD41F53FC6000028FF0 /* WSCalendarView.xib */; };
+		F6496BDD1F53FC6000028FF0 /* WSCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BD61F53FC6000028FF0 /* WSCalendarView.m */; };
+		F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BD81F53FC6000028FF0 /* WSLabel.m */; };
+		F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BDA1F53FC6000028FF0 /* WSEventView.m */; };
+		F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6496BE01F54378000028FF0 /* Launch Screen.storyboard */; };
+		F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */; };
+		F6496BED1F5472D000028FF0 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BEB1F5472D000028FF0 /* Calculator.m */; };
+		F6496BEE1F5472D000028FF0 /* Calculator.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6496BEC1F5472D000028FF0 /* Calculator.xib */; };
 		F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = F64D6A101F39FA35001E8AD6 /* RESTCalls.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
+		F66352981F4F557D00128137 /* AdvancedFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352971F4F557D00128137 /* AdvancedFilters.m */; };
+		F663529C1F4F55A600128137 /* AdvancedFirstFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F663529B1F4F55A600128137 /* AdvancedFirstFilter.m */; };
+		F663529F1F4F55B600128137 /* AdvancedSecondFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F663529E1F4F55B600128137 /* AdvancedSecondFilter.m */; };
+		F66352A21F501ED500128137 /* OrderSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352A11F501ED500128137 /* OrderSummaryVC.m */; };
+		F66352A61F50279700128137 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352A51F50279700128137 /* OrderCell.m */; };
 		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
 		F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10F31F43ED10005C2432 /* PDCViewController.m */; };
 		F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10F71F43ED92005C2432 /* PDCCell.m */; };
+		F6B0A5AA1F5141E000276E9B /* SelectedFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B0A5A91F5141E000276E9B /* SelectedFilters.m */; };
 		F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */; };
 		F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */; };
 		F6BFD94F1F4CA7A80057C4A0 /* DownloadProducts.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD94E1F4CA7A80057C4A0 /* DownloadProducts.m */; };
@@ -27,10 +47,10 @@
 		F6BFD9F51F4CC0840057C4A0 /* ItemMaster+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD9EB1F4CC0840057C4A0 /* ItemMaster+CoreDataProperties.m */; };
 		F6BFD9F61F4CC0840057C4A0 /* Att+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD9ED1F4CC0840057C4A0 /* Att+CoreDataClass.m */; };
 		F6BFD9F71F4CC0840057C4A0 /* Att+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD9EF1F4CC0840057C4A0 /* Att+CoreDataProperties.m */; };
-		F6BFD9F81F4CC0840057C4A0 /* Filters+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD9F11F4CC0840057C4A0 /* Filters+CoreDataClass.m */; };
-		F6BFD9F91F4CC0840057C4A0 /* Filters+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD9F31F4CC0840057C4A0 /* Filters+CoreDataProperties.m */; };
 		F6CD273C1F1811750082C6D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6CD273B1F1811750082C6D0 /* Main.storyboard */; };
 		F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CD273E1F1816F00082C6D0 /* SignInViewController.m */; };
+		F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D085051F548DD1001A76C5 /* PlaceOrder.m */; };
+		F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D085061F548DD1001A76C5 /* Draft6.xib */; };
 		F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE41F25C295003AF699 /* CustomerDataModel.m */; };
 		F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE81F25C886003AF699 /* ServerAPIManager.m */; };
 		F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADC9E1F196A2800DC635E /* MenuViewController.m */; };
@@ -72,16 +92,51 @@
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
 		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
 		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
+		F6496B8C1F52A22400028FF0 /* Filters+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Filters+CoreDataClass.h"; path = "../Filters+CoreDataClass.h"; sourceTree = "<group>"; };
+		F6496B8D1F52A22400028FF0 /* Filters+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Filters+CoreDataClass.m"; path = "../Filters+CoreDataClass.m"; sourceTree = "<group>"; };
+		F6496B981F52A83E00028FF0 /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
+		F6496B991F52A83E00028FF0 /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
+		F6496B9B1F52F8D800028FF0 /* Filters+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Filters+CoreDataProperties.h"; path = "../Filters+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F6496B9C1F52F8D800028FF0 /* Filters+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Filters+CoreDataProperties.m"; path = "../Filters+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F6496BA91F53BF7E00028FF0 /* Discount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Discount.h; sourceTree = "<group>"; };
+		F6496BAA1F53BF7E00028FF0 /* Discount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Discount.m; sourceTree = "<group>"; };
+		F6496BAB1F53BF7E00028FF0 /* Discount.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discount.xib; sourceTree = "<group>"; };
+		F6496BAF1F53C19D00028FF0 /* righticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = righticon.png; sourceTree = "<group>"; };
+		F6496BD41F53FC6000028FF0 /* WSCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSCalendarView.xib; sourceTree = "<group>"; };
+		F6496BD51F53FC6000028FF0 /* WSCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCalendarView.h; sourceTree = "<group>"; };
+		F6496BD61F53FC6000028FF0 /* WSCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCalendarView.m; sourceTree = "<group>"; };
+		F6496BD71F53FC6000028FF0 /* WSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLabel.h; sourceTree = "<group>"; };
+		F6496BD81F53FC6000028FF0 /* WSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLabel.m; sourceTree = "<group>"; };
+		F6496BD91F53FC6000028FF0 /* WSEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSEventView.h; sourceTree = "<group>"; };
+		F6496BDA1F53FC6000028FF0 /* WSEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSEventView.m; sourceTree = "<group>"; };
+		F6496BE01F54378000028FF0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		F6496BE21F54468A00028FF0 /* UIImageView+Zooming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Zooming.h"; sourceTree = "<group>"; };
+		F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Zooming.m"; sourceTree = "<group>"; };
+		F6496BEA1F5472D000028FF0 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		F6496BEB1F5472D000028FF0 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
+		F6496BEC1F5472D000028FF0 /* Calculator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Calculator.xib; sourceTree = "<group>"; };
 		F64D6A0F1F39FA35001E8AD6 /* RESTCalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTCalls.h; sourceTree = "<group>"; };
 		F64D6A101F39FA35001E8AD6 /* RESTCalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTCalls.m; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F66352961F4F557D00128137 /* AdvancedFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedFilters.h; sourceTree = "<group>"; };
+		F66352971F4F557D00128137 /* AdvancedFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedFilters.m; sourceTree = "<group>"; };
+		F663529A1F4F55A600128137 /* AdvancedFirstFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedFirstFilter.h; sourceTree = "<group>"; };
+		F663529B1F4F55A600128137 /* AdvancedFirstFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedFirstFilter.m; sourceTree = "<group>"; };
+		F663529D1F4F55B500128137 /* AdvancedSecondFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSecondFilter.h; sourceTree = "<group>"; };
+		F663529E1F4F55B600128137 /* AdvancedSecondFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSecondFilter.m; sourceTree = "<group>"; };
+		F66352A01F501ED500128137 /* OrderSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSummaryVC.h; sourceTree = "<group>"; };
+		F66352A11F501ED500128137 /* OrderSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSummaryVC.m; sourceTree = "<group>"; };
+		F66352A41F50279700128137 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		F66352A51F50279700128137 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDataModel.h; sourceTree = "<group>"; };
 		F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDataModel.m; sourceTree = "<group>"; };
 		F69A10F21F43ED10005C2432 /* PDCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCViewController.h; sourceTree = "<group>"; };
 		F69A10F31F43ED10005C2432 /* PDCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCViewController.m; sourceTree = "<group>"; };
 		F69A10F61F43ED92005C2432 /* PDCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCCell.h; sourceTree = "<group>"; };
 		F69A10F71F43ED92005C2432 /* PDCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCCell.m; sourceTree = "<group>"; };
+		F6B0A5A81F5141E000276E9B /* SelectedFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedFilters.h; sourceTree = "<group>"; };
+		F6B0A5A91F5141E000276E9B /* SelectedFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedFilters.m; sourceTree = "<group>"; };
 		F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F6BFD94B1F4C9CFE0057C4A0 /* RONAK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RONAK.xcdatamodel; sourceTree = "<group>"; };
 		F6BFD94D1F4CA7A80057C4A0 /* DownloadProducts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadProducts.h; sourceTree = "<group>"; };
@@ -94,13 +149,12 @@
 		F6BFD9ED1F4CC0840057C4A0 /* Att+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Att+CoreDataClass.m"; sourceTree = "<group>"; };
 		F6BFD9EE1F4CC0840057C4A0 /* Att+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Att+CoreDataProperties.h"; sourceTree = "<group>"; };
 		F6BFD9EF1F4CC0840057C4A0 /* Att+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Att+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F6BFD9F01F4CC0840057C4A0 /* Filters+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Filters+CoreDataClass.h"; sourceTree = "<group>"; };
-		F6BFD9F11F4CC0840057C4A0 /* Filters+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Filters+CoreDataClass.m"; sourceTree = "<group>"; };
-		F6BFD9F21F4CC0840057C4A0 /* Filters+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Filters+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F6BFD9F31F4CC0840057C4A0 /* Filters+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Filters+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F6CD273B1F1811750082C6D0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F6CD273D1F1816F00082C6D0 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		F6CD273E1F1816F00082C6D0 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		F6D085041F548DD1001A76C5 /* PlaceOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOrder.h; sourceTree = "<group>"; };
+		F6D085051F548DD1001A76C5 /* PlaceOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOrder.m; sourceTree = "<group>"; };
+		F6D085061F548DD1001A76C5 /* Draft6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Draft6.xib; sourceTree = "<group>"; };
 		F6D10AE31F25C295003AF699 /* CustomerDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDataModel.h; sourceTree = "<group>"; };
 		F6D10AE41F25C295003AF699 /* CustomerDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDataModel.m; sourceTree = "<group>"; };
 		F6D10AE71F25C886003AF699 /* ServerAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPIManager.h; sourceTree = "<group>"; };
@@ -195,6 +249,7 @@
 				F64D6A0F1F39FA35001E8AD6 /* RESTCalls.h */,
 				F64D6A101F39FA35001E8AD6 /* RESTCalls.m */,
 				F6404EE21F2124F400530188 /* SF.OTF */,
+				F6496BDB1F53FC6000028FF0 /* WSCalendarView */,
 				4F8D5ECC1B6C1021005E64D4 /* Classes */,
 				F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */,
 				4F8D5EA01B6C0568005E64D4 /* Supporting Files */,
@@ -219,6 +274,8 @@
 				F6BFD9FA1F4CC0870057C4A0 /* CoreDataProducts */,
 				F6EDC44C1F3EA19F00F9DFCC /* RONAKSharedClass.h */,
 				F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */,
+				F6B0A5A81F5141E000276E9B /* SelectedFilters.h */,
+				F6B0A5A91F5141E000276E9B /* SelectedFilters.m */,
 				F6BFD94D1F4CA7A80057C4A0 /* DownloadProducts.h */,
 				F6BFD94E1F4CA7A80057C4A0 /* DownloadProducts.m */,
 				F6DADCD61F19DA5E00DC635E /* SalesForce */,
@@ -233,7 +290,10 @@
 				F69A10F51F43ED1A005C2432 /* PDCVC */,
 				F6EDC4461F3D906200F9DFCC /* Filters */,
 				F69A10E81F428D45005C2432 /* OrderTaking */,
+				F66352A31F501EDD00128137 /* OrderSummary */,
+				F6D085091F548DD7001A76C5 /* CustomPopups */,
 				F6CD273B1F1811750082C6D0 /* Main.storyboard */,
+				F6496BE01F54378000028FF0 /* Launch Screen.storyboard */,
 				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
 				F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */,
 			);
@@ -254,8 +314,46 @@
 			children = (
 				F6404EE61F212BEF00530188 /* UITextField+Padding.h */,
 				F6404EE71F212BEF00530188 /* UITextField+Padding.m */,
+				F6496BE21F54468A00028FF0 /* UIImageView+Zooming.h */,
+				F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		F6496BAE1F53BF8900028FF0 /* Discount */ = {
+			isa = PBXGroup;
+			children = (
+				F6496BA91F53BF7E00028FF0 /* Discount.h */,
+				F6496BAA1F53BF7E00028FF0 /* Discount.m */,
+				F6496BAF1F53C19D00028FF0 /* righticon.png */,
+				F6496BAB1F53BF7E00028FF0 /* Discount.xib */,
+			);
+			name = Discount;
+			sourceTree = "<group>";
+		};
+		F6496BDB1F53FC6000028FF0 /* WSCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				F6496BD41F53FC6000028FF0 /* WSCalendarView.xib */,
+				F6496BD51F53FC6000028FF0 /* WSCalendarView.h */,
+				F6496BD61F53FC6000028FF0 /* WSCalendarView.m */,
+				F6496BD71F53FC6000028FF0 /* WSLabel.h */,
+				F6496BD81F53FC6000028FF0 /* WSLabel.m */,
+				F6496BD91F53FC6000028FF0 /* WSEventView.h */,
+				F6496BDA1F53FC6000028FF0 /* WSEventView.m */,
+			);
+			name = WSCalendarView;
+			path = "../../../../Downloads/WSCalendar-master/WSCalendar";
+			sourceTree = "<group>";
+		};
+		F6496BEF1F5472DC00028FF0 /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				F6496BEA1F5472D000028FF0 /* Calculator.h */,
+				F6496BEB1F5472D000028FF0 /* Calculator.m */,
+				F6496BEC1F5472D000028FF0 /* Calculator.xib */,
+			);
+			name = Calculator;
 			sourceTree = "<group>";
 		};
 		F64F10E61F2E5802001BC880 /* Loading */ = {
@@ -265,6 +363,32 @@
 				F64F10E41F2E57FD001BC880 /* LoadingView.m */,
 			);
 			name = Loading;
+			sourceTree = "<group>";
+		};
+		F66352991F4F558900128137 /* AdvancedFilters */ = {
+			isa = PBXGroup;
+			children = (
+				F66352961F4F557D00128137 /* AdvancedFilters.h */,
+				F66352971F4F557D00128137 /* AdvancedFilters.m */,
+				F663529A1F4F55A600128137 /* AdvancedFirstFilter.h */,
+				F663529B1F4F55A600128137 /* AdvancedFirstFilter.m */,
+				F663529D1F4F55B500128137 /* AdvancedSecondFilter.h */,
+				F663529E1F4F55B600128137 /* AdvancedSecondFilter.m */,
+			);
+			name = AdvancedFilters;
+			sourceTree = "<group>";
+		};
+		F66352A31F501EDD00128137 /* OrderSummary */ = {
+			isa = PBXGroup;
+			children = (
+				F66352A01F501ED500128137 /* OrderSummaryVC.h */,
+				F66352A11F501ED500128137 /* OrderSummaryVC.m */,
+				F66352A41F50279700128137 /* OrderCell.h */,
+				F66352A51F50279700128137 /* OrderCell.m */,
+				F6496BEF1F5472DC00028FF0 /* Calculator */,
+				F6496BAE1F53BF8900028FF0 /* Discount */,
+			);
+			name = OrderSummary;
 			sourceTree = "<group>";
 		};
 		F69A10E81F428D45005C2432 /* OrderTaking */ = {
@@ -329,12 +453,22 @@
 				F6BFD9ED1F4CC0840057C4A0 /* Att+CoreDataClass.m */,
 				F6BFD9EE1F4CC0840057C4A0 /* Att+CoreDataProperties.h */,
 				F6BFD9EF1F4CC0840057C4A0 /* Att+CoreDataProperties.m */,
-				F6BFD9F01F4CC0840057C4A0 /* Filters+CoreDataClass.h */,
-				F6BFD9F11F4CC0840057C4A0 /* Filters+CoreDataClass.m */,
-				F6BFD9F21F4CC0840057C4A0 /* Filters+CoreDataProperties.h */,
-				F6BFD9F31F4CC0840057C4A0 /* Filters+CoreDataProperties.m */,
+				F6496B8C1F52A22400028FF0 /* Filters+CoreDataClass.h */,
+				F6496B8D1F52A22400028FF0 /* Filters+CoreDataClass.m */,
+				F6496B9B1F52F8D800028FF0 /* Filters+CoreDataProperties.h */,
+				F6496B9C1F52F8D800028FF0 /* Filters+CoreDataProperties.m */,
 			);
 			name = CoreDataProducts;
+			sourceTree = "<group>";
+		};
+		F6D085091F548DD7001A76C5 /* CustomPopups */ = {
+			isa = PBXGroup;
+			children = (
+				F6D085041F548DD1001A76C5 /* PlaceOrder.h */,
+				F6D085051F548DD1001A76C5 /* PlaceOrder.m */,
+				F6D085061F548DD1001A76C5 /* Draft6.xib */,
+			);
+			name = CustomPopups;
 			sourceTree = "<group>";
 		};
 		F6D10AEB1F25F3A5003AF699 /* CustomerVC */ = {
@@ -366,6 +500,8 @@
 				F6DADCD11F19DA1800DC635E /* CustomLabel.m */,
 				F6DADCD31F19DA3100DC635E /* CustomTextField.h */,
 				F6DADCD41F19DA3100DC635E /* CustomTextField.m */,
+				F6496B981F52A83E00028FF0 /* CustomSwitch.h */,
+				F6496B991F52A83E00028FF0 /* CustomSwitch.m */,
 			);
 			name = CustomComponents;
 			sourceTree = "<group>";
@@ -406,9 +542,8 @@
 		F6EDC4461F3D906200F9DFCC /* Filters */ = {
 			isa = PBXGroup;
 			children = (
-				F6EDC4501F3F3D5E00F9DFCC /* AllFiltersViewController.h */,
-				F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */,
 				F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */,
+				F66352991F4F558900128137 /* AdvancedFilters */,
 				F6EDC4471F3D948300F9DFCC /* CustomTVCell.h */,
 				F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */,
 			);
@@ -418,6 +553,8 @@
 		F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */ = {
 			isa = PBXGroup;
 			children = (
+				F6EDC4501F3F3D5E00F9DFCC /* AllFiltersViewController.h */,
+				F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */,
 				F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */,
 				F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */,
 				F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */,
@@ -493,8 +630,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6404EE31F2124F400530188 /* SF.OTF in Resources */,
+				F6496BEE1F5472D000028FF0 /* Calculator.xib in Resources */,
 				CEA8CA021F071A9D00448B51 /* Images.xcassets in Resources */,
+				F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */,
+				F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */,
+				F6496BAD1F53BF7E00028FF0 /* Discount.xib in Resources */,
 				F6CD273C1F1811750082C6D0 /* Main.storyboard in Resources */,
+				F6496BB01F53C19D00028FF0 /* righticon.png in Resources */,
+				F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,44 +720,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */,
 				F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */,
 				F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */,
 				F6BFD9F51F4CC0840057C4A0 /* ItemMaster+CoreDataProperties.m in Sources */,
+				F6496BDD1F53FC6000028FF0 /* WSCalendarView.m in Sources */,
 				F6BFD9F71F4CC0840057C4A0 /* Att+CoreDataProperties.m in Sources */,
 				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
+				F66352A61F50279700128137 /* OrderCell.m in Sources */,
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
+				F6496BED1F5472D000028FF0 /* Calculator.m in Sources */,
+				F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
 				F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */,
 				F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */,
 				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
+				F6496B901F52A22400028FF0 /* Filters+CoreDataClass.m in Sources */,
 				F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */,
 				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
+				F663529C1F4F55A600128137 /* AdvancedFirstFilter.m in Sources */,
+				F66352981F4F557D00128137 /* AdvancedFilters.m in Sources */,
+				F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
 				F6BFD9F61F4CC0840057C4A0 /* Att+CoreDataClass.m in Sources */,
 				F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
+				F6496BAC1F53BF7E00028FF0 /* Discount.m in Sources */,
 				F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */,
 				F6DADCE61F1A22BF00DC635E /* HeaderReusableView.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */,
 				F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */,
+				F6B0A5AA1F5141E000276E9B /* SelectedFilters.m in Sources */,
+				F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */,
 				F6BFD9F41F4CC0840057C4A0 /* ItemMaster+CoreDataClass.m in Sources */,
+				F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
 				F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
+				F6496B9D1F52F8D800028FF0 /* Filters+CoreDataProperties.m in Sources */,
 				F6BFD94F1F4CA7A80057C4A0 /* DownloadProducts.m in Sources */,
-				F6BFD9F81F4CC0840057C4A0 /* Filters+CoreDataClass.m in Sources */,
+				F66352A21F501ED500128137 /* OrderSummaryVC.m in Sources */,
+				F663529F1F4F55B600128137 /* AdvancedSecondFilter.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
 				F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */,
 				F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */,
 				F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */,
 				F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */,
-				F6BFD9F91F4CC0840057C4A0 /* Filters+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,13 +870,12 @@
 			baseConfigurationReference = 90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = AYEU8SS399;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
 				INFOPLIST_FILE = RONAK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bodhtree.ronak.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -733,13 +889,12 @@
 			baseConfigurationReference = 641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = AYEU8SS399;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
 				INFOPLIST_FILE = RONAK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bodhtree.ronak.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -24,4 +24,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *headerButton;
 @property (strong, nonatomic) IBOutlet UITableView *optionsTableView;
 @property NSArray *optionsArray;
+@property NSString *filterType;
+
 @end

@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
 - (IBAction)backClick:(id)sender;
 - (IBAction)homeClick:(id)sender;
+- (IBAction)jumptoMenuVC:(id)sender;
 
 @property CustomerDataModel *cst;
 @end

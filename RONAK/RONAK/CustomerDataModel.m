@@ -47,6 +47,7 @@
     if(self)
     {
         self.defaultAddressIndex=[NSNumber numberWithInt:0];
+        self.itemsCount=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -60,6 +61,7 @@
     if(self)
     {
         _defaultsCustomer=[[CustomerDefauls alloc]init];
+        
     }
     return self;
 }

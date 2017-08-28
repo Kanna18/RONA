@@ -18,12 +18,16 @@
     unsigned long Section;
     
     NSArray *filtersArr;
+    LoadingView *load;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    load=[[LoadingView alloc]init];
+    [load loadingWithlightAlpha:_filterTable with_message:@""];
+    [load start];
     
     DownloadProducts *dw=[[DownloadProducts alloc]init];
 
@@ -31,24 +35,21 @@
     _filterTable.delegate=self;
     _filterTable.dataSource=self;
     _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
+
     
-    
-    
-    height=61;
-    filtersArr=@[@{  @"heading":@"Brand",
-                     @"options":[dw getFilterFor:@"brand__c"]},
-                 @{  @"heading":@"Categories",
-                     @"options":[dw getFilterFor:@"category__c"]},
-                 @{ @"heading":@"Collection",
-                    @"options":[dw getFilterFor:@"collection__c"]}];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-         [_filterTable reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        filtersArr=@[@{  @"heading":kBrand,
+                         @"options":[dw getFilterFor:@"brand__c"]},
+                     @{  @"heading":kCategories,
+                         @"options":[dw getFilterFor:@"category__c"]},
+                     @{ @"heading":kCollection,
+                        @"options":[dw getFilterFor:@"collection__c"]}];
+        [load stop];
+        [_filterTable reloadData];
     });
     
+    height=61;
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -74,14 +75,15 @@
         cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
     }
     cell.headerButton.tag=indexPath.section;
+    cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
     [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
     cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];
-    
     if(Section!=indexPath.section){//except the selected cell remaining need to close
         cell.headerButton.selected=NO;
         [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
     }
     [cell layoutSubviews];
+       
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

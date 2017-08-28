@@ -31,5 +31,6 @@
 @property CustomerDataModel *cst;
 
 - (IBAction)backClick:(id)sender;
+- (IBAction)jumptoMenuVC:(id)sender;
 
 @end

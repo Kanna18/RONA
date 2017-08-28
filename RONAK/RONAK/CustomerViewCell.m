@@ -16,8 +16,6 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    Count=0;
-    
     [self drawBorders:_customerName];
     [self drawBorders:_increment];
     [self drawBorders:_decrement];
@@ -25,16 +23,36 @@
 }
 - (IBAction)incrementClick:(id)sender {
     
-    Count++;
-    _countLabel.text=[NSString stringWithFormat:@"%d",Count];
-    self.backgroundColor=[UIColor redColor];
-    
+    int count=(int)_cstData.defaultsCustomer.itemsCount.count;
+    if(count>=0)
+    {
+        [_cstData.defaultsCustomer.itemsCount addObject:ronakGlobal.item];
+    }
+    else
+    {
+        showMessage(@"No item Selected", self.contentView.superview);
+    }
+    NSCountedSet *set=[NSCountedSet setWithArray:_cstData.defaultsCustomer.itemsCount];
+    int itemCount =(int)[set countForObject:ronakGlobal.item];
+    _countLabel.text=[NSString stringWithFormat:@"%d",itemCount];
 }
 - (IBAction)decrementClick:(id)sender {
-    if(Count>0)
-    Count--;
-    _countLabel.text=[NSString stringWithFormat:@"%d",Count];
-    self.backgroundColor=[UIColor clearColor];
+
+    
+    if((_cstData.defaultsCustomer.itemsCount.count>0))
+    {
+        if([_cstData.defaultsCustomer.itemsCount containsObject:ronakGlobal.item])
+        {
+            [_cstData.defaultsCustomer.itemsCount removeObjectAtIndex:_cstData.defaultsCustomer.itemsCount.count-1];
+        }
+    }
+    else
+    {
+        showMessage(@"No item Selected", self.superview);
+    }
+    NSCountedSet *set=[NSCountedSet setWithArray:_cstData.defaultsCustomer.itemsCount];
+    int itemCount =(int)[set countForObject:ronakGlobal.item];
+    _countLabel.text=[NSString stringWithFormat:@"%d",itemCount];
 }
 
 -(void)drawBorders:(id)element{
@@ -44,10 +62,26 @@
         cst.layer.borderColor=[UIColor lightGrayColor].CGColor;
         cst.layer.borderWidth=1.0f;
         cst.layer.shadowColor=[UIColor lightGrayColor].CGColor;
-        cst.layer.shadowOffset=CGSizeMake(1.0, 1.0);
-        cst.layer.shadowRadius=1.0f;
-        cst.layer.shadowOpacity=1.0f;
-        
+        cst.layer.shadowOffset=CGSizeMake(5.0, 5.0);
+        cst.layer.shadowRadius=5.0f;
+        cst.layer.shadowOpacity=5.0f;
     }
+}
+-(void)bindData:(CustomerDataModel*)cstData{
+    
+    _cstData=cstData;
+    [_customerName setTitle:_cstData.Name forState:UIControlStateNormal];
+    
+    NSCountedSet *set=[NSCountedSet setWithArray:_cstData.defaultsCustomer.itemsCount];
+    int itemCount =(int)[set countForObject:ronakGlobal.item];
+    _countLabel.text=[NSString stringWithFormat:@"%d",itemCount];
+    
+}
+
+- (IBAction)clearCustomerClick:(id)sender {
+    
+    [ronakGlobal.selectedCustomersArray removeObject:self.cstData];
+    [_delegate customerNameDeleted];
+    
 }
 @end

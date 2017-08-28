@@ -63,6 +63,11 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)jumptoMenuVC:(id)sender
+{
+    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
+    [self.navigationController popToViewController:men animated:YES];
+}
 
 - (IBAction)homeClick:(id)sender {
 }

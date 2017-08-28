@@ -7,11 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SelectedFilters.h"
+#import "AppDelegate.h"
+#import "ItemMaster+CoreDataClass.h"
 
 @interface RONAKSharedClass : NSObject
 
 + (RONAKSharedClass *)sharedInstance;
 
 @property NSMutableArray *selectedCustomersArray;
+
+@property SelectedFilters *selectedFilter;
+
+@property NSMutableArray *filterdProductsArray;
+@property (nonatomic,strong) NSManagedObjectContext *context;
+@property (nonatomic,strong) AppDelegate *delegate;
+
+@property ItemMaster *item;
+
 
 @end

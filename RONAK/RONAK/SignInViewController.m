@@ -128,10 +128,6 @@
 #pragma mark Get access Token
 -(void)getAccessToken{
     
-    
-    
-    
-    
     NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,_emailTf.text,_passwordTF.text];
     [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)
     {

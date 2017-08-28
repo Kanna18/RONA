@@ -26,12 +26,12 @@
     rest=[[RESTCalls alloc]init];
     load=[[LoadingView alloc]init];
     
-    for (int i=0; i<[[RONAKSharedClass sharedInstance].selectedCustomersArray count]; i++)
-    {
-        CustomerDataModel *cst=[RONAKSharedClass sharedInstance].selectedCustomersArray[i];
-        NSLog(@"%@",cst.defaultsCustomer.defaultAddressIndex);
-    }
-    
+//    for (int i=0; i<[[RONAKSharedClass sharedInstance].selectedCustomersArray count]; i++)
+//    {
+//        CustomerDataModel *cst=[RONAKSharedClass sharedInstance].selectedCustomersArray[i];
+//        NSLog(@"%@",cst.defaultsCustomer.defaultAddressIndex);
+//    }
+//    
 }
 
 
@@ -61,7 +61,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if([identifier isEqualToString:@"productsVC"])
+    {
+        if(ronakGlobal.selectedFilter.brand.length>0)
+        {
+            return YES;
+        }
+        else
+        {
+            showMessage(@"Select a Brand", self.view);
+            return NO;
+        }
+    }
 
+    return YES;
+}
 /*
 #pragma mark - Navigation
 
@@ -77,9 +93,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)homeClick:(id)sender {
+- (IBAction)jumptoMenuVC:(id)sender
+{
+    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
+    [self.navigationController popToViewController:men animated:YES];
 }
-
 - (IBAction)advancedClicks:(id)sender {
 }
 @end

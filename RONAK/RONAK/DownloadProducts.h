@@ -12,10 +12,16 @@
 #import "Filters+CoreDataClass.h"
 #import "AppDelegate.h"
 
+@protocol FetchedAllProducts <NSObject>
+
+-(void)productsListFetched;
+
+@end
+
 @interface DownloadProducts : NSObject
-@property (nonatomic,strong) NSManagedObjectContext *context;
-@property (nonatomic,strong) AppDelegate *delegate;
+@property id<FetchedAllProducts>delegateProducts ;
+
 -(void)downloadStockWareHouseSavetoCoreData;
 -(NSArray*)getFilterFor:(NSString*)strFor;
--(NSArray*)pickURLSfromBrand;
+-(NSMutableArray*)pickProductsFromFilters;
 @end

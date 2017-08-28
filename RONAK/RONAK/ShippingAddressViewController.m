@@ -46,6 +46,10 @@
         [load waringLabelText:@"No PDC Details" onView:self.view];
     }
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+}
 -(void)scrollViewDisplayListofCstmrs
 {
     __block int X=0,Y=0;
@@ -53,7 +57,7 @@
         
         CustomerDataModel *cst=selectedCustomersList[idx];
         CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
-        btn.titleLabel.lineBreakMode=NSLineBreakByClipping;
+        btn.titleLabel.lineBreakMode=NSLineBreakByTruncatingTail;
         btn.titleLabel.font=sfFont(20);
         [btn setTitle:cst.Name forState:UIControlStateNormal];
 //        btn.titleLabel.intrinsicContentSize.width+2
@@ -212,5 +216,10 @@
 - (IBAction)backClick:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)jumptoMenuVC:(id)sender
+{
+    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
+    [self.navigationController popToViewController:men animated:YES];
 }
 @end

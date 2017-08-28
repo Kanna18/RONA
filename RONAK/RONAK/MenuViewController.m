@@ -9,11 +9,14 @@
 #import "MenuViewController.h"
 #import "DownloadProducts.h"
 
-@interface MenuViewController ()
+@interface MenuViewController ()<FetchedAllProducts>
 
 @end
 
-@implementation MenuViewController
+@implementation MenuViewController{
+ 
+    LoadingView *load;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,26 +24,43 @@
 
     [self defaultComponentsStyle];
     
-    DownloadProducts *dwn=[[DownloadProducts alloc]init];
+   if(!defaultGet(firstTimeLaunching))
+   {
+       load=[[LoadingView alloc]init];
+       [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
+       [load start];
+       
+       DownloadProducts *dwn=[[DownloadProducts alloc]init];
+       dwn.delegateProducts=self;
+       [dwn downloadStockWareHouseSavetoCoreData];
+   }
     
-    [dwn downloadStockWareHouseSavetoCoreData];
-  
+    
+}
+-(void)productsListFetched
+{
+    defaultSet(@"Launched", firstTimeLaunching);
+    [load stop];
+
 }
 -(void)viewWillAppear:(BOOL)animate
 {
+    [ronakGlobal.selectedCustomersArray removeAllObjects];
+    [ronakGlobal.selectedFilter clearAllFilters];
+    
     [super viewWillAppear:YES];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelay:0.2];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     
-    for (CustomButton *cst in self.view.subviews)
-    {
-        if([cst isKindOfClass:[CustomButton class]])
-        {
-            cst.frame=CGRectMake(100, 100, 30, 30);
-        }
-    }
+//    for (CustomButton *cst in self.view.subviews)
+//    {
+//        if([cst isKindOfClass:[CustomButton class]])
+//        {
+//            cst.frame=CGRectMake(100, 100, 30, 30);
+//        }
+//    }
     [UIView commitAnimations];
 }
 
@@ -77,6 +97,7 @@
 }
 
 - (IBAction)logout_click:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+        [self.navigationController popViewControllerAnimated:YES];
 }
 @end

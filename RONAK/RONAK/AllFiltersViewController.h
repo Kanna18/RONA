@@ -13,6 +13,7 @@
 - (IBAction)backClick:(id)sender;
 
 - (IBAction)homeClick:(id)sender;
+- (IBAction)jumptoMenuVC:(id)sender;
 - (IBAction)advancedClicks:(id)sender;
 
 @end

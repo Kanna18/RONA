@@ -10,6 +10,7 @@
 
 static NSString *reuse=@"reuseCustomerCell";
 
+
 @interface CustomersViewController ()
 
 @end
@@ -23,6 +24,7 @@ static NSString *reuse=@"reuseCustomerCell";
     RESTCalls *rest;
     CGFloat scr_width,scr_height;
     
+    
 }
 
 
@@ -32,7 +34,7 @@ static NSString *reuse=@"reuseCustomerCell";
     
     load=[[LoadingView alloc]init];
     rest=[[RESTCalls alloc]init];
-    
+        
     _searchTextField.delegate=self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabled) name:UITextFieldTextDidChangeNotification object:nil];
         
@@ -63,16 +65,6 @@ static NSString *reuse=@"reuseCustomerCell";
         }
     });
     
-    UISwipeGestureRecognizer *l2rswipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(pustToVC:)];
-    l2rswipe.direction=UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:l2rswipe];
-    [self.collectionView addGestureRecognizer:l2rswipe];
-    
-}
--(void)pustToVC:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-    [selectedCustomersList removeAllObjects];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -139,6 +131,7 @@ static NSString *reuse=@"reuseCustomerCell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 #pragma mark Server Calls
@@ -146,25 +139,56 @@ static NSString *reuse=@"reuseCustomerCell";
 
 -(void)restServiceForCustomerList
 {
-    NSDictionary *headers=@{@"content-type":@"application/x-www-form-urlencoded (OR) application/json",
-                            @"authorization":[NSString stringWithFormat:@"Bearer %@",defaultGet(kaccess_token)]};
+//    NSDictionary *headers=@{@"content-type":@"application/x-www-form-urlencoded (OR) application/json",
+//                            @"authorization":[NSString stringWithFormat:@"Bearer %@",defaultGet(kaccess_token)]};
+//    
+//
+//    [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"POST" cusHeaders:headers successBlock:^(id responseObj) {
+//        
+//        
+//        NSString *dictstr=[NSJSONSerialization JSONObjectWithData:responseObj options: NSJSONReadingAllowFragments error:nil];
+//        NSData *jsonData=[dictstr dataUsingEncoding:NSUTF8StringEncoding];
+//        NSError *cerr;
+//        [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
+//        [self getListofAllCustomers:jsonData];
+//    } andErrorBlock:^(NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [load stop];
+//            [load waringLabelText:@"Error Loading" onView:self.view];
+//        });
+//    }];
     
-
-    [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"POST" cusHeaders:headers successBlock:^(id responseObj) {
-        
-        
-        NSString *dictstr=[NSJSONSerialization JSONObjectWithData:responseObj options: NSJSONReadingAllowFragments error:nil];
-        NSData *jsonData=[dictstr dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *cerr;
-        [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
-        [self getListofAllCustomers:jsonData];
-    } andErrorBlock:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [load stop];
-            [load waringLabelText:@"Error Loading" onView:self.view];
-        });
-    }];
+    
+    NSDictionary *headers = @{ @"content-type": @"application/json",
+                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_customersList_B]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+         {
+             NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
+            NSData *jsonData=[NSJSONSerialization dataWithJSONObject:arr options:0 error:nil];
+            NSError *cerr;
+            [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
+            [self getListofAllCustomers:jsonData];
+    
+        }];
+    
+    [dataTask resume];
+    
+    
 }
+
+
+
 
 -(void)getListofAllCustomers:(NSData*)cList
 {
@@ -295,17 +319,15 @@ static NSString *reuse=@"reuseCustomerCell";
     
     return NO;
 }
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-   
- 
-}
-
 - (IBAction)menubuttonClick:(id)sender {
 }
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-    [selectedCustomersList removeAllObjects];
+}
+- (IBAction)jumptoMenuVC:(id)sender
+{
+    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
+    [self.navigationController popToViewController:men animated:YES];
 }
 
 - (IBAction)addCustomer:(id)sender {
@@ -356,11 +378,11 @@ static NSString *reuse=@"reuseCustomerCell";
         [letter addTarget:self action:@selector(clickedOnAlphabet:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
+
+
 -(void)clickedOnAlphabet:(CustomButton*)sender
 {
-    
     NSIndexPath *nextItem = [NSIndexPath indexPathForItem:0 inSection:sender.tag-100];
     [self.collectionView scrollToItemAtIndexPath:nextItem atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
-    
 }
 @end

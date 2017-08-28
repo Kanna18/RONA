@@ -2,7 +2,7 @@
 //  Filters+CoreDataProperties.m
 //  RONAK
 //
-//  Created by Gaian on 8/23/17.
+//  Created by Gaian on 8/27/17.
 //  Copyright © 2017 RONAKOrganizationName. All rights reserved.
 //
 
@@ -14,12 +14,12 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Filters"];
 }
 
-@dynamic codeId;
-@dynamic stock_Warehouse__c;
-@dynamic active_Form__c;
+@dynamic active_From__c;
 @dynamic brand__c;
 @dynamic category__c;
+@dynamic codeId;
 @dynamic collection__c;
+@dynamic collection_Name__c;
 @dynamic color_Code__c;
 @dynamic custom__c;
 @dynamic delivery_Month__c;
@@ -43,20 +43,22 @@
 @dynamic logo_Color__c;
 @dynamic logo_Size__c;
 @dynamic logo_Type__c;
+@dynamic mRP__c;
 @dynamic number__c;
-@dynamic wS_Price__c;
+@dynamic order_Month__c;
 @dynamic product__c;
 @dynamic shape__c;
 @dynamic size__c;
+@dynamic stock__c;
+@dynamic stock_Warehouse__c;
 @dynamic style_Code__c;
 @dynamic temple_Color__c;
 @dynamic temple_Material__c;
 @dynamic tips_Color__c;
-@dynamic collection_Name__c;
-@dynamic mRP__c;
-@dynamic stock__c;
-@dynamic order_Month__c;
-@dynamic itemMaster;
+@dynamic wS_Price__c;
+@dynamic discount__c;
+@dynamic active_To__c;
 @dynamic attribute;
+@dynamic itemMaster;
 
 @end

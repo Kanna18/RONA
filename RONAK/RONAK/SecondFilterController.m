@@ -23,37 +23,50 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    DownloadProducts *dw=[[DownloadProducts alloc]init];
-    _filterTable.delegate=self;
-    _filterTable.dataSource=self;
-    _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+
     height=61;
-    filtersArr=@[@{  @"heading":@"SampleWare House",
-                     @"options":@[@"North",
-                                  @"South",
-                                  @"West",
-                                  @"Mumbai",
-                                  @"East",
-                                  @"Main",
-                                  @"Amish Ajmera"]},
-                 @{ @"heading":@"Stock Warehouse",
-                     @"options":[dw getFilterFor:@"stock_Warehouse__c"]},
-                 @{ @"heading":@"Stock",
-                    @"options":[dw getFilterFor:@"stock__c"]}];
     
+    [self filterOptions];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [_filterTable reloadData];
     });
     
 }
+-(void)filterOptions{
+    DownloadProducts *dw=[[DownloadProducts alloc]init];
+    _filterTable.delegate=self;
+    _filterTable.dataSource=self;
+    _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
 
+   LoadingView *load=[[LoadingView alloc]init];
+    [load loadingWithlightAlpha:_filterTable with_message:@""];
+    [load start];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        filtersArr=@[@{  @"heading":kSampleWareHouse,
+                         @"options":@[@"North",
+                                      @"South",
+                                      @"West",
+                                      @"Mumbai",
+                                      @"East",
+                                      @"Main",
+                                      @"Amish Ajmera"]},
+                     @{ @"heading":kStockWareHouse,
+                        @"options":[dw getFilterFor:@"stock_Warehouse__c"]},
+                     @{ @"heading":@"Stock",
+                        @"options":[dw getFilterFor:@"stock__c"]}];
+        [_filterTable reloadData];
+        [load stop];
+    });
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark TV Delegates
@@ -73,6 +86,7 @@
     {
         cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
     }
+    cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
     cell.headerButton.tag=indexPath.section;
     [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
     cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];

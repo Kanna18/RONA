@@ -33,7 +33,7 @@
     else{
         _amountLabel.textColor=GreenClr;
     }
-    _amountLabel.text=[NSString stringWithFormat:@"180+=₹%f",due];
+    _amountLabel.text=[NSString stringWithFormat:@"180+=₹%d",(int)due];
     self.cstData=data;
 
 }

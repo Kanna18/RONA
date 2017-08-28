@@ -6,7 +6,8 @@
         <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Filters" inverseName="attribute" inverseEntity="Filters" syncable="YES"/>
     </entity>
     <entity name="Filters" representedClassName="Filters" syncable="YES">
-        <attribute name="active_Form__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="active_From__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="active_To__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="brand__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="codeId" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,6 +16,7 @@
         <attribute name="color_Code__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="custom__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="delivery_Month__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="discount__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawing_Code__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="factory_Company__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flex_Temple__c" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,7 +60,7 @@
     </entity>
     <elements>
         <element name="Att" positionX="-198" positionY="297" width="128" height="90"/>
-        <element name="Filters" positionX="88" positionY="45" width="128" height="703"/>
+        <element name="Filters" positionX="88" positionY="45" width="128" height="735"/>
         <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="90"/>
     </elements>
 </model>

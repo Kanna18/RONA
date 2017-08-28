@@ -19,11 +19,20 @@
 #import "Constants.h"
 #import "YMCollectionIndexView.h"
 #import "UITextField+Padding.h"
+#import "UIImageView+Zooming.h"
+
 #import "LoadingView.h"
 #import "RESTCalls.h"
 #import "RONAKSharedClass.h"
 #import "CustomerDataModel.h"
 #import <CoreData/CoreData.h>
 #import "DownloadProducts.h"
+#import "CustomSwitch.h"
+#import "MenuViewController.h"
+#import "Discount.h"
+
+#import "WSCalendarView.h"
+#import "Calculator.h"
+
 
 #endif /* RONAK_pch */
