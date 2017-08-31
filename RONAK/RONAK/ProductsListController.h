@@ -50,4 +50,8 @@
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet UITableView *filterTable;
 
+@property (strong, nonatomic) IBOutlet UILabel *wsLabel;;
+- (IBAction)priceSwitchChanged:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *productDetailView;
+
 @end

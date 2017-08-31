@@ -12,7 +12,7 @@
 #import "CustomerDataModel.h"
 #import "ShippingAddressViewController.h"
 
-@interface CustomersViewController : UIViewController<UITextFieldDelegate>
+@interface CustomersViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *homeButton;
 @property (weak, nonatomic) IBOutlet CustomTextField *searchTextField;
@@ -23,5 +23,9 @@
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView_selCustmr;
 @property (strong, nonatomic) IBOutlet UIScrollView *aplhabetsIndexScroll;
+
+@property(nonatomic, assign) BOOL automaticallyAdjustsScrollViewInsets;
+
+
 
 @end

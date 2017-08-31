@@ -35,63 +35,86 @@
 }
 -(NSPredicate*)getPredicateStringFromTable:(NSString*)str
 {
-    ItemMaster *item;
     NSMutableArray *preArrary=[[NSMutableArray alloc]init];
     
+    //Brands
     NSPredicate *Brandpred=[NSPredicate predicateWithFormat:@"SELF.filters.brand__c == %@",_brand];
     
+    //Categories (Product__c)
     [_categories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.category__c == %@",obj];
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.product__c == %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Collections
     [_collection enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Descriptions
     [_lensDescription enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Description__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Shape
     [_shape enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.shape__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Frame Material
     [_frameMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.frame_Material__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    //Temple Material
     [_templeMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Material__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Temple Color
     [_templeColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Color__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Tips Color
     [_tipsColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.tips_Color__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Size
     [_size enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.size__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //Front Color
     [_FrontColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.front_Color__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
+    
+    //LensColor
     [_LensColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Color__c ==  %@",obj];
+
         [preArrary addObject:pre];
     }];
     
-    NSPredicate *placesPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:preArrary];
+    NSPredicate *placesPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:preArrary];
     
     NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[Brandpred,placesPredicate]];
-
     
     return preArrary.count>0?finalPre:Brandpred;
+    
+    
+    
 }
 -(void)clearAllFilters{
     

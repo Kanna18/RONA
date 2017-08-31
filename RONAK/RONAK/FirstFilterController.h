@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CustomTVCell.h"
 
-@interface FirstFilterController : UIViewController<UITableViewDelegate,UITableViewDataSource,HideUnhideStatus>
+
+
+@interface FirstFilterController : UIViewController<UITableViewDelegate,UITableViewDataSource,HideUnhideStatus,UIScrollViewDelegate,UIScrollViewAccessibilityDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *filterTable;
 

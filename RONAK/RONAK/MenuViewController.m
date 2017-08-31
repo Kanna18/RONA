@@ -8,38 +8,58 @@
 
 #import "MenuViewController.h"
 #import "DownloadProducts.h"
+#import "SignInViewController.h"
 
 @interface MenuViewController ()<FetchedAllProducts>
 
 @end
 
 @implementation MenuViewController{
- 
+    
     LoadingView *load;
+
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    [self defaultComponentsStyle];
     
+    [self defaultComponentsStyle];
    if(!defaultGet(firstTimeLaunching))
    {
        load=[[LoadingView alloc]init];
        [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
        [load start];
-       
        DownloadProducts *dwn=[[DownloadProducts alloc]init];
        dwn.delegateProducts=self;
        [dwn downloadStockWareHouseSavetoCoreData];
    }
-    
-    
+    else
+    {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self getFetchFiltersAfteDataFetched];
+        });
+    }
 }
+
+
+-(void)getFetchFiltersAfteDataFetched
+{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSManagedObjectContext *contextChild1=[[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        contextChild1.parentContext=ronakGlobal.context;
+        DownloadProducts *dw=[[DownloadProducts alloc]init];
+        [dw getFilterFor:@"brands__c" withContext:contextChild1];
+    });
+}
+
+#pragma mark Downloading Products Protocol
 -(void)productsListFetched
 {
     defaultSet(@"Launched", firstTimeLaunching);
+    [self getFetchFiltersAfteDataFetched];
     [load stop];
 
 }
@@ -98,6 +118,9 @@
 
 - (IBAction)logout_click:(id)sender {
     
-        [self.navigationController popViewControllerAnimated:YES];
+    SignInViewController *signIN=[self.storyboard instantiateViewControllerWithIdentifier:@"signInVC"];
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:signIN];
+    [self presentViewController:nav animated:YES completion:nil];
+    
 }
 @end

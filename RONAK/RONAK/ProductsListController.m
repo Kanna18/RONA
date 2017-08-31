@@ -21,14 +21,14 @@
     unsigned long Section;
     
     NSArray *filtersArr;
+    
+    CGRect curretDetailinfoFrame;
+    UIScrollView *ZoomscrollVw;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    LoadingView* load=[[LoadingView alloc]init];
-    [load loadingWithlightAlpha:_productsCollectionView with_message:@""];
-    [load start];
     
     index=0;
     imagesArray=@[@"Angel1",@"Angel2",@"Angel3",@"Angel4",@"Angel5",@"Angel6"];
@@ -42,58 +42,54 @@
 
     [self defaultShapesOfComponents];
     _detailedImageView.image=[UIImage imageNamed:imagesArray[index]];
-    _detailedImageView.doubleTap=YES;
+    
+    [self getProductItemsFilter];
+    
+    _filterTable.delegate=self;
+    _filterTable.dataSource=self;
+
+    _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    [self zoomImageFunctionality];
+}
+
+-(void)getProductItemsFilter{
+    LoadingView* load=[[LoadingView alloc]init];
+    [load loadingWithlightAlpha:_productsCollectionView with_message:@""];
+    [load start];
+
     
     DownloadProducts *dow=[[DownloadProducts alloc]init];
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         ronakGlobal.filterdProductsArray=[dow pickProductsFromFilters];
-            [_productsCollectionView reloadData];
+        [_productsCollectionView reloadData];
         if(ronakGlobal.filterdProductsArray.count>0)
             [self changeLablesBasedOnitemsIndex:0];
         
         [load stop];
     });
-    
-    _filterTable.delegate=self;
-    _filterTable.dataSource=self;
 
-    
-    
-    _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
-    LoadingView* load2=[[LoadingView alloc]init];
-    [load2 loadingWithlightAlpha:_filterTable with_message:@""];
-    [load2 start];
-    
-    DownloadProducts *dw=[[DownloadProducts alloc]init];
-    height=61;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSMutableArray *allFil=[[NSMutableArray alloc]init];
+    [ronakGlobal.advancedFilters1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [allFil addObject:obj];
         
-    filtersArr=@[@{ @"heading":kLensDescription,
-                    @"options":[dw getFilterFor:@"lens_Description__c"]},
-                 @{ @"heading":kWSPrice,
-                    @"options":[dw getFilterFor:@"wS_Price__c"]},
-                 @{ @"heading":kShape,
-                    @"options":[dw getFilterFor:@"shape__c"]},
-                 @{ @"heading":kFrameMaterial,
-                    @"options":[dw getFilterFor:@"frame_Material__c"]},
-                 @{ @"heading":kTempleMaterial,
-                    @"options":[dw getFilterFor:@"temple_Material__c"]},
-                 @{ @"heading":kTempleColour,
-                    @"options":[dw getFilterFor:@"temple_Color__c"]},
-                 @{ @"heading":kSize,
-                    @"options":[dw getFilterFor:@"size__c"]},
-                 @{ @"heading":kFrontColor,
-                    @"options":[dw getFilterFor:@"front_Color__c"]},
-                 @{ @"heading":kLensColor,
-                    @"options":[dw getFilterFor:@"lens_Color__c"]}
-                 ];
-        [_filterTable reloadData];
-        [load2 stop];
-    });
+    }];
+    [ronakGlobal.advancedFilters2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
+        [allFil addObject:obj];
+    }];
+    filtersArr=allFil;
+   _filterTable.hidden=NO;
+    [super viewWillAppear:YES];
+    
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [_filterTable reloadData];
 }
 
 -(void)defaultShapesOfComponents
@@ -122,10 +118,12 @@
     _filterTable.layer.shadowOffset=CGSizeMake(2.0, 2.0);
     _filterTable.layer.shadowRadius=5.0f;
     _filterTable.layer.shadowOpacity=1.0f;
-
-
     
+    _pricingLabel.hidden=YES;
+    _wsLabel.hidden=YES;
     
+    _pricingSwitch.onTintColor=[UIColor whiteColor];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -222,12 +220,20 @@
 {
     ItemMaster *item=ronakGlobal.filterdProductsArray[myIndex];
     _itemSizeLabel.text=item.filters.size__c;
-    _itemModelNameLabel.text=item.filters.style_Code__c;
     _selectedItemDesc.text=item.filters.item_Description__c;
-    _pricingLabel.text=item.filters.mRP__c;
+    _pricingLabel.text=[@"MRP:₹" stringByAppendingString:item.filters.mRP__c];
     _discountLabel.text=[item.filters.discount__c stringByAppendingString:@"%"];
+    _itemSizeLabel.text=item.filters.size__c;
+    _wsLabel.text=[@"WS:₹" stringByAppendingString:item.filters.wS_Price__c];
+    [_allColoursBtn setTitle:item.filters.color_Code__c forState:UIControlStateNormal];
+    _itemModelNameLabel.text=item.filters.group_Name__c;
+    
     ronakGlobal.item=item;
+    
+    
+    
 }
+
 
 /*
 #pragma mark - Navigation
@@ -322,6 +328,7 @@
         cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
     }
     cell.headerButton.tag=indexPath.section;
+    cell.delegate=self;
     cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
     [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
     cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];
@@ -335,7 +342,6 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [tableView reloadData];
 }
 
@@ -362,6 +368,8 @@
     Section=sender.tag;
     [self.filterTable endUpdates];
     
+    [self getProductItemsFilter];
+
 }
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -375,4 +383,66 @@
 
 
 
+- (IBAction)priceSwitchChanged:(id)sender {
+
+    _pricingSwitch=sender;
+    if(_pricingSwitch.isOn)
+    {
+        _pricingLabel.hidden=YES;
+        _wsLabel.hidden=NO;
+    }
+    else
+    {
+        _pricingLabel.hidden=NO;
+        _wsLabel.hidden=YES;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _pricingLabel.hidden=YES;
+        _wsLabel.hidden=YES;
+    });
+
+}
+
+
+-(void)zoomImageFunctionality
+{
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedImage:)];
+    tap.numberOfTapsRequired=2;
+    [_detailedImageView addGestureRecognizer:tap];
+    
+}
+-(void)tappedImage:(id)sender
+{
+    ZoomscrollVw = [[UIScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2, 0, 0)];
+    ZoomscrollVw.backgroundColor = [UIColor blackColor];
+    UIImageView *imageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    [ZoomscrollVw addSubview:imageV];
+    imageV.image=_detailedImageView.image;
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedScrollView:)];
+    tap.numberOfTapsRequired=2;
+    [ZoomscrollVw addGestureRecognizer:tap];
+    
+    
+    
+    if(_detailedImageView.highlighted==YES){
+        
+        _detailedImageView.highlighted=NO;
+        [ZoomscrollVw removeFromSuperview];
+        
+    }
+    else{
+        _detailedImageView.highlighted=YES;
+        [self.view.window addSubview:ZoomscrollVw];
+        [UIView animateWithDuration:0.4 animations:^{
+            ZoomscrollVw.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        }];
+        
+
+     }
+}
+-(void)tappedScrollView:(id)sender
+{
+    [ZoomscrollVw removeFromSuperview];
+}
 @end
+

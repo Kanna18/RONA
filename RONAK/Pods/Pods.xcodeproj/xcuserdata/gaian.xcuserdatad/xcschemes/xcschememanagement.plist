@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MARKRangeSlider-MARKRangeSlider.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MARKRangeSlider.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RONAK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,17 +77,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3473006E37F4E369734BEC53597C04F4</key>
+		<key>038A6443F730BB22235948522A918219</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37F772D096F927EED4DB649A6F2DE104</key>
+		<key>03905E3DA3B92D4085E8EA43BB96492F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40C6EC8B253A8B1FD99E002F4A51CF0C</key>
+		<key>25BDD3F188627C9F16C35233B567AAAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,22 +97,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>63EB29A7591784C3978012A59559ED8E</key>
+		<key>4EE5E9A9AD762D8AA864DF22A2D7E5CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B497D1842F2ABF0BF559305044D4626</key>
+		<key>83AFBE9D050CEF9E7D3E858DA76E9D61</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E5F85E9649D664D82F02CAEE4DFE59F</key>
+		<key>8C9FD6CFEB3B2A923991D791872F3889</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E05C94C0E55C66E2D1B69BC6F6C916C</key>
+		<key>8FBCCF622F4CF072FCC93584CC022370</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>93C8882B1DD08CC74729C035033406AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6875D81C24E0C237DA91D93EDFD7454</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB92CD0767C98DBFCD676BE8D8715025</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,12 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F791577BC1DA77C672C45D28BA6DE741</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FEE3F1B096B47504406CF7CDAC5E8F72</key>
+		<key>E6E8E828B2727C7400902064549517F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

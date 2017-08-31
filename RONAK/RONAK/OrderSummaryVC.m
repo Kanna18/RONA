@@ -29,12 +29,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     _summaryTableView.delegate=self;
     _summaryTableView.dataSource=self;
     _summaryTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self scrollViewDisplayListofCstmrs];
     [self calendarFunction];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [self scrollViewDisplayListofCstmrs];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +65,7 @@
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.delegate=self;
-    [cell bindData:_itemsArray[indexPath.row] withCount:(int)[_itemsCount countForObject:_itemsArray[indexPath.row]] customerData:_cstdDataModel];
+    [cell bindData:_itemsArray[indexPath.row] withCount:(int)[_itemsCount countForObject:_itemsArray[indexPath.row]] customerData:_cstdDataModel forCustome:_presentCustomerBtn];
     return cell;
 }
 -(void)scrollViewDisplayListofCstmrs
@@ -105,6 +108,27 @@
     _futureDateLabl.text=_cstdDataModel.defaultsCustomer.dateFuture;
     _percentageLabel.text=_cstdDataModel.defaultsCustomer.discount;
     
+    int total=0,sunGlassesGST=0,framesGST=0;
+    
+    for (ItemMaster *item in _cstdDataModel.defaultsCustomer.itemsCount)
+    {
+        total+=[item.filters.mRP__c intValue];
+        if([item.filters.product__c isEqualToString:@"Sunglasses"])
+        {
+            sunGlassesGST+=[item.filters.mRP__c intValue];
+        }
+        if([item.filters.product__c isEqualToString:@"Frames"])
+        {
+            framesGST+=[item.filters.mRP__c intValue];
+        }
+    }
+    
+    sunGlassesGST=sunGlassesGST*28/100;
+    framesGST=framesGST*14/100;
+    _sunGST.text=[NSString stringWithFormat:@"%d",sunGlassesGST];
+    _frameGST.text=[NSString stringWithFormat:@"%d",framesGST];
+    _totalAmount.text=[NSString stringWithFormat:@"%d",total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100];
+    _netAmount.text=[NSString stringWithFormat:@"%d",total+sunGlassesGST+framesGST];
     [_summaryTableView reloadData];
 }
 
@@ -170,8 +194,9 @@
     [self.navigationController popToViewController:men animated:YES];
 }
 #pragma mark - OrderCell Delegate
--(void)quantityChanged
+-(void)quantityChangedforCustomer:(CustomButton *)cst
 {
+    [self fillLabelsWithText:cst];
     [_summaryTableView reloadData];
 }
 /*

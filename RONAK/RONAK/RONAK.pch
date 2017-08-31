@@ -34,5 +34,6 @@
 #import "WSCalendarView.h"
 #import "Calculator.h"
 
+#import "MARKRangeSlider.h"
 
 #endif /* RONAK_pch */

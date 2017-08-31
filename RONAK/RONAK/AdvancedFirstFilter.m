@@ -22,39 +22,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    LoadingView* load=[[LoadingView alloc]init];
-    [load loadingWithlightAlpha:_filterTable with_message:@""];
-    [load start];
-    
-    DownloadProducts *dw=[[DownloadProducts alloc]init];
-    
-    
+        
     _filterTable.delegate=self;
     _filterTable.dataSource=self;
     _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;    
     height=61;
-    dispatch_async(dispatch_get_main_queue(), ^{
-    filtersArr=@[@{  @"heading":kLensDescription,
-                     @"options":[dw getFilterFor:@"lens_Description__c"]},
-                 @{  @"heading":kWSPrice,
-                     @"options":[dw getFilterFor:@"wS_Price__c"]},
-                 @{ @"heading":kShape,
-                    @"options":[dw getFilterFor:@"shape__c"]},
-//                 @{ @"heading":kGender,
-//                    @"options":[dw getFilterFor:@"gender__c"]},
-                 @{ @"heading":kFrameMaterial,
-                    @"options":[dw getFilterFor:@"frame_Material__c"]},
-                 @{ @"heading":kTempleMaterial,
-                    @"options":[dw getFilterFor:@"temple_Material__c"]},
-                 @{ @"heading":kTempleColour,
-                    @"options":[dw getFilterFor:@"temple_Color__c"]},
-//                 @{ @"heading":kTipColor,
-//                    @"options":[dw getFilterFor:@"tip_Color__c"]},
-                 ];
-        [_filterTable reloadData];
-        [load stop];
-    });
+ 
+    filtersArr=ronakGlobal.advancedFilters1;
+    
+    
+    [_filterTable registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
+    
 }
 
 
@@ -74,24 +52,51 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuse=@"testCell";
-    CustomTVCell *cell=[tableView dequeueReusableCellWithIdentifier:reuse];
-    cell.delegate=self;
-    if(cell==nil)
-    {
-        cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
-    }
-    cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
-    cell.headerButton.tag=indexPath.section;
-    [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
-    cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];
     
-    if(Section!=indexPath.section){//except the selected cell remaining need to close
-        cell.headerButton.selected=NO;
-        [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
+    if(indexPath.section==1)
+    {
+        static NSString *CellIdentifier = @"RangeCell";
+        RangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil)
+        {
+            cell =[[[NSBundle mainBundle] loadNibNamed:@"RangTableViewCell" owner:self options:nil] lastObject];
+        }
+        cell.delegate=self;
+        cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
+        [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
+        cell.headerButton.tag=indexPath.section;
+        if(Section!=indexPath.section){//except the selected cell remaining need to close
+            cell.headerButton.selected=NO;
+            [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
+        }
+        [cell bindDatatoGetFrame];
+        [cell layoutSubviews];
+        return cell;
     }
-    [cell layoutSubviews];
-    return cell;
+   else
+   {
+       NSString *reuse=@"testCell";
+       CustomTVCell *cell=[tableView dequeueReusableCellWithIdentifier:reuse];
+       cell.delegate=self;
+       if(cell==nil)
+       {
+           cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
+       }
+       cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
+       cell.headerButton.tag=indexPath.section;
+       [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
+       cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];
+       
+       if(Section!=indexPath.section){//except the selected cell remaining need to close
+           cell.headerButton.selected=NO;
+           [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
+       }
+       [cell layoutSubviews];
+
+       return cell;
+   }
+       
+        return nil;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -109,12 +114,13 @@
         return 61;
     }
 }
--(void)getbuttonStatus:(UIButton *)sender cell:(CustomTVCell *)cell
+#pragma  RangeCell Delegate
+-(void)getStatus:(UIButton *)sender cell:(UITableViewCell *)cell
 {
     [_filterTable reloadData];
     [self.filterTable beginUpdates];
     if(sender.selected==YES){
-        height=cell.optionsArray.count*44+140;
+        height=200;
     }
     else{
         height=61;
@@ -122,8 +128,20 @@
     Section=sender.tag;
     [self.filterTable endUpdates];
     
-    
-    
+}
+#pragma  CustomCEll Delegate
+-(void)getbuttonStatus:(UIButton *)sender cell:(CustomTVCell *)cell
+{
+    [_filterTable reloadData];
+    [self.filterTable beginUpdates];
+    if(sender.selected==YES){
+        height=cell.optionsArray.count*50+140;
+    }
+    else{
+        height=61;
+    }
+    Section=sender.tag;
+    [self.filterTable endUpdates];
 }
 /*
  #pragma mark - Navigation

@@ -11,9 +11,7 @@
 @implementation DownloadProducts{
     
     ServerAPIManager *serverAPI;
-    
     NSURLSessionDataTask *sessionDatatask;
-    
 }
 
 -(instancetype)init
@@ -119,6 +117,8 @@
                 filter.active_To__c=filtersDict[@"Active_To__c"];
                 filter.active_From__c=filtersDict[@"Active_From__c"];
                 filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
+                filter.rim__c=filtersDict[@"Rim__c"];
+                filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
                 filter.discount__c=[NSString stringWithFormat:@"%@",filtersDict[@"Discount__c"]];
                 filter.codeId=filtersDict[@"Id"];
                                 
@@ -132,32 +132,110 @@
                 
                 item.filters=filter;
                 item.filters.attribute=attributes;
-            }
-            NSLog(@"%lu",(unsigned long)idx);
+                NSLog(@"%lu",(unsigned long)idx);
+                [ronakGlobal.delegate saveContext];
+            }            
         }];
-        [ronakGlobal.delegate saveContext];
         [_delegateProducts productsListFetched];
     }
 }
--(NSArray*)getFilterFor:(NSString*)strFor{
+-(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
     
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity1 = [NSEntityDescription entityForName:@"Filters" inManagedObjectContext:cntxt];
+    [fetchRequest setEntity:entity1];
+    NSPredicate *predicate1=[NSPredicate predicateWithFormat:@"%@ like %@",strFor,strFor];
+    [fetchRequest setPredicate:predicate1];
+    NSError *error = nil;
+    NSArray *allFilters = [cntxt executeFetchRequest:fetchRequest error:&error];
+    
+    ////////////////////////////////////////////////////////////////////////
     NSMutableArray *brandsF=[[NSMutableArray alloc]init];
-    NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([Filters class])];
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"%@ like %@",strFor,strFor];
-    [fetch setPredicate:predicate];
-    NSArray *brands=[ronakGlobal.context executeFetchRequest:fetch error:nil];
-    [brands enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    NSMutableArray *categoriesF=[[NSMutableArray alloc]init];
+    NSMutableArray *collectionF=[[NSMutableArray alloc]init];
+    NSMutableArray *stockF=[[NSMutableArray alloc]init];
+    NSMutableArray *lensDesF=[[NSMutableArray alloc]init];
+    NSMutableArray *shapeF=[[NSMutableArray alloc]init];
+    NSMutableArray *genderF=[[NSMutableArray alloc]init];
+    NSMutableArray *frameMateF=[[NSMutableArray alloc]init];
+    NSMutableArray *templeMateF=[[NSMutableArray alloc]init];
+    NSMutableArray *templeColF=[[NSMutableArray alloc]init];
+    NSMutableArray *tipColourF=[[NSMutableArray alloc]init];
+    NSMutableArray *sizeF=[[NSMutableArray alloc]init];
+    NSMutableArray *lensMAteF=[[NSMutableArray alloc]init];
+    NSMutableArray *frontColF=[[NSMutableArray alloc]init];
+    NSMutableArray *lensColF=[[NSMutableArray alloc]init];
+    NSMutableArray *rimF=[[NSMutableArray alloc]init];
+    
+    [allFilters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
         Filters *fil=obj;
-        [brandsF addObject:[fil valueForKeyPath:[NSString stringWithFormat:@"%@",strFor]]?[fil valueForKeyPath:[NSString stringWithFormat:@"%@",strFor]]:@""];
+         !([brandsF containsObject:fil.brand__c])&&!(fil.brand__c==NULL)?[brandsF addObject:fil.brand__c]:@"";
+         !([categoriesF containsObject:fil.product__c])&&!(fil.product__c==NULL)?[categoriesF addObject:fil.product__c]:@"";
+         !([collectionF containsObject:fil.collection__c])&&!(fil.collection__c==NULL)?[collectionF addObject:fil.collection__c]:@"";
+         !([stockF containsObject:fil.stock_Warehouse__c])&&!(fil.stock_Warehouse__c==NULL)?[stockF addObject:fil.stock_Warehouse__c]:@"";
+         !([lensDesF containsObject:fil.lens_Description__c])&&!(fil.lens_Description__c==NULL)?[lensDesF addObject:fil.lens_Description__c]:@"";
+         !([shapeF containsObject:fil.shape__c])&&!(fil.shape__c==NULL)?[shapeF addObject:fil.shape__c]:@"";
+         !([genderF containsObject:fil.category__c])&&!(fil.category__c==NULL)?[genderF addObject:fil.category__c]:@"";
+         !([frameMateF containsObject:fil.frame_Material__c])&&!(fil.frame_Material__c==NULL)?[frameMateF addObject:fil.frame_Material__c]:@"";
+         !([templeMateF containsObject:fil.temple_Material__c])&&!(fil.temple_Material__c==NULL)?[templeMateF addObject:fil.temple_Material__c]:@"";
+         !([templeColF containsObject:fil.temple_Color__c])&&!(fil.temple_Color__c==NULL)?[templeColF addObject:fil.temple_Color__c]:@"";
+         !([tipColourF containsObject:fil.tips_Color__c])&&!(fil.tips_Color__c==NULL)?[tipColourF addObject:fil.tips_Color__c]:@"";
+         !([sizeF containsObject:fil.size__c])&&!(fil.size__c==NULL)?[sizeF addObject:fil.size__c]:@"";
+         !([lensMAteF containsObject:fil.lens_Material__c])&&!(fil.lens_Material__c==NULL)?[lensMAteF addObject:fil.lens_Material__c]:@"";
+         !([frontColF containsObject:fil.front_Color__c])&&!(fil.front_Color__c==NULL)?[frontColF addObject:fil.front_Color__c]:@"";
+         !([lensColF containsObject:fil.lens_Color__c])&&!(fil.lens_Color__c==NULL)?[lensColF addObject:fil.lens_Color__c]:@"";
+         !([rimF containsObject:fil.rim__c])&&!(fil.rim__c==NULL)?[rimF addObject:fil.rim__c]:@"";
     }];
-    if([brandsF containsObject:@""]){
-        [brandsF removeObject:@""];
-    }
-    NSSet *set=[NSSet setWithArray:brandsF];
-    brandsF=(NSMutableArray*)[set allObjects];
-    return brandsF;
+    
+    ronakGlobal.DefFiltersOne=@[@{ @"heading":kBrand,
+                                   @"options":brandsF},
+                                @{ @"heading":kCategories,
+                                   @"options":categoriesF},
+                                @{ @"heading":kCollection,
+                                   @"options":collectionF}];
+    ronakGlobal.DefFiltersTwo=@[@{  @"heading":kSampleWareHouse,
+                                    @"options":stockF},
+                                @{ @"heading":kStockWareHouse,
+                                   @"options":stockF},
+                                @{ @"heading":@"Stock",
+                                   @"options":@[]}];
+    ronakGlobal.advancedFilters1=@[@{ @"heading":kLensDescription,
+                                      @"options":lensDesF},
+                                   @{ @"heading":kWSPrice,
+                                      @"options":@[]},
+                                   @{ @"heading":kShape,
+                                      @"options":shapeF},
+                                   @{ @"heading":kGender,
+                                      @"options":genderF},
+                                   @{ @"heading":kFrameMaterial,
+                                      @"options":frameMateF},
+                                   @{ @"heading":kTempleMaterial,
+                                      @"options":templeMateF},
+                                   @{ @"heading":kTempleColour,
+                                      @"options":templeColF},
+                                   @{ @"heading":kTipColor,
+                                      @"options":tipColourF}];
+    ronakGlobal.advancedFilters2=@[
+                                   @{ @"heading":kDiscount,
+                                      @"options":@[]},
+                                   @{ @"heading":kMRP,
+                                      @"options":@[]},
+                                   @{ @"heading":kRim,
+                                      @"options":rimF},
+                                   @{  @"heading":kSize,
+                                       @"options":sizeF},
+                                   @{  @"heading":kLensMaterial,
+                                       @"options":lensMAteF},
+                                   @{  @"heading":kFrontColor,
+                                       @"options":frontColF},
+                                   @{ @"heading":kLensColor,
+                                      @"options":lensColF}];
+    NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);
 }
+
+
 -(NSMutableArray*)pickProductsFromFilters{
     
     NSPredicate *pre=[ronakGlobal.selectedFilter getPredicateStringFromTable:nil];
@@ -168,7 +246,8 @@
 //    NSPredicate *pred2=[NSPredicate predicateWithFormat:@"SELF.filters.category__c == 'Kids'"];
 //    NSPredicate *placesPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[pred2, predicate]];
     [fetch setPredicate:pre];
-
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.item_No__c"                                                                   ascending:YES];
+    [fetch setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
     NSArray *arr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ItemMaster *item=obj;

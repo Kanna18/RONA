@@ -32,6 +32,9 @@ static NSString *reuse=@"reuseCustomerCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+     self.automaticallyAdjustsScrollViewInsets = NO;
+    
     load=[[LoadingView alloc]init];
     rest=[[RESTCalls alloc]init];
         
@@ -45,7 +48,7 @@ static NSString *reuse=@"reuseCustomerCell";
 
     
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
-    alphabets=@[@"A",@"B",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",];
+    alphabets=@[@"A",@"B",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
     
     [self defaultComponentsStyle];
     
@@ -54,27 +57,27 @@ static NSString *reuse=@"reuseCustomerCell";
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
     
-
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
             [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
         }
         else{
             [self restServiceForCustomerList];
         }
-    });
-    
+    });    
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    
     scr_width=_collectionView.frame.size.width;
     scr_height=_collectionView.frame.size.height;
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
+    [_collectionView reloadData];
     [[NSNotificationCenter defaultCenter] removeObserver:UITextFieldTextDidChangeNotification];
 }
 
@@ -139,25 +142,6 @@ static NSString *reuse=@"reuseCustomerCell";
 
 -(void)restServiceForCustomerList
 {
-//    NSDictionary *headers=@{@"content-type":@"application/x-www-form-urlencoded (OR) application/json",
-//                            @"authorization":[NSString stringWithFormat:@"Bearer %@",defaultGet(kaccess_token)]};
-//    
-//
-//    [serverAPI  processRequest:rest_customersList_B params:nil requestType:@"POST" cusHeaders:headers successBlock:^(id responseObj) {
-//        
-//        
-//        NSString *dictstr=[NSJSONSerialization JSONObjectWithData:responseObj options: NSJSONReadingAllowFragments error:nil];
-//        NSData *jsonData=[dictstr dataUsingEncoding:NSUTF8StringEncoding];
-//        NSError *cerr;
-//        [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
-//        [self getListofAllCustomers:jsonData];
-//    } andErrorBlock:^(NSError *error) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [load stop];
-//            [load waringLabelText:@"Error Loading" onView:self.view];
-//        });
-//    }];
-    
     
     NSDictionary *headers = @{ @"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
@@ -193,6 +177,7 @@ static NSString *reuse=@"reuseCustomerCell";
 -(void)getListofAllCustomers:(NSData*)cList
 {
     NSArray *arr=[NSJSONSerialization JSONObjectWithData:cList options:0 error:nil];
+    
     NSError *err;
     customersList=[CustomerDataModel arrayOfModelsFromDictionaries:arr error:&err];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -385,4 +370,10 @@ static NSString *reuse=@"reuseCustomerCell";
     NSIndexPath *nextItem = [NSIndexPath indexPathForItem:0 inSection:sender.tag-100];
     [self.collectionView scrollToItemAtIndexPath:nextItem atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    NSLog(@"--->velocity-%@, offset-%@",NSStringFromCGPoint(velocity),NSStringFromCGPoint(*targetContentOffset));
+    [_collectionView setContentOffset:CGPointMake(0, 1000) animated:YES];
+}
+
 @end

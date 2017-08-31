@@ -127,11 +127,13 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 //    [[SalesforceSDKManager sharedManager] launch];
     
-    [[UILabel appearance] setFont:sfFont(17.0)];
-    [[UIButton appearance].titleLabel setFont:sfFont(17.0)];
+//    [[UILabel appearance] setFont:sfFont(17.0)];
+//    [[UIButton appearance].titleLabel setFont:sfFont(17.0)];
     [[UITextField appearance] setFont:sfFont(17.0)];
     
 //    self.context=self.persistentContainer.viewContext;
+    
+    NSLog(@"CoreData Path--->%@",[self applicationDocumentsDirectory]);
     return YES;
 }
 
@@ -335,7 +337,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CrickenScoreBoard.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"RONAK.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {

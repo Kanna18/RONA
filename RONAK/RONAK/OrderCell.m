@@ -35,7 +35,6 @@
     _incrementPro.tag=Increment;
     _decrementPro.tag=Decrement;
     _brandLabel.font=sfFont(15);
-    [_descriptionLabel setAdjustsFontSizeToFitWidth:YES];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -75,7 +74,7 @@
     }
     _qtyLabel.text=[NSString stringWithFormat:@"%d",qty];
     
-    [_delegate quantityChanged];
+    [_delegate quantityChangedforCustomer:_cstButtomCustomer];
 }
 
 -(void)drawBorders:(id)element{
@@ -91,11 +90,12 @@
         cst.layer.shadowOpacity=1.0f;
     }
 }
--(void)bindData:(ItemMaster *)item withCount:(int)Count customerData:(CustomerDataModel*)cst
+-(void)bindData:(ItemMaster *)item withCount:(int)Count customerData:(CustomerDataModel*)cst forCustome:(CustomButton *)btn
 {
     _item=item;
     _cstData=cst;
     _count=Count;
+    _cstButtomCustomer=btn;
     
     _qtyLabel.text=[NSString stringWithFormat:@"%d",Count];
     _brandLabel.text=item.filters.brand__c;

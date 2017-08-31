@@ -10,7 +10,7 @@
 
 @protocol ReloadInstruction <NSObject>
 
--(void)quantityChanged;
+-(void)quantityChangedforCustomer:(CustomButton*)cst;
 
 @end
 
@@ -30,8 +30,10 @@
 
 @property ItemMaster *item;
 @property CustomerDataModel *cstData;
+@property CustomButton *cstButtomCustomer;
+
 @property int count;
--(void)bindData:(ItemMaster *)item withCount:(int)Count customerData:(CustomerDataModel*)cst;
+-(void)bindData:(ItemMaster *)item withCount:(int)Count customerData:(CustomerDataModel*)cst forCustome:(CustomButton*)btn;
 
 @property id<ReloadInstruction> delegate;
 @end

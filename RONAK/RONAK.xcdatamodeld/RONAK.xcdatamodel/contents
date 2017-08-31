@@ -34,6 +34,7 @@
         <attribute name="lens_Code__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lens_Color__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lens_Description__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lens_Material__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo_Color__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo_Size__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo_Type__c" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,6 +42,7 @@
         <attribute name="number__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order_Month__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="product__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rim__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shape__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stock__c" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,7 +62,7 @@
     </entity>
     <elements>
         <element name="Att" positionX="-198" positionY="297" width="128" height="90"/>
-        <element name="Filters" positionX="88" positionY="45" width="128" height="735"/>
+        <element name="Filters" positionX="88" positionY="45" width="128" height="765"/>
         <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="90"/>
     </elements>
 </model>

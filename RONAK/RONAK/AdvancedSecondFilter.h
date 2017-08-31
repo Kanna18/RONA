@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomTVCell.h"
-
-@interface AdvancedSecondFilter : UIViewController<UITableViewDelegate,UITableViewDataSource,HideUnhideStatus>
+#import "RangTableViewCell.h"
+@interface AdvancedSecondFilter : UIViewController<UITableViewDelegate,UITableViewDataSource,HideUnhideStatus,FilterRange>
 
 @property (strong, nonatomic) IBOutlet UITableView *filterTable;
 

@@ -8,7 +8,9 @@
 
 #import "RONAKSharedClass.h"
 
-@implementation RONAKSharedClass
+@implementation RONAKSharedClass{
+    
+}
 
 
 + (RONAKSharedClass *)sharedInstance
@@ -32,4 +34,5 @@
     }
     return self;
 }
+
 @end

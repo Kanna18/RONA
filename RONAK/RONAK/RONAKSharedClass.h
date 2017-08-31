@@ -25,5 +25,8 @@
 
 @property ItemMaster *item;
 
+@property NSArray *DefFiltersOne,*DefFiltersTwo,*advancedFilters1,*advancedFilters2;
 
+
+@property NSString *conutD;
 @end

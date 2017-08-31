@@ -22,6 +22,8 @@
 - (IBAction)activity_click:(id)sender;
 - (IBAction)logout_click:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *downloadStatus;
+
 
 
 @end

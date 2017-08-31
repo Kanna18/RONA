@@ -70,6 +70,11 @@
 		F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */; };
 		F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */; };
 		F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */; };
+		F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */; };
+		F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */; };
+		F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */; };
+		F6FF3C441F583A1E003269EC /* ViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C411F583A1E003269EC /* ViewControllerCell.m */; };
+		F6FF3C451F583A1E003269EC /* ViewControllerCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C431F583A1E003269EC /* ViewControllerCellHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +200,15 @@
 		F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllFiltersViewController.m; sourceTree = "<group>"; };
 		F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsListController.h; sourceTree = "<group>"; };
 		F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsListController.m; sourceTree = "<group>"; };
+		F6FBB77E1F5553AB00CF2732 /* CustomSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwipe.h; sourceTree = "<group>"; };
+		F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwipe.m; sourceTree = "<group>"; };
+		F6FBB7871F55E8C800CF2732 /* RangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangTableViewCell.h; sourceTree = "<group>"; };
+		F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangTableViewCell.m; sourceTree = "<group>"; };
+		F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RangTableViewCell.xib; sourceTree = "<group>"; };
+		F6FF3C401F583A1E003269EC /* ViewControllerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCell.h; sourceTree = "<group>"; };
+		F6FF3C411F583A1E003269EC /* ViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCell.m; sourceTree = "<group>"; };
+		F6FF3C421F583A1E003269EC /* ViewControllerCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCellHeader.h; sourceTree = "<group>"; };
+		F6FF3C431F583A1E003269EC /* ViewControllerCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCellHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,7 +305,6 @@
 				F6EDC4461F3D906200F9DFCC /* Filters */,
 				F69A10E81F428D45005C2432 /* OrderTaking */,
 				F66352A31F501EDD00128137 /* OrderSummary */,
-				F6D085091F548DD7001A76C5 /* CustomPopups */,
 				F6CD273B1F1811750082C6D0 /* Main.storyboard */,
 				F6496BE01F54378000028FF0 /* Launch Screen.storyboard */,
 				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
@@ -400,6 +413,7 @@
 				F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */,
 				F6DFC8BC1F4098120058A5B5 /* CustomerViewCell.h */,
 				F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */,
+				F6D085091F548DD7001A76C5 /* CustomPopups */,
 			);
 			name = OrderTaking;
 			sourceTree = "<group>";
@@ -494,6 +508,8 @@
 		F6DADCCC1F19D9EA00DC635E /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F6FBB77E1F5553AB00CF2732 /* CustomSwipe.h */,
+				F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */,
 				F6DADCCD1F19DA0700DC635E /* CustomButton.h */,
 				F6DADCCE1F19DA0700DC635E /* CustomButton.m */,
 				F6DADCD01F19DA1800DC635E /* CustomLabel.h */,
@@ -542,10 +558,12 @@
 		F6EDC4461F3D906200F9DFCC /* Filters */ = {
 			isa = PBXGroup;
 			children = (
+				F6FF3C461F583A27003269EC /* FilterNew */,
 				F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */,
 				F66352991F4F558900128137 /* AdvancedFilters */,
 				F6EDC4471F3D948300F9DFCC /* CustomTVCell.h */,
 				F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */,
+				F6FBB7861F55E39C00CF2732 /* RangeTableViewCell */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -561,6 +579,27 @@
 				F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */,
 			);
 			name = DefaultFilters;
+			sourceTree = "<group>";
+		};
+		F6FBB7861F55E39C00CF2732 /* RangeTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F6FBB7871F55E8C800CF2732 /* RangTableViewCell.h */,
+				F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */,
+				F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */,
+			);
+			name = RangeTableViewCell;
+			sourceTree = "<group>";
+		};
+		F6FF3C461F583A27003269EC /* FilterNew */ = {
+			isa = PBXGroup;
+			children = (
+				F6FF3C401F583A1E003269EC /* ViewControllerCell.h */,
+				F6FF3C411F583A1E003269EC /* ViewControllerCell.m */,
+				F6FF3C421F583A1E003269EC /* ViewControllerCellHeader.h */,
+				F6FF3C431F583A1E003269EC /* ViewControllerCellHeader.m */,
+			);
+			name = FilterNew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -631,6 +670,7 @@
 			files = (
 				F6404EE31F2124F400530188 /* SF.OTF in Resources */,
 				F6496BEE1F5472D000028FF0 /* Calculator.xib in Resources */,
+				F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */,
 				CEA8CA021F071A9D00448B51 /* Images.xcassets in Resources */,
 				F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */,
 				F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */,
@@ -654,6 +694,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
+				"${BUILT_PRODUCTS_DIR}/MARKRangeSlider/MARKRangeSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
 				"${BUILT_PRODUCTS_DIR}/SalesforceAnalytics/SalesforceAnalytics.framework",
@@ -667,6 +708,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MARKRangeSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceAnalytics.framework",
@@ -722,6 +764,7 @@
 			files = (
 				F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */,
 				F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */,
+				F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */,
 				F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */,
 				F6BFD9F51F4CC0840057C4A0 /* ItemMaster+CoreDataProperties.m in Sources */,
 				F6496BDD1F53FC6000028FF0 /* WSCalendarView.m in Sources */,
@@ -733,6 +776,8 @@
 				F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
 				F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */,
+				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
+				F6FF3C441F583A1E003269EC /* ViewControllerCell.m in Sources */,
 				F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */,
 				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
 				F6496B901F52A22400028FF0 /* Filters+CoreDataClass.m in Sources */,
@@ -770,6 +815,7 @@
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
 				F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */,
 				F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */,
+				F6FF3C451F583A1E003269EC /* ViewControllerCellHeader.m in Sources */,
 				F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */,
 				F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */,
 			);
@@ -872,13 +918,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = AYEU8SS399;
+				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
 				INFOPLIST_FILE = RONAK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bodhtree.ronak.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -891,13 +938,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = AYEU8SS399;
+				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
 				INFOPLIST_FILE = RONAK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.bodhtree.ronak.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};

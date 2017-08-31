@@ -15,6 +15,9 @@
     [super awakeFromNib];
     _selectedImage.layer.cornerRadius=3.0f;
     _selectedImage.clipsToBounds=YES;
+    
+    _addressLabel.font=sfFont(15);
+    _addressLabel.textColor=[UIColor grayColor];
 }
 
 -(void)bindData:(CustomerDataModel*)data
@@ -42,7 +45,7 @@
     if([arr containsObject:self.cstData])
     {
 //        self.selectedImage.backgroundColor=BlueClr;
-        self.selectedImage.image=[UIImage imageNamed:@"checkBlue"];
+        self.selectedImage.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
 //        self.baseView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
 //        self.baseView.layer.shadowOffset = CGSizeMake(5, 5);
 //        self.baseView.layer.shadowOpacity = 1;
@@ -53,7 +56,7 @@
     else
     {
         self.selectedImage.backgroundColor=GrayLight;
-        self.selectedImage.image=[UIImage imageNamed:@""];
+        self.selectedImage.image=nil;
 //        self.baseView.layer.shadowColor = [UIColor whiteColor].CGColor;
 //        self.baseView.layer.shadowOffset = CGSizeMake(0, 0);
 //        self.baseView.layer.shadowOpacity = 0;

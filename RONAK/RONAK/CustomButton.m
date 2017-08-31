@@ -20,7 +20,7 @@
 -(void)awakeFromNib{
     
     [super awakeFromNib];
-    self.titleLabel.font=sfFont(18.0);
+//    self.titleLabel.font=sfFont(18.0);
     [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
 }
 

@@ -58,7 +58,10 @@
 @dynamic wS_Price__c;
 @dynamic discount__c;
 @dynamic active_To__c;
+@dynamic rim__c;
+@dynamic lens_Material__c;
 @dynamic attribute;
 @dynamic itemMaster;
+
 
 @end

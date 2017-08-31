@@ -19,14 +19,9 @@
     _optionsTableView.separatorStyle=UITableViewCellSelectionStyleNone;
     
     _headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    _headerButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    [_headerButton addTarget:self action:@selector(reloadFilters:) forControlEvents:UIControlEventTouchUpInside];
-//    [_headerButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
+    _optionsTableView.scrollEnabled=NO;
 }
--(void)reloadFilters:(id)sender
-{
-    [_optionsTableView reloadData];
-}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -46,6 +41,7 @@
         [btn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     }
     [_delegate getbuttonStatus:btn cell:self];
+    [self.optionsTableView reloadData];
 }
 
 
@@ -70,8 +66,7 @@
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.backgroundColor=[UIColor clearColor];
-    cell.textLabel.text=_optionsArray[indexPath.row];
-    
+    cell.textLabel.text=_optionsArray.count>0&&_optionsArray.count>indexPath.row?_optionsArray[indexPath.row]:@"";
     [self filterSelectionBasedonType:cell];
     
     CGSize itemSize = CGSizeMake(20,20);
@@ -91,7 +86,7 @@
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     if([_filterType isEqualToString:kBrand])
     {
-    ronakGlobal.selectedFilter.brand=cell.textLabel.text;
+        ronakGlobal.selectedFilter.brand=cell.textLabel.text;
     }
     if([_filterType isEqualToString:kCategories])
     {
@@ -207,6 +202,17 @@
             [ronakGlobal.selectedFilter.tipsColor addObject:cell.textLabel.text];
         }
     }
+    if([_filterType isEqualToString:kSize])
+    {
+        if([ronakGlobal.selectedFilter.size containsObject:cell.textLabel.text])
+        {
+            [ronakGlobal.selectedFilter.size removeObject:cell.textLabel.text];
+        }
+        else
+        {
+            [ronakGlobal.selectedFilter.size addObject:cell.textLabel.text];
+        }
+    }
     [tableView reloadData];
 }
 
@@ -216,7 +222,7 @@
         NSString *str=ronakGlobal.selectedFilter.brand;
         if([cell.textLabel.text isEqualToString:str])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -227,7 +233,7 @@
     {
         if([ronakGlobal.selectedFilter.categories containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -239,7 +245,7 @@
     {
         if([ronakGlobal.selectedFilter.collection containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -250,7 +256,7 @@
     {
         if([ronakGlobal.selectedFilter.stockHouseFilter containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -261,7 +267,7 @@
     {
         if([ronakGlobal.selectedFilter.sampleHouseFilter containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -272,7 +278,7 @@
     {
         if([ronakGlobal.selectedFilter.lensDescription containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -283,7 +289,7 @@
     {
         if([ronakGlobal.selectedFilter.shape containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -294,7 +300,7 @@
     {
         if([ronakGlobal.selectedFilter.frameMaterial containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -305,7 +311,7 @@
     {
         if([ronakGlobal.selectedFilter.templeMaterial containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -316,7 +322,7 @@
     {
         if([ronakGlobal.selectedFilter.templeColor containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {
@@ -327,7 +333,18 @@
     {
         if([ronakGlobal.selectedFilter.tipsColor containsObject:cell.textLabel.text])
         {
-            cell.imageView.image=[UIImage imageNamed:@"checkFilter"];
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
+        }
+        else
+        {
+            cell.imageView.image=nil;
+        }
+    }
+    if([_filterType isEqualToString:kSize])
+    {
+        if([ronakGlobal.selectedFilter.size containsObject:cell.textLabel.text])
+        {
+            cell.imageView.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
         }
         else
         {

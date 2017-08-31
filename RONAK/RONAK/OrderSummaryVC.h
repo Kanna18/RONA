@@ -40,5 +40,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *placeOrderBtn;
 - (IBAction)placeOrderClick:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *totalAmount;
+@property (strong, nonatomic) IBOutlet UILabel *frameGST;
+@property (strong, nonatomic) IBOutlet UILabel *sunGST;
+@property (strong, nonatomic) IBOutlet UILabel *roundOffLbl;
+@property (strong, nonatomic) IBOutlet UILabel *netAmount;
+@property (strong, nonatomic) IBOutlet UILabel *remarksLabel;
+
+
 
 @end

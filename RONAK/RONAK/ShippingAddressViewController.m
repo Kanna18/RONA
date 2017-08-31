@@ -165,7 +165,7 @@
         [_shipAddress_scrlView addSubview:btn];
         [btn addTarget:self action:@selector(selectedAddress:) forControlEvents:UIControlEventTouchUpInside];
         [btn setBackgroundColor:GrayLight];
-        [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [btn setBackgroundImage:nil forState:UIControlStateNormal];
         vY+=_billAddress_scrlView.frame.size.height-20;
         bY+=_billAddress_scrlView.frame.size.height-20;
         
@@ -189,7 +189,7 @@
             if(btn.tag)
             {
                 [btn setBackgroundColor:GrayLight];
-                [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+                [btn setBackgroundImage:nil forState:UIControlStateNormal];
             }
         }
     }

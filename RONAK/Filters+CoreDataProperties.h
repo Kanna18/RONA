@@ -59,6 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *wS_Price__c;
 @property (nullable, nonatomic, copy) NSString *discount__c;
 @property (nullable, nonatomic, copy) NSString *active_To__c;
+@property (nullable, nonatomic, copy) NSString *rim__c;
+@property (nullable, nonatomic, copy) NSString *lens_Material__c;
 @property (nullable, nonatomic, retain) Att *attribute;
 @property (nullable, nonatomic, retain) ItemMaster *itemMaster;
 

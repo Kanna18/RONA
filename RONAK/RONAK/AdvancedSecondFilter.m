@@ -13,6 +13,7 @@
 @end
 
 @implementation AdvancedSecondFilter{
+    
     CGFloat height;
     unsigned long Section;
     
@@ -22,35 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    LoadingView* load=[[LoadingView alloc]init];
-    [load loadingWithlightAlpha:_filterTable with_message:@""];
-    [load start];
-    
-    DownloadProducts *dw=[[DownloadProducts alloc]init];
-    
-    
+
     _filterTable.delegate=self;
     _filterTable.dataSource=self;
     _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
-
     height=61;
-    dispatch_async(dispatch_get_main_queue(), ^{
-    filtersArr=@[@{  @"heading":kSize,
-                     @"options":[dw getFilterFor:@"size__c"]},
-                 @{  @"heading":kFrontColor,
-                     @"options":[dw getFilterFor:@"front_Color__c"]},
-                 @{ @"heading":kLensColor,
-                    @"options":[dw getFilterFor:@"lens_Color__c"]}];        
-        [_filterTable reloadData];
-        [load stop];
-    });
-    
+    filtersArr=ronakGlobal.advancedFilters2;
+    [_filterTable registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,24 +47,50 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *reuse=@"testCell";
-    CustomTVCell *cell=[tableView dequeueReusableCellWithIdentifier:reuse];
-    cell.delegate=self;
-    if(cell==nil)
-    {
-        cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
-    }
-    cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
-    cell.headerButton.tag=indexPath.section;
-    [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
-    cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];
     
-    if(Section!=indexPath.section){//except the selected cell remaining need to close
-        cell.headerButton.selected=NO;
-        [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
+    if(indexPath.section==1||indexPath.section==0)
+    {
+        static NSString *CellIdentifier = @"RangeCell";
+        RangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil)
+        {
+            cell =[[[NSBundle mainBundle] loadNibNamed:@"RangTableViewCell" owner:self options:nil] lastObject];
+        }
+        cell.delegate=self;
+        cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
+        [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
+        cell.headerButton.tag=indexPath.section;
+        if(Section!=indexPath.section){//except the selected cell remaining need to close
+            cell.headerButton.selected=NO;
+            [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
+        }
+        [cell bindDatatoGetFrame];
+        [cell layoutSubviews];
+        return cell;
     }
-    [cell layoutSubviews];
-    return cell;
+    else
+    {
+        NSString *reuse=@"testCell";
+        CustomTVCell *cell=[tableView dequeueReusableCellWithIdentifier:reuse];
+        cell.delegate=self;
+        if(cell==nil)
+        {
+            cell=  [[CustomTVCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuse];
+        }
+        cell.filterType=[filtersArr[indexPath.section] valueForKey:@"heading"];
+        cell.headerButton.tag=indexPath.section;
+        [cell.headerButton setTitle:[filtersArr[indexPath.section] valueForKey:@"heading"] forState:UIControlStateNormal];
+        cell.optionsArray=[filtersArr[indexPath.section] valueForKey:@"options"];
+        
+        if(Section!=indexPath.section){//except the selected cell remaining need to close
+            cell.headerButton.selected=NO;
+            [cell.headerButton setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateNormal];
+        }
+        [cell layoutSubviews];
+        return cell;
+        
+    }
+    return nil;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,6 +108,22 @@
         return 61;
     }
 }
+#pragma  RangeCell Delegate
+-(void)getStatus:(UIButton *)sender cell:(UITableViewCell *)cell
+{
+    [_filterTable reloadData];
+    [self.filterTable beginUpdates];
+    if(sender.selected==YES){
+        height=200;
+    }
+    else{
+        height=61;
+    }
+    Section=sender.tag;
+    [self.filterTable endUpdates];
+    
+}
+#pragma  CustomCEll Delegate
 -(void)getbuttonStatus:(UIButton *)sender cell:(CustomTVCell *)cell
 {
     [_filterTable reloadData];

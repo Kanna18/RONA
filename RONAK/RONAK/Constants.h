@@ -12,6 +12,7 @@
 
 //Fonts
 #define  sfFont(hgt)  [UIFont fontWithName:@"SFUIDisplay-Regular" size:hgt]
+#define calibriBol(si)    [UIFont fontWithName: @"Calibri Bold" size:si]
 
 //User Defaults
 #define defaultSet(value,key)    [[NSUserDefaults standardUserDefaults] setValue:value forKey:key]
