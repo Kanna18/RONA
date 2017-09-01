@@ -1,18 +1,18 @@
 //
-//  AdvancedFilters.m
+//  DefaultFiltersViewController.m
 //  RONAK
 //
-//  Created by Gaian on 8/25/17.
+//  Created by Gaian on 9/1/17.
 //  Copyright © 2017 RONAKOrganizationName. All rights reserved.
 //
 
-#import "AdvancedFilters.h"
+#import "DefaultFiltersViewController.h"
 
-@interface AdvancedFilters ()
+@interface DefaultFiltersViewController ()
 
 @end
 
-@implementation AdvancedFilters
+@implementation DefaultFiltersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,14 +33,18 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)backButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 - (IBAction)jumptoMenuVC:(id)sender
 {
-    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-    [self.navigationController popToViewController:men animated:YES];
+    
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[MenuViewController class]])
+        {
+            [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
+            return ;
+        }
+    }];
 }
 
 @end

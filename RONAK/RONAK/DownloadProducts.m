@@ -200,11 +200,11 @@
                                 @{ @"heading":kStockWareHouse,
                                    @"options":stockF},
                                 @{ @"heading":@"Stock",
-                                   @"options":@[]}];
+                                   @"options":@[@"nil"]}];
     ronakGlobal.advancedFilters1=@[@{ @"heading":kLensDescription,
                                       @"options":lensDesF},
                                    @{ @"heading":kWSPrice,
-                                      @"options":@[]},
+                                      @"options":@[@"nil"]},
                                    @{ @"heading":kShape,
                                       @"options":shapeF},
                                    @{ @"heading":kGender,
@@ -219,9 +219,9 @@
                                       @"options":tipColourF}];
     ronakGlobal.advancedFilters2=@[
                                    @{ @"heading":kDiscount,
-                                      @"options":@[]},
+                                      @"options":@[@"nil"]},
                                    @{ @"heading":kMRP,
-                                      @"options":@[]},
+                                      @"options":@[@"nil"]},
                                    @{ @"heading":kRim,
                                       @"options":rimF},
                                    @{  @"heading":kSize,

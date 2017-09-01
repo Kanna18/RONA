@@ -135,12 +135,7 @@
         if(dict[@"access_token"])
         {
             default(dict[@"access_token"], kaccess_token);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-            [load stop];
-            MenuViewController *menu=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-                [self.navigationController pushViewController:menu animated:YES];
-            });
+            [self performSelectorOnMainThread:@selector(gotoMenu) withObject:nil waitUntilDone:YES];
         }
         else
         {
@@ -160,5 +155,13 @@
             });
     }];
 }
-
+-(void)gotoMenu
+{
+    [load stop];
+    MenuViewController *menuVC=storyBoard(@"menuVC");
+//    [self presentViewController:menuVC animated:YES completion:nil];
+    [self.navigationController pushViewController:menuVC animated:YES];
+//    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:menuVC];
+//    [self.navigationController pushViewController:menuVC animated:YES];
+}
 @end

@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *lblName;
 
+@property NSString *filterType;
+@property (strong, nonatomic) IBOutlet UIImageView *imageNew;
+
 @end

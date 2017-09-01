@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ProductCollectionViewCell.h"
 #import "CustomerViewCell.h"
-#import "CustomTVCell.h"
 
-@interface ProductsListController : UIViewController<CustomerDeleted,UITableViewDelegate,UITableViewDataSource,HideUnhideStatus>
+@interface ProductsListController : UIViewController<CustomerDeleted>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *productsCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *customersCollectionView;

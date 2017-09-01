@@ -20,7 +20,7 @@
 @property NSMutableArray *sampleHouseFilter;
 //Advanced Filters1
 @property NSMutableArray *lensDescription;
-@property NSMutableArray *shape,*frameMaterial,*templeMaterial,*templeColor,*tipsColor;
+@property NSMutableArray *shape,*frameMaterial,*templeMaterial,*templeColor,*tipsColor,*gender, *lensMaterial;
 //Advanced Filters2
 @property NSMutableArray *size,*FrontColor,*LensColor;
 

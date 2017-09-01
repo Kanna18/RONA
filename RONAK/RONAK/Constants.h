@@ -92,10 +92,12 @@
 #define kLensMaterial @"Lens Material"
 #define kFrontColor @"Front Color"
 #define kLensColor @"Lens Color"
-
-
-
 #define  firstTimeLaunching @"FirstTime"
+
+
+//Additional
+#define storyBoard(mvc) [self.storyboard instantiateViewControllerWithIdentifier:mvc]
+#define noOfTouches 1
 
 
 

@@ -26,6 +26,7 @@
 
 @property(nonatomic, assign) BOOL automaticallyAdjustsScrollViewInsets;
 
-
+-(IBAction)pushtoNextVC:(id)sender;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "ShippingAddressViewController.h"
 #import "PDCViewController.h"
+#import "CustomersViewController.h"
+#import "DefaultFiltersViewController.h"
 
 @interface ShippingAddressViewController ()
 
@@ -32,6 +34,11 @@
     [_pdcLbl addGestureRecognizer:tap];
     
     load=[[LoadingView alloc]init];
+    
+    _leftSwipe.numberOfTouchesRequired=noOfTouches;
+    _leftSwipe.direction=UISwipeGestureRecognizerDirectionRight;
+    _rightSwipe.numberOfTouchesRequired=noOfTouches;
+    _leftSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
 }
 -(void)pdcLabelTapped:(id*)sender
 {
@@ -215,11 +222,33 @@
 
 - (IBAction)backClick:(id)sender {
     
-    [self.navigationController popViewControllerAnimated:YES];
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[CustomersViewController class]])
+        {
+            [self.navigationController popToViewController:(CustomersViewController*)obj animated:YES];
+            return ;
+        }
+    }];
+
 }
 - (IBAction)jumptoMenuVC:(id)sender
 {
-    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-    [self.navigationController popToViewController:men animated:YES];
+    
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[MenuViewController class]])
+        {
+            [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
+            return ;
+        }
+    }];
+}
+- (IBAction)pushSwipe:(id)sender {
+    
+    DefaultFiltersViewController *dvc=storyBoard(@"defaultVC");
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 @end

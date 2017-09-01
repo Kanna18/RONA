@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "DownloadProducts.h"
 #import "SignInViewController.h"
+#import "CustomersViewController.h"
 
 @interface MenuViewController ()<FetchedAllProducts>
 
@@ -42,6 +43,9 @@
             [self getFetchFiltersAfteDataFetched];
         });
     }
+    
+    
+    
 }
 
 
@@ -108,6 +112,9 @@
 */
 
 - (IBAction)bookOrder_click:(id)sender {
+    
+    CustomersViewController *cmc=storyBoard(@"customerVC");
+    [self.navigationController pushViewController:cmc animated:YES];
 }
 
 - (IBAction)reports_click:(id)sender {

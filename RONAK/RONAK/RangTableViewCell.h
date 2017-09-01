@@ -15,15 +15,13 @@
 @end
 
 @interface RangTableViewCell : UITableViewCell<UITextFieldDelegate>
-
 @property MARKRangeSlider *rangeSlider;
-@property (strong, nonatomic) IBOutlet UIButton *headerButton;
-- (IBAction)headerbuttonClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *minTf;
 @property (strong, nonatomic) IBOutlet UITextField *maxTF;
-@property (strong, nonatomic) IBOutlet UISlider *slider;
+
 @property NSString *filterType;
 @property id<FilterRange>delegate;
+@property (strong, nonatomic) IBOutlet UIView *sliderView;
 
 -(void)bindDatatoGetFrame;
 @end

@@ -31,9 +31,6 @@
 		F6496BEE1F5472D000028FF0 /* Calculator.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6496BEC1F5472D000028FF0 /* Calculator.xib */; };
 		F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = F64D6A101F39FA35001E8AD6 /* RESTCalls.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
-		F66352981F4F557D00128137 /* AdvancedFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352971F4F557D00128137 /* AdvancedFilters.m */; };
-		F663529C1F4F55A600128137 /* AdvancedFirstFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F663529B1F4F55A600128137 /* AdvancedFirstFilter.m */; };
-		F663529F1F4F55B600128137 /* AdvancedSecondFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F663529E1F4F55B600128137 /* AdvancedSecondFilter.m */; };
 		F66352A21F501ED500128137 /* OrderSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352A11F501ED500128137 /* OrderSummaryVC.m */; };
 		F66352A61F50279700128137 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352A51F50279700128137 /* OrderCell.m */; };
 		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
@@ -64,17 +61,21 @@
 		F6DADCEF1F1A3A7900DC635E /* ShippingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEE1F1A3A7900DC635E /* ShippingAddressViewController.m */; };
 		F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */; };
 		F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */; };
-		F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */; };
-		F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */; };
-		F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */; };
 		F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */; };
-		F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */; };
 		F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */; };
 		F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */; };
 		F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */; };
 		F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */; };
 		F6FF3C441F583A1E003269EC /* ViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C411F583A1E003269EC /* ViewControllerCell.m */; };
 		F6FF3C451F583A1E003269EC /* ViewControllerCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C431F583A1E003269EC /* ViewControllerCellHeader.m */; };
+		F6FF3C491F583B7E003269EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C481F583B7E003269EC /* ViewController.m */; };
+		F6FF3C4C1F583C7B003269EC /* collapsed.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FF3C4A1F583C7B003269EC /* collapsed.png */; };
+		F6FF3C4D1F583C7B003269EC /* expanded.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FF3C4B1F583C7B003269EC /* expanded.png */; };
+		F6FF3C501F58484C003269EC /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C4F1F58484C003269EC /* ViewController2.m */; };
+		F6FF3C571F589AFE003269EC /* DefaultFilter2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C561F589AFE003269EC /* DefaultFilter2.m */; };
+		F6FF3C5D1F589B2C003269EC /* DefaultFilter1.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C5C1F589B2C003269EC /* DefaultFilter1.m */; };
+		F6FF3C601F589C63003269EC /* AdvancedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C5F1F589C63003269EC /* AdvancedViewController.m */; };
+		F6FF3C681F589CA5003269EC /* DefaultFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FF3C671F589CA5003269EC /* DefaultFiltersViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,12 +125,6 @@
 		F64D6A101F39FA35001E8AD6 /* RESTCalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTCalls.m; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
-		F66352961F4F557D00128137 /* AdvancedFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedFilters.h; sourceTree = "<group>"; };
-		F66352971F4F557D00128137 /* AdvancedFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedFilters.m; sourceTree = "<group>"; };
-		F663529A1F4F55A600128137 /* AdvancedFirstFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedFirstFilter.h; sourceTree = "<group>"; };
-		F663529B1F4F55A600128137 /* AdvancedFirstFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedFirstFilter.m; sourceTree = "<group>"; };
-		F663529D1F4F55B500128137 /* AdvancedSecondFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedSecondFilter.h; sourceTree = "<group>"; };
-		F663529E1F4F55B600128137 /* AdvancedSecondFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedSecondFilter.m; sourceTree = "<group>"; };
 		F66352A01F501ED500128137 /* OrderSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSummaryVC.h; sourceTree = "<group>"; };
 		F66352A11F501ED500128137 /* OrderSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSummaryVC.m; sourceTree = "<group>"; };
 		F66352A41F50279700128137 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
@@ -188,16 +183,8 @@
 		F6DFC8BA1F4097F30058A5B5 /* ProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCollectionViewCell.m; sourceTree = "<group>"; };
 		F6DFC8BC1F4098120058A5B5 /* CustomerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewCell.h; sourceTree = "<group>"; };
 		F6DFC8BD1F4098120058A5B5 /* CustomerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewCell.m; sourceTree = "<group>"; };
-		F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstFilterController.h; sourceTree = "<group>"; };
-		F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstFilterController.m; sourceTree = "<group>"; };
-		F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondFilterController.h; sourceTree = "<group>"; };
-		F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondFilterController.m; sourceTree = "<group>"; };
-		F6EDC4471F3D948300F9DFCC /* CustomTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTVCell.h; sourceTree = "<group>"; };
-		F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTVCell.m; sourceTree = "<group>"; };
 		F6EDC44C1F3EA19F00F9DFCC /* RONAKSharedClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RONAKSharedClass.h; sourceTree = "<group>"; };
 		F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RONAKSharedClass.m; sourceTree = "<group>"; };
-		F6EDC4501F3F3D5E00F9DFCC /* AllFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllFiltersViewController.h; sourceTree = "<group>"; };
-		F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllFiltersViewController.m; sourceTree = "<group>"; };
 		F6EDC4541F3F556D00F9DFCC /* ProductsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsListController.h; sourceTree = "<group>"; };
 		F6EDC4551F3F556D00F9DFCC /* ProductsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsListController.m; sourceTree = "<group>"; };
 		F6FBB77E1F5553AB00CF2732 /* CustomSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwipe.h; sourceTree = "<group>"; };
@@ -209,6 +196,20 @@
 		F6FF3C411F583A1E003269EC /* ViewControllerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCell.m; sourceTree = "<group>"; };
 		F6FF3C421F583A1E003269EC /* ViewControllerCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCellHeader.h; sourceTree = "<group>"; };
 		F6FF3C431F583A1E003269EC /* ViewControllerCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCellHeader.m; sourceTree = "<group>"; };
+		F6FF3C471F583B7E003269EC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F6FF3C481F583B7E003269EC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F6FF3C4A1F583C7B003269EC /* collapsed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collapsed.png; sourceTree = "<group>"; };
+		F6FF3C4B1F583C7B003269EC /* expanded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded.png; sourceTree = "<group>"; };
+		F6FF3C4E1F58484B003269EC /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		F6FF3C4F1F58484C003269EC /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
+		F6FF3C551F589AFE003269EC /* DefaultFilter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultFilter2.h; sourceTree = "<group>"; };
+		F6FF3C561F589AFE003269EC /* DefaultFilter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultFilter2.m; sourceTree = "<group>"; };
+		F6FF3C5B1F589B2C003269EC /* DefaultFilter1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultFilter1.h; sourceTree = "<group>"; };
+		F6FF3C5C1F589B2C003269EC /* DefaultFilter1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultFilter1.m; sourceTree = "<group>"; };
+		F6FF3C5E1F589C63003269EC /* AdvancedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedViewController.h; sourceTree = "<group>"; };
+		F6FF3C5F1F589C63003269EC /* AdvancedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedViewController.m; sourceTree = "<group>"; };
+		F6FF3C661F589CA5003269EC /* DefaultFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultFiltersViewController.h; sourceTree = "<group>"; };
+		F6FF3C671F589CA5003269EC /* DefaultFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultFiltersViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,19 +377,6 @@
 				F64F10E41F2E57FD001BC880 /* LoadingView.m */,
 			);
 			name = Loading;
-			sourceTree = "<group>";
-		};
-		F66352991F4F558900128137 /* AdvancedFilters */ = {
-			isa = PBXGroup;
-			children = (
-				F66352961F4F557D00128137 /* AdvancedFilters.h */,
-				F66352971F4F557D00128137 /* AdvancedFilters.m */,
-				F663529A1F4F55A600128137 /* AdvancedFirstFilter.h */,
-				F663529B1F4F55A600128137 /* AdvancedFirstFilter.m */,
-				F663529D1F4F55B500128137 /* AdvancedSecondFilter.h */,
-				F663529E1F4F55B600128137 /* AdvancedSecondFilter.m */,
-			);
-			name = AdvancedFilters;
 			sourceTree = "<group>";
 		};
 		F66352A31F501EDD00128137 /* OrderSummary */ = {
@@ -559,26 +547,9 @@
 			isa = PBXGroup;
 			children = (
 				F6FF3C461F583A27003269EC /* FilterNew */,
-				F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */,
-				F66352991F4F558900128137 /* AdvancedFilters */,
-				F6EDC4471F3D948300F9DFCC /* CustomTVCell.h */,
-				F6EDC4481F3D948300F9DFCC /* CustomTVCell.m */,
 				F6FBB7861F55E39C00CF2732 /* RangeTableViewCell */,
 			);
 			name = Filters;
-			sourceTree = "<group>";
-		};
-		F6EDC4531F3F3D6A00F9DFCC /* DefaultFilters */ = {
-			isa = PBXGroup;
-			children = (
-				F6EDC4501F3F3D5E00F9DFCC /* AllFiltersViewController.h */,
-				F6EDC4511F3F3D5E00F9DFCC /* AllFiltersViewController.m */,
-				F6EDC4401F3D903C00F9DFCC /* FirstFilterController.h */,
-				F6EDC4411F3D903C00F9DFCC /* FirstFilterController.m */,
-				F6EDC4431F3D905D00F9DFCC /* SecondFilterController.h */,
-				F6EDC4441F3D905D00F9DFCC /* SecondFilterController.m */,
-			);
-			name = DefaultFilters;
 			sourceTree = "<group>";
 		};
 		F6FBB7861F55E39C00CF2732 /* RangeTableViewCell */ = {
@@ -594,12 +565,50 @@
 		F6FF3C461F583A27003269EC /* FilterNew */ = {
 			isa = PBXGroup;
 			children = (
+				F6FF3C651F589C8B003269EC /* DefaultFil */,
+				F6FF3C611F589C70003269EC /* AdvancedFil */,
+				F6FF3C511F589AC7003269EC /* CustomCell&Header */,
+				F6FF3C4A1F583C7B003269EC /* collapsed.png */,
+				F6FF3C4B1F583C7B003269EC /* expanded.png */,
+			);
+			name = FilterNew;
+			sourceTree = "<group>";
+		};
+		F6FF3C511F589AC7003269EC /* CustomCell&Header */ = {
+			isa = PBXGroup;
+			children = (
 				F6FF3C401F583A1E003269EC /* ViewControllerCell.h */,
 				F6FF3C411F583A1E003269EC /* ViewControllerCell.m */,
 				F6FF3C421F583A1E003269EC /* ViewControllerCellHeader.h */,
 				F6FF3C431F583A1E003269EC /* ViewControllerCellHeader.m */,
 			);
-			name = FilterNew;
+			name = "CustomCell&Header";
+			sourceTree = "<group>";
+		};
+		F6FF3C611F589C70003269EC /* AdvancedFil */ = {
+			isa = PBXGroup;
+			children = (
+				F6FF3C5E1F589C63003269EC /* AdvancedViewController.h */,
+				F6FF3C5F1F589C63003269EC /* AdvancedViewController.m */,
+				F6FF3C481F583B7E003269EC /* ViewController.m */,
+				F6FF3C4E1F58484B003269EC /* ViewController2.h */,
+				F6FF3C4F1F58484C003269EC /* ViewController2.m */,
+			);
+			name = AdvancedFil;
+			sourceTree = "<group>";
+		};
+		F6FF3C651F589C8B003269EC /* DefaultFil */ = {
+			isa = PBXGroup;
+			children = (
+				F6FF3C661F589CA5003269EC /* DefaultFiltersViewController.h */,
+				F6FF3C671F589CA5003269EC /* DefaultFiltersViewController.m */,
+				F6FF3C471F583B7E003269EC /* ViewController.h */,
+				F6FF3C5B1F589B2C003269EC /* DefaultFilter1.h */,
+				F6FF3C5C1F589B2C003269EC /* DefaultFilter1.m */,
+				F6FF3C551F589AFE003269EC /* DefaultFilter2.h */,
+				F6FF3C561F589AFE003269EC /* DefaultFilter2.m */,
+			);
+			name = DefaultFil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -672,6 +681,8 @@
 				F6496BEE1F5472D000028FF0 /* Calculator.xib in Resources */,
 				F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */,
 				CEA8CA021F071A9D00448B51 /* Images.xcassets in Resources */,
+				F6FF3C4D1F583C7B003269EC /* expanded.png in Resources */,
+				F6FF3C4C1F583C7B003269EC /* collapsed.png in Resources */,
 				F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */,
 				F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */,
 				F6496BAD1F53BF7E00028FF0 /* Discount.xib in Resources */,
@@ -771,26 +782,24 @@
 				F6BFD9F71F4CC0840057C4A0 /* Att+CoreDataProperties.m in Sources */,
 				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
 				F66352A61F50279700128137 /* OrderCell.m in Sources */,
+				F6FF3C501F58484C003269EC /* ViewController2.m in Sources */,
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
 				F6496BED1F5472D000028FF0 /* Calculator.m in Sources */,
+				F6FF3C601F589C63003269EC /* AdvancedViewController.m in Sources */,
 				F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
-				F6EDC4451F3D905D00F9DFCC /* SecondFilterController.m in Sources */,
 				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
 				F6FF3C441F583A1E003269EC /* ViewControllerCell.m in Sources */,
-				F6EDC4421F3D903C00F9DFCC /* FirstFilterController.m in Sources */,
 				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
 				F6496B901F52A22400028FF0 /* Filters+CoreDataClass.m in Sources */,
 				F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */,
 				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
-				F663529C1F4F55A600128137 /* AdvancedFirstFilter.m in Sources */,
-				F66352981F4F557D00128137 /* AdvancedFilters.m in Sources */,
 				F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
+				F6FF3C491F583B7E003269EC /* ViewController.m in Sources */,
 				F6BFD9F61F4CC0840057C4A0 /* Att+CoreDataClass.m in Sources */,
-				F6EDC4491F3D948300F9DFCC /* CustomTVCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
 				F6496BAC1F53BF7E00028FF0 /* Discount.m in Sources */,
 				F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */,
@@ -810,10 +819,11 @@
 				F6496B9D1F52F8D800028FF0 /* Filters+CoreDataProperties.m in Sources */,
 				F6BFD94F1F4CA7A80057C4A0 /* DownloadProducts.m in Sources */,
 				F66352A21F501ED500128137 /* OrderSummaryVC.m in Sources */,
-				F663529F1F4F55B600128137 /* AdvancedSecondFilter.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
+				F6FF3C5D1F589B2C003269EC /* DefaultFilter1.m in Sources */,
+				F6FF3C571F589AFE003269EC /* DefaultFilter2.m in Sources */,
+				F6FF3C681F589CA5003269EC /* DefaultFiltersViewController.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
-				F6EDC4521F3F3D5E00F9DFCC /* AllFiltersViewController.m in Sources */,
 				F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */,
 				F6FF3C451F583A1E003269EC /* ViewControllerCellHeader.m in Sources */,
 				F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */,

@@ -19,6 +19,9 @@
     // Do any additional setup after loading the view.
     _listTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _customerNmLbl.text=_cst.Name;
+    
+    _swipeGest.numberOfTouchesRequired=noOfTouches;
+    _swipeGest.direction=UISwipeGestureRecognizerDirectionRight;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,10 +68,17 @@
 }
 - (IBAction)jumptoMenuVC:(id)sender
 {
-    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-    [self.navigationController popToViewController:men animated:YES];
+    
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[MenuViewController class]])
+        {
+            [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
+            return ;
+        }
+    }];
 }
 
-- (IBAction)homeClick:(id)sender {
-}
+
 @end

@@ -28,6 +28,8 @@
         _size=[[NSMutableArray alloc]init];
         _FrontColor=[[NSMutableArray alloc]init];
         _LensColor=[[NSMutableArray alloc]init];
+        _gender=[[NSMutableArray alloc]init];
+        _lensMaterial=[[NSMutableArray alloc]init];
         
         
     }
@@ -47,6 +49,13 @@
         [preArrary addObject:pre];
     }];
     
+    //Gender
+    [_categories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.category__c == %@",obj];
+        [preArrary addObject:pre];
+    }];
+
     //Collections
     [_collection enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c ==  %@",obj];
@@ -131,6 +140,8 @@
     [_size removeAllObjects];
     [_LensColor removeAllObjects];
     [_FrontColor removeAllObjects];
+    [_gender removeAllObjects];
+    [_lensMaterial removeAllObjects];
     
     
 }

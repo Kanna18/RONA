@@ -32,5 +32,9 @@
 
 - (IBAction)backClick:(id)sender;
 - (IBAction)jumptoMenuVC:(id)sender;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipe;
+
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipe;
+- (IBAction)pushSwipe:(id)sender;
 
 @end

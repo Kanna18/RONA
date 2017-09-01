@@ -64,7 +64,10 @@ static NSString *reuse=@"reuseCustomerCell";
         else{
             [self restServiceForCustomerList];
         }
-    });    
+    });
+    
+    _swipe.numberOfTouchesRequired=noOfTouches;
+    _swipe.direction=UISwipeGestureRecognizerDirectionLeft;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -375,5 +378,9 @@ static NSString *reuse=@"reuseCustomerCell";
     NSLog(@"--->velocity-%@, offset-%@",NSStringFromCGPoint(velocity),NSStringFromCGPoint(*targetContentOffset));
     [_collectionView setContentOffset:CGPointMake(0, 1000) animated:YES];
 }
-
+-(IBAction)pushtoNextVC:(id)sender
+{
+    ShippingAddressViewController *shv=storyBoard(@"shippingVC");
+    [self.navigationController pushViewController:shv animated:YES];
+}
 @end

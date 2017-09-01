@@ -14,6 +14,7 @@
 - (IBAction)backClick:(id)sender;
 - (IBAction)homeClick:(id)sender;
 - (IBAction)jumptoMenuVC:(id)sender;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGest;
 
 @property CustomerDataModel *cst;
 @end
