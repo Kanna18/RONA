@@ -27,6 +27,6 @@
 
 @property NSArray *DefFiltersOne,*DefFiltersTwo,*advancedFilters1,*advancedFilters2;
 
-
+@property NSMutableArray *discArr,*wsPriceArr,*priceArr,*stockArr;
 @property NSString *conutD;
 @end

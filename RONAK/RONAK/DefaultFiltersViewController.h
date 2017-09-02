@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface DefaultFiltersViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipe;
+- (IBAction)leftSwipeFunction:(id)sender;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipe;
+- (IBAction)rightSwipeFunction:(id)sender;
+- (IBAction)jumpMenuFunction:(id)sender;
+- (IBAction)advancedFiltersFunction:(id)sender;
 
 @end

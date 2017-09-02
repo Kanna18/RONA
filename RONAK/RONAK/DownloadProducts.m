@@ -154,19 +154,31 @@
     NSMutableArray *brandsF=[[NSMutableArray alloc]init];
     NSMutableArray *categoriesF=[[NSMutableArray alloc]init];
     NSMutableArray *collectionF=[[NSMutableArray alloc]init];
+    
+    NSMutableArray *sampleWarehouseF=[[NSMutableArray alloc]init];
+    NSMutableArray *stockWarehouseF=[[NSMutableArray alloc]init];
     NSMutableArray *stockF=[[NSMutableArray alloc]init];
+    
     NSMutableArray *lensDesF=[[NSMutableArray alloc]init];
+    NSMutableArray *wsPrice=[[NSMutableArray alloc]init];
     NSMutableArray *shapeF=[[NSMutableArray alloc]init];
     NSMutableArray *genderF=[[NSMutableArray alloc]init];
     NSMutableArray *frameMateF=[[NSMutableArray alloc]init];
     NSMutableArray *templeMateF=[[NSMutableArray alloc]init];
     NSMutableArray *templeColF=[[NSMutableArray alloc]init];
     NSMutableArray *tipColourF=[[NSMutableArray alloc]init];
+    
+    NSMutableArray *discountF=[[NSMutableArray alloc]init];
+    NSMutableArray *mrpF=[[NSMutableArray alloc]init];
+    NSMutableArray *rimF=[[NSMutableArray alloc]init];
     NSMutableArray *sizeF=[[NSMutableArray alloc]init];
     NSMutableArray *lensMAteF=[[NSMutableArray alloc]init];
     NSMutableArray *frontColF=[[NSMutableArray alloc]init];
     NSMutableArray *lensColF=[[NSMutableArray alloc]init];
-    NSMutableArray *rimF=[[NSMutableArray alloc]init];
+    
+    
+    
+
     
     [allFilters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
@@ -174,33 +186,47 @@
          !([brandsF containsObject:fil.brand__c])&&!(fil.brand__c==NULL)?[brandsF addObject:fil.brand__c]:@"";
          !([categoriesF containsObject:fil.product__c])&&!(fil.product__c==NULL)?[categoriesF addObject:fil.product__c]:@"";
          !([collectionF containsObject:fil.collection__c])&&!(fil.collection__c==NULL)?[collectionF addObject:fil.collection__c]:@"";
-         !([stockF containsObject:fil.stock_Warehouse__c])&&!(fil.stock_Warehouse__c==NULL)?[stockF addObject:fil.stock_Warehouse__c]:@"";
+         
+!([stockWarehouseF containsObject:fil.stock_Warehouse__c])&&!(fil.stock_Warehouse__c==NULL)?[stockWarehouseF addObject:fil.stock_Warehouse__c]:@"";
+    !([stockF containsObject:fil.stock__c])&&!(fil.stock__c==NULL)?[stockF addObject:fil.stock__c]:@"";
+     
+         
          !([lensDesF containsObject:fil.lens_Description__c])&&!(fil.lens_Description__c==NULL)?[lensDesF addObject:fil.lens_Description__c]:@"";
+         !([wsPrice containsObject:fil.wS_Price__c])&&!(fil.wS_Price__c==NULL)?[wsPrice addObject:fil.wS_Price__c]:@"";
          !([shapeF containsObject:fil.shape__c])&&!(fil.shape__c==NULL)?[shapeF addObject:fil.shape__c]:@"";
          !([genderF containsObject:fil.category__c])&&!(fil.category__c==NULL)?[genderF addObject:fil.category__c]:@"";
          !([frameMateF containsObject:fil.frame_Material__c])&&!(fil.frame_Material__c==NULL)?[frameMateF addObject:fil.frame_Material__c]:@"";
          !([templeMateF containsObject:fil.temple_Material__c])&&!(fil.temple_Material__c==NULL)?[templeMateF addObject:fil.temple_Material__c]:@"";
          !([templeColF containsObject:fil.temple_Color__c])&&!(fil.temple_Color__c==NULL)?[templeColF addObject:fil.temple_Color__c]:@"";
          !([tipColourF containsObject:fil.tips_Color__c])&&!(fil.tips_Color__c==NULL)?[tipColourF addObject:fil.tips_Color__c]:@"";
+         
+         !([discountF containsObject:fil.discount__c])&&!(fil.discount__c==NULL)?[discountF addObject:fil.discount__c]:@"";
+         !([mrpF containsObject:fil.mRP__c])&&!(fil.mRP__c==NULL)?[mrpF addObject:fil.mRP__c]:@"";
+         !([rimF containsObject:fil.rim__c])&&!(fil.rim__c==NULL)?[rimF addObject:fil.rim__c]:@"";
          !([sizeF containsObject:fil.size__c])&&!(fil.size__c==NULL)?[sizeF addObject:fil.size__c]:@"";
          !([lensMAteF containsObject:fil.lens_Material__c])&&!(fil.lens_Material__c==NULL)?[lensMAteF addObject:fil.lens_Material__c]:@"";
          !([frontColF containsObject:fil.front_Color__c])&&!(fil.front_Color__c==NULL)?[frontColF addObject:fil.front_Color__c]:@"";
          !([lensColF containsObject:fil.lens_Color__c])&&!(fil.lens_Color__c==NULL)?[lensColF addObject:fil.lens_Color__c]:@"";
-         !([rimF containsObject:fil.rim__c])&&!(fil.rim__c==NULL)?[rimF addObject:fil.rim__c]:@"";
+         
     }];
     
-    ronakGlobal.DefFiltersOne=@[@{ @"heading":kBrand,
-                                   @"options":brandsF},
-                                @{ @"heading":kCategories,
-                                   @"options":categoriesF},
-                                @{ @"heading":kCollection,
-                                   @"options":collectionF}];
-    ronakGlobal.DefFiltersTwo=@[@{  @"heading":kSampleWareHouse,
-                                    @"options":stockF},
-                                @{ @"heading":kStockWareHouse,
-                                   @"options":stockF},
-                                @{ @"heading":@"Stock",
-                                   @"options":@[@"nil"]}];
+    ronakGlobal.discArr=discountF;
+    ronakGlobal.wsPriceArr=wsPrice;
+    ronakGlobal.priceArr=mrpF;
+    ronakGlobal.stockArr=stockF;
+    
+    ronakGlobal.DefFiltersOne=   @[@{ @"heading":kBrand,
+                                      @"options":brandsF},
+                                   @{ @"heading":kCategories,
+                                      @"options":categoriesF},
+                                   @{ @"heading":kCollection,
+                                      @"options":collectionF}];
+    ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kSampleWareHouse,
+                                      @"options":stockWarehouseF},
+                                   @{ @"heading":kStockWareHouse,
+                                      @"options":stockWarehouseF},
+                                   @{ @"heading":kStockvalue,
+                                      @"options":@[@"nil"]}];
     ronakGlobal.advancedFilters1=@[@{ @"heading":kLensDescription,
                                       @"options":lensDesF},
                                    @{ @"heading":kWSPrice,
@@ -224,12 +250,12 @@
                                       @"options":@[@"nil"]},
                                    @{ @"heading":kRim,
                                       @"options":rimF},
-                                   @{  @"heading":kSize,
-                                       @"options":sizeF},
-                                   @{  @"heading":kLensMaterial,
-                                       @"options":lensMAteF},
-                                   @{  @"heading":kFrontColor,
-                                       @"options":frontColF},
+                                   @{ @"heading":kSize,
+                                      @"options":sizeF},
+                                   @{ @"heading":kLensMaterial,
+                                      @"options":lensMAteF},
+                                   @{ @"heading":kFrontColor,
+                                      @"options":frontColF},
                                    @{ @"heading":kLensColor,
                                       @"options":lensColF}];
     NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);

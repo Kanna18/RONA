@@ -53,7 +53,6 @@
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     customHeight=44;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -101,17 +100,6 @@
                 break;
         }
         return cell;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.section==1)
-    {
-        return customHeight;
-    }
-    else
-    {
-        return  44;
-    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -166,8 +154,10 @@
     }
     
     if (!isMultipleExpansionAllowed) {
+        customHeight=44;
         [tblView reloadData];
     }else {
+        customHeight=150;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }

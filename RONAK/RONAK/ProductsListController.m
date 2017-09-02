@@ -42,14 +42,7 @@
 
     [self defaultShapesOfComponents];
     _detailedImageView.image=[UIImage imageNamed:imagesArray[index]];
-    
     [self getProductItemsFilter];
-    
-    _filterTable.delegate=self;
-    _filterTable.dataSource=self;
-
-    _filterTable.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
     [self zoomImageFunctionality];
 }
 
@@ -69,27 +62,6 @@
         [load stop];
     });
 
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    NSMutableArray *allFil=[[NSMutableArray alloc]init];
-    [ronakGlobal.advancedFilters1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [allFil addObject:obj];
-        
-    }];
-    [ronakGlobal.advancedFilters2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        [allFil addObject:obj];
-    }];
-    filtersArr=allFil;
-   _filterTable.hidden=NO;
-    [super viewWillAppear:YES];
-    
-}
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    [_filterTable reloadData];
 }
 
 -(void)defaultShapesOfComponents
@@ -112,12 +84,6 @@
     _sideMenuButton.layer.shadowOpacity=2.0f;
     
     
-    _filterTable.layer.borderColor=[UIColor lightGrayColor].CGColor;
-    _filterTable.layer.borderWidth=1.0f;
-    _filterTable.layer.shadowColor=[UIColor lightGrayColor].CGColor;
-    _filterTable.layer.shadowOffset=CGSizeMake(2.0, 2.0);
-    _filterTable.layer.shadowRadius=5.0f;
-    _filterTable.layer.shadowOpacity=1.0f;
     
     _pricingLabel.hidden=YES;
     _wsLabel.hidden=YES;
@@ -247,7 +213,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    _filterTable.hidden=YES;
 }
 - (IBAction)searchEveryWhereClick:(id)sender {
 }
@@ -286,7 +251,6 @@
     
     CGRect newFrame=_sideView.frame;
     CGRect mainFrame=_containerView.frame;
-    [_filterTable reloadData];
     if(newFrame.origin.x==0)
     {
         newFrame.origin.x=-300;

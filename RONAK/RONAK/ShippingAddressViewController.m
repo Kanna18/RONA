@@ -36,9 +36,9 @@
     load=[[LoadingView alloc]init];
     
     _leftSwipe.numberOfTouchesRequired=noOfTouches;
-    _leftSwipe.direction=UISwipeGestureRecognizerDirectionRight;
-    _rightSwipe.numberOfTouchesRequired=noOfTouches;
     _leftSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
+    _rightSwipe.numberOfTouchesRequired=noOfTouches;
+    _leftSwipe.direction=UISwipeGestureRecognizerDirectionRight;
 }
 -(void)pdcLabelTapped:(id*)sender
 {

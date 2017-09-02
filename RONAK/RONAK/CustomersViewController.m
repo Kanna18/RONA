@@ -373,11 +373,11 @@ static NSString *reuse=@"reuseCustomerCell";
     NSIndexPath *nextItem = [NSIndexPath indexPathForItem:0 inSection:sender.tag-100];
     [self.collectionView scrollToItemAtIndexPath:nextItem atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    NSLog(@"--->velocity-%@, offset-%@",NSStringFromCGPoint(velocity),NSStringFromCGPoint(*targetContentOffset));
-    [_collectionView setContentOffset:CGPointMake(0, 1000) animated:YES];
-}
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+//{
+//    NSLog(@"--->velocity-%@, offset-%@",NSStringFromCGPoint(velocity),NSStringFromCGPoint(*targetContentOffset));
+//    [_collectionView setContentOffset:CGPointMake(0, 1000) animated:YES];
+//}
 -(IBAction)pushtoNextVC:(id)sender
 {
     ShippingAddressViewController *shv=storyBoard(@"shippingVC");

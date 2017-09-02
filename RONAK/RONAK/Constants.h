@@ -92,6 +92,7 @@
 #define kLensMaterial @"Lens Material"
 #define kFrontColor @"Front Color"
 #define kLensColor @"Lens Color"
+#define kStockvalue @"kStock"
 #define  firstTimeLaunching @"FirstTime"
 
 

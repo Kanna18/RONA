@@ -47,7 +47,6 @@
 @property (strong, nonatomic) IBOutlet UIView *sideView;
 - (IBAction)sideMenuClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
-@property (strong, nonatomic) IBOutlet UITableView *filterTable;
 
 @property (strong, nonatomic) IBOutlet UILabel *wsLabel;;
 - (IBAction)priceSwitchChanged:(id)sender;

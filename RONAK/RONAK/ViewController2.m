@@ -89,6 +89,7 @@
         }
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        [cell DefaultMaxMinValues];
         return cell;
     }
     else
@@ -143,8 +144,7 @@
     }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
+{    
     ViewControllerCellHeader *headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
     
     if (headerView ==nil)
@@ -189,8 +189,10 @@
     }
     
     if (!isMultipleExpansionAllowed) {
+        customHeight=44;
         [tblView reloadData];
     }else {
+        customHeight=150;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }

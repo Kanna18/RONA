@@ -18,10 +18,11 @@
 @property MARKRangeSlider *rangeSlider;
 @property (strong, nonatomic) IBOutlet UITextField *minTf;
 @property (strong, nonatomic) IBOutlet UITextField *maxTF;
-
+@property (strong, nonatomic) IBOutlet UILabel *minLabel;
+@property (strong, nonatomic) IBOutlet UILabel *maxLabel;
 @property NSString *filterType;
 @property id<FilterRange>delegate;
 @property (strong, nonatomic) IBOutlet UIView *sliderView;
+-(void)DefaultMaxMinValues;
 
--(void)bindDatatoGetFrame;
 @end

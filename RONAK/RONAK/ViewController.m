@@ -91,7 +91,7 @@
         }
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        cell.imageView.image=[UIImage imageNamed:@"uncheckFilter"];
+        [cell DefaultMaxMinValues];
         return cell;
     }
     else
@@ -197,49 +197,54 @@
     }
 
     if (!isMultipleExpansionAllowed) {
+        customHeight=44;
         [tblView reloadData];
     }else {
+        customHeight=150;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
-    NSString *text=cell.lblName.text;
-    NSMutableArray *globalArr;
-    switch (indexPath.section) {
-        case 0:
-            globalArr=ronakGlobal.selectedFilter.lensDescription;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 2:
-            globalArr=ronakGlobal.selectedFilter.shape;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 3:
-            globalArr=ronakGlobal.selectedFilter.gender;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 4:
-            globalArr=ronakGlobal.selectedFilter.frameMaterial;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 5:
-            globalArr=ronakGlobal.selectedFilter.templeMaterial;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 6:
-            globalArr=ronakGlobal.selectedFilter.templeColor;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 7:
-            globalArr=ronakGlobal.selectedFilter.tipsColor;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        default:
-            break;
+    if(indexPath.section==0||indexPath.section==2||indexPath.section==3||indexPath.section==4||indexPath.section==5||indexPath.section==6||indexPath.section==7)
+    {
+        ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+        NSString *text=cell.lblName.text;
+        NSMutableArray *globalArr;
+        switch (indexPath.section) {
+            case 0:
+                globalArr=ronakGlobal.selectedFilter.lensDescription;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 2:
+                globalArr=ronakGlobal.selectedFilter.shape;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 3:
+                globalArr=ronakGlobal.selectedFilter.gender;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 4:
+                globalArr=ronakGlobal.selectedFilter.frameMaterial;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 5:
+                globalArr=ronakGlobal.selectedFilter.templeMaterial;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 6:
+                globalArr=ronakGlobal.selectedFilter.templeColor;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 7:
+                globalArr=ronakGlobal.selectedFilter.tipsColor;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            default:
+                break;
+        }
+        [tableView reloadData];
     }
-    [tableView reloadData];
 }
 
 

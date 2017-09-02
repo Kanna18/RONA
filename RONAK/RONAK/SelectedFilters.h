@@ -26,5 +26,10 @@
 
 
 -(NSPredicate*)getPredicateStringFromTable:(NSString*)str;
+
+@property NSMutableDictionary *stockMinMax,*wsPriceMinMax,*priceMinMax,*disCountMinMax;
+
 -(void)clearAllFilters;
+
+
 @end

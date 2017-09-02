@@ -10,4 +10,7 @@
 
 @interface AdvancedViewController : UIViewController
 
+@property IBOutlet UISwipeGestureRecognizer *leftSwipe;
+-(IBAction)leftSiwpeFunction:(id)sender;
+- (IBAction)jumpMenuFunction:(id)sender;
 @end

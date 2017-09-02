@@ -6,7 +6,7 @@
 //  Copyright © 2016 apps. All rights reserved.
 //
 
-#import "DefaultFilter2.h"
+#import "SideMenuFilters.h"
 
 #import "ViewControllerCell.h"
 #import "RangTableViewCell.h"
@@ -16,23 +16,32 @@
 
 
 
-@interface DefaultFilter2 ()<UITableViewDataSource, UITableViewDelegate>
+@interface SideMenuFilters ()<UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
     CGFloat customHeight;
-    NSArray *arr;
+    NSMutableArray *arr;
 }
 @end
 
-@implementation DefaultFilter2
+@implementation SideMenuFilters
 
 #pragma mark - View Life Cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    arr=[[NSMutableArray alloc]init];
+    [ronakGlobal.advancedFilters1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [arr addObject:obj];
+    }];
+    [ronakGlobal.advancedFilters1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [arr addObject:obj];
+    }];
+    
     
     //Set isMultipleExpansionAllowed = true is multiple expanded sections to be allowed at a time. Default is NO.
     isMultipleExpansionAllowed = YES;
@@ -44,7 +53,10 @@
         [arrSelectedSectionIndex addObject:[NSNumber numberWithInt:(int)arr.count+2]];
     }
     
-    arr=ronakGlobal.DefFiltersTwo;
+    
+
+    
+    
     
     [tblView registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -67,7 +79,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]])
     {
         return [arr[section][@"options"] count];
@@ -79,7 +90,7 @@
 {
     
     
-    if(indexPath.section==2)
+    if(indexPath.section==1||indexPath.section==8||indexPath.section==9)
     {
         static NSString *CellIdentifier = @"RangeCell";
         RangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -88,8 +99,8 @@
             cell =[[[NSBundle mainBundle] loadNibNamed:@"RangTableViewCell" owner:self options:nil] lastObject];
         }
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
-        [cell DefaultMaxMinValues];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        [cell DefaultMaxMinValues];
         return cell;
     }
     else
@@ -104,11 +115,42 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
             case 0:
-                cell.imageNew.image=[ronakGlobal.selectedFilter.sampleHouseFilter containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                cell.imageNew.image=[ronakGlobal.selectedFilter.lensDescription containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
-            case 1:
-                cell.imageNew.image=[ronakGlobal.selectedFilter.stockHouseFilter containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+            case 2:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.shape containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
+            case 3:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.gender containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 4:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.frameMaterial containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 5:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.templeMaterial containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 6:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.templeColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 7:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.tipsColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+                
+            case 9:
+                break;
+            case 12:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.size containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 13:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.lensMaterial containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 14:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.FrontColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 15:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.LensColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+                
             default:
                 break;
         }
@@ -118,7 +160,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==2)
+    if(indexPath.section==1)
     {
         return customHeight;
     }
@@ -189,28 +231,45 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if(indexPath.section==0||indexPath.section==1)
-        {
-            ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
-            NSString *text=cell.lblName.text;
-            NSMutableArray *globalArr;
-            switch (indexPath.section) {
-                case 0:
-                    [ronakGlobal.selectedFilter.stockHouseFilter removeAllObjects];
-                    globalArr=ronakGlobal.selectedFilter.sampleHouseFilter;
-                    [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-                    break;
-                case 1:
-                    [ronakGlobal.selectedFilter.sampleHouseFilter removeAllObjects];
-                    globalArr=ronakGlobal.selectedFilter.stockHouseFilter;
-                    [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-                    break;
-                default:
-                    break;
-            }
-            [tableView reloadData];
+    if(!(indexPath.section==1||indexPath.section==8||indexPath.section==9))
+    {
+        ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+        NSString *text=cell.lblName.text;
+        NSMutableArray *globalArr;
+        switch (indexPath.section) {
+            case 0:
+                globalArr=ronakGlobal.selectedFilter.lensDescription;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 2:
+                globalArr=ronakGlobal.selectedFilter.shape;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 3:
+                globalArr=ronakGlobal.selectedFilter.gender;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 4:
+                globalArr=ronakGlobal.selectedFilter.frameMaterial;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 5:
+                globalArr=ronakGlobal.selectedFilter.templeMaterial;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 6:
+                globalArr=ronakGlobal.selectedFilter.templeColor;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 7:
+                globalArr=ronakGlobal.selectedFilter.tipsColor;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            default:
+                break;
         }
+        [tableView reloadData];
+    }
 }
 
 

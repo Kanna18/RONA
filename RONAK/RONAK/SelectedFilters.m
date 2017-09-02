@@ -31,6 +31,11 @@
         _gender=[[NSMutableArray alloc]init];
         _lensMaterial=[[NSMutableArray alloc]init];
         
+        _disCountMinMax=[[NSMutableDictionary alloc] init];
+        _priceMinMax=[[NSMutableDictionary alloc] init];
+        _stockMinMax=[[NSMutableDictionary alloc] init];
+        _wsPriceMinMax=[[NSMutableDictionary alloc] init];
+        
         
     }
     return self;
@@ -142,6 +147,12 @@
     [_FrontColor removeAllObjects];
     [_gender removeAllObjects];
     [_lensMaterial removeAllObjects];
+    
+    [_disCountMinMax removeAllObjects];
+    [_priceMinMax removeAllObjects];
+    [_wsPriceMinMax removeAllObjects];
+    [_stockMinMax removeAllObjects];
+    _brand=@"";
     
     
 }

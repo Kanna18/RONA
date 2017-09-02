@@ -7,6 +7,9 @@
 //
 
 #import "DefaultFiltersViewController.h"
+#import "ShippingAddressViewController.h"
+#import "ProductsListController.h"
+#import "AdvancedViewController.h"
 
 @interface DefaultFiltersViewController ()
 
@@ -17,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _leftSwipe.numberOfTouchesRequired=noOfTouches;
+    _rightSwipe.numberOfTouchesRequired=noOfTouches;
+    
+    _leftSwipe.direction=UISwipeGestureRecognizerDirectionRight;
+    _rightSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,5 +54,44 @@
         }
     }];
 }
+
+- (IBAction)leftSwipeFunction:(id)sender {
+
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[ShippingAddressViewController class]])
+        {
+            [self.navigationController popToViewController:(ShippingAddressViewController*)obj animated:YES];
+            return ;
+        }
+    }];
+}
+- (IBAction)rightSwipeFunction:(id)sender {
+
+    ProductsListController *pro=storyBoard(@"productsVC");
+    [self.navigationController pushViewController:pro animated:YES];
+}
+- (IBAction)jumpMenuFunction:(id)sender
+{
+    
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[MenuViewController class]])
+        {
+            [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
+            return ;
+        }
+    }];
+}
+- (IBAction)advancedFiltersFunction:(id)sender
+{
+    AdvancedViewController *pro=storyBoard(@"advancedVC");
+    [self.navigationController pushViewController:pro animated:YES];
+
+}
+
+
 
 @end
