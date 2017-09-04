@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="CAddressDetails" representedClassName="CAddressDetails" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="geocodeAccuracy" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="stateCode" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" defaultValueString="    " syncable="YES"/>
+    </entity>
+    <entity name="CAttributes" representedClassName="CAttributes" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Records" inverseName="attribute" inverseEntity="Records" syncable="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerDetails" inverseName="atribute" inverseEntity="CustomerDetails" syncable="YES"/>
+        <relationship name="pdcRecord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Records_PDC" inverseName="attribute" inverseEntity="Records_PDC" syncable="YES"/>
+    </entity>
+    <entity name="CBillingAddressC" representedClassName="CBillingAddressC" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="geocodeAccuracy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerDetails" inverseName="billingAddress" inverseEntity="CustomerDetails" syncable="YES"/>
+    </entity>
+    <entity name="CPDC_R" representedClassName="CPDC_R" syncable="YES" codeGenerationType="class">
+        <attribute name="done" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalSize" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerDetails" inverseName="pdc_r" inverseEntity="CustomerDetails" syncable="YES"/>
+        <relationship name="pdcRecords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Records_PDC" inverseName="pdc_r" inverseEntity="Records_PDC" syncable="YES"/>
+    </entity>
+    <entity name="CShippingAddressC" representedClassName="CShippingAddressC" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="geocodeAccuracy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerDetails" inverseName="shippingAddress" inverseEntity="CustomerDetails" syncable="YES"/>
+    </entity>
+    <entity name="CustomerDetails" representedClassName="CustomerDetails" syncable="YES">
+        <attribute name="account_Balance__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="active__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ageing_Date__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bP_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category_Type__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_Person__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="credit_Limit__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customer_Name__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="discount__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="group_No__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="group_Type__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ownerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="payment_Terms_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_List_No__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="region__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="service_Period__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x0_30__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x31_60__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x61_90__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x91_120__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x121_150__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x151_180__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x181_240__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x241_300__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x301_360__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="x361__c" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="atribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CAttributes" inverseName="customer" inverseEntity="CAttributes" syncable="YES"/>
+        <relationship name="billingAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CBillingAddressC" inverseName="customer" inverseEntity="CBillingAddressC" syncable="YES"/>
+        <relationship name="pdc_r" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CPDC_R" inverseName="customer" inverseEntity="CPDC_R" syncable="YES"/>
+        <relationship name="shippingAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CShippingAddressC" inverseName="customer" inverseEntity="CShippingAddressC" syncable="YES"/>
+        <relationship name="shipToParty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShipToParty" inverseName="customer" inverseEntity="ShipToParty" syncable="YES"/>
+    </entity>
+    <entity name="Records" representedClassName="Records" syncable="YES">
+        <attribute name="block__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardCode__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customerName__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street_No__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipcode__c" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CAttributes" inverseName="attribute" inverseEntity="CAttributes" syncable="YES"/>
+        <relationship name="shiptoParty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShipToParty" inverseName="records" inverseEntity="ShipToParty" syncable="YES"/>
+    </entity>
+    <entity name="Records_PDC" representedClassName="Records_PDC" syncable="YES" codeGenerationType="class">
+        <attribute name="amount__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bPName__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="card_Code__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cheque_Date__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cheque_No__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customer_Bank__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="requested_Deposit_On__c" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CAttributes" inverseName="pdcRecord" inverseEntity="CAttributes" syncable="YES"/>
+        <relationship name="pdc_r" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CPDC_R" inverseName="pdcRecords" inverseEntity="CPDC_R" syncable="YES"/>
+    </entity>
+    <entity name="ShipToParty" representedClassName="ShipToParty" syncable="YES">
+        <attribute name="done" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalSize" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerDetails" inverseName="shipToParty" inverseEntity="CustomerDetails" syncable="YES"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Records" inverseName="shiptoParty" inverseEntity="Records" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CAddressDetails" positionX="-326" positionY="-243" width="128" height="195"/>
+        <element name="CAttributes" positionX="-333" positionY="-0" width="128" height="118"/>
+        <element name="CBillingAddressC" positionX="106" positionY="18" width="128" height="210"/>
+        <element name="CShippingAddressC" positionX="70" positionY="-54" width="128" height="210"/>
+        <element name="CustomerDetails" positionX="-360" positionY="153" width="128" height="553"/>
+        <element name="Records" positionX="160" positionY="153" width="128" height="238"/>
+        <element name="ShipToParty" positionX="-9" positionY="234" width="128" height="103"/>
+        <element name="CPDC_R" positionX="-153" positionY="-90" width="128" height="105"/>
+        <element name="Records_PDC" positionX="-144" positionY="-81" width="128" height="210"/>
+    </elements>
+</model>

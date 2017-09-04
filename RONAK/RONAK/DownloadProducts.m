@@ -7,6 +7,7 @@
 //
 
 #import "DownloadProducts.h"
+#import "AppDelegate.h"
 
 @implementation DownloadProducts{
     
@@ -29,23 +30,19 @@
     NSLog(@"--->%@",[NSPersistentContainer defaultDirectoryURL]);
     NSDictionary *headers = @{@"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-//    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
-//    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_ProductList_B]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10.0];
     
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
-//    [request setHTTPBody:postData];
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         if(data!=nil)
         {
-            [self performSelectorOnMainThread:@selector(fetchData:) withObject:data waitUntilDone:YES];
+            [self fetchData:data];
         }
         
     }];
@@ -53,6 +50,8 @@
 }
 -(void)fetchData:(NSData*)data
 {
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext*  mYcontext=delegate.managedObjectContext;
     {
         NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -60,21 +59,21 @@
             NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
             [fetch setPredicate:predicate];
-            NSArray *arr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
+            NSArray *arr=[mYcontext executeFetchRequest:fetch error:nil];
             if(!(arr.count>0))
             {
                 NSDictionary *dic=obj;
                 
-                NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:ronakGlobal.context];
-//                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
-                ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
+                NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:mYcontext];
+//                ItemMaster *item=[[ItemMaster alloc]initWithContext:mYcontext];
+                ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:mYcontext];
                 item.imageUrl=dic[@"imageURL"];
                 item.imageName=dic[@"imageName"];
                 
                 NSDictionary *filtersDict=dic[@"product"];
-        NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:ronakGlobal.context];
-//                Filters *filter=[[Filters alloc]initWithContext:ronakGlobal.context];
-                Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:ronakGlobal.context];
+        NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:mYcontext];
+//                Filters *filter=[[Filters alloc]initWithContext:mYcontext];
+                Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:mYcontext];
                 filter.order_Month__c=filtersDict[@"Order_Month__c"];
                 filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
                 filter.mRP__c=[NSString stringWithFormat:@"%@",filtersDict[@"MRP__c"]];
@@ -124,9 +123,9 @@
                                 
                 NSDictionary *attDict=filtersDict[@"attributes"];
                 
-                NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:ronakGlobal.context];
-                Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:ronakGlobal.context];
-//                Att *attributes=[[Att alloc]initWithContext:ronakGlobal.context];
+                NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:mYcontext];
+                Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:mYcontext];
+//                Att *attributes=[[Att alloc]initWithContext:mYcontext];
                 attributes.type=attDict[@"type"];
                 attributes.url=attDict[@"url"];
                 
@@ -138,17 +137,21 @@
         }];
         [_delegateProducts productsListFetched];
     }
+    [self getFilterFor:@"brands__c"];
 }
--(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
-    
-    
+-(void)getFilterFor:(NSString*)strFor
+{
+
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext*  mYcontext=delegate.managedObjectContext;
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity1 = [NSEntityDescription entityForName:@"Filters" inManagedObjectContext:cntxt];
+    NSEntityDescription *entity1 = [NSEntityDescription entityForName:@"Filters" inManagedObjectContext:mYcontext];
     [fetchRequest setEntity:entity1];
     NSPredicate *predicate1=[NSPredicate predicateWithFormat:@"%@ like %@",strFor,strFor];
     [fetchRequest setPredicate:predicate1];
     NSError *error = nil;
-    NSArray *allFilters = [cntxt executeFetchRequest:fetchRequest error:&error];
+    NSArray *allFilters = [mYcontext executeFetchRequest:fetchRequest error:&error];
     
     ////////////////////////////////////////////////////////////////////////
     NSMutableArray *brandsF=[[NSMutableArray alloc]init];
@@ -176,9 +179,6 @@
     NSMutableArray *frontColF=[[NSMutableArray alloc]init];
     NSMutableArray *lensColF=[[NSMutableArray alloc]init];
     
-    
-    
-
     
     [allFilters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
@@ -258,11 +258,14 @@
                                       @"options":frontColF},
                                    @{ @"heading":kLensColor,
                                       @"options":lensColF}];
-    NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);
+    NSLog(@"coredata managed objects count--%lu",(unsigned long)[[mYcontext registeredObjects] count]);
 }
 
 
 -(NSMutableArray*)pickProductsFromFilters{
+    
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext*  mYcontext=delegate.managedObjectContext;
     
     NSPredicate *pre=[ronakGlobal.selectedFilter getPredicateStringFromTable:nil];
     
@@ -274,7 +277,7 @@
     [fetch setPredicate:pre];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.item_No__c"                                                                   ascending:YES];
     [fetch setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-    NSArray *arr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
+    NSArray *arr=[mYcontext executeFetchRequest:fetch error:nil];
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ItemMaster *item=obj;
         [items addObject:item];

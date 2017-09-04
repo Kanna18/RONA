@@ -22,8 +22,6 @@
 @property id<FetchedAllProducts>delegateProducts ;
 
 -(void)downloadStockWareHouseSavetoCoreData;
--(NSArray*)getFilterFor:(NSString*)strFor;
-
--(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt;
+-(void)getFilterFor:(NSString*)strFor;
 -(NSMutableArray*)pickProductsFromFilters;
 @end

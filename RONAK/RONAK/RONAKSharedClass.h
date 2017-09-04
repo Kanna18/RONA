@@ -21,7 +21,8 @@
 
 @property NSMutableArray *filterdProductsArray;
 @property (nonatomic,strong) NSManagedObjectContext *context;
-@property (nonatomic,strong) AppDelegate *delegate;
+@property (nonatomic,strong) AppDelegate *delegate,*customerDelegate;
+@property (nonatomic,strong) NSManagedObjectContext *customersContext;
 
 @property ItemMaster *item;
 
@@ -29,4 +30,7 @@
 
 @property NSMutableArray *discArr,*wsPriceArr,*priceArr,*stockArr;
 @property NSString *conutD;
+
+@property NSMutableArray *coreDataCustomers;
+
 @end

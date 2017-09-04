@@ -12,7 +12,6 @@
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNmLbl;
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
 - (IBAction)backClick:(id)sender;
-- (IBAction)homeClick:(id)sender;
 - (IBAction)jumptoMenuVC:(id)sender;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGest;
 

@@ -32,11 +32,27 @@
 		F6496BEE1F5472D000028FF0 /* Calculator.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6496BEC1F5472D000028FF0 /* Calculator.xib */; };
 		F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = F64D6A101F39FA35001E8AD6 /* RESTCalls.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
+		F662A62F1F5C57CF004A141E /* CustomerDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A60C1F5C57CF004A141E /* CustomerDetails+CoreDataClass.m */; };
+		F662A6301F5C57CF004A141E /* CustomerDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A60E1F5C57CF004A141E /* CustomerDetails+CoreDataProperties.m */; };
+		F662A6331F5C57CF004A141E /* CBillingAddressC+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6141F5C57CF004A141E /* CBillingAddressC+CoreDataClass.m */; };
+		F662A6341F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6161F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.m */; };
+		F662A6351F5C57CF004A141E /* CAttributes+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6181F5C57CF004A141E /* CAttributes+CoreDataClass.m */; };
+		F662A6361F5C57CF004A141E /* CAttributes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A61A1F5C57CF004A141E /* CAttributes+CoreDataProperties.m */; };
+		F662A6371F5C57CF004A141E /* CShippingAddressC+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A61C1F5C57CF004A141E /* CShippingAddressC+CoreDataClass.m */; };
+		F662A6381F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A61E1F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.m */; };
+		F662A6391F5C57CF004A141E /* ShipToParty+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6201F5C57CF004A141E /* ShipToParty+CoreDataClass.m */; };
+		F662A63A1F5C57CF004A141E /* ShipToParty+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6221F5C57CF004A141E /* ShipToParty+CoreDataProperties.m */; };
+		F662A63B1F5C57CF004A141E /* Records+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6241F5C57CF004A141E /* Records+CoreDataClass.m */; };
+		F662A63C1F5C57CF004A141E /* Records+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6261F5C57CF004A141E /* Records+CoreDataProperties.m */; };
+		F662A63D1F5C57CF004A141E /* CAddressDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A6281F5C57CF004A141E /* CAddressDetails+CoreDataClass.m */; };
+		F662A63E1F5C57CF004A141E /* CAddressDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F662A62A1F5C57CF004A141E /* CAddressDetails+CoreDataProperties.m */; };
 		F66352A21F501ED500128137 /* OrderSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352A11F501ED500128137 /* OrderSummaryVC.m */; };
 		F66352A61F50279700128137 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F66352A51F50279700128137 /* OrderCell.m */; };
+		F68325E41F5B3DCE00929C7E /* DownloadCustomersData.m in Sources */ = {isa = PBXBuildFile; fileRef = F68325E31F5B3DCE00929C7E /* DownloadCustomersData.m */; };
 		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
 		F69A10F41F43ED10005C2432 /* PDCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10F31F43ED10005C2432 /* PDCViewController.m */; };
 		F69A10F81F43ED92005C2432 /* PDCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10F71F43ED92005C2432 /* PDCCell.m */; };
+		F69C2F711F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F69C2F6F1F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodeld */; };
 		F6B0A5AA1F5141E000276E9B /* SelectedFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B0A5A91F5141E000276E9B /* SelectedFilters.m */; };
 		F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */; };
 		F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */; };
@@ -128,16 +144,47 @@
 		F64D6A101F39FA35001E8AD6 /* RESTCalls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTCalls.m; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F662A60B1F5C57CF004A141E /* CustomerDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomerDetails+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A60C1F5C57CF004A141E /* CustomerDetails+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomerDetails+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A60D1F5C57CF004A141E /* CustomerDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomerDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A60E1F5C57CF004A141E /* CustomerDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CustomerDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F662A6131F5C57CF004A141E /* CBillingAddressC+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBillingAddressC+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A6141F5C57CF004A141E /* CBillingAddressC+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBillingAddressC+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A6151F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBillingAddressC+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A6161F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBillingAddressC+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F662A6171F5C57CF004A141E /* CAttributes+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAttributes+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A6181F5C57CF004A141E /* CAttributes+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAttributes+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A6191F5C57CF004A141E /* CAttributes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAttributes+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A61A1F5C57CF004A141E /* CAttributes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAttributes+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F662A61B1F5C57CF004A141E /* CShippingAddressC+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CShippingAddressC+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A61C1F5C57CF004A141E /* CShippingAddressC+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CShippingAddressC+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A61D1F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CShippingAddressC+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A61E1F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CShippingAddressC+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F662A61F1F5C57CF004A141E /* ShipToParty+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShipToParty+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A6201F5C57CF004A141E /* ShipToParty+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShipToParty+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A6211F5C57CF004A141E /* ShipToParty+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShipToParty+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A6221F5C57CF004A141E /* ShipToParty+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShipToParty+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F662A6231F5C57CF004A141E /* Records+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Records+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A6241F5C57CF004A141E /* Records+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Records+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A6251F5C57CF004A141E /* Records+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Records+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A6261F5C57CF004A141E /* Records+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Records+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F662A6271F5C57CF004A141E /* CAddressDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAddressDetails+CoreDataClass.h"; sourceTree = "<group>"; };
+		F662A6281F5C57CF004A141E /* CAddressDetails+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAddressDetails+CoreDataClass.m"; sourceTree = "<group>"; };
+		F662A6291F5C57CF004A141E /* CAddressDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAddressDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F662A62A1F5C57CF004A141E /* CAddressDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAddressDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F66352A01F501ED500128137 /* OrderSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSummaryVC.h; sourceTree = "<group>"; };
 		F66352A11F501ED500128137 /* OrderSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSummaryVC.m; sourceTree = "<group>"; };
 		F66352A41F50279700128137 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		F66352A51F50279700128137 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		F68325E21F5B3DCE00929C7E /* DownloadCustomersData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadCustomersData.h; sourceTree = "<group>"; };
+		F68325E31F5B3DCE00929C7E /* DownloadCustomersData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadCustomersData.m; sourceTree = "<group>"; };
 		F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDataModel.h; sourceTree = "<group>"; };
 		F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDataModel.m; sourceTree = "<group>"; };
 		F69A10F21F43ED10005C2432 /* PDCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCViewController.h; sourceTree = "<group>"; };
 		F69A10F31F43ED10005C2432 /* PDCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCViewController.m; sourceTree = "<group>"; };
 		F69A10F61F43ED92005C2432 /* PDCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCCell.h; sourceTree = "<group>"; };
 		F69A10F71F43ED92005C2432 /* PDCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCCell.m; sourceTree = "<group>"; };
+		F69C2F701F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CUSTOMER_RONAK.xcdatamodel; sourceTree = "<group>"; };
 		F6B0A5A81F5141E000276E9B /* SelectedFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedFilters.h; sourceTree = "<group>"; };
 		F6B0A5A91F5141E000276E9B /* SelectedFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedFilters.m; sourceTree = "<group>"; };
 		F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -270,6 +317,7 @@
 				F6496BDB1F53FC6000028FF0 /* WSCalendarView */,
 				4F8D5ECC1B6C1021005E64D4 /* Classes */,
 				F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */,
+				F69C2F6F1F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodeld */,
 				4F8D5EA01B6C0568005E64D4 /* Supporting Files */,
 			);
 			path = RONAK;
@@ -289,6 +337,7 @@
 		4F8D5ECC1B6C1021005E64D4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F6B957A91F5B277E00CB030B /* CoreDataCustomer */,
 				F6BFD9FA1F4CC0870057C4A0 /* CoreDataProducts */,
 				F6EDC44C1F3EA19F00F9DFCC /* RONAKSharedClass.h */,
 				F6EDC44D1F3EA19F00F9DFCC /* RONAKSharedClass.m */,
@@ -296,6 +345,8 @@
 				F6B0A5A91F5141E000276E9B /* SelectedFilters.m */,
 				F6BFD94D1F4CA7A80057C4A0 /* DownloadProducts.h */,
 				F6BFD94E1F4CA7A80057C4A0 /* DownloadProducts.m */,
+				F68325E21F5B3DCE00929C7E /* DownloadCustomersData.h */,
+				F68325E31F5B3DCE00929C7E /* DownloadCustomersData.m */,
 				F6DADCD61F19DA5E00DC635E /* SalesForce */,
 				F6DADCE71F1A249F00DC635E /* Features */,
 				F64F10E61F2E5802001BC880 /* Loading */,
@@ -447,6 +498,42 @@
 				F6CD273E1F1816F00082C6D0 /* SignInViewController.m */,
 			);
 			name = SignInVC;
+			sourceTree = "<group>";
+		};
+		F6B957A91F5B277E00CB030B /* CoreDataCustomer */ = {
+			isa = PBXGroup;
+			children = (
+				F662A60B1F5C57CF004A141E /* CustomerDetails+CoreDataClass.h */,
+				F662A60C1F5C57CF004A141E /* CustomerDetails+CoreDataClass.m */,
+				F662A60D1F5C57CF004A141E /* CustomerDetails+CoreDataProperties.h */,
+				F662A60E1F5C57CF004A141E /* CustomerDetails+CoreDataProperties.m */,
+				F662A6131F5C57CF004A141E /* CBillingAddressC+CoreDataClass.h */,
+				F662A6141F5C57CF004A141E /* CBillingAddressC+CoreDataClass.m */,
+				F662A6151F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.h */,
+				F662A6161F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.m */,
+				F662A6171F5C57CF004A141E /* CAttributes+CoreDataClass.h */,
+				F662A6181F5C57CF004A141E /* CAttributes+CoreDataClass.m */,
+				F662A6191F5C57CF004A141E /* CAttributes+CoreDataProperties.h */,
+				F662A61A1F5C57CF004A141E /* CAttributes+CoreDataProperties.m */,
+				F662A61B1F5C57CF004A141E /* CShippingAddressC+CoreDataClass.h */,
+				F662A61C1F5C57CF004A141E /* CShippingAddressC+CoreDataClass.m */,
+				F662A61D1F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.h */,
+				F662A61E1F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.m */,
+				F662A61F1F5C57CF004A141E /* ShipToParty+CoreDataClass.h */,
+				F662A6201F5C57CF004A141E /* ShipToParty+CoreDataClass.m */,
+				F662A6211F5C57CF004A141E /* ShipToParty+CoreDataProperties.h */,
+				F662A6221F5C57CF004A141E /* ShipToParty+CoreDataProperties.m */,
+				F662A6231F5C57CF004A141E /* Records+CoreDataClass.h */,
+				F662A6241F5C57CF004A141E /* Records+CoreDataClass.m */,
+				F662A6251F5C57CF004A141E /* Records+CoreDataProperties.h */,
+				F662A6261F5C57CF004A141E /* Records+CoreDataProperties.m */,
+				F662A6271F5C57CF004A141E /* CAddressDetails+CoreDataClass.h */,
+				F662A6281F5C57CF004A141E /* CAddressDetails+CoreDataClass.m */,
+				F662A6291F5C57CF004A141E /* CAddressDetails+CoreDataProperties.h */,
+				F662A62A1F5C57CF004A141E /* CAddressDetails+CoreDataProperties.m */,
+			);
+			name = CoreDataCustomer;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F6BFD9FA1F4CC0870057C4A0 /* CoreDataProducts */ = {
@@ -779,32 +866,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */,
+				F68325E41F5B3DCE00929C7E /* DownloadCustomersData.m in Sources */,
 				F6CD273F1F1816F00082C6D0 /* SignInViewController.m in Sources */,
 				F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */,
 				F6DADCC81F19D1DA00DC635E /* CustomersViewController.m in Sources */,
 				F6BFD9F51F4CC0840057C4A0 /* ItemMaster+CoreDataProperties.m in Sources */,
 				F6496BDD1F53FC6000028FF0 /* WSCalendarView.m in Sources */,
+				F662A63A1F5C57CF004A141E /* ShipToParty+CoreDataProperties.m in Sources */,
 				F6BFD9F71F4CC0840057C4A0 /* Att+CoreDataProperties.m in Sources */,
 				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
 				F66352A61F50279700128137 /* OrderCell.m in Sources */,
 				F6FF3C501F58484C003269EC /* ViewController2.m in Sources */,
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
 				F6496BED1F5472D000028FF0 /* Calculator.m in Sources */,
+				F662A63E1F5C57CF004A141E /* CAddressDetails+CoreDataProperties.m in Sources */,
+				F662A63D1F5C57CF004A141E /* CAddressDetails+CoreDataClass.m in Sources */,
+				F662A6391F5C57CF004A141E /* ShipToParty+CoreDataClass.m in Sources */,
 				F6FF3C601F589C63003269EC /* AdvancedViewController.m in Sources */,
 				F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
+				F662A6331F5C57CF004A141E /* CBillingAddressC+CoreDataClass.m in Sources */,
 				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
 				F6FF3C441F583A1E003269EC /* ViewControllerCell.m in Sources */,
+				F662A6301F5C57CF004A141E /* CustomerDetails+CoreDataProperties.m in Sources */,
 				F6EDC4561F3F556D00F9DFCC /* ProductsListController.m in Sources */,
 				F6496B901F52A22400028FF0 /* Filters+CoreDataClass.m in Sources */,
 				F6DFC8BE1F4098120058A5B5 /* CustomerViewCell.m in Sources */,
+				F662A6371F5C57CF004A141E /* CShippingAddressC+CoreDataClass.m in Sources */,
 				F6DADC9F1F196A2800DC635E /* MenuViewController.m in Sources */,
 				F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6DADCCB1F19D24A00DC635E /* CustomerCell.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
+				F662A6351F5C57CF004A141E /* CAttributes+CoreDataClass.m in Sources */,
+				F662A6361F5C57CF004A141E /* CAttributes+CoreDataProperties.m in Sources */,
 				F6FF3C491F583B7E003269EC /* ViewController.m in Sources */,
 				F6BFD9F61F4CC0840057C4A0 /* Att+CoreDataClass.m in Sources */,
+				F69C2F711F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodeld in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
 				F6496BAC1F53BF7E00028FF0 /* Discount.m in Sources */,
 				F6EDC44E1F3EA19F00F9DFCC /* RONAKSharedClass.m in Sources */,
@@ -813,14 +911,19 @@
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6DFC8BB1F4097F30058A5B5 /* ProductCollectionViewCell.m in Sources */,
 				F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */,
+				F662A6341F5C57CF004A141E /* CBillingAddressC+CoreDataProperties.m in Sources */,
 				F6B0A5AA1F5141E000276E9B /* SelectedFilters.m in Sources */,
 				F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */,
 				F6BFD9F41F4CC0840057C4A0 /* ItemMaster+CoreDataClass.m in Sources */,
+				F662A62F1F5C57CF004A141E /* CustomerDetails+CoreDataClass.m in Sources */,
 				F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */,
+				F662A63B1F5C57CF004A141E /* Records+CoreDataClass.m in Sources */,
+				F662A63C1F5C57CF004A141E /* Records+CoreDataProperties.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
 				F64D6A111F39FA35001E8AD6 /* RESTCalls.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
+				F662A6381F5C57CF004A141E /* CShippingAddressC+CoreDataProperties.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
 				F6496B9D1F52F8D800028FF0 /* Filters+CoreDataProperties.m in Sources */,
 				F6BFD94F1F4CA7A80057C4A0 /* DownloadProducts.m in Sources */,
@@ -991,6 +1094,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		F69C2F6F1F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F69C2F701F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodel */,
+			);
+			currentVersion = F69C2F701F5B0B7E00C869DB /* CUSTOMER_RONAK.xcdatamodel */;
+			path = CUSTOMER_RONAK.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

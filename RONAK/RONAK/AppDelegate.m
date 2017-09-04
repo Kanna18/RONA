@@ -244,6 +244,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+    [self saveContextForProducts];
+    
 }
 
 
@@ -308,7 +310,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 //}
 //
 //
-
+//
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -387,5 +389,81 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     }
 }
 
+
+
+#pragma mark -Products Core Data stack
+
+@synthesize customerManagerObjectContext = _customerManagerObjectContext;
+@synthesize customerManagedObjectModel = _customerManagedObjectModel;
+@synthesize customerPersistentStoreCoordinator = _customerPersistentStoreCoordinator;
+
+- (NSManagedObjectModel *)customerManagedObjectModel {
+    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
+    if (_customerManagedObjectModel != nil) {
+        return _customerManagedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CUSTOMER_RONAK" withExtension:@"momd"];
+    _customerManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _customerManagedObjectModel;
+}
+
+- (NSPersistentStoreCoordinator *)customerPersistentStoreCoordinator {
+    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
+    if (_customerPersistentStoreCoordinator != nil) {
+        return _customerPersistentStoreCoordinator;
+    }
+    
+    // Create the coordinator and store
+    
+    _customerPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self customerManagedObjectModel]];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CUSTOMER_RONAK.sqlite"];
+    NSError *error = nil;
+    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    if (![_customerPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        // Report any error we got.
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
+        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
+        dict[NSUnderlyingErrorKey] = error;
+        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        // Replace this with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _customerPersistentStoreCoordinator;
+}
+
+
+- (NSManagedObjectContext *)customerManagerObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_customerManagerObjectContext != nil) {
+        return _customerManagerObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self customerPersistentStoreCoordinator];
+    if (!coordinator) {
+        return nil;
+    }
+    _customerManagerObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [_customerManagerObjectContext setPersistentStoreCoordinator:coordinator];
+    return _customerManagerObjectContext;
+}
+
+#pragma mark - Customer Core Data Saving support
+
+- (void)saveContextForProducts {
+    NSManagedObjectContext *cmanagedObjectContext = _customerManagerObjectContext;
+    if (_customerManagerObjectContext != nil) {
+        NSError *error = nil;
+        if ([cmanagedObjectContext hasChanges] && ![cmanagedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
 
 @end

@@ -52,20 +52,7 @@ static NSString *reuse=@"reuseCustomerCell";
     
     [self defaultComponentsStyle];
     
-    serverAPI=[ServerAPIManager sharedinstance];
-    customersList=[[NSMutableArray alloc]init];
-    [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
-    [load start];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
-            [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
-        }
-        else{
-            [self restServiceForCustomerList];
-        }
-    });
-    
+    [self sortCoreDataCustomersintoSectionsandSearchFunctionality:@""];
     _swipe.numberOfTouchesRequired=noOfTouches;
     _swipe.direction=UISwipeGestureRecognizerDirectionLeft;
 }
@@ -86,7 +73,7 @@ static NSString *reuse=@"reuseCustomerCell";
 
 -(void)searchEnabled{
     NSLog(@"SearchField Text->%@",_searchTextField.text);
-    [self sortCustomersintoSectionsandSearchFunctionality:_searchTextField.text];
+    [self sortCoreDataCustomersintoSectionsandSearchFunctionality:_searchTextField.text];
 }
 /*-(void)viewWillLayoutSubviews
 {
@@ -101,8 +88,10 @@ static NSString *reuse=@"reuseCustomerCell";
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
--(void)sortCustomersintoSectionsandSearchFunctionality:(NSString*)searchStr
+
+-(void)sortCoreDataCustomersintoSectionsandSearchFunctionality:(NSString*)searchStr
 {
+    
     cvDataSectionArr=[[NSMutableArray alloc]init];
     cvAlphabetSectionArr=[[NSMutableArray alloc]init];
     if(!(searchStr.length>0))
@@ -110,7 +99,7 @@ static NSString *reuse=@"reuseCustomerCell";
         for (NSString *ele in alphabets)
         {
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF.Name BEGINSWITH[c] %@",ele];
-            NSArray *arr=[customersList filteredArrayUsingPredicate:predicate];
+            NSArray *arr=[ronakGlobal.coreDataCustomers filteredArrayUsingPredicate:predicate];
             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES];
             NSArray *sortedArr=[arr sortedArrayUsingDescriptors:@[sortDescriptor]];
             
@@ -124,69 +113,12 @@ static NSString *reuse=@"reuseCustomerCell";
     else if(searchStr)
     {
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"(SELF.Name BEGINSWITH[c] %@) OR (SELF.Name contains[c] %@)",searchStr,searchStr];
-        NSArray *arr=[customersList filteredArrayUsingPredicate:predicate];
+        NSArray *arr=[ronakGlobal.coreDataCustomers filteredArrayUsingPredicate:predicate];
         [cvDataSectionArr addObject:arr];
         [cvAlphabetSectionArr addObject:@""];
     }
     [self.collectionView reloadData];
     [self alphabetsScrollIndex];
-    
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-
-}
-
-#pragma mark Server Calls
-
-
--(void)restServiceForCustomerList
-{
-    
-    NSDictionary *headers = @{ @"content-type": @"application/json",
-                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_customersList_B]
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:10.0];
-    [request setHTTPMethod:@"POST"];
-    [request setAllHTTPHeaderFields:headers];
-    [request setHTTPBody:postData];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-         {
-             NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
-            NSData *jsonData=[NSJSONSerialization dataWithJSONObject:arr options:0 error:nil];
-            NSError *cerr;
-            [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
-            [self getListofAllCustomers:jsonData];
-    
-        }];
-    
-    [dataTask resume];
-    
-    
-}
-
-
-
-
--(void)getListofAllCustomers:(NSData*)cList
-{
-    NSArray *arr=[NSJSONSerialization JSONObjectWithData:cList options:0 error:nil];
-    
-    NSError *err;
-    customersList=[CustomerDataModel arrayOfModelsFromDictionaries:arr error:&err];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self sortCustomersintoSectionsandSearchFunctionality:nil];
-        [load stop];
-    });
 }
 
 #pragma mark componentsShapes
@@ -338,11 +270,11 @@ static NSString *reuse=@"reuseCustomerCell";
     CustomLabel *lbl;
     for (int i=0; i<selectedCustomersList.count; i++)
     {
-        CustomerDataModel *cst=selectedCustomersList[i];
+        CustomerDetails *cst=selectedCustomersList[i];
         lbl=[[CustomLabel alloc]init];
         lbl.font=sfFont(14);
         [_scrollView_selCustmr addSubview:lbl];
-        lbl.text=[cst.Name stringByAppendingString:@","];
+        lbl.text=[cst.name stringByAppendingString:@","];
         lbl.frame=CGRectMake(X, Y, lbl.intrinsicContentSize.width, 30);
         [lbl setAdjustsFontSizeToFitWidth:YES];
         X+=lbl.intrinsicContentSize.width;

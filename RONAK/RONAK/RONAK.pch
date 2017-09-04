@@ -35,5 +35,9 @@
 #import "Calculator.h"
 
 #import "MARKRangeSlider.h"
+#import "DownloadCustomersData.h"
+#import "CustomerDetails+CoreDataClass.h"
+
+
 
 #endif /* RONAK_pch */

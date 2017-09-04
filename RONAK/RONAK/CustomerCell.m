@@ -20,14 +20,14 @@
     _addressLabel.textColor=[UIColor grayColor];
 }
 
--(void)bindData:(CustomerDataModel*)data
+-(void)bindData:(CustomerDetails*)data
 {
-    self.nameLabel.text=data.Name;
-    self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.ShippingAddress.street,data.ShippingAddress.state,data.ShippingAddress.postalCode,data.ShippingAddress.country];
-    self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.Account_Balance__c];
+    self.nameLabel.text=data.name;
+    self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.shippingAddress.street,data.shippingAddress.state,data.shippingAddress.postalCode,data.shippingAddress.country];
+    self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.account_Balance__c];
     self.selectedImage.backgroundColor=GrayLight;
     
-    float due=[data.X181_240__c floatValue]+[data.X241_300__c floatValue]+[data.X301_360__c floatValue]+[data.X361__c floatValue]+[data.X0_30__c floatValue]+[data.X31_60__c floatValue]+[data.X61_90__c floatValue]+[data.X91_120__c floatValue]+[data.X121_150__c floatValue]+[data.X151_180__c floatValue];
+    float due=[data.x181_240__c floatValue]+[data.x241_300__c floatValue]+[data.x301_360__c floatValue]+[data.x361__c floatValue]+[data.x0_30__c floatValue]+[data.x31_60__c floatValue]+[data.x61_90__c floatValue]+[data.x91_120__c floatValue]+[data.x121_150__c floatValue]+[data.x151_180__c floatValue];
     
     if(due>0||due<0)
     {

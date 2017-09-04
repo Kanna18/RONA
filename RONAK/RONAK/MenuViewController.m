@@ -27,46 +27,46 @@
     // Do any additional setup after loading the view.
     
     [self defaultComponentsStyle];
-   if(!defaultGet(firstTimeLaunching))
-   {
-       load=[[LoadingView alloc]init];
-       [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
-       [load start];
-       DownloadProducts *dwn=[[DownloadProducts alloc]init];
-       dwn.delegateProducts=self;
-       [dwn downloadStockWareHouseSavetoCoreData];
-   }
-    else
-    {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [self getFetchFiltersAfteDataFetched];
-        });
-    }
-    
-    
-    
-}
 
-
--(void)getFetchFiltersAfteDataFetched
-{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSManagedObjectContext *contextChild1=[[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        contextChild1.parentContext=ronakGlobal.context;
-        DownloadProducts *dw=[[DownloadProducts alloc]init];
-        [dw getFilterFor:@"brands__c" withContext:contextChild1];
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       DownloadCustomersData *dwn=[[DownloadCustomersData alloc]init];
+        if(!defaultGet(firstTimeLaunching))
+        {
+            
+            [dwn restServiceForCustomerList];
+        }
+        else
+        {
+            [dwn fetchAllsavedCustomers];
+        }
     });
+    
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        DownloadProducts *dwn=[[DownloadProducts alloc]init];
+        dwn.delegateProducts=self;
+        if(!defaultGet(firstTimeLaunching))
+        {
+            load=[[LoadingView alloc]init];
+            [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
+            [load start];
+            [dwn downloadStockWareHouseSavetoCoreData];
+        }
+        else
+        {
+            [dwn getFilterFor:@"brands__c"];
+        }
+    });
+
+    
 }
 
-#pragma mark Downloading Products Protocol
+#pragma mark ProductsDelegate
 -(void)productsListFetched
 {
-    defaultSet(@"Launched", firstTimeLaunching);
-    [self getFetchFiltersAfteDataFetched];
+    defaultSet(@"Downloaded", firstTimeLaunching);
     [load stop];
-
 }
+
 -(void)viewWillAppear:(BOOL)animate
 {
     [ronakGlobal.selectedCustomersArray removeAllObjects];

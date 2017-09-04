@@ -28,9 +28,15 @@
         
         _selectedCustomersArray=[[NSMutableArray alloc]init];
         _selectedFilter=[[SelectedFilters alloc]init];
-        _filterdProductsArray=[[NSMutableArray alloc]init];;
+        _filterdProductsArray=[[NSMutableArray alloc]init];
+        
         _delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         _context=_delegate.managedObjectContext;
+        
+        _customerDelegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        _customersContext=_customerDelegate.customerManagerObjectContext;
+        
+        _coreDataCustomers=[[NSMutableArray alloc]init];
     }
     return self;
 }

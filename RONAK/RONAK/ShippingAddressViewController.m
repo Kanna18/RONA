@@ -42,16 +42,16 @@
 }
 -(void)pdcLabelTapped:(id*)sender
 {
-    if(_cst.PDC__r.records.count>0)
-    {
-        PDCViewController *pdcVC=[self.storyboard instantiateViewControllerWithIdentifier:@"pdcVC"];
-        pdcVC.cst=_cst;
-        [self.navigationController pushViewController:pdcVC animated:YES];
-    }
-    else
-    {
-        [load waringLabelText:@"No PDC Details" onView:self.view];
-    }
+//    if(_cst.PDC__r.records.count>0)
+//    {
+//        PDCViewController *pdcVC=[self.storyboard instantiateViewControllerWithIdentifier:@"pdcVC"];
+//        pdcVC.cst=_cst;
+//        [self.navigationController pushViewController:pdcVC animated:YES];
+//    }
+//    else
+//    {
+//        [load waringLabelText:@"No PDC Details" onView:self.view];
+//    }
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -62,11 +62,11 @@
     __block int X=0,Y=0;
     [selectedCustomersList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        CustomerDataModel *cst=selectedCustomersList[idx];
+        CustomerDetails *cst=selectedCustomersList[idx];
         CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
         btn.titleLabel.lineBreakMode=NSLineBreakByTruncatingTail;
         btn.titleLabel.font=sfFont(20);
-        [btn setTitle:cst.Name forState:UIControlStateNormal];
+        [btn setTitle:cst.name forState:UIControlStateNormal];
 //        btn.titleLabel.intrinsicContentSize.width+2
         btn.frame=CGRectMake(X, Y, 200, 30);
         btn.cstData=cst;
@@ -107,24 +107,25 @@
     _cst=btn.cstData;
     [btn setBackgroundColor:BlueClr];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    CustomerDataModel *cst=btn.cstData;    
-    _customerNamelbl.text=cst.Name;
-    _creditLimitLbl.text=cst.Credit_Limit__c;
-    _acntBalanceLbl.text=cst.Account_Balance__c;
-    NSString *status=[cst.Active__c isEqualToString:@"Y"]?@"Active":@"Inactive";
+    CustomerDetails *cst=btn.cstData;
+    _customerNamelbl.text=cst.name;
+    _creditLimitLbl.text=cst.credit_Limit__c;
+    _acntBalanceLbl.text=cst.account_Balance__c;
+    NSString *status=[cst.active__c isEqualToString:@"Y"]?@"Active":@"Inactive";
     _statusLbl.text=status;
-    _Lbl90.text=[NSString stringWithFormat:@"%0.2f",[cst.X0_30__c floatValue]+[cst.X31_60__c floatValue]+[cst.X61_90__c floatValue]];
-    _lbl150.text=[NSString stringWithFormat:@"%0.2f",[cst.X91_120__c floatValue]+[cst.X121_150__c floatValue]];
-    _lbl180.text=[NSString stringWithFormat:@"%0.2f",[cst.X151_180__c floatValue]];
-    _lbl360.text=[NSString stringWithFormat:@"%0.2f",[cst.X181_240__c floatValue]+[cst.X241_300__c floatValue]+[cst.X301_360__c floatValue]];
-    _lbl360Above.text=[NSString stringWithFormat:@"%0.2f",[cst.X361__c floatValue]];
+    _Lbl90.text=[NSString stringWithFormat:@"%0.2f",[cst.x0_30__c floatValue]+[cst.x31_60__c floatValue]+[cst.x61_90__c floatValue]];
+    _lbl150.text=[NSString stringWithFormat:@"%0.2f",[cst.x91_120__c floatValue]+[cst.x121_150__c floatValue]];
+    _lbl180.text=[NSString stringWithFormat:@"%0.2f",[cst.x151_180__c floatValue]];
+    _lbl360.text=[NSString stringWithFormat:@"%0.2f",[cst.x181_240__c floatValue]+[cst.x241_300__c floatValue]+[cst.x301_360__c floatValue]];
+    _lbl360Above.text=[NSString stringWithFormat:@"%0.2f",[cst.x361__c floatValue]];
     _lblTotal.text=[NSString stringWithFormat:@"%0.2f",[_Lbl90.text floatValue]+[_lbl150.text floatValue]+[_lbl180.text floatValue]+[_lbl360.text floatValue]+[_lbl360Above.text floatValue]];
     
     float pdcAmount = 0.0;
-    for (int i=0; i<cst.PDC__r.records.count; i++)
+    for (int i=0; i<cst.shipToParty.records.count; i++)
     {
-        PDCRecodrs *rec=cst.PDC__r.records[i];
-        pdcAmount+=[rec.Amount__c floatValue];
+        NSArray *arr=[cst.shipToParty.records allObjects];
+        Records *rec=arr[i];
+//        pdcAmount+=[rec.Amount__c floatValue];
     }
     _pdcLbl.text=[NSString stringWithFormat:@"%0.1f",pdcAmount];
     
@@ -200,7 +201,7 @@
             }
         }
     }
-    sender.cstData.defaultsCustomer.defaultAddressIndex=[NSNumber numberWithInteger:sender.tag-100];
+//    sender.cstData.defaultsCustomer.defaultAddressIndex=[NSNumber numberWithInteger:sender.tag-100];
     //sender.backgroundColor=BlueClr;
     [sender setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
 }

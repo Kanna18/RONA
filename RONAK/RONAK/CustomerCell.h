@@ -13,9 +13,9 @@
 @property (weak, nonatomic) IBOutlet CustomLabel *nameLabel;
 @property (weak, nonatomic) IBOutlet CustomLabel *addressLabel;
 @property (weak, nonatomic) IBOutlet CustomLabel *amountLabel;
-@property (nonatomic) CustomerDataModel *cstData;
+@property (nonatomic) CustomerDetails *cstData;
 
--(void)bindData:(CustomerDataModel*)data;
+-(void)bindData:(CustomerDetails*)data;
 -(void)loadSelectedCustomerFromArrat:(NSMutableArray*)arr;
 -(void)saveSelectedCustomertoArray:(NSMutableArray*)arr;
 

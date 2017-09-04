@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomerDataModel.h"
+#import "CustomerDetails+CoreDataClass.h"
 
 @interface CustomButton : UIButton
 
-@property CustomerDataModel *cstData;
+@property CustomerDetails *cstData;
 
 
 @end
