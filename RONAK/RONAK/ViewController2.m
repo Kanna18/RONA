@@ -106,6 +106,7 @@
         
         switch (indexPath.section) {
             case 2:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.size containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
             case 3:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.size containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
@@ -199,32 +200,37 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
-    NSString *text=cell.lblName.text;
-    NSMutableArray *globalArr;
-    switch (indexPath.section) {
-            
-        case 2:
-            break;
-        case 3:
-            globalArr=ronakGlobal.selectedFilter.size;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 4:
-            globalArr=ronakGlobal.selectedFilter.lensMaterial;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 5:
-            globalArr=ronakGlobal.selectedFilter.FrontColor;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        case 6:
-            globalArr=ronakGlobal.selectedFilter.LensColor;
-            [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
-            break;
-        default:
-            break;
-    }
+     if(indexPath.section!=1||indexPath.section!=0)
+     {
+         ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+         NSString *text=cell.lblName.text;
+         NSMutableArray *globalArr;
+         switch (indexPath.section) {
+                 
+             case 2:
+                 break;
+             case 3:
+                 globalArr=ronakGlobal.selectedFilter.size;
+                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                 break;
+             case 4:
+                 globalArr=ronakGlobal.selectedFilter.lensMaterial;
+                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                 break;
+             case 5:
+                 globalArr=ronakGlobal.selectedFilter.FrontColor;
+                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                 break;
+             case 6:
+                 globalArr=ronakGlobal.selectedFilter.LensColor;
+                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                 break;
+             default:
+                 break;
+         }
+
+    
+     }
     [tableView reloadData];
 }
 

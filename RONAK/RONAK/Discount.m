@@ -22,9 +22,11 @@
     self=[super initWithFrame:frame];
     if(self)
     {
+        
+         //self=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([Discount class]) owner:self options:nil][0];
         self=[[NSBundle mainBundle] loadNibNamed:@"Discount" owner:self options:nil][0];
-        frame.size.width=160;
-        frame.size.height=286;
+        frame.size.width=153;
+        frame.size.height=330;
         self.frame=frame;
         self.numArray = [[NSMutableArray alloc]init];
         

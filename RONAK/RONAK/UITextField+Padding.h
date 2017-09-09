@@ -17,7 +17,8 @@
 -(BOOL)hasValidPhoneNumber;
 -(BOOL)hasValidText;
 -(BOOL)hasValidPassword;
-
+-(void)setLeftpasswordPadding;
+-(void)middlePadding;
 
 
 @end

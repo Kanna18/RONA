@@ -8,6 +8,8 @@
 
 #import "AdvancedViewController.h"
 #import "DefaultFiltersViewController.h"
+#import "ProductsListController.h"
+
 
 @interface AdvancedViewController ()
 
@@ -20,6 +22,13 @@
     // Do any additional setup after loading the view.
     _leftSwipe.numberOfTouchesRequired=noOfTouches;
     _leftSwipe.direction=UISwipeGestureRecognizerDirectionRight;
+    
+    _rightSwipe.numberOfTouchesRequired=noOfTouches;
+    _rightSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
+    
+    UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpMenuFunction:)];
+    taped.numberOfTouchesRequired=1;
+    [_headingLabel addGestureRecognizer:taped];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +58,12 @@
     }];
     
 }
+-(IBAction)rightSiwpeFunction:(id)sender
+{
+
+        ProductsListController *pro=storyBoard(@"productsVC");
+        [self.navigationController pushViewController:pro animated:YES];
+}
 - (IBAction)jumpMenuFunction:(id)sender
 {
     
@@ -62,4 +77,6 @@
         }
     }];
 }
+
+
 @end

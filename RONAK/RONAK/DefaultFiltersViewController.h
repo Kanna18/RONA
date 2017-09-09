@@ -15,5 +15,7 @@
 - (IBAction)rightSwipeFunction:(id)sender;
 - (IBAction)jumpMenuFunction:(id)sender;
 - (IBAction)advancedFiltersFunction:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *headingLabel;
+@property (strong, nonatomic) IBOutlet UIButton *filterOptionBtn;
 
 @end

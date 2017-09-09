@@ -8,7 +8,7 @@
 
 #import "PDCViewController.h"
 #import "PDCCell.h"
-@interface PDCViewController ()
+@interface PDCViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -16,18 +16,76 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@",docPath);
     // Do any additional setup after loading the view.
     _listTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _customerNmLbl.text=_cst.Name;
-    
+    _customerNmLbl.font=[UIFont boldSystemFontOfSize:25];
     _swipeGest.numberOfTouchesRequired=noOfTouches;
     _swipeGest.direction=UISwipeGestureRecognizerDirectionRight;
+    _filterView.hidden=YES;
+    
+    _fromDateTf.delegate=self;
+    _toDateTF.delegate=self;
+    _chequeNo.delegate=self;
+    _chequeTypeTF.delegate=self;
+    
+    UITapGestureRecognizer *tapTwice=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showFilter:)];
+    tapTwice.numberOfTapsRequired=2;
+    [self.view addGestureRecognizer:tapTwice];
+    
+    
+    UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+    [datePicker setDate:[NSDate date]];
+//    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    [self.toDateTF setInputView:datePicker];
+    [self.fromDateTf setInputView:datePicker];
+
+//    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+
+}
+
+-(void)showFilter:(id)sender
+{
+    if(_filterView.hidden==YES)
+    {
+        _filterView.hidden=NO;
+    }
+    else
+    {
+        _filterView.hidden=YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == _fromDateTf)
+    {
+        [self updateTextField:textField];
+    }
+    if(textField == _toDateTF)
+    {
+        [self updateTextField:textField];
+    }
+}
+
+-(void)updateTextField:(UITextField*)sender
+{
+    
+//    UIDatePicker *picker = (UIDatePicker*)sender.inputView;
+//    
+//    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"dd MMM EEE"];
+//    NSDate *date  = [dateFormatter dateFromString:picker.date];
+//    sender.text = [NSString stringWithFormat:@"%@",[dateFormatter dateFromString:picker.date]];
+}
+
 
 /*
 #pragma mark - Navigation

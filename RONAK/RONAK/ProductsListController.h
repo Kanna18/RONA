@@ -23,7 +23,9 @@
 - (IBAction)backButton:(id)sender;
 - (IBAction)jumptoMenuVC:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *allModelsTopBtn;
 
+@property (strong, nonatomic) IBOutlet UIButton *allColorsTopBtn;
 
 -(IBAction)listImagesArray:(id)sender;
 
@@ -46,10 +48,25 @@
 
 @property (strong, nonatomic) IBOutlet UIView *sideView;
 - (IBAction)sideMenuClick:(id)sender;
+-(IBAction)closeSideMenuFilters;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
+- (IBAction)clearCartClick:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *wsLabel;;
 - (IBAction)priceSwitchChanged:(id)sender;
 @property (strong, nonatomic) IBOutlet UIView *productDetailView;
+- (IBAction)allmodelTopClick:(id)sender;
+- (IBAction)allColorsTopClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *cartOption;
+@property (strong, nonatomic) IBOutlet UIButton *sortOption;
+@property (strong, nonatomic) IBOutlet UITextField *searchField;
+@property (strong, nonatomic) IBOutlet UIImageView *ronakheadingLabel;
+- (IBAction)cancelOrderClick:(id)sender;
+- (IBAction)calculatorClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *cancelOrderBtn;
+
+@property (strong, nonatomic) IBOutlet UIButton *calculatorBtn;
+
+
 
 @end

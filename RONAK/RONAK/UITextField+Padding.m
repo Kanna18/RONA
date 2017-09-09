@@ -29,7 +29,22 @@
     [paddingView addSubview:img];
 }
 
+-(void)setLeftpasswordPadding{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    self.leftView = paddingView;
+    self.leftViewMode = UITextFieldViewModeAlways;
+}
 
+
+-(void)middlePadding
+{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width/2-20, 30)];
+    self.leftView = paddingView;
+    self.leftViewMode = UITextFieldViewModeAlways;
+    UIImageView *img=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"searchIcon"]];
+    img.frame=CGRectMake(paddingView.frame.size.width-20, 5, 20, 20);
+    [paddingView addSubview:img];
+}
 
 -(BOOL)hasValidEmail
 {

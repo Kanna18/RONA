@@ -15,6 +15,18 @@
 - (IBAction)homeClick:(id)sender;
 - (IBAction)jumptoMenuVC:(id)sender;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeGest;
+@property (strong, nonatomic) IBOutlet UIView *filterView;
+@property (strong, nonatomic) IBOutlet UITextField *fromDateTf;
+@property (strong, nonatomic) IBOutlet UITextField *toDateTF;
+@property (strong, nonatomic) IBOutlet UITextField *chequeNo;
+
+@property (strong, nonatomic) IBOutlet UITextField *chequeTypeTF;
+
+
+
+
+
+
 
 @property CustomerDataModel *cst;
 @end

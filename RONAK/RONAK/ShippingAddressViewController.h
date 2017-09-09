@@ -24,11 +24,15 @@
 @property (strong, nonatomic) IBOutlet CustomLabel *lbl360;
 @property (strong, nonatomic) IBOutlet CustomLabel *lbl360Above;
 @property (strong, nonatomic) IBOutlet CustomLabel *lblTotal;
+@property (strong, nonatomic) IBOutlet UILabel *shipToHeading;
 
+@property (strong, nonatomic) IBOutlet UIImageView *headingLabel;
 
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNamelbl;
+@property (strong, nonatomic) IBOutlet UILabel *headingBarLabel;
 
 @property CustomerDataModel *cst;
+@property (strong, nonatomic) IBOutlet UILabel *billtoHeading;
 
 - (IBAction)backClick:(id)sender;
 - (IBAction)jumptoMenuVC:(id)sender;

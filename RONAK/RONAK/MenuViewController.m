@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     [self defaultComponentsStyle];
    if(!defaultGet(firstTimeLaunching))
    {
@@ -42,6 +43,15 @@
         dispatch_once(&onceToken, ^{
             [self getFetchFiltersAfteDataFetched];
         });
+    }
+    
+    for (CustomButton *btn in self.view.subviews)
+    {
+     if([btn isKindOfClass:[CustomButton class]])
+     {
+         btn.titleLabel.font=gothMedium(15);
+     }
+    
     }
     
     

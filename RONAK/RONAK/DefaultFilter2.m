@@ -36,8 +36,7 @@
     
     //Set isMultipleExpansionAllowed = true is multiple expanded sections to be allowed at a time. Default is NO.
     isMultipleExpansionAllowed = YES;
-    
-    
+
     arrSelectedSectionIndex = [[NSMutableArray alloc] init];
     
     if (!isMultipleExpansionAllowed) {
@@ -79,7 +78,7 @@
 {
     
     
-    if(indexPath.section==2)
+    if(indexPath.section==1)
     {
         static NSString *CellIdentifier = @"RangeCell";
         RangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -100,6 +99,7 @@
             [tblView registerClass:[ViewControllerCell class] forCellReuseIdentifier:@"ViewControllerCell"];
             cell = [tblView dequeueReusableCellWithIdentifier:@"ViewControllerCell"];
         }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.lblName.text=arr[indexPath.section][@"options"][indexPath.row];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
@@ -118,7 +118,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==2)
+    if(indexPath.section==1)
     {
         return customHeight;
     }
@@ -190,7 +190,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if(indexPath.section==0||indexPath.section==1)
+    if(indexPath.section==0)
         {
             ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
             NSString *text=cell.lblName.text;

@@ -23,8 +23,7 @@
     // Initialization code
     
 //    [self setAdjustsFontSizeToFitWidth:YES];
-//    self.font=sfFont(18.0);
-
+//    self.font=gothMedium(18.0);
 }
 
 

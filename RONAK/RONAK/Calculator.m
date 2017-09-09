@@ -16,8 +16,8 @@
     if(self)
     {
         self=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([Calculator class]) owner:self options:nil][0];
-        frame.size.width=251;
-        frame.size.height=382;
+        frame.size.width=212;
+        frame.size.height=330;
         self.frame=frame;
 
     }

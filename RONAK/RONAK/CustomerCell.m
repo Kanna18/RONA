@@ -13,30 +13,37 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    _selectedImage.layer.cornerRadius=3.0f;
+    
+
+    _addressLabel.textColor=[UIColor grayColor];
+    
+    self.selectedImage.layer.borderColor=RGB(209, 210, 212).CGColor;
+    self.selectedImage.layer.borderWidth=1.0;
+    _selectedImage.layer.cornerRadius=5.0f;
     _selectedImage.clipsToBounds=YES;
     
-    _addressLabel.font=sfFont(15);
-    _addressLabel.textColor=[UIColor grayColor];
 }
 
 -(void)bindData:(CustomerDataModel*)data
 {
-    self.nameLabel.text=data.Name;
+    _nameLabel.font=gothBold(16);
+    _addressLabel.font=gothMedium(12);
+    _amountLabel.font=gothMedium(16);
+    self.nameLabel.text=[data.Name uppercaseString];
     self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.ShippingAddress.street,data.ShippingAddress.state,data.ShippingAddress.postalCode,data.ShippingAddress.country];
     self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.Account_Balance__c];
-    self.selectedImage.backgroundColor=GrayLight;
+//    self.selectedImage.backgroundColor=GrayLight;
     
-    float due=[data.X181_240__c floatValue]+[data.X241_300__c floatValue]+[data.X301_360__c floatValue]+[data.X361__c floatValue]+[data.X0_30__c floatValue]+[data.X31_60__c floatValue]+[data.X61_90__c floatValue]+[data.X91_120__c floatValue]+[data.X121_150__c floatValue]+[data.X151_180__c floatValue];
+    float due=[data.X181_240__c floatValue]+[data.X241_300__c floatValue]+[data.X301_360__c floatValue]+[data.X361__c floatValue]/*+[data.X0_30__c floatValue]+[data.X31_60__c floatValue]+[data.X61_90__c floatValue]+[data.X91_120__c floatValue]+[data.X121_150__c floatValue]+[data.X151_180__c floatValue]*/;
     
-    if(due>0||due<0)
+    if(due>0)
     {
         _amountLabel.textColor=RedClr;
     }
     else{
         _amountLabel.textColor=GreenClr;
     }
-    _amountLabel.text=[NSString stringWithFormat:@"180+=₹%d",(int)due];
+    _amountLabel.text=[NSString stringWithFormat:@"180 + = ₹%d",(int)due];
     self.cstData=data;
 
 }
@@ -55,7 +62,7 @@
     }
     else
     {
-        self.selectedImage.backgroundColor=GrayLight;
+//        self.selectedImage.backgroundColor=GrayLight;
         self.selectedImage.image=nil;
 //        self.baseView.layer.shadowColor = [UIColor whiteColor].CGColor;
 //        self.baseView.layer.shadowOffset = CGSizeMake(0, 0);

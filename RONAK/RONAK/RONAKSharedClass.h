@@ -29,4 +29,6 @@
 
 @property NSMutableArray *discArr,*wsPriceArr,*priceArr,*stockArr;
 @property NSString *conutD;
+
+@property BOOL showClearOptionInCustomerCell;
 @end

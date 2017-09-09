@@ -22,6 +22,6 @@
     // Initialization code
  
     self.clearButtonMode=UITextFieldViewModeAlways;
-    self.font=sfFont(18.0);
+    self.font=helvTica(18.0);
 }
 @end

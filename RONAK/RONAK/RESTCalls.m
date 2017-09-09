@@ -157,6 +157,7 @@
     NSLog(@"writing '%@' JsonData to file path -%@--Error-%@",path,dest,errorWriting);
 }
 
+
 -(NSData*)readJsonDataFromFileinNSD:(NSString*)fileName
 {
     NSString *source=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0] stringByAppendingPathComponent:fileName];
@@ -164,6 +165,7 @@
     NSData *data=[NSData dataWithContentsOfFile:source options:kNilOptions error:&error];
     return data;
 }
+
 -(NSDictionary*)readJsonDataFromFile:(NSString*)fileName
 {
     NSString *source=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0] stringByAppendingPathComponent:fileName];

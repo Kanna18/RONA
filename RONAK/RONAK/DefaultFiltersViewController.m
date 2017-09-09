@@ -25,12 +25,18 @@
     
     _leftSwipe.direction=UISwipeGestureRecognizerDirectionRight;
     _rightSwipe.direction=UISwipeGestureRecognizerDirectionLeft;
+    
+    UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
+    taped.numberOfTouchesRequired=1;
+    [_headingLabel addGestureRecognizer:taped];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
@@ -69,8 +75,15 @@
 }
 - (IBAction)rightSwipeFunction:(id)sender {
 
-    ProductsListController *pro=storyBoard(@"productsVC");
-    [self.navigationController pushViewController:pro animated:YES];
+    if(ronakGlobal.selectedFilter.brand.length>0)
+    {
+        ProductsListController *pro=storyBoard(@"productsVC");
+        [self.navigationController pushViewController:pro animated:YES];
+    }
+    else
+    {
+        showMessage(@"Select Brand", self.view);
+    }
 }
 - (IBAction)jumpMenuFunction:(id)sender
 {
@@ -87,9 +100,15 @@
 }
 - (IBAction)advancedFiltersFunction:(id)sender
 {
-    AdvancedViewController *pro=storyBoard(@"advancedVC");
-    [self.navigationController pushViewController:pro animated:YES];
-
+//    if(ronakGlobal.selectedFilter.brand.length>0)
+//    {
+        AdvancedViewController *pro=storyBoard(@"advancedVC");
+        [self.navigationController pushViewController:pro animated:YES];
+//    }
+//    else
+//    {
+//        showMessage(@"Select Brand", self.view);
+//    }
 }
 
 

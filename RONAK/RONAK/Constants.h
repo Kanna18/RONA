@@ -11,8 +11,14 @@
 
 
 //Fonts
+#define  helvTica(hgt)  [UIFont fontWithName:@"Helvetica" size:hgt]
 #define  sfFont(hgt)  [UIFont fontWithName:@"SFUIDisplay-Regular" size:hgt]
 #define calibriBol(si)    [UIFont fontWithName: @"Calibri Bold" size:si]
+
+#define gothThin(si)    [UIFont fontWithName: @"Gotham-Thin" size:si]
+#define gothBold(si)    [UIFont fontWithName: @"Gotham-Bold" size:si]
+#define gothMedium(si)    [UIFont fontWithName: @"Gotham-Medium" size:si]
+
 
 //User Defaults
 #define defaultSet(value,key)    [[NSUserDefaults standardUserDefaults] setValue:value forKey:key]
@@ -61,7 +67,7 @@
 #define RGB(r,g,b) [[UIColor alloc]initWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define GreenClr RGB(0, 165, 80)
 #define BlueClr RGB(0, 122, 255)
-#define RedClr RGB(237, 29, 36)
+#define RedClr RGB(237, 28, 36)
 #define GrayLight RGB(228, 230, 232)
 #define GrayLight1 RGB(193, 196, 201)
 #define Blacktitle RGB(69, 69, 69)
@@ -72,8 +78,8 @@
 #define kBrand @"Brand"
 #define kCategories @"Categories"
 #define kCollection @"Collection"
-#define kSampleWareHouse @"SampleWare House"
-#define kStockWareHouse @"StockWare House"
+#define kSampleWareHouse @"Sample Warehouse"
+#define kStockWareHouse @"Stock Warehouse"
 
 //AdvancedFirstFilter
 #define kLensDescription @"Lens Description"
@@ -92,8 +98,9 @@
 #define kLensMaterial @"Lens Material"
 #define kFrontColor @"Front Color"
 #define kLensColor @"Lens Color"
-#define kStockvalue @"kStock"
+#define kStockvalue @"Stock Qty"
 #define  firstTimeLaunching @"FirstTime"
+#define unzipedItemsSuccess @"unzip"
 
 
 //Additional

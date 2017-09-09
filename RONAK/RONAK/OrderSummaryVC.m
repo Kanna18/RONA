@@ -76,8 +76,9 @@
         CustomerDataModel *cst=selectedCustomersList[idx];
         CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
         btn.titleLabel.lineBreakMode=NSLineBreakByTruncatingTail;
-        btn.titleLabel.font=sfFont(20);
-        [btn setTitle:cst.Name forState:UIControlStateNormal];
+        btn.titleLabel.font=gothMedium(14);
+        [btn setTitleColor:RGB(40, 40, 41) forState:UIControlStateNormal];
+        [btn setTitle:[@" " stringByAppendingString:cst.Name] forState:UIControlStateNormal];
         //        btn.titleLabel.intrinsicContentSize.width+2
         btn.frame=CGRectMake(X, Y, 200, 30);
         btn.cstData=cst;
@@ -85,7 +86,7 @@
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(clikedOnCustomer:) forControlEvents:UIControlEventTouchUpInside];
         [_scrollView_Cmlist addSubview:btn];
-        X+=210;
+        X+=207;
         
         if(idx==0){
             [self fillLabelsWithText:btn];
@@ -112,23 +113,23 @@
     
     for (ItemMaster *item in _cstdDataModel.defaultsCustomer.itemsCount)
     {
-        total+=[item.filters.mRP__c intValue];
+        total+=[item.filters.wS_Price__c intValue];
         if([item.filters.product__c isEqualToString:@"Sunglasses"])
         {
-            sunGlassesGST+=[item.filters.mRP__c intValue];
+            sunGlassesGST+=[item.filters.wS_Price__c intValue];
         }
         if([item.filters.product__c isEqualToString:@"Frames"])
         {
-            framesGST+=[item.filters.mRP__c intValue];
+            framesGST+=[item.filters.wS_Price__c intValue];
         }
     }
     
     sunGlassesGST=sunGlassesGST*28/100;
     framesGST=framesGST*14/100;
-    _sunGST.text=[NSString stringWithFormat:@"%d",sunGlassesGST];
-    _frameGST.text=[NSString stringWithFormat:@"%d",framesGST];
-    _totalAmount.text=[NSString stringWithFormat:@"%d",total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100];
-    _netAmount.text=[NSString stringWithFormat:@"%d",total+sunGlassesGST+framesGST];
+    _sunGST.text=[NSString stringWithFormat:@"%0.2f",(float)sunGlassesGST];
+    _frameGST.text=[NSString stringWithFormat:@"%0.2f",(float)framesGST];
+    _totalAmount.text=[NSString stringWithFormat:@"%0.2f",(float)(total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100)];
+    _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)(total+sunGlassesGST+framesGST)];
     [_summaryTableView reloadData];
 }
 
@@ -151,7 +152,11 @@
     if(_calculator.selected==NO)
     {
         CGRect frame= _calculator.frame;
-        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-382-70,251,382)];
+        //cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-350-70,350,350)];
+        
+        
+        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-70,212,330)];
+        
         _calculator.selected=YES;
         [self.view addSubview:cal];
     }
@@ -173,8 +178,8 @@
     {
         _discountBtn.selected=YES;
         CGRect frame = _discountBtn.frame;
-        dis= [[Discount alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-286-70, 100, 200)];
-        dis.backgroundColor=[UIColor redColor];
+        dis= [[Discount alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-330-70, 153, 330)];
+        //dis.backgroundColor=[UIColor redColor];
         dis.delegate=self;
         [self.view addSubview:dis];
     }
@@ -269,13 +274,13 @@
     [self fillLabelsWithText:_presentCustomerBtn];
     
 }
-//
-//-(void)deactiveWSCalendarWithDate:(NSDate *)selectedDate{
-//    
-//    NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
-//    [monthFormatter setDateFormat:@"dd MMMM yyyy"];
-//    NSString *str=[monthFormatter stringFromDate:selectedDate];
-//}
+
+-(void)deactiveWSCalendarWithDate:(NSDate *)selectedDate{
+    
+    NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
+    [monthFormatter setDateFormat:@"dd MMMM yyyy"];
+    NSString *str=[monthFormatter stringFromDate:selectedDate];
+}
 
 - (IBAction)hideKeyboard:(id)sender {
     

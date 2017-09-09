@@ -61,7 +61,7 @@
             break;
         case Decrement:
         {
-            if(!(qty<=0)){
+            if(!(qty<=1)){
                 
                  [_cstData.defaultsCustomer.itemsCount removeObjectAtIndex:[_cstData.defaultsCustomer.itemsCount indexOfObject:_item]];
 
@@ -100,9 +100,9 @@
     _qtyLabel.text=[NSString stringWithFormat:@"%d",Count];
     _brandLabel.text=item.filters.brand__c;
     _descriptionLabel.text=item.filters.item_Description__c;
-    _priceLabel.text=item.filters.mRP__c;
+    _priceLabel.text=item.filters.wS_Price__c;
     _discountLabel.text=_item.filters.discount__c;
-    _totalLabel.text=[NSString stringWithFormat:@"%d",([item.filters.mRP__c intValue]*Count)];
+    _totalLabel.text=[NSString stringWithFormat:@"%d",([item.filters.wS_Price__c intValue]*Count)];
     
 }
 @end

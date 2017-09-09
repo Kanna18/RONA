@@ -121,7 +121,9 @@
                 filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
                 filter.discount__c=[NSString stringWithFormat:@"%@",filtersDict[@"Discount__c"]];
                 filter.codeId=filtersDict[@"Id"];
-                                
+                filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
+        
+                        
                 NSDictionary *attDict=filtersDict[@"attributes"];
                 
                 NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:ronakGlobal.context];
@@ -177,9 +179,6 @@
     NSMutableArray *lensColF=[[NSMutableArray alloc]init];
     
     
-    
-
-    
     [allFilters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
         Filters *fil=obj;
@@ -202,7 +201,7 @@
          
          !([discountF containsObject:fil.discount__c])&&!(fil.discount__c==NULL)?[discountF addObject:fil.discount__c]:@"";
          !([mrpF containsObject:fil.mRP__c])&&!(fil.mRP__c==NULL)?[mrpF addObject:fil.mRP__c]:@"";
-         !([rimF containsObject:fil.rim__c])&&!(fil.rim__c==NULL)?[rimF addObject:fil.rim__c]:@"";
+         !([rimF containsObject:fil.frame_Structure__c])&&!(fil.frame_Structure__c==NULL)?[rimF addObject:fil.frame_Structure__c]:@"";
          !([sizeF containsObject:fil.size__c])&&!(fil.size__c==NULL)?[sizeF addObject:fil.size__c]:@"";
          !([lensMAteF containsObject:fil.lens_Material__c])&&!(fil.lens_Material__c==NULL)?[lensMAteF addObject:fil.lens_Material__c]:@"";
          !([frontColF containsObject:fil.front_Color__c])&&!(fil.front_Color__c==NULL)?[frontColF addObject:fil.front_Color__c]:@"";
@@ -221,10 +220,10 @@
                                       @"options":categoriesF},
                                    @{ @"heading":kCollection,
                                       @"options":collectionF}];
-    ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kSampleWareHouse,
+    ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kStockWareHouse,
                                       @"options":stockWarehouseF},
-                                   @{ @"heading":kStockWareHouse,
-                                      @"options":stockWarehouseF},
+//                                   @{ @"heading":kStockWareHouse,
+//                                      @"options":stockWarehouseF},
                                    @{ @"heading":kStockvalue,
                                       @"options":@[@"nil"]}];
     ronakGlobal.advancedFilters1=@[@{ @"heading":kLensDescription,
@@ -242,14 +241,15 @@
                                    @{ @"heading":kTempleColour,
                                       @"options":templeColF},
                                    @{ @"heading":kTipColor,
-                                      @"options":tipColourF}];
+                                      @"options":tipColourF},
+                                   ];
     ronakGlobal.advancedFilters2=@[
                                    @{ @"heading":kDiscount,
                                       @"options":@[@"nil"]},
                                    @{ @"heading":kMRP,
                                       @"options":@[@"nil"]},
                                    @{ @"heading":kRim,
-                                      @"options":rimF},
+                                      @"options":[rimF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kSize,
                                       @"options":sizeF},
                                    @{ @"heading":kLensMaterial,
@@ -257,8 +257,12 @@
                                    @{ @"heading":kFrontColor,
                                       @"options":frontColF},
                                    @{ @"heading":kLensColor,
-                                      @"options":lensColF}];
+                                      @"options":lensColF},
+                                   @{ @"heading":@"Poster Model",
+                                      @"options":@[@"Yes",@"No"]}];
+    
     NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);
+    
 }
 
 

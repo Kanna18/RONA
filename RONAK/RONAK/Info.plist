@@ -33,6 +33,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF.OTF</string>
+		<string>GBold.OTF</string>
+		<string>GThin.OTF</string>
+		<string>GMedium.OTF</string>
+		<string>GMItalic</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>

@@ -12,6 +12,7 @@
 
 
 @interface OrderSummaryVC : UIViewController<UITableViewDelegate,UITableViewDataSource,DiscountResult,ReloadInstruction>
+@property (strong, nonatomic) IBOutlet UIView *bottomBarView;
 
 @property (strong, nonatomic) IBOutlet UITableView *summaryTableView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView_Cmlist;
@@ -27,18 +28,22 @@
 @property NSSet *items;
 @property NSArray *itemsArray;
 
-- (IBAction)calculatorClick:(id)sender;
-- (IBAction)discountClick:(id)sender;
+
 - (IBAction)jumptoMenuVC:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *futureDateLabl;
 @property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNameLabel;
 
-- (IBAction)futureDeliveryCLick:(id)sender;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *placeOrderBtn;
+
+- (IBAction)calculatorClick:(id)sender;
+- (IBAction)discountClick:(id)sender;
 - (IBAction)placeOrderClick:(id)sender;
+- (IBAction)futureDeliveryCLick:(id)sender;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *totalAmount;
 @property (strong, nonatomic) IBOutlet UILabel *frameGST;

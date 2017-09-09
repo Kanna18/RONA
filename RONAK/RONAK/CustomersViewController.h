@@ -25,8 +25,10 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *aplhabetsIndexScroll;
 
 @property(nonatomic, assign) BOOL automaticallyAdjustsScrollViewInsets;
+@property (strong, nonatomic) IBOutlet UIImageView *headingLabel;
 
 -(IBAction)pushtoNextVC:(id)sender;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeHome;
 
 @end
