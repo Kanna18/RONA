@@ -61,8 +61,15 @@
 -(IBAction)rightSiwpeFunction:(id)sender
 {
 
+    if(ronakGlobal.selectedFilter.brand.length>0)
+    {
         ProductsListController *pro=storyBoard(@"productsVC");
         [self.navigationController pushViewController:pro animated:YES];
+    }
+    else
+    {
+        showMessage(@"Select Brand", self.view);
+    }
 }
 - (IBAction)jumpMenuFunction:(id)sender
 {

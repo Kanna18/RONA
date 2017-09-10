@@ -36,6 +36,9 @@
         _stockMinMax=[[NSMutableDictionary alloc] init];
         _wsPriceMinMax=[[NSMutableDictionary alloc] init];
         
+        [_stockMinMax setValue:@"1" forKey:@"Min"];
+        [_priceMinMax setValue:@"1" forKey:@"Min"];
+        [_wsPriceMinMax setValue:@"1" forKey:@"Min"];
         
     }
     return self;
@@ -43,6 +46,8 @@
 -(NSPredicate*)getPredicateStringFromTable:(NSString*)str
 {
     NSMutableArray *preArrary=[[NSMutableArray alloc]init];
+    NSMutableArray *cateGoryArray=[[NSMutableArray alloc]init];
+    
     
     //Brands
     NSPredicate *Brandpred=[NSPredicate predicateWithFormat:@"SELF.filters.brand__c == %@",_brand];
@@ -51,11 +56,11 @@
     [_categories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.product__c == %@",obj];
-        [preArrary addObject:pre];
+        [cateGoryArray addObject:pre];
     }];
     
     //Gender
-    [_categories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_gender enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.category__c == %@",obj];
         [preArrary addObject:pre];
@@ -67,6 +72,8 @@
         [preArrary addObject:pre];
     }];
     
+
+    
     //Descriptions
     [_lensDescription enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Description__c ==  %@",obj];
@@ -76,6 +83,13 @@
     //Shape
     [_shape enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.shape__c ==  %@",obj];
+        [preArrary addObject:pre];
+    }];
+    
+    //Stock Warehouse
+    [_stockHouseFilter enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.stock_Warehouse__c ==  %@",obj];
         [preArrary addObject:pre];
     }];
     
@@ -102,6 +116,11 @@
         [preArrary addObject:pre];
     }];
     
+    [_lensMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Material__c ==  %@",obj];
+        [preArrary addObject:pre];
+    }];
+    
     //Size
     [_size enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.size__c ==  %@",obj];
@@ -121,13 +140,17 @@
         [preArrary addObject:pre];
     }];
     
-    NSPredicate *placesPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:preArrary];
-    
-    NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[Brandpred,placesPredicate]];
-    
-    return preArrary.count>0?finalPre:Brandpred;
-    
-    
+    NSPredicate *remPre=[NSCompoundPredicate orPredicateWithSubpredicates:preArrary];
+    NSPredicate *catePre=[NSCompoundPredicate orPredicateWithSubpredicates:cateGoryArray];
+    NSPredicate *finalPre;
+    NSArray *precArr=@[remPre,catePre];
+    for (NSPredicate *pre in precArr) {
+        if(![pre.predicateFormat isEqualToString:@"FALSEPREDICATE"])
+        {
+            finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[Brandpred,pre]];
+        }
+    }
+    return finalPre!=nil?finalPre:Brandpred;
     
 }
 -(void)clearAllFilters{

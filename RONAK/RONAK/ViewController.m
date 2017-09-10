@@ -91,6 +91,7 @@
         }
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.sliderView.hidden=YES;
         [cell DefaultMaxMinValues];
         return cell;
     }
@@ -184,7 +185,7 @@
         }else {
             [arrSelectedSectionIndex addObject:[NSNumber numberWithInteger:sender.tag]];
         }
-        customHeight=150;
+        customHeight=80;
         sender.selected = YES;
     }else{
         sender.selected = NO;
@@ -200,7 +201,7 @@
         customHeight=44;
         [tblView reloadData];
     }else {
-        customHeight=150;
+        customHeight=80;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }

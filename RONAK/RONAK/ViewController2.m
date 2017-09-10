@@ -22,7 +22,7 @@
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
-    CGFloat customHeight;
+    CGFloat customHeight,customHeightSecondCell;
     NSArray *arr;
 }
 @end
@@ -52,6 +52,7 @@
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     customHeight=44;
+    customHeightSecondCell=44;
 
 }
 
@@ -87,6 +88,7 @@
         {
             cell =[[[NSBundle mainBundle] loadNibNamed:@"RangTableViewCell" owner:self options:nil] lastObject];
         }
+        cell.sliderView.hidden=(indexPath.section==1)?YES:NO;
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         [cell DefaultMaxMinValues];
@@ -135,9 +137,13 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==1||indexPath.section==0)
+    if(indexPath.section==0)
     {
         return customHeight;
+    }
+    if(indexPath.section==1)
+    {
+        return customHeightSecondCell;
     }
     else
     {
@@ -178,6 +184,7 @@
             [arrSelectedSectionIndex addObject:[NSNumber numberWithInteger:sender.tag]];
         }
         customHeight=150;
+        customHeightSecondCell=80;
         sender.selected = YES;
     }else{
         sender.selected = NO;
@@ -187,20 +194,23 @@
             [arrSelectedSectionIndex removeObject:[NSNumber numberWithInteger:sender.tag]];
         }
         customHeight=44;
+        customHeightSecondCell=44;
     }
     
     if (!isMultipleExpansionAllowed) {
         customHeight=44;
+        customHeightSecondCell=44;
         [tblView reloadData];
     }else {
         customHeight=150;
+        customHeightSecondCell=80;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     if(indexPath.section!=1||indexPath.section!=0)
+     if(!(indexPath.section==1||indexPath.section==0))
      {
          ViewControllerCell *cell=[tableView cellForRowAtIndexPath:indexPath];
          NSString *text=cell.lblName.text;
@@ -228,8 +238,6 @@
              default:
                  break;
          }
-
-    
      }
     [tableView reloadData];
 }

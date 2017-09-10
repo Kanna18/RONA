@@ -16,6 +16,7 @@
 + (RONAKSharedClass *)sharedInstance;
 
 @property NSMutableArray *selectedCustomersArray;
+@property NSMutableArray *allCustomersList;
 
 @property SelectedFilters *selectedFilter;
 

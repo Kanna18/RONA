@@ -16,7 +16,7 @@
     [super setSelected:selected animated:animated];
     _imageNew.clipsToBounds=YES;
     [_imageNew.layer setMasksToBounds:YES];
-
+    
     
 }
 -(void)awakeFromNib

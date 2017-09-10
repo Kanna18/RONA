@@ -27,6 +27,8 @@
     UIScrollView *ZoomscrollVw;
     UIImageView *zoomimageV;
     
+    NSArray *showItemsOnscrnArry;
+    
     Calculator *cal;
 }
 
@@ -47,6 +49,7 @@
     [self defaultShapesOfComponents];
     [self getProductItemsFilter];
     [self zoomImageFunctionality];
+    
 }
 
 -(void)getProductItemsFilter{
@@ -61,10 +64,13 @@
         [_productsCollectionView reloadData];
         if(ronakGlobal.filterdProductsArray.count>0)
             [self changeLablesBasedOnitemsIndex:0];
-        
         [load stop];
     });
+}
 
+-(void)divideWholeitemsintoCategories
+{
+    
 }
 
 -(void)defaultShapesOfComponents
@@ -195,6 +201,10 @@
         [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
         [collectionView reloadData];
         [_customersCollectionView reloadData];
+        
+        ItemMaster *item=ronakGlobal.filterdProductsArray[indexPath.row];
+        Filters *fil=item.filters;
+        NSLog(@"%@",fil);
     }
     if(collectionView == _customersCollectionView)
     {
@@ -328,11 +338,13 @@
     {
         newFrame.origin.x=-300;
         mainFrame.origin.x=0;
+        [self getProductItemsFilter];
     }
     else
     {
         newFrame.origin.x=0;
         mainFrame.origin.x=350;
+        
     }
     
     [UIView animateWithDuration:0.3 animations:^{

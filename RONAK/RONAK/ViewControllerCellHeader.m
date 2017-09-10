@@ -14,6 +14,16 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
+}
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    [_headerButton setContentMode:UIViewContentModeRedraw];
+    
+    _headerButton.imageEdgeInsets=UIEdgeInsetsMake(0, 0, 0,30);
+//    UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>)
+    
 }
 
 @end

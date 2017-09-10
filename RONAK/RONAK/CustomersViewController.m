@@ -1,4 +1,4 @@
-//
+ //
 //  CustomersViewController.m
 //  RONAK
 //
@@ -60,16 +60,16 @@ static NSString *reuse=@"reuseCustomerCell";
     [load start];
     
     NSString *path=[[NSBundle mainBundle] pathForResource:@"Customers" ofType:@"json"];
+  
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
-            [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
-        }
-        else{
-            [self restServiceForCustomerList];
-        }
-    });
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
+                [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
+            }
+            else{
+                [self restServiceForCustomerList];
+            }
+        });
     _swipe.numberOfTouchesRequired=noOfTouches;
     _swipe.direction=UISwipeGestureRecognizerDirectionLeft;
     _swipeHome.numberOfTouchesRequired=noOfTouches;
@@ -205,13 +205,10 @@ static NSString *reuse=@"reuseCustomerCell";
 -(void)getListofAllCustomers:(NSData*)cList
 {
     NSArray *arr=[NSJSONSerialization JSONObjectWithData:cList options:0 error:nil];
-    
     NSError *err;
     customersList=[CustomerDataModel arrayOfModelsFromDictionaries:arr error:&err];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self sortCustomersintoSectionsandSearchFunctionality:nil];
-        [load stop];
-    });
+    [self sortCustomersintoSectionsandSearchFunctionality:nil];
+    [load stop];
 }
 
 #pragma mark componentsShapes

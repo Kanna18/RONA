@@ -387,11 +387,11 @@
 			children = (
 				F6BFD9FA1F4CC0870057C4A0 /* CoreDataProducts */,
 				F6A4F9741F60358300472A96 /* Images */,
-				84D4B3001F63C1D400B76DD7 /* DownloadProducts.h */,
 				84D4B3011F63C1D400B76DD7 /* RONAKSharedClass.h */,
-				84D4B3021F63C1D400B76DD7 /* SelectedFilters.h */,
-				84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */,
 				84D4B3041F63C1D400B76DD7 /* RONAKSharedClass.m */,
+				84D4B3001F63C1D400B76DD7 /* DownloadProducts.h */,
+				84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */,
+				84D4B3021F63C1D400B76DD7 /* SelectedFilters.h */,
 				84D4B3051F63C1D400B76DD7 /* SelectedFilters.m */,
 				F6DADCD61F19DA5E00DC635E /* SalesForce */,
 				F6DADCE71F1A249F00DC635E /* Features */,
@@ -774,12 +774,12 @@
 		F6FF3C651F589C8B003269EC /* DefaultFil */ = {
 			isa = PBXGroup;
 			children = (
+				84D4B3421F63C43D00B76DD7 /* DefaultFiltersViewController.h */,
+				84D4B3441F63C43D00B76DD7 /* DefaultFiltersViewController.m */,
 				84D4B33F1F63C43D00B76DD7 /* DefaultFilter1.h */,
 				84D4B3401F63C43D00B76DD7 /* DefaultFilter1.m */,
 				84D4B3411F63C43D00B76DD7 /* DefaultFilter2.h */,
-				84D4B3421F63C43D00B76DD7 /* DefaultFiltersViewController.h */,
 				84D4B3431F63C43D00B76DD7 /* DefaultFilter2.m */,
-				84D4B3441F63C43D00B76DD7 /* DefaultFiltersViewController.m */,
 			);
 			name = DefaultFil;
 			sourceTree = "<group>";

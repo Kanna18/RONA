@@ -21,7 +21,8 @@
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
-    CGFloat customHeight;
+    CGFloat customHeight,priceCelHeight;
+    
     NSMutableArray *arr;
 }
 @end
@@ -38,7 +39,7 @@
     [ronakGlobal.advancedFilters1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObject:obj];
     }];
-    [ronakGlobal.advancedFilters1 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [ronakGlobal.advancedFilters2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObject:obj];
     }];
     
@@ -62,6 +63,7 @@
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     customHeight=44;
+    priceCelHeight=44;
     
 }
 
@@ -70,8 +72,8 @@
     [super viewWillAppear:animated];
 }
 
-#pragma mark - TableView methods
 
+#pragma mark - TableView methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return arr.count;
@@ -86,10 +88,9 @@
         return 0;
     }
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if(indexPath.section==1||indexPath.section==8||indexPath.section==9)
     {
         static NSString *CellIdentifier = @"RangeCell";
@@ -160,7 +161,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==1)
+    if(indexPath.section==8)
     {
         return customHeight;
     }
@@ -210,6 +211,7 @@
             [arrSelectedSectionIndex addObject:[NSNumber numberWithInteger:sender.tag]];
         }
         customHeight=150;
+        priceCelHeight=80;
         sender.selected = YES;
     }else{
         sender.selected = NO;
@@ -219,13 +221,16 @@
             [arrSelectedSectionIndex removeObject:[NSNumber numberWithInteger:sender.tag]];
         }
         customHeight=44;
+        priceCelHeight=44;
     }
     
     if (!isMultipleExpansionAllowed) {
         customHeight=44;
+        priceCelHeight=44;
         [tblView reloadData];
     }else {
         customHeight=150;
+        priceCelHeight=80;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
