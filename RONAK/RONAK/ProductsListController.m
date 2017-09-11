@@ -8,6 +8,7 @@
 
 #import "ProductsListController.h"
 #import "Calculator.h"
+#import "CategoryBased.h"
 
 @interface ProductsListController ()
 
@@ -16,7 +17,7 @@
 @implementation ProductsListController{
     
     NSArray *imagesArray;
-    int index;
+    int index, categoryIndex,modelIndex;
     
     CGFloat height;
     unsigned long Section;
@@ -30,6 +31,11 @@
     NSArray *showItemsOnscrnArry;
     
     Calculator *cal;
+    
+    NSMutableArray *categoryBasedSort;
+    
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -37,6 +43,8 @@
     // Do any additional setup after loading the view.
     
     index=0;
+    modelIndex=0;
+    categoryIndex=0;
 //    imagesArray=@[@"Angel1",@"Angel2",@"Angel3",@"Angel4",@"Angel5"];
     UICollectionViewFlowLayout *productsViewLayout = (UICollectionViewFlowLayout*)self.productsCollectionView.collectionViewLayout;
     productsViewLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
@@ -49,6 +57,7 @@
     [self defaultShapesOfComponents];
     [self getProductItemsFilter];
     [self zoomImageFunctionality];
+    
     
 }
 
@@ -63,15 +72,25 @@
         ronakGlobal.filterdProductsArray=[dow pickProductsFromFilters];
         [_productsCollectionView reloadData];
         if(ronakGlobal.filterdProductsArray.count>0)
-            [self changeLablesBasedOnitemsIndex:0];
+        {
+            CategoryBased *cat=[[CategoryBased alloc]initWithArray:ronakGlobal.filterdProductsArray];
+            categoryBasedSort=[cat returnSortedItems];
+            [self divideWholeitemsintoCategories];
+        }
         [load stop];
+
     });
 }
-
 -(void)divideWholeitemsintoCategories
 {
-    
+    ModelBased *model=categoryBasedSort[categoryIndex];
+    ColorBased *col=model.ColorsArray[modelIndex];
+    showItemsOnscrnArry=col.listItemsArray;
+    [self changeLablesBasedOnitemsIndex:0];
+    _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
 }
+
+
 
 -(void)defaultShapesOfComponents
 {
@@ -91,9 +110,7 @@
     _sideMenuButton.layer.shadowRadius=2.0f;
     _sideMenuButton.layer.shadowOpacity=2.0f;
     
-    
-    
-    
+
     _allColorsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(4, 0, 4 , _allColorsTopBtn.frame.size.width-20);
     _allModelsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(4, 0, 4 , _allColorsTopBtn.frame.size.width-20);
     
@@ -130,7 +147,58 @@
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
     taped.numberOfTouchesRequired=1;
     [_ronakheadingLabel addGestureRecognizer:taped];
-
+    
+    _swipeUp.direction=UISwipeGestureRecognizerDirectionUp;
+    _swipeUp.numberOfTouchesRequired=2;
+    [_swipeUp addTarget:self action:@selector(swipeActions:)];
+    
+    _tripleSwipeUp.direction=UISwipeGestureRecognizerDirectionUp;
+    _tripleSwipeUp.numberOfTouchesRequired=3;
+    [_tripleSwipeUp addTarget:self action:@selector(swipeActions:)];
+    
+    _swipeDown.direction=UISwipeGestureRecognizerDirectionDown;
+    _swipeDown.numberOfTouchesRequired=2;
+    [_swipeDown addTarget:self action:@selector(swipeActions:)];
+    
+    _tripleSwipeDown.direction=UISwipeGestureRecognizerDirectionDown;
+    _tripleSwipeDown.numberOfTouchesRequired=3;
+    [_tripleSwipeDown addTarget:self action:@selector(swipeActions:)];
+    
+}
+-(void)swipeActions:(UISwipeGestureRecognizer*)swipe
+{
+    switch (swipe.numberOfTouches) {
+            
+        case 2:
+            if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
+            {
+                modelIndex++;
+            }
+            else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
+            {
+                modelIndex--;
+            }
+            break;
+            
+            
+        case 3:
+            if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
+            {
+                categoryIndex++;
+            }
+            else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
+            {
+                categoryIndex--;
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self divideWholeitemsintoCategories];
+    [self.productsCollectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,7 +220,7 @@
     }
     if(collectionView==self.productsCollectionView)
     {
-        return ronakGlobal.filterdProductsArray.count;
+        return showItemsOnscrnArry.count;
     }
     return 0;
 }
@@ -202,7 +270,7 @@
         [collectionView reloadData];
         [_customersCollectionView reloadData];
         
-        ItemMaster *item=ronakGlobal.filterdProductsArray[indexPath.row];
+        ItemMaster *item=showItemsOnscrnArry[indexPath.row];
         Filters *fil=item.filters;
         NSLog(@"%@",fil);
     }
@@ -229,7 +297,7 @@
 -(void)changeLablesBasedOnitemsIndex:(int)myIndex
 {
     
-    ItemMaster *item=ronakGlobal.filterdProductsArray[myIndex];
+    ItemMaster *item=showItemsOnscrnArry[myIndex];
 //    imagesArray=@[item.filters.picture_Name__c];
     NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c];
     UIImage *image=[UIImage imageNamed:path];
@@ -242,10 +310,7 @@
     _wsLabel.text=[[@"WS:₹" stringByAppendingString:item.filters.wS_Price__c] stringByAppendingString:@"/"];
     [_allColoursBtn setTitle:item.filters.color_Code__c forState:UIControlStateNormal];
     _itemModelNameLabel.text=item.filters.group_Name__c;
-    
     ronakGlobal.item=item;
-    
-    
     
 }
 

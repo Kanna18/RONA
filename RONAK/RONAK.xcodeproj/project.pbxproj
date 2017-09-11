@@ -105,6 +105,7 @@
 		F6A4F9B81F60358E00472A96 /* listblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9961F60358E00472A96 /* listblue.png */; };
 		F6A4F9B91F60358E00472A96 /* mailblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9971F60358E00472A96 /* mailblue.png */; };
 		F6A4F9BA1F60358E00472A96 /* roiplblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9981F60358E00472A96 /* roiplblue.png */; };
+		F6A59D3D1F65C5E4007469F8 /* CategoryBased.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A59D3C1F65C5E4007469F8 /* CategoryBased.m */; };
 		F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */; };
 		F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */; };
 		F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D085051F548DD1001A76C5 /* PlaceOrder.m */; };
@@ -277,6 +278,8 @@
 		F6A4F9961F60358E00472A96 /* listblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listblue.png; sourceTree = "<group>"; };
 		F6A4F9971F60358E00472A96 /* mailblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mailblue.png; sourceTree = "<group>"; };
 		F6A4F9981F60358E00472A96 /* roiplblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roiplblue.png; sourceTree = "<group>"; };
+		F6A59D3B1F65C5E4007469F8 /* CategoryBased.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBased.h; sourceTree = "<group>"; };
+		F6A59D3C1F65C5E4007469F8 /* CategoryBased.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBased.m; sourceTree = "<group>"; };
 		F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F6BFD94B1F4C9CFE0057C4A0 /* RONAK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RONAK.xcdatamodel; sourceTree = "<group>"; };
 		F6D085041F548DD1001A76C5 /* PlaceOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOrder.h; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				84D4B2E81F63BF5400B76DD7 /* Constants.h */,
 				F6D10AE71F25C886003AF699 /* ServerAPIManager.h */,
 				F6D10AE81F25C886003AF699 /* ServerAPIManager.m */,
+				F6A59D3B1F65C5E4007469F8 /* CategoryBased.h */,
+				F6A59D3C1F65C5E4007469F8 /* CategoryBased.m */,
 				84D4B2E91F63BFB400B76DD7 /* RESTCalls.h */,
 				84D4B2EA1F63BFB400B76DD7 /* RESTCalls.m */,
 				F6A4F9701F600FED00472A96 /* GMedium.OTF */,
@@ -1029,6 +1034,7 @@
 				84D4B3551F63C48900B76DD7 /* ViewControllerCell.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
+				F6A59D3D1F65C5E4007469F8 /* CategoryBased.m in Sources */,
 				84D4B3471F63C43D00B76DD7 /* DefaultFiltersViewController.m in Sources */,
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,

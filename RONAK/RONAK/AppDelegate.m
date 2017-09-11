@@ -129,7 +129,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     
 //    [[UILabel appearance] setFont:sfFont(17.0)];
 //    [[UIButton appearance].titleLabel setFont:sfFont(17.0)];
-    [[UITextField appearance] setFont:sfFont(17.0)];
+//    [[UITextField appearance] setFont:sfFont(17.0)];
     
 //    self.context=self.persistentContainer.viewContext;
     

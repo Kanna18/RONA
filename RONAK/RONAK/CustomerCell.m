@@ -17,11 +17,11 @@
 
     _addressLabel.textColor=[UIColor grayColor];
     
-    self.selectedImage.layer.borderColor=RGB(209, 210, 212).CGColor;
-    self.selectedImage.layer.borderWidth=1.0;
-    _selectedImage.layer.cornerRadius=5.0f;
-    _selectedImage.clipsToBounds=YES;
-    
+//    self.selectedImage.layer.borderColor=RGB(209, 210, 212).CGColor;
+//    self.selectedImage.layer.borderWidth=1.0;
+//    _selectedImage.layer.cornerRadius=5.0f;
+//    _selectedImage.clipsToBounds=YES;
+//    
 }
 
 -(void)bindData:(CustomerDataModel*)data
@@ -33,7 +33,7 @@
     self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.ShippingAddress.street,data.ShippingAddress.state,data.ShippingAddress.postalCode,data.ShippingAddress.country];
     self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.Account_Balance__c];
 //    self.selectedImage.backgroundColor=GrayLight;
-    
+    self.selectedImage.image=[UIImage imageNamed:@"grayBackground"];
     float due=[data.X181_240__c floatValue]+[data.X241_300__c floatValue]+[data.X301_360__c floatValue]+[data.X361__c floatValue]/*+[data.X0_30__c floatValue]+[data.X31_60__c floatValue]+[data.X61_90__c floatValue]+[data.X91_120__c floatValue]+[data.X121_150__c floatValue]+[data.X151_180__c floatValue]*/;
     
     if(due>0)
@@ -51,7 +51,6 @@
 {
     if([arr containsObject:self.cstData])
     {
-//        self.selectedImage.backgroundColor=BlueClr;
         self.selectedImage.image=[UIImage imageNamed:[NSString stringWithFormat:@"checkBlue"]];
 //        self.baseView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
 //        self.baseView.layer.shadowOffset = CGSizeMake(5, 5);
@@ -63,7 +62,7 @@
     else
     {
 //        self.selectedImage.backgroundColor=GrayLight;
-        self.selectedImage.image=nil;
+      self.selectedImage.image=[UIImage imageNamed:@"grayBackground"];
 //        self.baseView.layer.shadowColor = [UIColor whiteColor].CGColor;
 //        self.baseView.layer.shadowOffset = CGSizeMake(0, 0);
 //        self.baseView.layer.shadowOpacity = 0;

@@ -67,6 +67,11 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *calculatorBtn;
 
+@property (strong, nonatomic) IBOutlet UILabel *displayLable;
 
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeUp;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeDown;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *tripleSwipeUp;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *tripleSwipeDown;
 
 @end

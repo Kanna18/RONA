@@ -439,7 +439,7 @@
                                                             <color key="textColor" red="0.0" green="0.6470588235294118" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Smo-Zy-z44">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Smo-Zy-z44">
                                                             <rect key="frame" x="15" y="14" width="16" height="16"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1314,6 +1314,9 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="TA4-dR-fmu" appends="YES" id="PJ9-vg-dX7"/>
+                                    <outletCollection property="gestureRecognizers" destination="PoM-hW-UwA" appends="YES" id="u3Q-RU-JbJ"/>
+                                    <outletCollection property="gestureRecognizers" destination="dgo-eg-Zi6" appends="YES" id="AG7-mm-ysu"/>
+                                    <outletCollection property="gestureRecognizers" destination="Nvg-LG-i5y" appends="YES" id="43m-gv-dqe"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYq-1N-v3T">
@@ -1378,6 +1381,7 @@
                         <outlet property="detailedImageView" destination="6Sk-gU-qL7" id="1F3-u2-l1c"/>
                         <outlet property="discountLabel" destination="t72-NF-HyK" id="VTu-cy-uta"/>
                         <outlet property="discountVw" destination="1om-oM-zYa" id="5L8-3h-Eb1"/>
+                        <outlet property="displayLable" destination="FWF-UQ-vAc" id="q82-dV-HPE"/>
                         <outlet property="itemModelNameLabel" destination="gW8-XX-8xs" id="CGr-uS-v5e"/>
                         <outlet property="itemSizeLabel" destination="gDY-Sy-cqK" id="smy-nW-J0I"/>
                         <outlet property="pSymbol" destination="Go3-35-ztJ" id="8fG-GW-CwQ"/>
@@ -1392,11 +1396,18 @@
                         <outlet property="selectedItemDesc" destination="wyx-pd-fNg" id="xV9-g6-sMu"/>
                         <outlet property="sideMenuButton" destination="YtJ-ZB-I2F" id="NLg-bs-9fd"/>
                         <outlet property="sideView" destination="jYq-1N-v3T" id="7Oz-gS-jVM"/>
+                        <outlet property="swipeDown" destination="dgo-eg-Zi6" id="qWn-1a-SJO"/>
+                        <outlet property="swipeUp" destination="PoM-hW-UwA" id="INh-hg-dYb"/>
+                        <outlet property="tripleSwipeDown" destination="Nvg-LG-i5y" id="XZd-Gq-tmd"/>
+                        <outlet property="tripleSwipeUp" destination="Nvg-LG-i5y" id="rje-M8-IM0"/>
                         <outlet property="wsLabel" destination="1Kc-Om-Vpo" id="SNQ-fm-7Jh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpa-66-AhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="TA4-dR-fmu" customClass="CustomSwipe"/>
+                <swipeGestureRecognizer direction="right" id="PoM-hW-UwA"/>
+                <swipeGestureRecognizer direction="right" id="dgo-eg-Zi6"/>
+                <swipeGestureRecognizer direction="right" id="Nvg-LG-i5y"/>
             </objects>
             <point key="canvasLocation" x="3412.5" y="-6.25"/>
         </scene>
@@ -43498,7 +43509,7 @@ ACP/UQAj/1YAAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAAACP/WA
         <image name="forwardIcon" width="64" height="64"/>
         <image name="futureinvblue.png" width="200" height="200"/>
         <image name="futureinvgrey.png" width="200" height="200"/>
-        <image name="grayBackground" width="30" height="29"/>
+        <image name="grayBackground" width="60" height="60"/>
         <image name="home" width="542" height="548"/>
         <image name="home01" width="544" height="556"/>
         <image name="listblue.png" width="200" height="200"/>

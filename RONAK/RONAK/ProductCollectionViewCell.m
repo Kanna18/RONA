@@ -19,20 +19,18 @@
 -(void)bindData:(ItemMaster*)item{
 
 
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
     
         NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c];
         UIImage *image=[UIImage imageNamed:path];
         image=[self imageWithImage:image convertToSize:CGSizeMake(120, 85)];
-//        dispatch_sync(dispatch_get_main_queue(), ^(void) {
+        dispatch_sync(dispatch_get_main_queue(), ^(void) {
         
            _thubImage.image=image;
             _item=item;
             _codeName.text=item.filters.color_Code__c;
-//        });
-//    });
-//    
-
+        });
+    });
     
 //    [_thubImage sd_setImageWithURL:[NSURL URLWithString:[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 //        _item=item;
