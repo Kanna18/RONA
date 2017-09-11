@@ -183,7 +183,7 @@
         
         CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
         btn.cstData=cst;
-        btn.frame=CGRectMake(bX, bY, 12.25, 12.25);
+        btn.frame=CGRectMake(bX, bY, 15, 15);
         btn.tag=100+i;
         [_shipAddress_scrlView addSubview:btn];
         [btn addTarget:self action:@selector(selectedAddress:) forControlEvents:UIControlEventTouchUpInside];

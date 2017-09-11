@@ -130,6 +130,8 @@
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
     taped.numberOfTouchesRequired=1;
     [_ronakheadingLabel addGestureRecognizer:taped];
+    
+    _discountLabel.adjustsFontSizeToFitWidth=YES;
 
 }
 
