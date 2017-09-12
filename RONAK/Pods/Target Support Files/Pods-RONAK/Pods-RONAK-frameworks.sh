@@ -108,6 +108,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TOPasscodeViewController/TOPasscodeViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UIDevice-PasscodeStatus/UIDevice_PasscodeStatus.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -121,6 +122,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TOPasscodeViewController/TOPasscodeViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/UIDevice-PasscodeStatus/UIDevice_PasscodeStatus.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

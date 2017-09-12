@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="unc-Gp-BU1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="j84-iA-Lw5">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -1317,6 +1317,7 @@
                                     <outletCollection property="gestureRecognizers" destination="PoM-hW-UwA" appends="YES" id="u3Q-RU-JbJ"/>
                                     <outletCollection property="gestureRecognizers" destination="dgo-eg-Zi6" appends="YES" id="AG7-mm-ysu"/>
                                     <outletCollection property="gestureRecognizers" destination="Nvg-LG-i5y" appends="YES" id="43m-gv-dqe"/>
+                                    <outletCollection property="gestureRecognizers" destination="2qq-w7-Dtj" appends="YES" id="AvK-wM-jmp"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYq-1N-v3T">
@@ -1398,7 +1399,7 @@
                         <outlet property="sideView" destination="jYq-1N-v3T" id="7Oz-gS-jVM"/>
                         <outlet property="swipeDown" destination="dgo-eg-Zi6" id="qWn-1a-SJO"/>
                         <outlet property="swipeUp" destination="PoM-hW-UwA" id="INh-hg-dYb"/>
-                        <outlet property="tripleSwipeDown" destination="Nvg-LG-i5y" id="XZd-Gq-tmd"/>
+                        <outlet property="tripleSwipeDown" destination="2qq-w7-Dtj" id="bvT-iT-MXC"/>
                         <outlet property="tripleSwipeUp" destination="Nvg-LG-i5y" id="rje-M8-IM0"/>
                         <outlet property="wsLabel" destination="1Kc-Om-Vpo" id="SNQ-fm-7Jh"/>
                     </connections>
@@ -1408,6 +1409,7 @@
                 <swipeGestureRecognizer direction="right" id="PoM-hW-UwA"/>
                 <swipeGestureRecognizer direction="right" id="dgo-eg-Zi6"/>
                 <swipeGestureRecognizer direction="right" id="Nvg-LG-i5y"/>
+                <swipeGestureRecognizer direction="right" id="2qq-w7-Dtj"/>
             </objects>
             <point key="canvasLocation" x="3412.5" y="-6.25"/>
         </scene>
@@ -4125,6 +4127,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWX-wU-Oab" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3956.8359374999995" y="693.75"/>
+        </scene>
+        <!--Pass Code View Controller-->
+        <scene sceneID="HL0-qa-uYf">
+            <objects>
+                <viewController storyboardIdentifier="passcodeVC" id="j84-iA-Lw5" customClass="PassCodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="98L-bB-fIc"/>
+                        <viewControllerLayoutGuide type="bottom" id="uCX-gh-3y2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YMs-Rj-I7J">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signIn" translatesAutoresizingMaskIntoConstraints="NO" id="MS3-ZB-3u9">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZlW-qZ-NAh">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
+                                <color key="backgroundColor" red="0.113708131" green="0.1137354299" blue="0.11370643229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="t26-E0-oyv"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ronakLogo" translatesAutoresizingMaskIntoConstraints="NO" id="IGa-ye-Na1">
+                                <rect key="frame" x="412" y="10" width="200" height="41"/>
+                                <color key="backgroundColor" red="0.113708131" green="0.1137354299" blue="0.11370643229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="9nH-Hq-Gte"/>
+                                    <constraint firstAttribute="width" constant="200" id="fOF-Oy-eX4"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZlW-qZ-NAh" firstAttribute="top" secondItem="YMs-Rj-I7J" secondAttribute="top" id="2a3-Tr-a1n"/>
+                            <constraint firstItem="ZlW-qZ-NAh" firstAttribute="leading" secondItem="YMs-Rj-I7J" secondAttribute="leading" id="4Wb-Bh-jrV"/>
+                            <constraint firstItem="MS3-ZB-3u9" firstAttribute="top" secondItem="ZlW-qZ-NAh" secondAttribute="bottom" constant="-60" id="Cyn-td-bIo"/>
+                            <constraint firstItem="IGa-ye-Na1" firstAttribute="top" secondItem="YMs-Rj-I7J" secondAttribute="topMargin" constant="10" id="MKb-kt-Ab5"/>
+                            <constraint firstAttribute="trailing" secondItem="ZlW-qZ-NAh" secondAttribute="trailing" id="Tsc-2Z-BrL"/>
+                            <constraint firstItem="uCX-gh-3y2" firstAttribute="top" secondItem="MS3-ZB-3u9" secondAttribute="bottom" id="WJy-L2-oil"/>
+                            <constraint firstAttribute="trailing" secondItem="MS3-ZB-3u9" secondAttribute="trailing" id="gr8-Km-LE8"/>
+                            <constraint firstItem="IGa-ye-Na1" firstAttribute="centerX" secondItem="YMs-Rj-I7J" secondAttribute="centerX" id="mFb-6m-59m"/>
+                            <constraint firstItem="MS3-ZB-3u9" firstAttribute="leading" secondItem="YMs-Rj-I7J" secondAttribute="leading" id="tn5-Wk-8Aj"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DsJ-Ba-fn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-252.53906249999997" y="144.53125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ynH-Wv-1wf">
@@ -43528,6 +43579,7 @@ ACP/UQAj/1YAAAAAAAAEAQAAAAAAAABBAAAAAAAAAAAAAAAAACP/WA
         <image name="ronakLogo" width="390" height="71"/>
         <image name="sampleImage" width="140" height="65"/>
         <image name="settings" width="200" height="200"/>
+        <image name="signIn" width="1024" height="768"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ubh-A2-8eN"/>

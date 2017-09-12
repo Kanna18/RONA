@@ -19,5 +19,6 @@ pod 'SmartSync', :path => 'mobile_sdk/SalesforceMobileSDK-iOS'
 pod 'AFNetworking', '~> 3.0'
 pod 'UIDevice-PasscodeStatus', '~> 0.0.2'
 pod 'MARKRangeSlider'
+pod 'TOPasscodeViewController'
 
 end

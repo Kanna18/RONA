@@ -26,7 +26,7 @@
 		84D4B3061F63C1D400B76DD7 /* DownloadProducts.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */; };
 		84D4B3071F63C1D400B76DD7 /* RONAKSharedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3041F63C1D400B76DD7 /* RONAKSharedClass.m */; };
 		84D4B3081F63C1D400B76DD7 /* SelectedFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3051F63C1D400B76DD7 /* SelectedFilters.m */; };
-		84D4B30B1F63C22C00B76DD7 /* SignInViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3091F63C22C00B76DD7 /* SignInViewController1.m */; };
+		84D4B30B1F63C22C00B76DD7 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3091F63C22C00B76DD7 /* SignInViewController.m */; };
 		84D4B30E1F63C24A00B76DD7 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B30D1F63C24A00B76DD7 /* MenuViewController.m */; };
 		84D4B3111F63C27500B76DD7 /* CustomersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3101F63C27500B76DD7 /* CustomersViewController.m */; };
 		84D4B3141F63C29E00B76DD7 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3131F63C29E00B76DD7 /* CustomerCell.m */; };
@@ -56,6 +56,7 @@
 		84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B3571F63C53F00B76DD7 /* Images.xcassets */; };
 		84D4B35C1F63CC5900B76DD7 /* universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D4B35B1F63CC5900B76DD7 /* universal.a */; };
 		BB98467CCA978EFA6D0B1208 /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */; };
+		F6108A3E1F678C6400252FDB /* PassCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6108A3D1F678C6400252FDB /* PassCodeViewController.m */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
@@ -166,7 +167,7 @@
 		84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadProducts.m; sourceTree = "<group>"; };
 		84D4B3041F63C1D400B76DD7 /* RONAKSharedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RONAKSharedClass.m; sourceTree = "<group>"; };
 		84D4B3051F63C1D400B76DD7 /* SelectedFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedFilters.m; sourceTree = "<group>"; };
-		84D4B3091F63C22C00B76DD7 /* SignInViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController1.m; sourceTree = "<group>"; };
+		84D4B3091F63C22C00B76DD7 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		84D4B30A1F63C22C00B76DD7 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		84D4B30C1F63C24A00B76DD7 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		84D4B30D1F63C24A00B76DD7 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -221,6 +222,8 @@
 		84D4B35B1F63CC5900B76DD7 /* universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = universal.a; sourceTree = "<group>"; };
 		90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
 		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		F6108A3C1F678C6400252FDB /* PassCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassCodeViewController.h; sourceTree = "<group>"; };
+		F6108A3D1F678C6400252FDB /* PassCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCodeViewController.m; sourceTree = "<group>"; };
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
 		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
 		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
@@ -616,8 +619,10 @@
 		F6B71A691F3CB86F002AE0FB /* SignInVC */ = {
 			isa = PBXGroup;
 			children = (
-				84D4B3091F63C22C00B76DD7 /* SignInViewController1.m */,
+				F6108A3C1F678C6400252FDB /* PassCodeViewController.h */,
+				F6108A3D1F678C6400252FDB /* PassCodeViewController.m */,
 				84D4B30A1F63C22C00B76DD7 /* SignInViewController.h */,
+				84D4B3091F63C22C00B76DD7 /* SignInViewController.m */,
 			);
 			name = SignInVC;
 			sourceTree = "<group>";
@@ -930,6 +935,7 @@
 				"${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework",
+				"${BUILT_PRODUCTS_DIR}/TOPasscodeViewController/TOPasscodeViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/UIDevice-PasscodeStatus/UIDevice_PasscodeStatus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -944,6 +950,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceSDKCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOPasscodeViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIDevice_PasscodeStatus.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,8 +1046,9 @@
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
 				84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */,
+				F6108A3E1F678C6400252FDB /* PassCodeViewController.m in Sources */,
 				84D4B2FE1F63C18100B76DD7 /* ItemMaster+CoreDataClass.m in Sources */,
-				84D4B30B1F63C22C00B76DD7 /* SignInViewController1.m in Sources */,
+				84D4B30B1F63C22C00B76DD7 /* SignInViewController.m in Sources */,
 				84D4B2E21F63BE9000B76DD7 /* UnzipViewController.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				84D4B3081F63C1D400B76DD7 /* SelectedFilters.m in Sources */,

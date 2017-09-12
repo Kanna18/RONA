@@ -36,4 +36,6 @@
 
 #import "MARKRangeSlider.h"
 
+#import <TOPasscodeViewController/TOPasscodeViewController.h>
+
 #endif /* RONAK_pch */

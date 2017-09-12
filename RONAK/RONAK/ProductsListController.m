@@ -70,7 +70,6 @@
     DownloadProducts *dow=[[DownloadProducts alloc]init];
     dispatch_async(dispatch_get_main_queue(), ^{
         ronakGlobal.filterdProductsArray=[dow pickProductsFromFilters];
-        [_productsCollectionView reloadData];
         if(ronakGlobal.filterdProductsArray.count>0)
         {
             CategoryBased *cat=[[CategoryBased alloc]initWithArray:ronakGlobal.filterdProductsArray];
@@ -78,7 +77,6 @@
             [self divideWholeitemsintoCategories];
         }
         [load stop];
-
     });
 }
 -(void)divideWholeitemsintoCategories
@@ -163,32 +161,68 @@
     _tripleSwipeDown.direction=UISwipeGestureRecognizerDirectionDown;
     _tripleSwipeDown.numberOfTouchesRequired=3;
     [_tripleSwipeDown addTarget:self action:@selector(swipeActions:)];
-    
+    _discountLabel.adjustsFontSizeToFitWidth=YES;
 }
 -(void)swipeActions:(UISwipeGestureRecognizer*)swipe
 {
     switch (swipe.numberOfTouches) {
             
         case 2:
+        {
+            ModelBased *model=categoryBasedSort[categoryIndex];
+            
             if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
             {
-                modelIndex++;
+                if(modelIndex<model.ColorsArray.count-1)
+                {
+                    modelIndex++;
+                }
+                else
+                {
+                    showMessage(@"No Models Available", self.view);
+                }
             }
+            
             else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
             {
-                modelIndex--;
+                if(modelIndex>0)
+                {
+                    modelIndex--;
+                }
+                else
+                {
+                    showMessage(@"No Models Available", self.view);
+                }
             }
+        }
             break;
             
             
         case 3:
             if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
             {
-                categoryIndex++;
+                if(categoryIndex<categoryBasedSort.count-1)
+                {
+                    modelIndex=0;
+                    categoryIndex++;
+                }
+                else
+                {
+                    showMessage(@"No Products Available", self.view);
+                }
+                
             }
             else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
             {
-                categoryIndex--;
+                if(categoryIndex>0)
+                {
+                    modelIndex=0;
+                    categoryIndex--;
+                }
+                else
+                {
+                    showMessage(@"No Products Available", self.view);
+                }
             }
             
             break;
@@ -198,7 +232,6 @@
     }
     
     [self divideWholeitemsintoCategories];
-    [self.productsCollectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -243,7 +276,7 @@
         {
             cell.bordrrViewColor.backgroundColor=RGB(207, 207, 207);
         }
-        [cell bindData:ronakGlobal.filterdProductsArray[indexPath.row]];
+        [cell bindData:showItemsOnscrnArry[indexPath.row]];
         return cell;
     }
     if(collectionView==self.customersCollectionView)
@@ -267,9 +300,6 @@
     if(collectionView==_productsCollectionView)
     {
         [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
-        [collectionView reloadData];
-        [_customersCollectionView reloadData];
-        
         ItemMaster *item=showItemsOnscrnArry[indexPath.row];
         Filters *fil=item.filters;
         NSLog(@"%@",fil);
@@ -310,6 +340,9 @@
     _wsLabel.text=[[@"WS:₹" stringByAppendingString:item.filters.wS_Price__c] stringByAppendingString:@"/"];
     [_allColoursBtn setTitle:item.filters.color_Code__c forState:UIControlStateNormal];
     _itemModelNameLabel.text=item.filters.group_Name__c;
+    
+    
+    [_productsCollectionView reloadData];
     ronakGlobal.item=item;
     
 }

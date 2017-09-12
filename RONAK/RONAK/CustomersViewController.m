@@ -60,8 +60,7 @@ static NSString *reuse=@"reuseCustomerCell";
     [load start];
     
     NSString *path=[[NSBundle mainBundle] pathForResource:@"Customers" ofType:@"json"];
-  
-    
+
         dispatch_async(dispatch_get_main_queue(), ^{
             if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
                 [self getListofAllCustomers:[rest readJsonDataFromFileinNSD:customersFilePath]];
@@ -275,10 +274,22 @@ static NSString *reuse=@"reuseCustomerCell";
     {
      _searchTextField.text=@"";
         [self sortCustomersintoSectionsandSearchFunctionality:_searchTextField.text];
+        [self moveCollectionViewtoIndexPath:cell.cstData];
         [self.view endEditing:YES];
     }
-
 }
+-(void)moveCollectionViewtoIndexPath:(CustomerDataModel*)cst
+{
+ 
+    NSString *str=[NSString stringWithFormat:@"%c",[cst.Name characterAtIndex:0]];
+    int section=[cvAlphabetSectionArr indexOfObject:str];
+    
+    NSArray *arr=[cvDataSectionArr objectAtIndex:section];
+    int row=[arr indexOfObject:cst];
+    
+    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+}
+
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {

@@ -73,7 +73,6 @@
     }
     return self;
 }
-
 -(NSMutableArray*)returnSortedItems
 {
     return _ModelsArray;

@@ -60,6 +60,7 @@ PODS:
   - SQLCipher/common (3.4.1)
   - SQLCipher/fts (3.4.1):
     - SQLCipher/common
+  - TOPasscodeViewController (0.0.1)
   - UIDevice-PasscodeStatus (0.0.2)
 
 DEPENDENCIES:
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.8)
   - SmartStore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SmartSync (from `mobile_sdk/SalesforceMobileSDK-iOS`)
+  - TOPasscodeViewController
   - UIDevice-PasscodeStatus (~> 0.0.2)
 
 EXTERNAL SOURCES:
@@ -94,8 +96,9 @@ SPEC CHECKSUMS:
   SmartStore: 4c0a568644008ff0f876791df162f4be51a8a5fa
   SmartSync: 822e24b5d7de8b7d105441121ec5503bda70441b
   SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
+  TOPasscodeViewController: 56df8490d9b5711ca1c1f9de7d8d119022f6bbe3
   UIDevice-PasscodeStatus: 250b63a271e85223105ff4c1626056ce3aab3305
 
-PODFILE CHECKSUM: 88f61fb381873323081f671980ae11945fd68be7
+PODFILE CHECKSUM: 65ee36adbc620e2d8dd08b55208e4e6a63bf25a9
 
 COCOAPODS: 1.3.0.beta.2
