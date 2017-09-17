@@ -47,6 +47,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SevenSwitch (2.1.0)
   - SmartStore (5.2.0):
     - SmartStore/SmartStore (= 5.2.0)
   - SmartStore/SmartStore (5.2.0):
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - SalesforceAnalytics (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SalesforceSDKCore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SDWebImage (~> 3.8)
+  - SevenSwitch (~> 2.1)
   - SmartStore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SmartSync (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - TOPasscodeViewController
@@ -93,12 +95,13 @@ SPEC CHECKSUMS:
   SalesforceAnalytics: 9c415d350f3acf6f41d45077436226c4b19008d1
   SalesforceSDKCore: f2523c9d55e2cc719f188d9dc4bf2362de9b7762
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SevenSwitch: 5543327829b7bec5b29b73bad5f3cc3f92c1736d
   SmartStore: 4c0a568644008ff0f876791df162f4be51a8a5fa
   SmartSync: 822e24b5d7de8b7d105441121ec5503bda70441b
   SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
   TOPasscodeViewController: 56df8490d9b5711ca1c1f9de7d8d119022f6bbe3
   UIDevice-PasscodeStatus: 250b63a271e85223105ff4c1626056ce3aab3305
 
-PODFILE CHECKSUM: 65ee36adbc620e2d8dd08b55208e4e6a63bf25a9
+PODFILE CHECKSUM: c6302079a09cd18df8f4c5046c0a47b691b61b7a
 
 COCOAPODS: 1.3.0.beta.2

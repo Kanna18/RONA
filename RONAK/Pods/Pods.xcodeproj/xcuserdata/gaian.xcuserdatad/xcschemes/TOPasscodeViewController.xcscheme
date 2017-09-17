@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F08854E43900F16F1D7963190DBE8FAF'
+               BlueprintIdentifier = '1782BA02814AC3EFB8B3C742DA82C67A'
                BlueprintName = 'TOPasscodeViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TOPasscodeViewController.framework'>

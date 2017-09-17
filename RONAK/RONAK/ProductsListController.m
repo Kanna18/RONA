@@ -28,7 +28,7 @@
     UIScrollView *ZoomscrollVw;
     UIImageView *zoomimageV;
     
-    NSArray *showItemsOnscrnArry;
+    NSMutableArray *showItemsOnscrnArry;
     
     Calculator *cal;
     
@@ -46,6 +46,7 @@
     modelIndex=0;
     categoryIndex=0;
 //    imagesArray=@[@"Angel1",@"Angel2",@"Angel3",@"Angel4",@"Angel5"];
+
     UICollectionViewFlowLayout *productsViewLayout = (UICollectionViewFlowLayout*)self.productsCollectionView.collectionViewLayout;
     productsViewLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
     
@@ -58,6 +59,8 @@
     [self getProductItemsFilter];
     [self zoomImageFunctionality];
     
+    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
+    
     
 }
 
@@ -66,7 +69,6 @@
     [load loadingWithlightAlpha:_productsCollectionView with_message:@""];
     [load start];
 
-    
     DownloadProducts *dow=[[DownloadProducts alloc]init];
     dispatch_async(dispatch_get_main_queue(), ^{
         ronakGlobal.filterdProductsArray=[dow pickProductsFromFilters];
@@ -86,6 +88,8 @@
     showItemsOnscrnArry=col.listItemsArray;
     [self changeLablesBasedOnitemsIndex:0];
     _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
+    [ronakGlobal.selectedItemsTocartArr removeAllObjects];
+    [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
 }
 
 
@@ -112,8 +116,9 @@
     _allColorsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(4, 0, 4 , _allColorsTopBtn.frame.size.width-20);
     _allModelsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(4, 0, 4 , _allColorsTopBtn.frame.size.width-20);
     
-    _allColorsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -50, 0,-20);
-    _allModelsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -50, 0,-20);
+    _allColorsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -50, 3,-20);
+    _allModelsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -50, 3,-20);
+    
     
     
     _pricingLabel.hidden=YES;
@@ -123,17 +128,17 @@
     
     _pricingSwitch.onTintColor=[UIColor whiteColor];
     
-    _cartOption.imageEdgeInsets=UIEdgeInsetsMake(0, 30, 0, 30);
-    _cartOption.layer.borderWidth=1.0f;
-    _cartOption.layer.borderColor=GrayLight.CGColor;
-    _cartOption.layer.cornerRadius=5.0f;
-    _cartOption.clipsToBounds=YES;
-    
-    _sortOption.imageEdgeInsets=UIEdgeInsetsMake(0, 30, 0, 30);
-    _sortOption.layer.borderWidth=1.0f;
-    _sortOption.layer.borderColor=GrayLight.CGColor;
-    _sortOption.layer.cornerRadius=5.0f;
-    _sortOption.clipsToBounds=YES;
+//    _cartOption.imageEdgeInsets=UIEdgeInsetsMake(0, 30, 0, 30);
+//    _cartOption.layer.borderWidth=1.0f;
+//    _cartOption.layer.borderColor=GrayLight.CGColor;
+//    _cartOption.layer.cornerRadius=5.0f;
+//    _cartOption.clipsToBounds=YES;
+//    
+//    _sortOption.imageEdgeInsets=UIEdgeInsetsMake(0, 30, 0, 30);
+//    _sortOption.layer.borderWidth=1.0f;
+//    _sortOption.layer.borderColor=GrayLight.CGColor;
+//    _sortOption.layer.cornerRadius=5.0f;
+//    _sortOption.clipsToBounds=YES;
     
     [_customersCollectionView setShowsHorizontalScrollIndicator:NO];
 
@@ -162,9 +167,22 @@
     _tripleSwipeDown.numberOfTouchesRequired=3;
     [_tripleSwipeDown addTarget:self action:@selector(swipeActions:)];
     _discountLabel.adjustsFontSizeToFitWidth=YES;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [_switchPr setOn:YES];
+    });
+    
+    UISwipeGestureRecognizer *swipeMenu=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(showSideMenuOnSwipe)];
+    swipeMenu.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeMenu];
+    _sideMenuButton.hidden=YES;
+    
 }
 -(void)swipeActions:(UISwipeGestureRecognizer*)swipe
 {
+    _allModelsTopBtn.selected=NO;
+    _allColorsTopBtn.selected=NO;
     switch (swipe.numberOfTouches) {
             
         case 2:
@@ -241,6 +259,7 @@
 
 #pragma mark Collection View Delegates
 
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -257,6 +276,20 @@
     }
     return 0;
 }
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(collectionView==_customersCollectionView){
+        if(ronakGlobal.selectedCustomersArray.count==1){
+            CGSize mElementSize = CGSizeMake(_customersCollectionView.frame.size.width,95.0);
+            return mElementSize;
+    }
+    else{
+        CGSize mElementSize = CGSizeMake(_customersCollectionView.frame.size.width/2,95.0);
+        return mElementSize;
+        }
+    }
+    return CGSizeMake(120, 122);
+}
 
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
@@ -268,7 +301,7 @@
         {
             cell=[[ProductCollectionViewCell alloc]init];
         }
-        if([ronakGlobal.item isEqual:ronakGlobal.filterdProductsArray[indexPath.row]])
+        if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[indexPath.row]])
         {
             cell.bordrrViewColor.backgroundColor=RGB(188, 1, 28);
         }
@@ -293,21 +326,25 @@
         return cell;
     }
     return nil;
-    
 }
+
+
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if(collectionView==_productsCollectionView)
     {
         [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
         ItemMaster *item=showItemsOnscrnArry[indexPath.row];
-        Filters *fil=item.filters;
-        NSLog(@"%@",fil);
+        NSArray *arr=@[item];
+        [self addOrRemoveItemsfromSelection:arr];
+        [_customersCollectionView reloadData];
     }
     if(collectionView == _customersCollectionView)
     {
         
     }
+    
 }
 
 -(void)drawBorders:(id)element{
@@ -323,6 +360,29 @@
         cst.layer.shadowOpacity=1.0f;
     }
 }
+-(void)addOrRemoveItemsfromSelection:(NSArray*)arr
+{
+    ItemMaster *firstObj=arr[0];
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            ItemMaster *item=obj;
+        
+        if([ronakGlobal.selectedItemsTocartArr containsObject:item]){
+            
+            [ronakGlobal.selectedItemsTocartArr removeObject:item];
+            if(ronakGlobal.selectedItemsTocartArr.count==0)
+            {
+                showMessage(@"Atleast One item must be selected", self.view);
+                [ronakGlobal.selectedItemsTocartArr addObject:firstObj];
+                return;
+            }
+        }
+        else{
+            [ronakGlobal.selectedItemsTocartArr addObject:item];
+        }
+    }];
+
+    [_productsCollectionView reloadData];
+}
 
 -(void)changeLablesBasedOnitemsIndex:(int)myIndex
 {
@@ -334,16 +394,32 @@
     _detailedImageView.image=image;
     _itemSizeLabel.text=item.filters.size__c;
     _selectedItemDesc.text=item.filters.item_Description__c;
-    _pricingLabel.text=[@"MRP:₹" stringByAppendingString:item.filters.mRP__c];
+    _pricingLabel.text=[@"₹" stringByAppendingString:item.filters.mRP__c];
     _discountLabel.text=[item.filters.discount__c stringByAppendingString:@"%"];
     _itemSizeLabel.text=item.filters.size__c;
-    _wsLabel.text=[[@"WS:₹" stringByAppendingString:item.filters.wS_Price__c] stringByAppendingString:@"/"];
-    [_allColoursBtn setTitle:item.filters.color_Code__c forState:UIControlStateNormal];
+    _wsLabel.text=[[@"₹" stringByAppendingString:item.filters.wS_Price__c] stringByAppendingString:@"/"];
+    
+    NSString *strSele=@"";
+    if(_allModelsTopBtn.selected==YES){
+        strSele=@"All Models";
+    }
+    else if (_allColorsTopBtn.selected==YES){
+        strSele=@"All Colors";
+    }
+    else if (ronakGlobal.selectedItemsTocartArr.count>1){
+        strSele=@"Multiple Colors";
+    }
+    else{
+        strSele=item.filters.color_Code__c;
+    }
+    [_allColoursBtn setTitle:strSele forState:UIControlStateNormal];
+    
+    
     _itemModelNameLabel.text=item.filters.group_Name__c;
     
     
     [_productsCollectionView reloadData];
-    ronakGlobal.item=item;
+//    ronakGlobal.item=item;
     
 }
 
@@ -386,7 +462,7 @@
 }
 
 -(IBAction)listImagesArray:(id)sender
-{
+{    
     if(!(imagesArray.count<=0))
     {
         UIButton *but=sender;
@@ -421,15 +497,46 @@
     }
     
 }
+
+#pragma mark CustomerCollectionView Delegate
+
 -(void)customerNameDeleted
 {
     [_customersCollectionView reloadData];
+    [self cartCount];
+}
+-(void)cartCount
+{
+    __block unsigned long cartCount=0;
+    [ronakGlobal.selectedCustomersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        CustomerDataModel *cst=obj;
+        cartCount+=cst.defaultsCustomer.itemsCount.count;
+        NSLog(@"%lu",cartCount);
+    }];
+    [_cartOption setTitle:[NSString stringWithFormat:@"%ld",cartCount] forState:UIControlStateNormal];
+
+    
 }
 
 
-
+-(void)showSideMenuOnSwipe
+{
+    if(_sideMenuButton.hidden==YES){
+    _sideMenuButton.hidden=NO;
+    CGRect newFrame=_sideView.frame;
+    CGRect mainFrame=_containerView.frame;
+    newFrame.origin.x=0;
+    mainFrame.origin.x=350;
+    [UIView animateWithDuration:0.3 animations:^{
+        _sideView.frame=newFrame;
+        //        _containerView.frame=mainFrame;
+        
+    }];
+    }
+}
 - (IBAction)sideMenuClick:(id)sender {
-    
+    _sideMenuButton.hidden=YES;
     CGRect newFrame=_sideView.frame;
     CGRect mainFrame=_containerView.frame;
     if(newFrame.origin.x==0)
@@ -438,13 +545,12 @@
         mainFrame.origin.x=0;
         [self getProductItemsFilter];
     }
-    else
-    {
-        newFrame.origin.x=0;
-        mainFrame.origin.x=350;
-        
-    }
-    
+//    else
+//    {
+//        newFrame.origin.x=0;
+//        mainFrame.origin.x=350;
+//        
+//    }
     [UIView animateWithDuration:0.3 animations:^{
         _sideView.frame=newFrame;
 //        _containerView.frame=mainFrame;
@@ -581,16 +687,28 @@
 }
 - (IBAction)allmodelTopClick:(id)sender {
     
+    _allColorsTopBtn.selected=NO;
     if(_allModelsTopBtn.selected==YES)
     {
         _allModelsTopBtn.selected=NO;
-        [_allModelsTopBtn setImage:[UIImage imageNamed:@"grayBackground"] forState:UIControlStateNormal];
+        [self divideWholeitemsintoCategories];
+
     }
-    else
-    {
+    else{
+        NSMutableArray *allItems=[[NSMutableArray alloc]init];
         _allModelsTopBtn.selected=YES;
-        [_allModelsTopBtn setImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
+        [categoryBasedSort enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {            
+            NSArray *arr=[obj valueForKeyPath:@"ColorsArray.listItemsArray"];
+            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+                [allItems addObjectsFromArray:obj];
+                
+            }];
+        }];
+        showItemsOnscrnArry=allItems;
     }
+    [_productsCollectionView reloadData];
+    [self changeLablesBasedOnitemsIndex:0];
 }
 
 - (IBAction)allColorsTopClick:(id)sender {
@@ -598,14 +716,14 @@
     if(_allColorsTopBtn.selected==YES)
     {
         _allColorsTopBtn.selected=NO;
-        [_allColorsTopBtn setImage:[UIImage imageNamed:@"grayBackground"] forState:UIControlStateNormal];
     }
     else
     {
+        [ronakGlobal.selectedItemsTocartArr removeAllObjects];
         _allColorsTopBtn.selected=YES;
-        [_allColorsTopBtn setImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
     }
-    
+    [self addOrRemoveItemsfromSelection:showItemsOnscrnArry];
+    [self changeLablesBasedOnitemsIndex:0];
 }
 - (IBAction)cancelOrderClick:(id)sender {
     
@@ -629,7 +747,7 @@
             //cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-350-70,350,350)];
             
             
-            cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-70,212,330)];
+            cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
             
             _calculatorBtn.selected=YES;
             [self.view addSubview:cal];
@@ -648,6 +766,20 @@
             [cst.defaultsCustomer.itemsCount removeAllObjects];
         }];    
     [_customersCollectionView reloadData];
+}
+- (IBAction)priceWithRupeeSymbolClick:(id)sender {
+    
+    SevenSwitch *seven=sender;
+    if(seven.isOn)
+    {
+        _pricingLabel.hidden=YES;
+        _wsLabel.hidden=YES;
+    }
+    else
+    {
+        _pricingLabel.hidden=NO;
+        _wsLabel.hidden=NO;
+    }
 }
 @end
 

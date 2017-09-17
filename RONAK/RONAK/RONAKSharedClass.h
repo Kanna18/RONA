@@ -23,13 +23,13 @@
 @property NSMutableArray *filterdProductsArray;
 @property (nonatomic,strong) NSManagedObjectContext *context;
 @property (nonatomic,strong) AppDelegate *delegate;
-
 @property ItemMaster *item;
 
+//Filters
 @property NSArray *DefFiltersOne,*DefFiltersTwo,*advancedFilters1,*advancedFilters2;
-
 @property NSMutableArray *discArr,*wsPriceArr,*priceArr,*stockArr;
-@property NSString *conutD;
 
+//Order Booking
 @property BOOL showClearOptionInCustomerCell;
+@property NSMutableArray *selectedItemsTocartArr;/*items that save to cart*/
 @end

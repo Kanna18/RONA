@@ -88,7 +88,7 @@
 #define kGender @"Gender"
 #define kFrameMaterial @"Frame Material"
 #define kTempleMaterial @"Temple Material"
-#define kTempleColour @"Temple Colour"
+#define kTempleColour @"Temple Color"
 #define kTipColor @"Tip Color"
 //AdvancedF2
 #define kDiscount @"Discount"

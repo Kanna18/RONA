@@ -17,7 +17,10 @@
     
     
     self.rangeSlider.frame=CGRectMake(50, 30, rect.size.width-90, 40);
-
+    self.rangeSlider.leftThumbImage=[UIImage imageNamed:@"pause"];
+    self.rangeSlider.rightThumbImage=[UIImage imageNamed:@"pause"];
+    self.rangeSlider.trackImage=[UIImage imageNamed:@"blueBG"];
+    
 }
 
 
@@ -28,9 +31,9 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeSlider:) name:UITextFieldTextDidChangeNotification object:_maxTF];
     self.rangeSlider = [[MARKRangeSlider alloc] init];
     [self.rangeSlider addTarget:self action:@selector(rangeSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
-    //    [self.rangeSlider setMinValue:1 maxValue:100];
-    //    [self.rangeSlider setLeftValue:1 rightValue:20];
-    //    self.rangeSlider.minimumDistance = 1;
+        [self.rangeSlider setMinValue:1 maxValue:100];
+        [self.rangeSlider setLeftValue:1 rightValue:20];
+        self.rangeSlider.minimumDistance = 1;
     [self.sliderView addSubview:self.rangeSlider];
     // Configure the view for the selected state
     _minTf.delegate=self;
@@ -89,14 +92,14 @@
     
     if([_filterType isEqualToString:kDiscount])
     {
-        NSNumber *maxNum=[ronakGlobal.discArr valueForKeyPath:@"@max.self"];
-        NSNumber *minNum=[ronakGlobal.discArr valueForKeyPath:@"@min.self"];
-        NSMutableDictionary *dict=ronakGlobal.selectedFilter.disCountMinMax;
-        _maxLabel.text = [[NSString stringWithFormat:@"%@ ",maxNum] stringByAppendingString:@"%"];
-        _minLabel.text = [[NSString stringWithFormat:@"%@ ",minNum] stringByAppendingString:@"%"];
-        [self.rangeSlider setMinValue:[minNum floatValue] maxValue:[maxNum floatValue]];
-        [self.rangeSlider setLeftValue:[[dict objectForKey:@"Min"] floatValue] rightValue:[[dict objectForKey:@"Max"] floatValue]];
-        self.rangeSlider.minimumDistance = 1;
+//        NSNumber *maxNum=[ronakGlobal.discArr valueForKeyPath:@"@max.self"];
+//        NSNumber *minNum=[ronakGlobal.discArr valueForKeyPath:@"@min.self"];
+//        NSMutableDictionary *dict=ronakGlobal.selectedFilter.disCountMinMax;
+//        _maxLabel.text = [[NSString stringWithFormat:@"%@ ",maxNum] stringByAppendingString:@"%"];
+//        _minLabel.text = [[NSString stringWithFormat:@"%@ ",minNum] stringByAppendingString:@"%"];
+//        [self.rangeSlider setMinValue:[minNum floatValue] maxValue:[maxNum floatValue]];
+//        [self.rangeSlider setLeftValue:[[dict objectForKey:@"Min"] floatValue] rightValue:[[dict objectForKey:@"Max"] floatValue]];
+//        self.rangeSlider.minimumDistance = 1;
         return;
     }
     if([_filterType isEqualToString:kWSPrice])
@@ -112,7 +115,8 @@
 //        self.rangeSlider.minimumDistance = 1;
         _maxTF.text = ronakGlobal.selectedFilter.wsPriceMinMax[@"Max"];
         _minTf.text = ronakGlobal.selectedFilter.wsPriceMinMax[@"Min"];
-
+        _minLabel.hidden=YES;
+        _maxLabel.hidden=YES;
         return;
     }
     if([_filterType isEqualToString:kMRP])
@@ -128,6 +132,8 @@
 //        self.rangeSlider.minimumDistance = 1;
         _maxTF.text = ronakGlobal.selectedFilter.priceMinMax[@"Max"];
         _minTf.text = ronakGlobal.selectedFilter.priceMinMax[@"Min"];
+        _minLabel.hidden=YES;
+        _maxLabel.hidden=YES;
         return;
     }
     if([_filterType isEqualToString:kStockvalue])
@@ -141,8 +147,10 @@
 //        [self.rangeSlider setMinValue:[minNum floatValue] maxValue:[maxNum floatValue]];
 //        [self.rangeSlider setLeftValue:[[dict objectForKey:@"Min"] floatValue] rightValue:[[dict objectForKey:@"Max"] floatValue]];
 //        self.rangeSlider.minimumDistance = 1;
-        _maxTF.text = ronakGlobal.selectedFilter.stockMinMax[@"Max"];
+       _maxTF.text = ronakGlobal.selectedFilter.stockMinMax[@"Max"];
         _minTf.text = ronakGlobal.selectedFilter.stockMinMax[@"Min"];
+        _minLabel.hidden=YES;
+        _maxLabel.hidden=YES;
         return;
     }
 }

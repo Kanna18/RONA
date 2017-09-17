@@ -10,6 +10,8 @@
 #import "ShippingAddressViewController.h"
 #import "ProductsListController.h"
 #import "AdvancedViewController.h"
+#import "CollectionPopUp.h"
+
 
 @interface DefaultFiltersViewController ()
 
@@ -75,15 +77,32 @@
 }
 - (IBAction)rightSwipeFunction:(id)sender {
 
-    if(ronakGlobal.selectedFilter.brand.length>0)
+    if(!(ronakGlobal.selectedFilter.brand.length>0))
+    {
+        showMessage(@"Select Brand", self.view);
+    }
+    else if(!(ronakGlobal.selectedFilter.categories.count>0))
+    {
+         showMessage(@"Select Category", self.view);
+    }
+    else if (!(ronakGlobal.selectedFilter.collection.count>0))
+    {
+        CollectionPopUp *colP=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
+        colP.center=self.view.center;
+        [colP.yesBtn addTarget:self action:@selector(moveToOrderBooking) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:colP];
+    }
+    else
     {
         ProductsListController *pro=storyBoard(@"productsVC");
         [self.navigationController pushViewController:pro animated:YES];
     }
-    else
-    {
-        showMessage(@"Select Brand", self.view);
-    }
+}
+-(void)moveToOrderBooking
+{
+    ProductsListController *pro=storyBoard(@"productsVC");
+    [self.navigationController pushViewController:pro animated:YES];
+    
 }
 - (IBAction)jumpMenuFunction:(id)sender
 {

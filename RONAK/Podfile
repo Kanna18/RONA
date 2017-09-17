@@ -20,5 +20,6 @@ pod 'AFNetworking', '~> 3.0'
 pod 'UIDevice-PasscodeStatus', '~> 0.0.2'
 pod 'MARKRangeSlider'
 pod 'TOPasscodeViewController'
+pod 'SevenSwitch', '~> 2.1'
 
 end

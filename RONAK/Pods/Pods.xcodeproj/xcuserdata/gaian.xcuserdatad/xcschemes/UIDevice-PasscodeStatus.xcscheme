@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA1B2B291C0972F7C93A1F741A06D63F"
+               BlueprintIdentifier = "C34669F3861225A1E0D23DFECD483447"
                BuildableName = "UIDevice_PasscodeStatus.framework"
                BlueprintName = "UIDevice-PasscodeStatus"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AA1B2B291C0972F7C93A1F741A06D63F"
+            BlueprintIdentifier = "C34669F3861225A1E0D23DFECD483447"
             BuildableName = "UIDevice_PasscodeStatus.framework"
             BlueprintName = "UIDevice-PasscodeStatus"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -36,4 +36,5 @@
 -(void)bindData:(ItemMaster *)item withCount:(int)Count customerData:(CustomerDataModel*)cst forCustome:(CustomButton*)btn;
 
 @property id<ReloadInstruction> delegate;
+
 @end

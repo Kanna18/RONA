@@ -10,7 +10,6 @@
 #import "OrderCell.h"
 #import "PlaceOrder.h"
 
-
 @interface OrderSummaryVC : UIViewController<UITableViewDelegate,UITableViewDataSource,DiscountResult,ReloadInstruction>
 @property (strong, nonatomic) IBOutlet UIView *bottomBarView;
 
@@ -52,6 +51,20 @@
 @property (strong, nonatomic) IBOutlet UILabel *netAmount;
 @property (strong, nonatomic) IBOutlet UILabel *remarksLabel;
 
+@property (strong, nonatomic) IBOutlet UIButton *remarksBtn;
+-(IBAction)remarksClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *roiplBtn;
+- (IBAction)roiplClick:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *ropilLabel;
 
+@property (strong, nonatomic) IBOutlet UIButton *draftBtn;
+- (IBAction)draftClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *deliveryBtn;
+- (IBAction)deliveryClick:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *cancelOrderBtn;
+- (IBAction)cancelOrderClick:(id)sender;
+
+-(IBAction)swipeToBookAnotheOrder:(id)sender;
 @end

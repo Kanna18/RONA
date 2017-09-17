@@ -67,8 +67,12 @@
 		F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6496BE01F54378000028FF0 /* Launch Screen.storyboard */; };
 		F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
-		F68152DE1F626E1300F007E6 /* Customers.json in Resources */ = {isa = PBXBuildFile; fileRef = F68152DD1F626E1300F007E6 /* Customers.json */; };
 		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
+		F69DCEA41F69626F00156396 /* BillWiseDetailsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCEA21F69626F00156396 /* BillWiseDetailsCustomCell.m */; };
+		F69DCEA51F69626F00156396 /* BillWiseDetailsCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69DCEA31F69626F00156396 /* BillWiseDetailsCustomCell.xib */; };
+		F69DCEA81F6962F100156396 /* BillAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCEA71F6962F100156396 /* BillAddressVC.m */; };
+		F69DCEAD1F697C0A00156396 /* CollectionPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCEAB1F697C0A00156396 /* CollectionPopUp.m */; };
+		F69DCEAE1F697C0A00156396 /* CollectionPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69DCEAC1F697C0A00156396 /* CollectionPopUp.xib */; };
 		F6A4F96D1F600F4600472A96 /* GBold.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F96A1F600F4600472A96 /* GBold.OTF */; };
 		F6A4F9711F600FED00472A96 /* GMedium.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9701F600FED00472A96 /* GMedium.OTF */; };
 		F6A4F9731F600FF500472A96 /* GThin.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9721F600FF500472A96 /* GThin.OTF */; };
@@ -113,6 +117,10 @@
 		F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D085061F548DD1001A76C5 /* Draft6.xib */; };
 		F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE41F25C295003AF699 /* CustomerDataModel.m */; };
 		F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE81F25C886003AF699 /* ServerAPIManager.m */; };
+		F6D389E81F6EEC56008B8022 /* RemarksView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D389E71F6EEC56008B8022 /* RemarksView.m */; };
+		F6D389EB1F6EEC70008B8022 /* RemarksView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D389EA1F6EEC70008B8022 /* RemarksView.xib */; };
+		F6D389EE1F6EED62008B8022 /* Icon_cross.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D389EC1F6EED62008B8022 /* Icon_cross.png */; };
+		F6D389EF1F6EED62008B8022 /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D389ED1F6EED62008B8022 /* tick.png */; };
 		F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCCE1F19DA0700DC635E /* CustomButton.m */; };
 		F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD11F19DA1800DC635E /* CustomLabel.m */; };
 		F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD41F19DA3100DC635E /* CustomTextField.m */; };
@@ -241,9 +249,16 @@
 		F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Zooming.m"; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
-		F68152DD1F626E1300F007E6 /* Customers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Customers.json; sourceTree = "<group>"; };
 		F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDataModel.h; sourceTree = "<group>"; };
 		F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDataModel.m; sourceTree = "<group>"; };
+		F69DCEA11F69626F00156396 /* BillWiseDetailsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillWiseDetailsCustomCell.h; sourceTree = "<group>"; };
+		F69DCEA21F69626F00156396 /* BillWiseDetailsCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillWiseDetailsCustomCell.m; sourceTree = "<group>"; };
+		F69DCEA31F69626F00156396 /* BillWiseDetailsCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillWiseDetailsCustomCell.xib; sourceTree = "<group>"; };
+		F69DCEA61F6962E700156396 /* BillAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillAddressVC.h; sourceTree = "<group>"; };
+		F69DCEA71F6962F100156396 /* BillAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillAddressVC.m; sourceTree = "<group>"; };
+		F69DCEAA1F697C0A00156396 /* CollectionPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionPopUp.h; sourceTree = "<group>"; };
+		F69DCEAB1F697C0A00156396 /* CollectionPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionPopUp.m; sourceTree = "<group>"; };
+		F69DCEAC1F697C0A00156396 /* CollectionPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionPopUp.xib; sourceTree = "<group>"; };
 		F6A4F96A1F600F4600472A96 /* GBold.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GBold.OTF; sourceTree = "<group>"; };
 		F6A4F9701F600FED00472A96 /* GMedium.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMedium.OTF; sourceTree = "<group>"; };
 		F6A4F9721F600FF500472A96 /* GThin.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GThin.OTF; sourceTree = "<group>"; };
@@ -292,6 +307,11 @@
 		F6D10AE41F25C295003AF699 /* CustomerDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDataModel.m; sourceTree = "<group>"; };
 		F6D10AE71F25C886003AF699 /* ServerAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAPIManager.h; sourceTree = "<group>"; };
 		F6D10AE81F25C886003AF699 /* ServerAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAPIManager.m; sourceTree = "<group>"; };
+		F6D389E61F6EEC56008B8022 /* RemarksView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarksView.h; sourceTree = "<group>"; };
+		F6D389E71F6EEC56008B8022 /* RemarksView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarksView.m; sourceTree = "<group>"; };
+		F6D389EA1F6EEC70008B8022 /* RemarksView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemarksView.xib; sourceTree = "<group>"; };
+		F6D389EC1F6EED62008B8022 /* Icon_cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_cross.png; sourceTree = "<group>"; };
+		F6D389ED1F6EED62008B8022 /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
 		F6DADCCD1F19DA0700DC635E /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		F6DADCCE1F19DA0700DC635E /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		F6DADCD01F19DA1800DC635E /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
@@ -338,7 +358,6 @@
 			isa = PBXGroup;
 			children = (
 				84D4B3571F63C53F00B76DD7 /* Images.xcassets */,
-				F68152DD1F626E1300F007E6 /* Customers.json */,
 				4F8D5E9F1B6C0568005E64D4 /* RONAK */,
 				4F8D5E9E1B6C0568005E64D4 /* Products */,
 				95FC818BCB0A26B1EC67A6D7 /* Pods */,
@@ -508,6 +527,7 @@
 				84D4B32E1F63C36B00B76DD7 /* OrderCell.m */,
 				84D4B32F1F63C36B00B76DD7 /* OrderSummaryVC.h */,
 				84D4B3301F63C36B00B76DD7 /* OrderSummaryVC.m */,
+				F6D389E91F6EEC5A008B8022 /* Remarksview */,
 				F6496BEF1F5472DC00028FF0 /* Calculator */,
 				F6496BAE1F53BF8900028FF0 /* Discount */,
 			);
@@ -539,6 +559,28 @@
 				84D4B31E1F63C2F900B76DD7 /* PDCViewController.m */,
 			);
 			name = PDCVC;
+			sourceTree = "<group>";
+		};
+		F69DCEA01F69626300156396 /* BillVC */ = {
+			isa = PBXGroup;
+			children = (
+				F69DCEA61F6962E700156396 /* BillAddressVC.h */,
+				F69DCEA71F6962F100156396 /* BillAddressVC.m */,
+				F69DCEA11F69626F00156396 /* BillWiseDetailsCustomCell.h */,
+				F69DCEA21F69626F00156396 /* BillWiseDetailsCustomCell.m */,
+				F69DCEA31F69626F00156396 /* BillWiseDetailsCustomCell.xib */,
+			);
+			name = BillVC;
+			sourceTree = "<group>";
+		};
+		F69DCEA91F697BB500156396 /* PlaceOrder */ = {
+			isa = PBXGroup;
+			children = (
+				F6D085041F548DD1001A76C5 /* PlaceOrder.h */,
+				F6D085051F548DD1001A76C5 /* PlaceOrder.m */,
+				F6D085061F548DD1001A76C5 /* Draft6.xib */,
+			);
+			name = PlaceOrder;
 			sourceTree = "<group>";
 		};
 		F6A4F9741F60358300472A96 /* Images */ = {
@@ -603,6 +645,7 @@
 			children = (
 				84D4B3181F63C2D400B76DD7 /* ShippingAddressViewController.h */,
 				84D4B3191F63C2D400B76DD7 /* ShippingAddressViewController.m */,
+				F69DCEA01F69626300156396 /* BillVC */,
 			);
 			name = "Shipping AddressVC";
 			sourceTree = "<group>";
@@ -649,9 +692,10 @@
 		F6D085091F548DD7001A76C5 /* CustomPopups */ = {
 			isa = PBXGroup;
 			children = (
-				F6D085041F548DD1001A76C5 /* PlaceOrder.h */,
-				F6D085051F548DD1001A76C5 /* PlaceOrder.m */,
-				F6D085061F548DD1001A76C5 /* Draft6.xib */,
+				F69DCEAA1F697C0A00156396 /* CollectionPopUp.h */,
+				F69DCEAB1F697C0A00156396 /* CollectionPopUp.m */,
+				F69DCEAC1F697C0A00156396 /* CollectionPopUp.xib */,
+				F69DCEA91F697BB500156396 /* PlaceOrder */,
 			);
 			name = CustomPopups;
 			sourceTree = "<group>";
@@ -674,6 +718,18 @@
 				F6D10AE41F25C295003AF699 /* CustomerDataModel.m */,
 			);
 			name = DataModel;
+			sourceTree = "<group>";
+		};
+		F6D389E91F6EEC5A008B8022 /* Remarksview */ = {
+			isa = PBXGroup;
+			children = (
+				F6D389EC1F6EED62008B8022 /* Icon_cross.png */,
+				F6D389ED1F6EED62008B8022 /* tick.png */,
+				F6D389E61F6EEC56008B8022 /* RemarksView.h */,
+				F6D389E71F6EEC56008B8022 /* RemarksView.m */,
+				F6D389EA1F6EEC70008B8022 /* RemarksView.xib */,
+			);
+			name = Remarksview;
 			sourceTree = "<group>";
 		};
 		F6DADCCC1F19D9EA00DC635E /* CustomComponents */ = {
@@ -828,7 +884,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -867,6 +923,7 @@
 				F6404EE31F2124F400530188 /* SF.OTF in Resources */,
 				F6A4F99B1F60358E00472A96 /* advFilterGrey.png in Resources */,
 				F6A4F9A81F60358E00472A96 /* listgrey.png in Resources */,
+				F69DCEAE1F697C0A00156396 /* CollectionPopUp.xib in Resources */,
 				84D4B2E71F63BF3500B76DD7 /* Main.storyboard in Resources */,
 				F6A4F9AB1F60358E00472A96 /* mail.png in Resources */,
 				F6A4F9BA1F60358E00472A96 /* roiplblue.png in Resources */,
@@ -876,11 +933,13 @@
 				F6A4F9B41F60358E00472A96 /* doneblue.png in Resources */,
 				F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */,
 				F6A4F9B81F60358E00472A96 /* listblue.png in Resources */,
+				F6D389EE1F6EED62008B8022 /* Icon_cross.png in Resources */,
 				F6A4F9A21F60358E00472A96 /* delchalangrey.png in Resources */,
 				F6A4F99E1F60358E00472A96 /* cancelgrey.png in Resources */,
 				F6A4F9B11F60358E00472A96 /* custremblue.png in Resources */,
 				F6A4F9AD1F60358E00472A96 /* backblue.png in Resources */,
 				F6A4F99C1F60358E00472A96 /* backgrey.png in Resources */,
+				F69DCEA51F69626F00156396 /* BillWiseDetailsCustomCell.xib in Resources */,
 				F6A4F9A01F60358E00472A96 /* cartgrey.png in Resources */,
 				F6FF3C4D1F583C7B003269EC /* expanded.png in Resources */,
 				F6A4F9B61F60358E00472A96 /* dwldblue.png in Resources */,
@@ -896,13 +955,14 @@
 				F6A4F9AC1F60358E00472A96 /* advFilterblue.png in Resources */,
 				F6A4F99F1F60358E00472A96 /* cancelorder1.png in Resources */,
 				F6A4F9B31F60358E00472A96 /* discblue.png in Resources */,
+				F6D389EB1F6EEC70008B8022 /* RemarksView.xib in Resources */,
 				84D4B3371F63C38700B76DD7 /* Calculator.xib in Resources */,
 				F6A4F9A41F60358E00472A96 /* doneGrey.png in Resources */,
 				F6A4F9B51F60358E00472A96 /* draftblue.png in Resources */,
 				F6A4F9A91F60358E00472A96 /* mailgrey.png in Resources */,
 				F6A4F9A61F60358E00472A96 /* dwldgrey.png in Resources */,
-				F68152DE1F626E1300F007E6 /* Customers.json in Resources */,
 				F6A4F9A11F60358E00472A96 /* custremgrey.png in Resources */,
+				F6D389EF1F6EED62008B8022 /* tick.png in Resources */,
 				F6A4F9711F600FED00472A96 /* GMedium.OTF in Resources */,
 				84D4B2E31F63BE9000B76DD7 /* UnzipViewController.xib in Resources */,
 				84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */,
@@ -933,6 +993,7 @@
 				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
 				"${BUILT_PRODUCTS_DIR}/SalesforceAnalytics/SalesforceAnalytics.framework",
 				"${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework",
+				"${BUILT_PRODUCTS_DIR}/SevenSwitch/SevenSwitch.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework",
 				"${BUILT_PRODUCTS_DIR}/TOPasscodeViewController/TOPasscodeViewController.framework",
@@ -948,6 +1009,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceAnalytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceSDKCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SevenSwitch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartSync.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOPasscodeViewController.framework",
@@ -1022,6 +1084,7 @@
 				84D4B3141F63C29E00B76DD7 /* CustomerCell.m in Sources */,
 				84D4B31F1F63C2F900B76DD7 /* PDCCell.m in Sources */,
 				84D4B2FD1F63C18100B76DD7 /* Filters+CoreDataProperties.m in Sources */,
+				F6D389E81F6EEC56008B8022 /* RemarksView.m in Sources */,
 				F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				84D4B2FC1F63C18100B76DD7 /* Filters+CoreDataClass.m in Sources */,
@@ -1038,9 +1101,11 @@
 				F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */,
 				F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */,
 				84D4B30E1F63C24A00B76DD7 /* MenuViewController.m in Sources */,
+				F69DCEAD1F697C0A00156396 /* CollectionPopUp.m in Sources */,
 				84D4B3551F63C48900B76DD7 /* ViewControllerCell.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
+				F69DCEA41F69626F00156396 /* BillWiseDetailsCustomCell.m in Sources */,
 				F6A59D3D1F65C5E4007469F8 /* CategoryBased.m in Sources */,
 				84D4B3471F63C43D00B76DD7 /* DefaultFiltersViewController.m in Sources */,
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
@@ -1053,6 +1118,7 @@
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				84D4B3081F63C1D400B76DD7 /* SelectedFilters.m in Sources */,
 				84D4B3061F63C1D400B76DD7 /* DownloadProducts.m in Sources */,
+				F69DCEA81F6962F100156396 /* BillAddressVC.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
 				84D4B3291F63C34B00B76DD7 /* CustomerViewCell.m in Sources */,
 				84D4B3171F63C2AC00B76DD7 /* HeaderReusableView.m in Sources */,
@@ -1157,7 +1223,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
@@ -1196,8 +1263,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
+				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1208,7 +1275,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
@@ -1247,8 +1315,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
+				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

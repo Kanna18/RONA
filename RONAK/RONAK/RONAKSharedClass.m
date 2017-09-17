@@ -32,6 +32,7 @@
         _filterdProductsArray=[[NSMutableArray alloc]init];;
         _delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         _context=_delegate.managedObjectContext;
+        _selectedItemsTocartArr=[[NSMutableArray alloc]init];
         
         NSLog(@"%@",_selectedFilter);
     }

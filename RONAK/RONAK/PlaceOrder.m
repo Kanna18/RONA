@@ -26,20 +26,17 @@
         frame.origin.y=frame.origin.y/2-50;
         self.frame=frame;
         orderVC=viewC;
-        
     }
-    
-    
     return self;
 }
 
 - (IBAction)bookAnotherBrandBtnActn:(id)sender {
     
-    
+    [self removeFromSuperview];
 }
 - (IBAction)exitBtnActn:(id)sender {
     
-    MenuViewController *menuVC=[orderVC.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-    [orderVC.navigationController popToViewController:menuVC animated:YES];
+    [self removeFromSuperview];
+
 }
 @end

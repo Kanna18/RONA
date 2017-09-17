@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ProductCollectionViewCell.h"
 #import "CustomerViewCell.h"
+#import <SevenSwitch/SevenSwitch-Swift.h>
+
+
+
+
 
 @interface ProductsListController : UIViewController<CustomerDeleted>
 
@@ -73,5 +78,8 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeDown;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *tripleSwipeUp;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *tripleSwipeDown;
+
+@property (strong, nonatomic) IBOutlet SevenSwitch *switchPr;
+- (IBAction)priceWithRupeeSymbolClick:(id)sender;
 
 @end

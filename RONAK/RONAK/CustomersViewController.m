@@ -23,8 +23,7 @@ static NSString *reuse=@"reuseCustomerCell";
     LoadingView *load;
     RESTCalls *rest;
     CGFloat scr_width,scr_height;
-    
-    
+    IBOutlet UIButton *clearSelectedCstBtn;
 }
 
 
@@ -75,6 +74,9 @@ static NSString *reuse=@"reuseCustomerCell";
     _swipeHome.direction=UISwipeGestureRecognizerDirectionRight;
     
     _searchTextField.font=gothMedium(23);
+    _collectionView.indicatorStyle=UIScrollViewIndicatorStyleBlack;
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -197,8 +199,6 @@ static NSString *reuse=@"reuseCustomerCell";
     
 }
 
-
-
 #pragma mark Server Calls
 
 -(void)getListofAllCustomers:(NSData*)cList
@@ -216,13 +216,32 @@ static NSString *reuse=@"reuseCustomerCell";
 {
     [_searchTextField setPadding];
     _scrollView_selCustmr.layer.cornerRadius=5.0f;
-    _collectionView.showsVerticalScrollIndicator=NO;
+//  _collectionView.showsVerticalScrollIndicator=NO;
 //    [_searchTextField middlePadding];
     _searchTextField.delegate=self;
     
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(backButton:)];
     tap.numberOfTouchesRequired=1;
     [_headingLabel addGestureRecognizer:tap];
+    
+    UILongPressGestureRecognizer *longGest=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(enableClearButton)];
+    longGest.minimumPressDuration=2.0f;
+    [_scrollView_selCustmr addGestureRecognizer:longGest];
+    clearSelectedCstBtn.hidden=YES;
+    
+    
+    UITapGestureRecognizer *dubleTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(disableClearButton)];
+    dubleTap.numberOfTapsRequired=2;
+    [_scrollView_selCustmr addGestureRecognizer:dubleTap];
+
+}
+-(void)enableClearButton {
+    
+    [self showSelectedCustmrsInScrlViewwithClear:YES];
+
+}
+-(void)disableClearButton{
+    [self showSelectedCustmrsInScrlViewwithClear:NO];
 }
 
 
@@ -268,7 +287,7 @@ static NSString *reuse=@"reuseCustomerCell";
     CustomerCell *cell=(CustomerCell*)[collectionView cellForItemAtIndexPath:indexPath];
     [cell saveSelectedCustomertoArray:selectedCustomersList];
     [self.collectionView reloadData];
-    [self showSelectedCustmrsInScrlView];
+    [self showSelectedCustmrsInScrlViewwithClear:NO];
 
     if(_searchTextField.text.length>0)
     {
@@ -372,25 +391,36 @@ static NSString *reuse=@"reuseCustomerCell";
 }
 
 
--(void)showSelectedCustmrsInScrlView{
+-(void)showSelectedCustmrsInScrlViewwithClear:(BOOL)clear{
     
-    for (CustomLabel *lbl in _scrollView_selCustmr.subviews){
+    clearSelectedCstBtn.hidden=clear==YES?NO:YES;//allcustomersCLear;
+    for (CustomButton *lbl in _scrollView_selCustmr.subviews){
+        if([lbl isKindOfClass:[CustomButton class]])
         [lbl removeFromSuperview];
     }
     
-    int X=92,Y=5;
-    CustomLabel *lbl;
+    int X=92,Y=0;
+    int clearEnabled=clear==YES?30:0;
+    CustomButton *lbl;
     for (int i=0; i<selectedCustomersList.count; i++)
     {
         CustomerDataModel *cst=selectedCustomersList[i];
-        lbl=[[CustomLabel alloc]init];
-        lbl.font=gothMedium(10);
-        lbl.textColor=RGB(45, 45, 45);
+        lbl=[CustomButton buttonWithType:UIButtonTypeSystem];
+        
+        lbl.titleLabel.font=gothMedium(10);
+        [lbl setTitleColor:RGB(45, 45, 45) forState:UIControlStateNormal];
         [_scrollView_selCustmr addSubview:lbl];
-        lbl.text=[cst.Name stringByAppendingString:@", "];
-        lbl.frame=CGRectMake(X, Y, lbl.intrinsicContentSize.width, 30);
-        [lbl setAdjustsFontSizeToFitWidth:YES];
-        X+=lbl.intrinsicContentSize.width;
+        [lbl setTitle:[cst.Name stringByAppendingString:@", "] forState:UIControlStateNormal];
+        lbl.frame=CGRectMake(X, Y, lbl.titleLabel.intrinsicContentSize.width+clearEnabled, 30);
+        [lbl.titleLabel setAdjustsFontSizeToFitWidth:YES];
+        lbl.imageEdgeInsets=UIEdgeInsetsMake(10, 0, 10, lbl.frame.size.width-10);
+        lbl.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+        lbl.tag=500+i;
+        if(clear){
+        [lbl setImage:[UIImage imageNamed:@"clearIcon"] forState:UIControlStateNormal];
+            [lbl addTarget:self action:@selector(clearallSelectedCustomers:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        X+=lbl.intrinsicContentSize.width+clearEnabled;
     }
     _scrollView_selCustmr.contentSize=CGSizeMake(X+lbl.intrinsicContentSize.width, 0);    
 }
@@ -442,6 +472,25 @@ static NSString *reuse=@"reuseCustomerCell";
     else
     {
         showMessage(@"Select Atleast One Customer", self.view);
+    }
+}
+- (IBAction)clearallSelectedCustomers:(id)sender{
+    
+    if([sender isKindOfClass:[CustomButton class]])
+    {
+        CustomButton *btn=sender;
+        [selectedCustomersList removeObjectAtIndex:btn.tag-500];
+    }
+    else
+    {
+        [selectedCustomersList removeAllObjects];
+    }
+    
+    [_collectionView reloadData];
+    [self showSelectedCustmrsInScrlViewwithClear:YES];
+    
+    if(!(selectedCustomersList.count>0)){
+        clearSelectedCstBtn.hidden=YES;
     }
 }
 @end

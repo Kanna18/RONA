@@ -7,7 +7,8 @@
 //
 
 #import "OrderSummaryVC.h"
-
+#import "RemarksView.h"
+#import "CollectionPopUp.h"
 
 
 @interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate>
@@ -23,6 +24,8 @@
     UIView *containerView;
     
     PlaceOrder *placeOrderPop;
+    RemarksView *remarksView;
+    CollectionPopUp *draftDCpop;
 }
 
 
@@ -33,7 +36,12 @@
     _summaryTableView.dataSource=self;
     _summaryTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self calendarFunction];
+    
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAllSubviewsandDeselectall)];
+    tap.numberOfTapsRequired=1;
+    [self.view addGestureRecognizer:tap];
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
@@ -148,14 +156,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)calculatorClick:(id)sender {
-    
+    [self removeAllSubviewsandDeselectall];
     if(_calculator.selected==NO)
     {
         CGRect frame= _calculator.frame;
         //cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-350-70,350,350)];
         
         
-        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-70,212,330)];
+        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
         
         _calculator.selected=YES;
         [self.view addSubview:cal];
@@ -168,7 +176,7 @@
 }
 
 -(IBAction)discountClick:(id)sender {
-    
+    [self removeAllSubviewsandDeselectall];
     if(_discountBtn.selected==YES)
     {
         [dis removeFromSuperview];
@@ -178,7 +186,7 @@
     {
         _discountBtn.selected=YES;
         CGRect frame = _discountBtn.frame;
-        dis= [[Discount alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-330-70, 153, 330)];
+        dis= [[Discount alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-330-60, 153, 330)];
         //dis.backgroundColor=[UIColor redColor];
         dis.delegate=self;
         [self.view addSubview:dis];
@@ -216,6 +224,7 @@
 
 - (IBAction)futureDeliveryCLick:(id)sender {
     
+    [self removeAllSubviewsandDeselectall];
     if(_futureDelivery.selected==YES)
     {
         containerView.hidden=YES;
@@ -231,7 +240,7 @@
 -(void)calendarFunction
 {
     CGRect frame = _futureDelivery.frame;
-    containerView=[[UIView alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-350-70, 350, 350)];
+    containerView=[[UIView alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-350-60, 350, 350)];
     containerView.backgroundColor=GrayLight;
     [self.view addSubview:containerView];
     
@@ -288,6 +297,7 @@
 }
 - (IBAction)placeOrderClick:(id)sender {
     
+    [self removeAllSubviewsandDeselectall];
     if(_placeOrderBtn.selected==YES)
     {
        _placeOrderBtn.selected=NO;
@@ -300,4 +310,127 @@
         _placeOrderBtn.selected=YES;
     }
 }
+-(IBAction)remarksClick:(id)sender
+{
+    [self removeAllSubviewsandDeselectall];
+    if(_remarksBtn.selected==YES)
+    {
+        _remarksBtn.selected=NO;
+        [remarksView removeFromSuperview];
+    }
+    else
+    {
+        _remarksBtn.selected=YES;
+        remarksView=[[RemarksView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) withTitle:@"CUSTOMER REMARKS" withSuperView:self];
+        [self.view addSubview:remarksView];
+        [remarksView.textView becomeFirstResponder];
+    }
+}
+- (IBAction)roiplClick:(id)sender {
+    
+    [self removeAllSubviewsandDeselectall];
+    if(_roiplBtn.selected==YES)
+    {
+        _roiplBtn.selected=NO;
+        [remarksView removeFromSuperview];
+    }
+    else
+    {
+        _roiplBtn.selected=YES;
+        remarksView=[[RemarksView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) withTitle:@"ROIPL REMARKS" withSuperView:self];
+        [self.view addSubview:remarksView];
+        [remarksView.textView becomeFirstResponder];
+    }
+}
+- (IBAction)draftClick:(id)sender {
+    
+    [self removeAllSubviewsandDeselectall];
+    if(_draftBtn.selected==YES)
+    {
+        _draftBtn.selected=NO;
+        [remarksView removeFromSuperview];
+    }
+    else
+    {
+        _draftBtn.selected=YES;
+        if(![self.view.subviews containsObject:draftDCpop]){
+        draftDCpop=[[CollectionPopUp alloc]initWithFrame:CGRectZero witTitle:@"Do you want to save as Draft" withSuperView:self];
+        draftDCpop.center=self.view.center;
+        [self.view addSubview:draftDCpop];
+        }
+    }
+
+}
+- (IBAction)cancelOrderClick:(id)sender {
+    
+    [self removeAllSubviewsandDeselectall];
+    if(_deliveryBtn.selected==YES)
+    {
+        _deliveryBtn.selected=NO;
+        [draftDCpop removeFromSuperview];
+    }
+    else
+    {
+        _deliveryBtn.selected=YES;
+        if(![self.view.subviews containsObject:draftDCpop]){
+            draftDCpop=[[CollectionPopUp alloc]initWithFrame:CGRectZero witTitle:@"Are you sure you want to cancel the order?" withSuperView:self];
+            [self.view addSubview:draftDCpop];
+            draftDCpop.center=self.view.center;
+        }
+    }
+}
+
+
+
+- (IBAction)deliveryClick:(id)sender {
+    [self removeAllSubviewsandDeselectall];
+    if(_deliveryBtn.selected==YES)
+    {
+        _deliveryBtn.selected=NO;
+        [draftDCpop removeFromSuperview];
+    }
+    else
+    {
+        _deliveryBtn.selected=YES;
+        if(![self.view.subviews containsObject:draftDCpop]){
+        draftDCpop=[[CollectionPopUp alloc]initWithFrame:CGRectZero witTitle:@"Do you want to save as DC" withSuperView:self];
+        [self.view addSubview:draftDCpop];
+        draftDCpop.center=self.view.center;
+        }
+    }
+}
+-(IBAction)swipeToBookAnotheOrder:(id)sender
+{
+    [self removeAllSubviewsandDeselectall];
+    if(_placeOrderBtn.selected==YES)
+    {
+        _placeOrderBtn.selected=NO;
+        [placeOrderPop removeFromSuperview];
+    }
+    else
+    {
+        placeOrderPop=[[PlaceOrder alloc]initWithFrame:CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 0, 0) withSuperView:self];
+        [self.view addSubview:placeOrderPop];
+        _placeOrderBtn.selected=YES;
+    }
+
+}
+
+
+-(void)removeAllSubviewsandDeselectall
+{
+    for (UIButton *butt in _bottomBarView.subviews)
+    {
+        if([butt isKindOfClass:[UIButton class]]){
+            butt.selected=NO;
+        }
+    }
+    [cal removeFromSuperview];
+    [dis removeFromSuperview];
+    [draftDCpop removeFromSuperview];
+    [remarksView removeFromSuperview];
+    containerView.hidden=YES;
+}
+
+
 @end

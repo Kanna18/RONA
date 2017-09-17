@@ -19,11 +19,13 @@
 @end
 
 @interface DownloadProducts : NSObject
+
 @property id<FetchedAllProducts>delegateProducts ;
 
 -(void)downloadStockWareHouseSavetoCoreData;
 -(NSArray*)getFilterFor:(NSString*)strFor;
-
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt;
 -(NSMutableArray*)pickProductsFromFilters;
+
+
 @end

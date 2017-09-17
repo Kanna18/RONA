@@ -9,7 +9,7 @@
 @protocol CustomerDeleted <NSObject>
 
 -(void)customerNameDeleted;
-
+-(void)cartCount;
 @end
 
 

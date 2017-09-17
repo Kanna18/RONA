@@ -25,7 +25,7 @@
         
          //self=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([Discount class]) owner:self options:nil][0];
         self=[[NSBundle mainBundle] loadNibNamed:@"Discount" owner:self options:nil][0];
-        frame.size.width=153;
+        frame.size.width=200;
         frame.size.height=330;
         self.frame=frame;
         self.numArray = [[NSMutableArray alloc]init];

@@ -43,6 +43,9 @@
 }
 
 - (IBAction)deleteProduct:(id)sender {
+    
+    
+    
 }
 - (IBAction)qtyFunction:(id)sender {
     
@@ -104,5 +107,19 @@
     _discountLabel.text=_item.filters.discount__c;
     _totalLabel.text=[NSString stringWithFormat:@"%d",([item.filters.wS_Price__c intValue]*Count)];
     
+    
+    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c];
+    UIImage *image=[UIImage imageNamed:path];
+    image=[self imageWithImage:image convertToSize:CGSizeMake(120, 85)];
+    _productImage.image=image;
+    
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
 }
 @end

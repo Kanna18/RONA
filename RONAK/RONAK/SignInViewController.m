@@ -134,10 +134,11 @@
     
     if(_emailTf.text.length>0&&_passwordTF.text.length>0)
     {
-        [self getAccessToken];
+//        [self getAccessToken];
         [load loadingWithlightAlpha:self.view with_message:@""];
         [load start];
         [self defaultUserNameandPasswordSave:YES load:NO delete:NO];
+        [self gotoMenu];
 //        if(_remembermeBtn.isSelected){
 //        [self defaultUserNameandPasswordSave:YES load:NO delete:NO];
 //        }
@@ -164,7 +165,11 @@
         if(dict[@"access_token"])
         {
             default(dict[@"access_token"], kaccess_token);
-            [self performSelectorOnMainThread:@selector(gotoMenu) withObject:nil waitUntilDone:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [load stop];
+                [self gotoMenu];
+            });
+
         }
         else
         {
@@ -203,8 +208,11 @@
 -(void)gotoMenu
 {
     [load stop];
-    MenuViewController *menuVC=storyBoard(@"menuVC");
-    [self.navigationController pushViewController:menuVC animated:YES];
+    MenuViewController *menuVC=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
+    SignInViewController *sign=self;
+    [sign.navigationController pushViewController:menuVC animated:YES];
+    
+    NSLog(@"Self:%@--\nInstance:%@--\nnavCont:%@--\n:%@",self,sign,self.navigationController,self.navigationController);
 //    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:menuVC];
 //    [self.navigationController pushViewController:menuVC animated:YES];
 }

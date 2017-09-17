@@ -8,11 +8,18 @@
 
 #import "PDCViewController.h"
 #import "PDCCell.h"
+#import "DefaultFiltersViewController.h"
+
+
+
 @interface PDCViewController ()<UITextFieldDelegate>
 
 @end
 
-@implementation PDCViewController
+@implementation PDCViewController{
+    
+    NSArray *tvArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +43,7 @@
     
     
     UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+    datePicker.datePickerMode=UIDatePickerModeDate;
     [datePicker setDate:[NSDate date]];
 //    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     [self.toDateTF setInputView:datePicker];
@@ -43,6 +51,9 @@
 
 //    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
 
+    NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Cheque_Date__c" ascending:YES];
+    tvArray=[_cst.PDC__r.records sortedArrayUsingDescriptors:@[sort]];
+    [_listTableView reloadData];
 }
 
 -(void)showFilter:(id)sender
@@ -54,6 +65,11 @@
     else
     {
         _filterView.hidden=YES;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(Cheque_Date__c >= %@) AND (Cheque_Date__c <= %@)", _fromDateTf.text, _toDateTF.text];
+        tvArray=[_cst.PDC__r.records filteredArrayUsingPredicate:predicate];
+        NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Cheque_Date__c" ascending:YES];
+        tvArray=[tvArray sortedArrayUsingDescriptors:@[sort]];
+        [_listTableView reloadData];
     }
 }
 
@@ -62,6 +78,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self addDoneButtontoKeyboard:textField];
+}
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if(textField == _fromDateTf)
@@ -76,17 +97,29 @@
 
 -(void)updateTextField:(UITextField*)sender
 {
-    
-//    UIDatePicker *picker = (UIDatePicker*)sender.inputView;
-//    
-//    
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"dd MMM EEE"];
-//    NSDate *date  = [dateFormatter dateFromString:picker.date];
-//    sender.text = [NSString stringWithFormat:@"%@",[dateFormatter dateFromString:picker.date]];
+    UIDatePicker *picker = (UIDatePicker*)sender.inputView;
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [DateFormatter stringFromDate:picker.date];
+    sender.text = [NSString stringWithFormat:@"%@",dateString];
 }
-
-
+-(void)addDoneButtontoKeyboard:(UITextField*)textField
+{
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
+    [keyboardToolbar sizeToFit];
+    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                      target:nil action:nil];
+    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                      target:self action:@selector(yourTextViewDoneButtonPressed)];
+    keyboardToolbar.items = @[flexBarButton,doneBarButton];
+    textField.inputAccessoryView = keyboardToolbar;
+}
+-(void)yourTextViewDoneButtonPressed
+{
+    [self.view endEditing:YES];
+}
 /*
 #pragma mark - Navigation
 
@@ -102,7 +135,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return _cst.PDC__r.records.count;
+    return tvArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,7 +147,7 @@
         cell=[[PDCCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reus];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    [cell bindData:_cst.PDC__r.records[indexPath.row]];
+    [cell bindData:tvArray[indexPath.row]];
     return cell;
 }
 
@@ -137,6 +170,77 @@
         }
     }];
 }
+- (IBAction)chequeNoClick:(id)sender {
+    NSSortDescriptor *sortDescriptor;
+    UIButton *but=sender;
+    if(but.selected==YES)
+    {
+        but.selected=NO;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Cheque_No__c" ascending:NO];
+    }
+    else
+    {
+        but.selected=YES;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Cheque_No__c" ascending:YES];
+    }
+    tvArray = [tvArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [_listTableView reloadData];
+}
+- (IBAction)drawOnClick:(id)sender {
+    NSSortDescriptor *sortDescriptor;
+    UIButton *but=sender;
+    if(but.selected==YES)
+    {
+        but.selected=NO;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Customer_Bank__c" ascending:NO];
+    }
+    else
+    {
+        but.selected=YES;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Customer_Bank__c" ascending:YES];
+    }
+    tvArray = [tvArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    
+    [_listTableView reloadData];
+}
+- (IBAction)amountClick:(id)sender {
+    NSSortDescriptor *sortDescriptor;
+    UIButton *but=sender;
+    if(but.selected==YES)
+    {
+        but.selected=NO;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Amount__c" ascending:NO];
+    }
+    else
+    {
+        but.selected=YES;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Amount__c" ascending:YES];
+    }
+    tvArray = [tvArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [_listTableView reloadData];
+}
+- (IBAction)chequeTypeClick:(id)sender {
+    NSSortDescriptor *sortDescriptor;
+    UIButton *but=sender;
+    if(but.selected==YES)
+    {
+        but.selected=NO;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"attributes.type" ascending:NO];
+    }
+    else
+    {
+        but.selected=YES;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"attributes.type" ascending:YES];
+    }
+    tvArray = [tvArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [_listTableView reloadData];
+}
+- (IBAction)pushSwipe:(id)sender {
+    
+    DefaultFiltersViewController *dvc=storyBoard(@"defaultVC");
+    [self.navigationController pushViewController:dvc animated:YES];
+}
+
 
 
 @end

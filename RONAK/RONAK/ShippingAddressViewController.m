@@ -10,6 +10,8 @@
 #import "PDCViewController.h"
 #import "CustomersViewController.h"
 #import "DefaultFiltersViewController.h"
+#import "BillAddressVC.h"
+
 
 @interface ShippingAddressViewController ()
 
@@ -46,7 +48,19 @@
     taped.numberOfTouchesRequired=1;
     _headingBarLabel.font=gothBold(14);
     [_headingLabel addGestureRecognizer:taped];
+    
+    UITapGestureRecognizer *custLblTapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBillsOfCustomer:)];
+    taped.numberOfTouchesRequired=1;
+    _customerNamelbl.userInteractionEnabled=YES;
+    [_customerNamelbl addGestureRecognizer:custLblTapped];
+
 }
+-(void)showBillsOfCustomer:(id)sender
+{
+    BillAddressVC *bilVc=storyBoard(@"billVC");
+    [self .navigationController pushViewController:bilVc animated:YES];
+}
+
 -(void)pdcLabelTapped:(id*)sender
 {
     if(_cst.PDC__r.records.count>0)
@@ -123,16 +137,28 @@
     _customerNamelbl.textColor=BlueClr;
     
     
-    _creditLimitLbl.text=[NSString stringWithFormat:@"%0.2f",[cst.Credit_Limit__c floatValue]];
-    _acntBalanceLbl.text=[NSString stringWithFormat:@"%0.2f",[cst.Account_Balance__c floatValue]];
+    _creditLimitLbl.text=[self numberFormatter:[cst.Credit_Limit__c floatValue]];
+    _acntBalanceLbl.text=[self numberFormatter:[cst.Account_Balance__c floatValue]];
     NSString *status=[cst.Active__c isEqualToString:@"Y"]?@"Active":@"Inactive";
     _statusLbl.text=status;
-    _Lbl90.text=[NSString stringWithFormat:@"%0.2f",[cst.X0_30__c floatValue]+[cst.X31_60__c floatValue]+[cst.X61_90__c floatValue]];
-    _lbl150.text=[NSString stringWithFormat:@"%0.2f",[cst.X91_120__c floatValue]+[cst.X121_150__c floatValue]];
-    _lbl180.text=[NSString stringWithFormat:@"%0.2f",[cst.X151_180__c floatValue]];
-    _lbl360.text=[NSString stringWithFormat:@"%0.2f",[cst.X181_240__c floatValue]+[cst.X241_300__c floatValue]+[cst.X301_360__c floatValue]];
-    _lbl360Above.text=[NSString stringWithFormat:@"%0.2f",[cst.X361__c floatValue]];
-    _lblTotal.text=[NSString stringWithFormat:@"%0.2f",[_Lbl90.text floatValue]+[_lbl150.text floatValue]+[_lbl180.text floatValue]+[_lbl360.text floatValue]+[_lbl360Above.text floatValue]];
+    
+    double ninty=[cst.X0_30__c floatValue]+[cst.X31_60__c floatValue]+[cst.X61_90__c floatValue];
+    _Lbl90.text=[NSString stringWithFormat:@"%@",[self numberFormatter:ninty]];
+    
+    double oneFifity=[cst.X91_120__c floatValue]+[cst.X121_150__c floatValue];
+    _lbl150.text=[NSString stringWithFormat:@"%@",[self numberFormatter:oneFifity]];
+   
+    double oneEighty=[cst.X151_180__c floatValue];
+    _lbl180.text=[NSString stringWithFormat:@"%@",[self numberFormatter:oneEighty]];
+    
+    double treSixty=[cst.X181_240__c floatValue]+[cst.X241_300__c floatValue]+[cst.X301_360__c floatValue];
+    _lbl360.text=[NSString stringWithFormat:@"%@",[self numberFormatter:treSixty]];
+    
+    double treSixAbov=[cst.X361__c floatValue];
+    _lbl360Above.text=[NSString stringWithFormat:@"%@",[self numberFormatter:treSixAbov]];
+    
+    double all=ninty+oneFifity+oneEighty+treSixty+treSixAbov;
+    _lblTotal.text=[NSString stringWithFormat:@"%@",[self numberFormatter:all]];
     
     float pdcAmount = 0.0;
     for (int i=0; i<cst.PDC__r.records.count; i++)
@@ -140,14 +166,27 @@
         PDCRecodrs *rec=cst.PDC__r.records[i];
         pdcAmount+=[rec.Amount__c floatValue];
     }
-    _pdcLbl.text=[NSString stringWithFormat:@"%0.2f",pdcAmount];
+    _pdcLbl.text=[self numberFormatter:pdcAmount];
     _pdcLbl.textColor=BlueClr;
     [self showaddresses:btn];
     
 }
 
--(void)showaddresses:(CustomButton*)btn{
+-(NSString*)numberFormatter:(float)fValue
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setGroupingSeparator:@","];
+    [numberFormatter setGroupingSize:3];
+    [numberFormatter setDecimalSeparator:@"."];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setMaximumFractionDigits:2];
+    [numberFormatter setMinimumFractionDigits:2];
+    NSString *result = [numberFormatter stringFromNumber:@(fValue)];
+    return result;
     
+}
+
+-(void)showaddresses:(CustomButton*)btn{
     
     for (id sub in _billAddress_scrlView.subviews) {
         [sub removeFromSuperview];
@@ -166,10 +205,9 @@
     textVi.text=billAddress;
     textVi.userInteractionEnabled=NO;
     
-    
     //Shipping address.
     NSArray *arr=cst.Ship_to_Party__r.records;
-    int vX=18 , vY=10 , bX=1, bY=12;
+    int vX=18 , vY=10 , bX=1, bY=13;
     for (int i=0; i<arr.count; i++)
     {
         Recodrs *rec=(Recodrs*)arr[i];
@@ -179,19 +217,26 @@
         textVi.textColor=RGB(45, 45, 45);
         [_shipAddress_scrlView addSubview:textVi];
         textVi.text=shpAddress;
-        textVi.userInteractionEnabled=NO;
+        textVi.userInteractionEnabled=YES;
+        textVi.tag=i+10;
+        textVi.editable=NO;
+        
+        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectedAddress:)];
+        [textVi addGestureRecognizer:tap];
+        tap.numberOfTapsRequired=1;
         
         CustomButton *btn=[CustomButton buttonWithType:UIButtonTypeSystem];
         btn.cstData=cst;
-        btn.frame=CGRectMake(bX, bY, 12.25, 12.25);
+        btn.frame=CGRectMake(bX, bY, 15, 15);
         btn.tag=100+i;
         [_shipAddress_scrlView addSubview:btn];
         [btn addTarget:self action:@selector(selectedAddress:) forControlEvents:UIControlEventTouchUpInside];
-        btn.layer.borderColor=GrayLight.CGColor;
-        btn.layer.borderWidth=0.5;
-        btn.layer.cornerRadius=4.0;
+        [btn setBackgroundImage:[UIImage imageNamed:@"uncheckFilter"] forState:UIControlStateNormal];
+        //btn.layer.borderColor=GrayLight.CGColor;
+        //btn.layer.borderWidth=0.5;
+        //btn.layer.cornerRadius=4.0;
 //        [btn setBackgroundColor:GrayLight];
-        [btn setBackgroundImage:nil forState:UIControlStateNormal];
+        //[btn setBackgroundImage:nil forState:UIControlStateNormal];
         vY+=_billAddress_scrlView.frame.size.height-20;
         bY+=_billAddress_scrlView.frame.size.height-20;
         
@@ -208,22 +253,35 @@
 }
 -(void)selectedAddress:(CustomButton*)sender
 {
+    CustomButton *myBtn;
+    if([sender isKindOfClass:[UITapGestureRecognizer class]])
+    {
+        UIGestureRecognizer *recognizer = (UIGestureRecognizer*)sender;
+        UITextView *text = (UITextView *)recognizer.view;
+        myBtn=(CustomButton*)[self.view viewWithTag:text.tag+90];
+    }
+    else
+    {
+        myBtn=sender;
+    }
     for (CustomButton *btn in _shipAddress_scrlView.subviews)
     {
         if([btn isKindOfClass:[CustomButton class]])
         {
             if(btn.tag)
             {
-                btn.layer.borderColor=GrayLight.CGColor;
-                btn.layer.borderWidth=0.5;
-//                [btn setBackgroundColor:GrayLight];
-                [btn setBackgroundImage:nil forState:UIControlStateNormal];
+                //btn.layer.borderColor=GrayLight.CGColor;
+                //btn.layer.borderWidth=0.5;
+                //                [btn setBackgroundColor:GrayLight];
+                [btn setBackgroundImage:[UIImage imageNamed:@"uncheckFilter"] forState:UIControlStateNormal];
             }
         }
     }
-    sender.cstData.defaultsCustomer.defaultAddressIndex=[NSNumber numberWithInteger:sender.tag-100];
+    
+    myBtn.cstData.defaultsCustomer.defaultAddressIndex=[NSNumber numberWithInteger:myBtn.tag-100];
     //sender.backgroundColor=BlueClr;
-    [sender setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
+    [myBtn setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
+   
 }
 
 - (void)didReceiveMemoryWarning {

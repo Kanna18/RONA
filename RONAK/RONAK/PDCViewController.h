@@ -21,11 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *chequeNo;
 
 @property (strong, nonatomic) IBOutlet UITextField *chequeTypeTF;
-
-
-
-
-
+- (IBAction)pushSwipe:(id)sender;
 
 
 @property CustomerDataModel *cst;
