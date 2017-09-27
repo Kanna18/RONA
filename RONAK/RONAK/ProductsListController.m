@@ -52,8 +52,10 @@
     
     UICollectionViewFlowLayout *customersViewLayout = (UICollectionViewFlowLayout*)self.customersCollectionView.collectionViewLayout;
     customersViewLayout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
-    customersViewLayout.minimumInteritemSpacing = 0;
+    customersViewLayout.minimumInteritemSpacing = 5;
     customersViewLayout.minimumLineSpacing = 0;
+    
+    _customersCollectionView.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor clearColor]);
 
     [self defaultShapesOfComponents];
     [self getProductItemsFilter];
@@ -72,6 +74,7 @@
     DownloadProducts *dow=[[DownloadProducts alloc]init];
     dispatch_async(dispatch_get_main_queue(), ^{
         ronakGlobal.filterdProductsArray=[dow pickProductsFromFilters];
+        NSLog(@"%lu",(unsigned long)ronakGlobal.filterdProductsArray.count);
         if(ronakGlobal.filterdProductsArray.count>0)
         {
             CategoryBased *cat=[[CategoryBased alloc]initWithArray:ronakGlobal.filterdProductsArray];
@@ -112,14 +115,11 @@
     _sideMenuButton.layer.shadowRadius=2.0f;
     _sideMenuButton.layer.shadowOpacity=2.0f;
     
-
-    _allColorsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(4, 0, 4 , _allColorsTopBtn.frame.size.width-20);
-    _allModelsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(4, 0, 4 , _allColorsTopBtn.frame.size.width-20);
+    _allColorsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(10, 5, 4 , _allColorsTopBtn.frame.size.width-20);
+    _allModelsTopBtn.imageEdgeInsets=UIEdgeInsetsMake(10, 5, 4 , _allColorsTopBtn.frame.size.width-20);
     
     _allColorsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -50, 3,-20);
-    _allModelsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -50, 3,-20);
-    
-    
+    _allModelsTopBtn.titleEdgeInsets=UIEdgeInsetsMake(0, -55, 3,-25);
     
     _pricingLabel.hidden=YES;
     _wsLabel.hidden=YES;
@@ -128,17 +128,6 @@
     
     _pricingSwitch.onTintColor=[UIColor whiteColor];
     
-//    _cartOption.imageEdgeInsets=UIEdgeInsetsMake(0, 30, 0, 30);
-//    _cartOption.layer.borderWidth=1.0f;
-//    _cartOption.layer.borderColor=GrayLight.CGColor;
-//    _cartOption.layer.cornerRadius=5.0f;
-//    _cartOption.clipsToBounds=YES;
-//    
-//    _sortOption.imageEdgeInsets=UIEdgeInsetsMake(0, 30, 0, 30);
-//    _sortOption.layer.borderWidth=1.0f;
-//    _sortOption.layer.borderColor=GrayLight.CGColor;
-//    _sortOption.layer.cornerRadius=5.0f;
-//    _sortOption.clipsToBounds=YES;
     
     [_customersCollectionView setShowsHorizontalScrollIndicator:NO];
 
@@ -280,16 +269,17 @@
     
     if(collectionView==_customersCollectionView){
         if(ronakGlobal.selectedCustomersArray.count==1){
-            CGSize mElementSize = CGSizeMake(_customersCollectionView.frame.size.width,95.0);
+            CGSize mElementSize = CGSizeMake(_customersCollectionView.frame.size.width, 90.0);
             return mElementSize;
     }
     else{
-        CGSize mElementSize = CGSizeMake(_customersCollectionView.frame.size.width/2,95.0);
+        CGSize mElementSize = CGSizeMake(_customersCollectionView.frame.size.width/2, 90.0);
         return mElementSize;
         }
     }
     return CGSizeMake(120, 122);
 }
+
 
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
@@ -320,9 +310,7 @@
             cell=[[CustomerViewCell alloc]init];
         }
         cell.delegate=self;
-        cell.layer.borderWidth=1.0f;
         [cell bindData:ronakGlobal.selectedCustomersArray[indexPath.row]];
-        cell.layer.borderColor=[UIColor lightGrayColor].CGColor;
         return cell;
     }
     return nil;
@@ -349,16 +337,25 @@
 
 -(void)drawBorders:(id)element{
     
-    if([element isKindOfClass:[CustomButton class]]||[element isKindOfClass:[UIButton class]])
-    {
-        CustomButton *cst=element;
-        cst.layer.borderColor=[UIColor lightGrayColor].CGColor;
-        cst.layer.borderWidth=1.0f;
-        cst.layer.shadowColor=[UIColor lightGrayColor].CGColor;
-        cst.layer.shadowOffset=CGSizeMake(1.0, 1.0);
-        cst.layer.shadowRadius=1.0f;
-        cst.layer.shadowOpacity=1.0f;
-    }
+    UIView *cst=element;
+    float shadowSize = 1.0f;
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(cst.frame.origin.x - shadowSize / 2,
+                                                                           cst.frame.origin.y - shadowSize / 2,
+                                                                           cst.frame.size.width + shadowSize,
+                                                                           cst.frame.size.height + shadowSize)];
+////        cst.layer.borderColor=[UIColor lightGrayColor].CGColor;
+////        cst.layer.borderWidth=1.0f;
+//        cst.layer.shadowColor=[UIColor lightGrayColor].CGColor;
+//        cst.layer.shadowOffset=CGSizeMake(2.0, 2.0);
+//        cst.layer.shadowRadius=2.0f;
+//        cst.layer.shadowOpacity=1.0f;
+    cst.layer.masksToBounds = NO;
+    cst.layer.shadowColor = [UIColor blackColor].CGColor;
+    cst.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    cst.layer.shadowOpacity = 0.5f;
+//    cst.layer.shadowPath = shadowPath.CGPath;
+
+    
 }
 -(void)addOrRemoveItemsfromSelection:(NSArray*)arr
 {
@@ -395,7 +392,13 @@
     _itemSizeLabel.text=item.filters.size__c;
     _selectedItemDesc.text=item.filters.item_Description__c;
     _pricingLabel.text=[@"₹" stringByAppendingString:item.filters.mRP__c];
+    
+    if(!([item.filters.discount__c integerValue]>0))    {
+        _discountVw.hidden=YES;
+    }
+    else{
     _discountLabel.text=[item.filters.discount__c stringByAppendingString:@"%"];
+    }
     _itemSizeLabel.text=item.filters.size__c;
     _wsLabel.text=[[@"₹" stringByAppendingString:item.filters.wS_Price__c] stringByAppendingString:@"/"];
     
@@ -613,8 +616,9 @@
 -(void)tappedImage:(id)sender
 {
     ZoomscrollVw = [[UIScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2, 0, 0)];
-    ZoomscrollVw.backgroundColor = [UIColor blackColor];
-    zoomimageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    ZoomscrollVw.backgroundColor = [UIColor whiteColor];
+    zoomimageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-[UIScreen mainScreen].bounds.size.width/8, [UIScreen mainScreen].bounds.size.height-[UIScreen mainScreen].bounds.size.height/8)];
+    zoomimageV.center=ZoomscrollVw.center;
     zoomimageV.backgroundColor=[UIColor whiteColor];
     zoomimageV.contentMode=UIViewContentModeScaleAspectFit;
     [ZoomscrollVw addSubview:zoomimageV];
@@ -700,9 +704,7 @@
         [categoryBasedSort enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {            
             NSArray *arr=[obj valueForKeyPath:@"ColorsArray.listItemsArray"];
             [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
                 [allItems addObjectsFromArray:obj];
-                
             }];
         }];
         showItemsOnscrnArry=allItems;

@@ -30,5 +30,7 @@
 -(IBAction)pushtoNextVC:(id)sender;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeHome;
+@property (strong, nonatomic) IBOutlet UIButton *clearAllcustomersBtn;
+
 
 @end

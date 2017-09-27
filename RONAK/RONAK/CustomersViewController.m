@@ -225,7 +225,7 @@ static NSString *reuse=@"reuseCustomerCell";
     [_headingLabel addGestureRecognizer:tap];
     
     UILongPressGestureRecognizer *longGest=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(enableClearButton)];
-    longGest.minimumPressDuration=2.0f;
+    longGest.minimumPressDuration=1.0f;
     [_scrollView_selCustmr addGestureRecognizer:longGest];
     clearSelectedCstBtn.hidden=YES;
     
@@ -393,6 +393,7 @@ static NSString *reuse=@"reuseCustomerCell";
 
 -(void)showSelectedCustmrsInScrlViewwithClear:(BOOL)clear{
     
+    [_clearAllcustomersBtn setImage:[UIImage imageNamed:@"clearIcon"] forState:UIControlStateNormal];
     clearSelectedCstBtn.hidden=clear==YES?NO:YES;//allcustomersCLear;
     for (CustomButton *lbl in _scrollView_selCustmr.subviews){
         if([lbl isKindOfClass:[CustomButton class]])

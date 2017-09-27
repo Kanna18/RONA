@@ -19,10 +19,10 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    [self drawBorders:_customerName];
+    [self drawBorders:_customerNameBtn];
     [self drawBorders:_increment];
     [self drawBorders:_decrement];
-    
+    [self drawBorders:_backview];
     _clearButton.hidden=YES;
 }
 
@@ -77,16 +77,26 @@
 }
 
 -(void)drawBorders:(id)element{
-    if([element isKindOfClass:[CustomButton class]])
-    {
-        CustomButton *cst=element;
-        cst.layer.borderColor=[UIColor lightGrayColor].CGColor;
-        cst.layer.borderWidth=1.0f;
-        cst.layer.shadowColor=[UIColor lightGrayColor].CGColor;
-        cst.layer.shadowOffset=CGSizeMake(5.0, 5.0);
-        cst.layer.shadowRadius=8.0f;
-        cst.layer.shadowOpacity=5.0f;
-    }
+    
+    UIView *cst=element;
+    float shadowSize = 1.0f;
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(cst.frame.origin.x - shadowSize / 2,
+                                                                           cst.frame.origin.y - shadowSize / 2,
+                                                                           cst.frame.size.width + shadowSize,
+                                                                           cst.frame.size.height + shadowSize)];
+    ////        cst.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    ////        cst.layer.borderWidth=1.0f;
+    //        cst.layer.shadowColor=[UIColor lightGrayColor].CGColor;
+    //        cst.layer.shadowOffset=CGSizeMake(2.0, 2.0);
+    //        cst.layer.shadowRadius=2.0f;
+    //        cst.layer.shadowOpacity=1.0f;
+    cst.layer.masksToBounds = NO;
+    cst.layer.shadowColor = [UIColor blackColor].CGColor;
+    cst.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    cst.layer.shadowOpacity = 0.4f;
+    //    cst.layer.shadowPath = shadowPath.CGPath;
+    
+
 }
 -(void)bindData:(CustomerDataModel*)cstData{
     

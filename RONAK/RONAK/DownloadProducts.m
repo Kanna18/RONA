@@ -31,11 +31,9 @@
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
 //    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
 //    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_ProductList_B]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10.0];
-    
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
 //    [request setHTTPBody:postData];
@@ -64,7 +62,6 @@
             if(!(arr.count>0))
             {
                 NSDictionary *dic=obj;
-                
                 NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:ronakGlobal.context];
 //                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
                 ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
@@ -279,6 +276,7 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.item_No__c"                                                                   ascending:YES];
     [fetch setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
     NSArray *arr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
+    NSLog(@"%@",arr);
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ItemMaster *item=obj;
         [items addObject:item];

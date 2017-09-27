@@ -45,20 +45,13 @@
             [self getFetchFiltersAfteDataFetched];
         });
     }
-    
     for (CustomButton *btn in self.view.subviews)
     {
-     if([btn isKindOfClass:[CustomButton class]])
-     {
-         btn.titleLabel.font=gothMedium(15);
-     }
-    
+        if([btn isKindOfClass:[CustomButton class]])
+        {
+            btn.titleLabel.font=gothMedium(15);
+        }
     }
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self
-//                                            selector:@selector(yourMethod)
-//                                                name:UIApplicationDidBecomeActiveNotification
-//                                              object:nil];
 }
 
 
@@ -80,22 +73,7 @@
     [load stop];
 
 }
-//-(void)yourMethod
-//{
-//    TOPasscodeViewController *passcodeViewController = [[TOPasscodeViewController alloc] initWithStyle:TOPasscodeViewStyleTranslucentDark passcodeType:TOPasscodeTypeFourDigits];
-//    passcodeViewController.delegate = self;
-//    [self presentViewController:passcodeViewController animated:YES completion:nil];
-//}
-//- (void)didTapCancelInPasscodeViewController:(TOPasscodeViewController *)passcodeViewController
-//{
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
-//
-//- (BOOL)passcodeViewController:(TOPasscodeViewController *)passcodeViewController isCorrectCode:(NSString *)code
-//{
-//    return [code isEqualToString:@"1234"];
-//    
-//}
+
 -(void)viewWillAppear:(BOOL)animate
 {
     [ronakGlobal.selectedCustomersArray removeAllObjects];

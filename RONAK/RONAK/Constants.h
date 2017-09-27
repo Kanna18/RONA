@@ -15,6 +15,7 @@
 #define  sfFont(hgt)  [UIFont fontWithName:@"SFUIDisplay-Regular" size:hgt]
 #define calibriBol(si)    [UIFont fontWithName: @"Calibri Bold" size:si]
 
+#define gothBook(si)    [UIFont fontWithName: @"Gotham-Book" size:si]
 #define gothThin(si)    [UIFont fontWithName: @"Gotham-Thin" size:si]
 #define gothBold(si)    [UIFont fontWithName: @"Gotham-Bold" size:si]
 #define gothMedium(si)    [UIFont fontWithName: @"Gotham-Medium" size:si]
@@ -40,6 +41,8 @@
 #define rest_redirectURI_B @"sfdc://success"
 #define rest_customersList_B @"https://cs57.salesforce.com/services/apexrest/CustomerMaster/getCustomerMasterDetails"
 #define rest_ProductList_B @"https://cs57.salesforce.com/services/apexrest/SampleProductDetails/"
+
+
 
 
 //constants to save in defaults
@@ -107,7 +110,8 @@
 #define storyBoard(mvc) [self.storyboard instantiateViewControllerWithIdentifier:mvc]
 #define noOfTouches 1
 
-
+#define passcode1
+#define passcode2
 
 #endif /* Constants_h */
 

@@ -179,7 +179,7 @@
         self.cancelButton.titleLabel.font = buttonFont;
         [self.cancelButton addTarget:self action:@selector(accessoryButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         if (isPad) {
-//            self.passcodeView.rightButton = self.cancelButton;
+            self.passcodeView.rightButton = self.cancelButton;
         }
         else {
             [self.view addSubview:self.cancelButton];
@@ -191,7 +191,6 @@
             self.cancelButton = nil;
         }
     }
-
     [self updateAccessoryButtonFontsForSize:self.view.bounds.size];
 }
 

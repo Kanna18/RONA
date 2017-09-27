@@ -7,11 +7,9 @@
 //
 
 @protocol CustomerDeleted <NSObject>
-
 -(void)customerNameDeleted;
 -(void)cartCount;
 @end
-
 
 #import <UIKit/UIKit.h>
 @interface CustomerViewCell : UICollectionViewCell
@@ -28,5 +26,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
 @property id<CustomerDeleted> delegate;
+@property (strong, nonatomic) IBOutlet UIView *backview;
+@property (strong, nonatomic) IBOutlet CustomButton *customerNameBtn;
 
 @end

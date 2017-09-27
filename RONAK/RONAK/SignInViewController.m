@@ -29,16 +29,29 @@
     self.navigationController.navigationBarHidden=YES;
     serverAPI=[ServerAPIManager sharedinstance];
     load =[[LoadingView alloc]init];
-    
     [self defaultUserNameandPasswordSave:NO load:YES delete:NO];
-    
      NSArray *arr= [UIFont fontNamesForFamilyName:@"Gotham"];
     NSLog(@"%@",arr);
-    
     [self defaultStyles];
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(unzippedSuccess) name:unzipedItemsSuccess object:nil];
     
+    
+    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES"]])
+    {
+        [fileManager createDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES"] withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES"]])
+    {
+        [fileManager createDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES"] withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item1.jpg"]])
+    {
+        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"GU 6739 BLK-35item1" ofType:@"jpg"] toPath:[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item1.jpg"] error:nil];
+    }
+    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item2.jpg"]])
+    {
+        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"GU 6739 BLK-35item2" ofType:@"jpg"] toPath:[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item2.jpg"] error:nil];
+    }
 }
 -(void)unzippedSuccess
 {
@@ -63,42 +76,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-//-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-//{
-//    if([_emailTf.text isEqualToString:@"admin"]&&[_passwordTF.text isEqualToString:@"admin"])
-//    {
-//        return YES;
-//    }
-//    else{
-//        showMessage(@"Invalid user name and password", self.view);
-//    }
-//    return NO;
-//}
-//
-//- (IBAction)rememberMeClick:(id)sender {
-//    
-//    if(_remembermeBtn.isSelected==YES)
-//    {
-//        _remembermeBtn.selected=NO;
-//        [_remembermeBtn setImage:[UIImage imageNamed:@"rememberMe"] forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        _remembermeBtn.selected=YES;
-//        [_remembermeBtn setImage:[UIImage imageNamed:@"rememberMe-1"] forState:UIControlStateNormal];
-//    }
-//    [_remembermeBtn.titleLabel setAdjustsFontSizeToFitWidth:YES];
-//}
-
-
 -(void)defaultUserNameandPasswordSave:(BOOL)save load:(BOOL)loadi delete:(BOOL)delete
 {
     if(save)
@@ -110,41 +87,21 @@
     {
         if(defaultGet(savedUserPassword)&&defaultGet(savedUserEmail))
         {
-//            _remembermeBtn.selected=YES;
-//            [_remembermeBtn setImage:[UIImage imageNamed:@"rememberMe-1"] forState:UIControlStateNormal];
             _emailTf.text=defaultGet(savedUserEmail);
             _passwordTF.text=defaultGet(savedUserPassword);
         }
         
     }
-//    if(delete)
-//    {
-//        if(defaultGet(savedUserPassword)&&defaultGet(savedUserEmail))
-//        {
-//            defaultRemove(savedUserEmail);
-//            defaultRemove(savedUserPassword);
-//        }
-//    }
 }
 
 - (IBAction)loginClick:(id)sender {
     
-//    MenuViewController *menuVC=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-//    [self.navigationController pushViewController:menuVC animated:YES];
-    
     if(_emailTf.text.length>0&&_passwordTF.text.length>0)
     {
-//        [self getAccessToken];
+        [self getAccessToken];
         [load loadingWithlightAlpha:self.view with_message:@""];
         [load start];
         [self defaultUserNameandPasswordSave:YES load:NO delete:NO];
-        [self gotoMenu];
-//        if(_remembermeBtn.isSelected){
-//        [self defaultUserNameandPasswordSave:YES load:NO delete:NO];
-//        }
-//        else{
-//            [self defaultUserNameandPasswordSave:NO load:NO delete:YES];
-//        }
     }
     else
     {
@@ -194,11 +151,11 @@
 {
     [super viewDidAppear:YES];
     
-    if(![defaultGet(unzipedItemsSuccess) isEqualToString:@"success"])
-    {
-        NSURL *url=[NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/smo4q5reh1yo0qq/ITEM%20IMAGES.zip?dl=0"];
-        [UnzipViewController presentResourcesViewController:self withTitle:@"Loading" URL:url completion:nil];
-    }
+//    if(![defaultGet(unzipedItemsSuccess) isEqualToString:@"success"])
+//    {
+//        NSURL *url=[NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/smo4q5reh1yo0qq/ITEM%20IMAGES.zip?dl=0"];
+//        [UnzipViewController presentResourcesViewController:self withTitle:@"Loading" URL:url completion:nil];
+//    }
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

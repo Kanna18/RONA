@@ -55,8 +55,10 @@
 -(IBAction)remarksClick:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *roiplBtn;
 - (IBAction)roiplClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *dynamicScrollViewContentView;
 
 @property (strong, nonatomic) IBOutlet UILabel *ropilLabel;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *cntnViewconstraint;
 
 @property (strong, nonatomic) IBOutlet UIButton *draftBtn;
 - (IBAction)draftClick:(id)sender;
@@ -65,6 +67,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *cancelOrderBtn;
 - (IBAction)cancelOrderClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollViewDynamic;
+@property (strong, nonatomic) IBOutlet UIView *bottomViewonScroll;
 
 -(IBAction)swipeToBookAnotheOrder:(id)sender;
 @end

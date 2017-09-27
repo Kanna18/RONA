@@ -33,11 +33,13 @@
 #import <SmartStore/SalesforceSDKManagerWithSmartStore.h>
 #import <SalesforceSDKCore/SFLoginViewController.h>
 
+#import <TOPasscodeViewController/TOPasscodeViewController.h>
+
 // Fill these in when creating a new Connected Application on Force.com
 static NSString * const RemoteAccessConsumerKey = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
 static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect/oauth/done";
 
-@interface AppDelegate ()
+@interface AppDelegate ()<TOPasscodeViewControllerDelegate>
 
 /**
  * Convenience method for setting up the main UIViewController and setting self.window's rootViewController
@@ -54,7 +56,11 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    
+    UIWindow* topWindow;
+    
+}
 
 @synthesize window = _window;
 
@@ -385,6 +391,43 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
             abort();
         }
     }
+}
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+//    [self presentPasscodeVC];
+}
+
+-(void)presentPasscodeVC{
+    
+    topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    TOPasscodeViewController *passcodeViewController = [[TOPasscodeViewController alloc] initWithStyle:TOPasscodeViewStyleTranslucentDark passcodeType:TOPasscodeTypeFourDigits];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+//    button.titleLabel.font=[UIFont systemFontOfSize:16.0f];
+//    [button.titleLabel setTextColor:[UIColor whiteColor]];
+//    [button setTitle:@"Confirm" forState:UIControlStateNormal];
+//    passcodeViewController.passcodeView.rightButton=button;
+//    passcodeViewController.rightAccessoryButton=button;
+     topWindow.rootViewController = [UIViewController new];
+    passcodeViewController.delegate = self;
+    topWindow.windowLevel = UIWindowLevelAlert + 1;
+    [topWindow makeKeyAndVisible];
+    [topWindow.rootViewController presentViewController:passcodeViewController animated:YES completion:nil];
+}
+
+-(void)setPasswordForthefirstTimeFlow
+{
+    
+}
+
+
+- (BOOL)passcodeViewController:(TOPasscodeViewController *)passcodeViewController isCorrectCode:(NSString *)code
+{
+    return [code isEqualToString:@"1234"];
+    
+}
+- (void)didInputCorrectPasscodeInPasscodeViewController:(TOPasscodeViewController *)passcodeViewController
+{
+    topWindow.hidden=YES;
 }
 
 

@@ -20,11 +20,11 @@
         [color enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSPredicate *modelPre=[NSPredicate predicateWithFormat:@"SELF.filters.color_Code__c == %@",obj];
             NSArray *modelArr=[arr filteredArrayUsingPredicate:modelPre];
-            if(modelArr.count>0)
-            {
-                ItemMaster *item=modelArr[0];
+            [modelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                ItemMaster *item=obj;
                 [_listItemsArray addObject:item];
-            }
+            }];
+            
         }];
     }
     return self;

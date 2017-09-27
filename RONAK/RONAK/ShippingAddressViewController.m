@@ -94,7 +94,7 @@
         [btn setBackgroundColor:RGB(228,230,232)];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(clikedOnCustomer:) forControlEvents:UIControlEventTouchUpInside];
-        btn.titleLabel.font=gothMedium(14);
+        btn.titleLabel.font=gothBook(14);
         [_scrollView_Cmlist addSubview:btn];
         X+=208;
 
@@ -128,12 +128,12 @@
                     completion: nil];
     
     _cst=btn.cstData;
-    btn.titleLabel.font=gothBold(14);
+    btn.titleLabel.font=gothBook(14);
     [btn setBackgroundColor:BlueClr];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     CustomerDataModel *cst=btn.cstData;    
     _customerNamelbl.text=cst.Name;
-    _customerNamelbl.font=gothBold(20);
+    _customerNamelbl.font=gothMedium(20);
     _customerNamelbl.textColor=BlueClr;
     
     
@@ -199,7 +199,7 @@
     NSString *billAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\n%@.",cst.BillingStreet,cst.BillingState,cst.BillingCity,cst.BillingPostalCode];
     
     UITextView *textVi=[[UITextView alloc]initWithFrame:CGRectMake(10, 10, _billAddress_scrlView.frame.size.width-10, _billAddress_scrlView.frame.size.height-10)];
-    textVi.font=gothMedium(12);
+    textVi.font=gothBook(12);
     textVi.textColor=RGB(45, 45, 45);
     [_billAddress_scrlView addSubview:textVi];
     textVi.text=billAddress;
@@ -213,7 +213,7 @@
         Recodrs *rec=(Recodrs*)arr[i];
         NSString *shpAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\n%@,\nGSTIN : (nil) ",rec.Street__c,rec.City__c,rec.State__c,rec.Zipcode__c];
         UITextView *textVi=[[UITextView alloc]initWithFrame:CGRectMake(vX, vY, _billAddress_scrlView.frame.size.width, _billAddress_scrlView.frame.size.height-20)];
-        textVi.font=gothMedium(12);
+        textVi.font=gothBook(12);
         textVi.textColor=RGB(45, 45, 45);
         [_shipAddress_scrlView addSubview:textVi];
         textVi.text=shpAddress;

@@ -40,6 +40,7 @@
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAllSubviewsandDeselectall)];
     tap.numberOfTapsRequired=1;
     [self.view addGestureRecognizer:tap];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -138,6 +139,9 @@
     _frameGST.text=[NSString stringWithFormat:@"%0.2f",(float)framesGST];
     _totalAmount.text=[NSString stringWithFormat:@"%0.2f",(float)(total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100)];
     _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)(total+sunGlassesGST+framesGST)];
+    
+    
+    [self dynamicscrollViewContentHeight];
     [_summaryTableView reloadData];
 }
 
@@ -266,22 +270,41 @@
 
 -(void)didTapLabel:(WSLabel *)lblView withDate:(NSDate *)selectedDate
 {
-    NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
-    [monthFormatter setDateFormat:@"dd MMMM yyyy"];
-    NSString *str=[monthFormatter stringFromDate:selectedDate];
-    _cstdDataModel.defaultsCustomer.dateFuture=str;
-    if(_futureDelivery.selected==YES)
-    {
-        containerView.hidden=YES;
-        _futureDelivery.selected=NO;
-    }
-    else
-    {
-        containerView.hidden=NO;
-        _futureDelivery.selected=YES;
-    }
-    [self fillLabelsWithText:_presentCustomerBtn];
     
+    NSDate *date1 = selectedDate;
+    NSDate *date2 = [NSDate date];
+    switch ([date1 compare:date2]) {
+        case NSOrderedAscending:
+            showMessage(@"Select a future Date", self.view);
+            break;
+            
+        case NSOrderedDescending:
+        {
+            NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
+            [monthFormatter setDateFormat:@"dd MMMM yyyy"];
+            NSString *str=[monthFormatter stringFromDate:selectedDate];
+            _cstdDataModel.defaultsCustomer.dateFuture=str;
+            if(_futureDelivery.selected==YES)
+            {
+                containerView.hidden=YES;
+                _futureDelivery.selected=NO;
+            }
+            else
+            {
+                containerView.hidden=NO;
+                _futureDelivery.selected=YES;
+            }
+            [self fillLabelsWithText:_presentCustomerBtn];
+            
+        }
+            break;
+            
+        case NSOrderedSame:
+            showMessage(@"Select a future Date", self.view);
+            break;
+    }
+    
+   
 }
 
 -(void)deactiveWSCalendarWithDate:(NSDate *)selectedDate{
@@ -431,6 +454,13 @@
     [remarksView removeFromSuperview];
     containerView.hidden=YES;
 }
-
+-(void)dynamicscrollViewContentHeight{
+    
+    CGRect tvFrame=_dynamicScrollViewContentView.frame;
+    tvFrame.size.height=[NSCountedSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount].count*100;
+    _cntnViewconstraint.constant=[NSCountedSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount].count*100+200;
+    _scrollViewDynamic.contentSize=CGSizeMake(0, [NSCountedSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount].count*100+200);
+    
+}
 
 @end

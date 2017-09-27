@@ -111,8 +111,13 @@
 		F6A4F9B91F60358E00472A96 /* mailblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9971F60358E00472A96 /* mailblue.png */; };
 		F6A4F9BA1F60358E00472A96 /* roiplblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A4F9981F60358E00472A96 /* roiplblue.png */; };
 		F6A59D3D1F65C5E4007469F8 /* CategoryBased.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A59D3C1F65C5E4007469F8 /* CategoryBased.m */; };
+		F6AC7D641F752CEB00D6F8EC /* GBooK.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D631F752CEB00D6F8EC /* GBooK.OTF */; };
+		F6AC7D661F752F6700D6F8EC /* collapsed.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D651F752F6700D6F8EC /* collapsed.png */; };
+		F6AC7D681F752F7C00D6F8EC /* expanded.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D671F752F7C00D6F8EC /* expanded.png */; };
 		F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */; };
 		F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */; };
+		F6C2BBE11F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */; };
+		F6C2BBE21F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6C2BBE01F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg */; };
 		F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D085051F548DD1001A76C5 /* PlaceOrder.m */; };
 		F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D085061F548DD1001A76C5 /* Draft6.xib */; };
 		F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE41F25C295003AF699 /* CustomerDataModel.m */; };
@@ -128,8 +133,8 @@
 		F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */; };
 		F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */; };
 		F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */; };
-		F6FF3C4C1F583C7B003269EC /* collapsed.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FF3C4A1F583C7B003269EC /* collapsed.png */; };
-		F6FF3C4D1F583C7B003269EC /* expanded.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FF3C4B1F583C7B003269EC /* expanded.png */; };
+		F6FF3C4C1F583C7B003269EC /* collapsed1.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FF3C4A1F583C7B003269EC /* collapsed1.png */; };
+		F6FF3C4D1F583C7B003269EC /* expanded1.png in Resources */ = {isa = PBXBuildFile; fileRef = F6FF3C4B1F583C7B003269EC /* expanded1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,8 +303,13 @@
 		F6A4F9981F60358E00472A96 /* roiplblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roiplblue.png; sourceTree = "<group>"; };
 		F6A59D3B1F65C5E4007469F8 /* CategoryBased.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBased.h; sourceTree = "<group>"; };
 		F6A59D3C1F65C5E4007469F8 /* CategoryBased.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBased.m; sourceTree = "<group>"; };
+		F6AC7D631F752CEB00D6F8EC /* GBooK.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GBooK.OTF; sourceTree = "<group>"; };
+		F6AC7D651F752F6700D6F8EC /* collapsed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collapsed.png; sourceTree = "<group>"; };
+		F6AC7D671F752F7C00D6F8EC /* expanded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded.png; sourceTree = "<group>"; };
 		F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F6BFD94B1F4C9CFE0057C4A0 /* RONAK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RONAK.xcdatamodel; sourceTree = "<group>"; };
+		F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GU 6739 BLK-35item1.jpg"; sourceTree = "<group>"; };
+		F6C2BBE01F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GU 6739 BLK-35item2.jpg"; sourceTree = "<group>"; };
 		F6D085041F548DD1001A76C5 /* PlaceOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOrder.h; sourceTree = "<group>"; };
 		F6D085051F548DD1001A76C5 /* PlaceOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOrder.m; sourceTree = "<group>"; };
 		F6D085061F548DD1001A76C5 /* Draft6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Draft6.xib; sourceTree = "<group>"; };
@@ -326,8 +336,8 @@
 		F6FBB7871F55E8C800CF2732 /* RangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangTableViewCell.h; sourceTree = "<group>"; };
 		F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangTableViewCell.m; sourceTree = "<group>"; };
 		F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RangTableViewCell.xib; sourceTree = "<group>"; };
-		F6FF3C4A1F583C7B003269EC /* collapsed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collapsed.png; sourceTree = "<group>"; };
-		F6FF3C4B1F583C7B003269EC /* expanded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded.png; sourceTree = "<group>"; };
+		F6FF3C4A1F583C7B003269EC /* collapsed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collapsed1.png; sourceTree = "<group>"; };
+		F6FF3C4B1F583C7B003269EC /* expanded1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */,
+				F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */,
+				F6C2BBE01F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg */,
 				84D4B2E51F63BEA500B76DD7 /* UNZIP */,
 				F6DADCDC1F19DC4800DC635E /* RONAK.pch */,
 				84D4B2E81F63BF5400B76DD7 /* Constants.h */,
@@ -387,6 +399,7 @@
 				84D4B2E91F63BFB400B76DD7 /* RESTCalls.h */,
 				84D4B2EA1F63BFB400B76DD7 /* RESTCalls.m */,
 				F6A4F9701F600FED00472A96 /* GMedium.OTF */,
+				F6AC7D631F752CEB00D6F8EC /* GBooK.OTF */,
 				F6A4F9721F600FF500472A96 /* GThin.OTF */,
 				F6A4F96A1F600F4600472A96 /* GBold.OTF */,
 				84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */,
@@ -807,8 +820,10 @@
 				F6FF3C651F589C8B003269EC /* DefaultFil */,
 				F6FF3C611F589C70003269EC /* AdvancedFil */,
 				F6FF3C511F589AC7003269EC /* CustomCell&Header */,
-				F6FF3C4A1F583C7B003269EC /* collapsed.png */,
-				F6FF3C4B1F583C7B003269EC /* expanded.png */,
+				F6FF3C4A1F583C7B003269EC /* collapsed1.png */,
+				F6AC7D651F752F6700D6F8EC /* collapsed.png */,
+				F6FF3C4B1F583C7B003269EC /* expanded1.png */,
+				F6AC7D671F752F7C00D6F8EC /* expanded.png */,
 			);
 			name = FilterNew;
 			sourceTree = "<group>";
@@ -884,7 +899,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -924,8 +939,10 @@
 				F6A4F99B1F60358E00472A96 /* advFilterGrey.png in Resources */,
 				F6A4F9A81F60358E00472A96 /* listgrey.png in Resources */,
 				F69DCEAE1F697C0A00156396 /* CollectionPopUp.xib in Resources */,
+				F6AC7D641F752CEB00D6F8EC /* GBooK.OTF in Resources */,
 				84D4B2E71F63BF3500B76DD7 /* Main.storyboard in Resources */,
 				F6A4F9AB1F60358E00472A96 /* mail.png in Resources */,
+				F6AC7D661F752F6700D6F8EC /* collapsed.png in Resources */,
 				F6A4F9BA1F60358E00472A96 /* roiplblue.png in Resources */,
 				F6A4F9A71F60358E00472A96 /* futureinvgrey.png in Resources */,
 				F6A4F96D1F600F4600472A96 /* GBold.OTF in Resources */,
@@ -940,11 +957,13 @@
 				F6A4F9AD1F60358E00472A96 /* backblue.png in Resources */,
 				F6A4F99C1F60358E00472A96 /* backgrey.png in Resources */,
 				F69DCEA51F69626F00156396 /* BillWiseDetailsCustomCell.xib in Resources */,
+				F6AC7D681F752F7C00D6F8EC /* expanded.png in Resources */,
 				F6A4F9A01F60358E00472A96 /* cartgrey.png in Resources */,
-				F6FF3C4D1F583C7B003269EC /* expanded.png in Resources */,
+				F6FF3C4D1F583C7B003269EC /* expanded1.png in Resources */,
+				F6C2BBE21F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg in Resources */,
 				F6A4F9B61F60358E00472A96 /* dwldblue.png in Resources */,
 				F6A4F9AA1F60358E00472A96 /* ROIPLGrey.png in Resources */,
-				F6FF3C4C1F583C7B003269EC /* collapsed.png in Resources */,
+				F6FF3C4C1F583C7B003269EC /* collapsed1.png in Resources */,
 				F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */,
 				F6A4F9B91F60358E00472A96 /* mailblue.png in Resources */,
 				F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */,
@@ -970,6 +989,7 @@
 				F6A4F9A31F60358E00472A96 /* disc.png in Resources */,
 				F6A4F9AE1F60358E00472A96 /* calcblue.png in Resources */,
 				F6A4F9B21F60358E00472A96 /* delchalanblue.png in Resources */,
+				F6C2BBE11F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg in Resources */,
 				F6A4F9B01F60358E00472A96 /* cartblue.png in Resources */,
 				F6A4F99A1F60358E00472A96 /* advancefiltergrey.png in Resources */,
 			);
@@ -1223,7 +1243,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				ENABLE_BITCODE = NO;
@@ -1263,8 +1283,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
-				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1275,7 +1295,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				ENABLE_BITCODE = NO;
@@ -1315,8 +1335,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
-				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
