@@ -42,6 +42,7 @@
 #define rest_customersList_B @"https://cs6.salesforce.com/services/apexrest/CustomerMaster/"
 #define rest_ProductList_B @"https://cs6.salesforce.com/services/apexrest/SampleProductDetails/"
 #define rest_stockDetails_b @"https://cs6.salesforce.com/services/apexrest/StockDetails/"
+#define rest_warehouseMaster_b @"https://cs6.salesforce.com/services/apexrest/WarehouseMaster1/"
 
 
 
@@ -66,7 +67,6 @@
 
 
 //colorCodes
-
 #define RGB(r,g,b) [[UIColor alloc]initWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define GreenClr RGB(0, 165, 80)
 #define BlueClr RGB(0, 122, 255)
@@ -112,6 +112,10 @@
 
 #define passcode @"passcode"
 #define confirmPasscode @"confirmPasscode"
+
+#define brandsArrayList @"brandsList"
+#define warehouseArrayList @"warehouseArrayLisy"
+
 
 #endif /* Constants_h */
 

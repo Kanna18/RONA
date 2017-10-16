@@ -62,8 +62,6 @@
     [self zoomImageFunctionality];
     
     _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
-    
-    
 }
 
 -(void)getProductItemsFilter{

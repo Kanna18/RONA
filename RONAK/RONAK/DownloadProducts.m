@@ -225,13 +225,13 @@ int offSet=0, productsOffset=0,stockOffset=0;
     ronakGlobal.stockArr=stockF;
     
     ronakGlobal.DefFiltersOne=   @[@{ @"heading":kBrand,
-                                      @"options":brandsF},
+                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]},
                                    @{ @"heading":kCategories,
                                       @"options":categoriesF},
                                    @{ @"heading":kCollection,
                                       @"options":collectionF}];
     ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kStockWareHouse,
-                                      @"options":stockWarehouseF},
+                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]},
 //                                   @{ @"heading":kStockWareHouse,
 //                                      @"options":stockWarehouseF},
                                    @{ @"heading":kStockvalue,
@@ -279,7 +279,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
 -(NSMutableArray*)pickProductsFromFilters{
     
     NSPredicate *pre=[ronakGlobal.selectedFilter getPredicateStringFromTable:nil];
-    
     NSMutableArray *items=[[NSMutableArray alloc]init];
     NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
 //    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF.filters.brand__c == 'Idee'"];
@@ -424,9 +423,37 @@ int offSet=0, productsOffset=0,stockOffset=0;
         NSLog(@"Stock Count--%lu",(unsigned long)idx);
     }];
     
-    [_delegateProducts productsListFetched];
-
+    [self getBrandsAndWarehousesListandsavetoDefaults];
 }
-
+-(void)getBrandsAndWarehousesListandsavetoDefaults{
+    
+    NSDictionary *headers = @{@"content-type": @"application/json",
+                              @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)
+                                  };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_warehouseMaster_b]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if(data)
+                {
+                    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                    NSArray *brandsA=dict[@"brandList"];
+                    NSArray *warehouseLisA=dict[@"warehouseList"];
+                    defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
+                    defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
+                    NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
+                }
+            }];
+    [dataTask resume];
+    [_delegateProducts productsListFetched];
+}
 
 @end
