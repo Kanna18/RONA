@@ -24,8 +24,10 @@ static NSString *reuse=@"reuseCustomerCell";
     RESTCalls *rest;
     CGFloat scr_width,scr_height;
     IBOutlet UIButton *clearSelectedCstBtn;
-}
+    
+    NSMutableData *custDataOffset;
 
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,7 +51,7 @@ static NSString *reuse=@"reuseCustomerCell";
 
     
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
-    alphabets=@[@"A",@"B",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
+    alphabets=@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"];
     
     [self defaultComponentsStyle];
     
@@ -58,7 +60,7 @@ static NSString *reuse=@"reuseCustomerCell";
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
     
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"Customers" ofType:@"json"];
+//    NSString *path=[[NSBundle mainBundle] pathForResource:@"Customers" ofType:@"json"];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if([fileManager fileExistsAtPath:[docPath stringByAppendingPathComponent:customersFilePath]]){
@@ -134,10 +136,20 @@ static NSString *reuse=@"reuseCustomerCell";
     cvAlphabetSectionArr=[[NSMutableArray alloc]init];
     if(!(searchStr.length>0))
     {
+        NSMutableArray *hashArray=[[NSMutableArray alloc]init];
+        [hashArray addObjectsFromArray:customersList];
         for (NSString *ele in alphabets)
         {
-            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF.Name BEGINSWITH[c] %@",ele];
-            NSArray *arr=[customersList filteredArrayUsingPredicate:predicate];
+            NSPredicate *predicate;
+            NSArray *arr;
+            if(![ele isEqualToString:@"#"]){
+            predicate=[NSPredicate predicateWithFormat:@"SELF.Name BEGINSWITH[c] %@",ele];
+            arr=[customersList filteredArrayUsingPredicate:predicate];
+            [hashArray removeObjectsInArray:arr];
+            }
+            else{
+                arr=hashArray;
+            }
             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES];
             NSArray *sortedArr=[arr sortedArrayUsingDescriptors:@[sortDescriptor]];
             
@@ -173,7 +185,9 @@ static NSString *reuse=@"reuseCustomerCell";
     
     NSDictionary *headers = @{ @"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                  @"offSet":[NSNumber numberWithInteger:0]
+                                  };
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_customersList_B]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -188,6 +202,8 @@ static NSString *reuse=@"reuseCustomerCell";
                                       {
                                           NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
                                           NSData *jsonData=[NSJSONSerialization dataWithJSONObject:arr options:0 error:nil];
+                                          [custDataOffset appendData:jsonData];
+                                          
                                           NSError *cerr;
                                           [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
                                           [self getListofAllCustomers:jsonData];
@@ -203,7 +219,7 @@ static NSString *reuse=@"reuseCustomerCell";
 
 -(void)getListofAllCustomers:(NSData*)cList
 {
-    NSArray *arr=[NSJSONSerialization JSONObjectWithData:cList options:0 error:nil];
+    NSArray *arr=[NSJSONSerialization JSONObjectWithData:cList options:1 error:nil];
     NSError *err;
     customersList=[CustomerDataModel arrayOfModelsFromDictionaries:arr error:&err];
     [self sortCustomersintoSectionsandSearchFunctionality:nil];
@@ -291,7 +307,7 @@ static NSString *reuse=@"reuseCustomerCell";
 
     if(_searchTextField.text.length>0)
     {
-     _searchTextField.text=@"";
+        _searchTextField.text=@"";
         [self sortCustomersintoSectionsandSearchFunctionality:_searchTextField.text];
         [self moveCollectionViewtoIndexPath:cell.cstData];
         [self.view endEditing:YES];
@@ -301,11 +317,17 @@ static NSString *reuse=@"reuseCustomerCell";
 {
  
     NSString *str=[NSString stringWithFormat:@"%c",[cst.Name characterAtIndex:0]];
-    int section=[cvAlphabetSectionArr indexOfObject:str];
-    
-    NSArray *arr=[cvDataSectionArr objectAtIndex:section];
-    int row=[arr indexOfObject:cst];
-    
+    NSInteger section;
+    NSArray *arr;
+    NSInteger row;
+    if([alphabets containsObject:str]){
+    section=[cvAlphabetSectionArr indexOfObject:str];
+    }
+    else{
+        section=alphabets.count-1;
+    }        
+    arr=[cvDataSectionArr objectAtIndex:section];
+        row=[arr indexOfObject:cst];
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
 }
 

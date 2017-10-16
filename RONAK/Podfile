@@ -22,4 +22,10 @@ pod 'MARKRangeSlider'
 pod 'TOPasscodeViewController'
 pod 'SevenSwitch', '~> 2.1'
 
+
+post_install do | installer |
+    print "SQLCipher: link Pods/Headers/sqlite3.h"
+    system "mkdir -p Pods/Headers/Private && ln -s ../../SQLCipher/sqlite3.h Pods/Headers/Private"
+end
+
 end

@@ -79,6 +79,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         ViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCell"];
+    cell.preservesSuperviewLayoutMargins = true;
+    cell.contentView.preservesSuperviewLayoutMargins = true;
+
         if (cell ==nil)
         {
             [tblView registerClass:[ViewControllerCell class] forCellReuseIdentifier:@"ViewControllerCell"];

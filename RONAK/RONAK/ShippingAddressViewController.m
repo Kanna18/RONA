@@ -53,6 +53,7 @@
     taped.numberOfTouchesRequired=1;
     _customerNamelbl.userInteractionEnabled=YES;
     [_customerNamelbl addGestureRecognizer:custLblTapped];
+    
 
 }
 -(void)showBillsOfCustomer:(id)sender
@@ -170,6 +171,10 @@
     _pdcLbl.textColor=BlueClr;
     [self showaddresses:btn];
     
+    
+    [_creditLimitLbl labelleftPadding];
+    [_acntBalanceLbl labelleftPadding];
+    [_pdcLbl labelleftPadding];
 }
 
 -(NSString*)numberFormatter:(float)fValue

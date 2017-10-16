@@ -26,9 +26,10 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
     [self defaultComponentsStyle];
+    
+//    DownloadProducts *dwn=[[DownloadProducts alloc]init];
+    
    if(!defaultGet(firstTimeLaunching))
    {
        load=[[LoadingView alloc]init];
@@ -36,6 +37,7 @@
        [load start];
        DownloadProducts *dwn=[[DownloadProducts alloc]init];
        dwn.delegateProducts=self;
+       [dwn downloadCustomersListInBackground];
        [dwn downloadStockWareHouseSavetoCoreData];
    }
     else
@@ -104,7 +106,10 @@
     [_bookOrder setBackgroundImage:[UIImage imageNamed:@"BtnHilighted"] forState:UIControlStateHighlighted];
     [_reports setBackgroundImage:[UIImage imageNamed:@"BtnHilighted"] forState:UIControlStateHighlighted];
     [_logout setBackgroundImage:[UIImage imageNamed:@"BtnHilighted"] forState:UIControlStateHighlighted];
-
+        
+    
+//    [_logout setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://konlinejobs.com/wp-content/uploads/2017/02/tom-and-jerry-best-friends-free-hd-wallpaper.jpg"]]] forState:UIControlStateNormal];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -138,6 +143,10 @@
     SignInViewController *signIN=[self.storyboard instantiateViewControllerWithIdentifier:@"signInVC"];
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:signIN];
     [self presentViewController:nav animated:YES completion:nil];
+    
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserPassword];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserEmail];
     
 }
 @end

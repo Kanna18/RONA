@@ -38,4 +38,7 @@
 
 #import <TOPasscodeViewController/TOPasscodeViewController.h>
 
+#import "UILabel+Padding.h"
+
+
 #endif /* RONAK_pch */

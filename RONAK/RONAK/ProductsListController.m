@@ -167,7 +167,28 @@
     [self.view addGestureRecognizer:swipeMenu];
     _sideMenuButton.hidden=YES;
     
+    UILongPressGestureRecognizer *btn_LongPress_gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleBtnLongPressgesture:)];
+    [_switchPr addGestureRecognizer:btn_LongPress_gesture];
 }
+
+- (void)handleBtnLongPressgesture:(UILongPressGestureRecognizer *)recognizer{
+    
+    
+    //as you hold the button this would fire
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        
+        _pricingLabel.hidden=NO;
+        _wsLabel.hidden=NO;
+    }
+    //as you release the button this would fire
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        _pricingLabel.hidden=YES;
+        _wsLabel.hidden=YES;
+    }
+}
+
 -(void)swipeActions:(UISwipeGestureRecognizer*)swipe
 {
     _allModelsTopBtn.selected=NO;
@@ -617,7 +638,7 @@
 {
     ZoomscrollVw = [[UIScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2, 0, 0)];
     ZoomscrollVw.backgroundColor = [UIColor whiteColor];
-    zoomimageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-[UIScreen mainScreen].bounds.size.width/8, [UIScreen mainScreen].bounds.size.height-[UIScreen mainScreen].bounds.size.height/8)];
+    zoomimageV=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 700,600)];
     zoomimageV.center=ZoomscrollVw.center;
     zoomimageV.backgroundColor=[UIColor whiteColor];
     zoomimageV.contentMode=UIViewContentModeScaleAspectFit;
@@ -770,18 +791,18 @@
     [_customersCollectionView reloadData];
 }
 - (IBAction)priceWithRupeeSymbolClick:(id)sender {
-    
-    SevenSwitch *seven=sender;
-    if(seven.isOn)
-    {
-        _pricingLabel.hidden=YES;
-        _wsLabel.hidden=YES;
-    }
-    else
-    {
-        _pricingLabel.hidden=NO;
-        _wsLabel.hidden=NO;
-    }
+//    
+//    SevenSwitch *seven=sender;
+//    if(seven.isOn)
+//    {
+//        _pricingLabel.hidden=YES;
+//        _wsLabel.hidden=YES;
+//    }
+//    else
+//    {
+//        _pricingLabel.hidden=NO;
+//        _wsLabel.hidden=NO;
+//    }
 }
 @end
 

@@ -10,6 +10,8 @@
 #import "ItemMaster+CoreDataClass.h"
 #import "Att+CoreDataClass.h"
 #import "Filters+CoreDataClass.h"
+#import "StockDetails+CoreDataClass.h"
+
 #import "AppDelegate.h"
 
 @protocol FetchedAllProducts <NSObject>
@@ -26,6 +28,5 @@
 -(NSArray*)getFilterFor:(NSString*)strFor;
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt;
 -(NSMutableArray*)pickProductsFromFilters;
-
-
+-(void)downloadCustomersListInBackground;
 @end

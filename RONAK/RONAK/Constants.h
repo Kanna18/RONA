@@ -36,12 +36,12 @@
 #define RegexHasSpecialCharacter @"[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]"
 
 //Rest Services
-#define rest_generateToken_B @"https://cs57.salesforce.com/services/oauth2/token"
-#define rest_clientID_B  @"3MVG959Nd8JMmavR0MNi_h5fdNCoOUDS_ypUngOOSVfBs_SR13nYZOUVEL_EicYnkB2zIviYaiVt.APVTqGXq&client_secret=1609466711200752982"
+#define rest_generateToken_B @"https://test.salesforce.com/services/oauth2/token"
+#define rest_clientID_B  @"3MVG9e2mBbZnmM6lFmND2Ju7xFYp.iaixYWQ7tuDZKWs4Jqs9pxjm3kenjwAqhG28yWavIReD9wkchzFaBcMO&client_secret=8967652660758155787"
 #define rest_redirectURI_B @"sfdc://success"
-#define rest_customersList_B @"https://cs57.salesforce.com/services/apexrest/CustomerMaster/getCustomerMasterDetails"
-#define rest_ProductList_B @"https://cs57.salesforce.com/services/apexrest/SampleProductDetails/"
-
+#define rest_customersList_B @"https://cs6.salesforce.com/services/apexrest/CustomerMaster/"
+#define rest_ProductList_B @"https://cs6.salesforce.com/services/apexrest/SampleProductDetails/"
+#define rest_stockDetails_b @"https://cs6.salesforce.com/services/apexrest/StockDetails/"
 
 
 
@@ -110,8 +110,8 @@
 #define storyBoard(mvc) [self.storyboard instantiateViewControllerWithIdentifier:mvc]
 #define noOfTouches 1
 
-#define passcode1
-#define passcode2
+#define passcode @"passcode"
+#define confirmPasscode @"confirmPasscode"
 
 #endif /* Constants_h */
 

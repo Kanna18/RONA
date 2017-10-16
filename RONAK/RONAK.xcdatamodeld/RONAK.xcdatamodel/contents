@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Att" representedClassName="Att" syncable="YES">
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Filters" inverseName="attribute" inverseEntity="Filters" syncable="YES"/>
+        <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StockDetails" inverseName="attrib" inverseEntity="StockDetails" syncable="YES"/>
     </entity>
     <entity name="Filters" representedClassName="Filters" syncable="YES">
         <attribute name="active_From__c" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,14 +57,35 @@
         <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Att" inverseName="filters" inverseEntity="Att" syncable="YES"/>
         <relationship name="itemMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemMaster" inverseName="filters" inverseEntity="ItemMaster" syncable="YES"/>
     </entity>
+    <entity name="ImagesArray" representedClassName="ImagesArray" syncable="YES">
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrlPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localPath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StockDetails" inverseName="imagesArr" inverseEntity="StockDetails" syncable="YES"/>
+    </entity>
     <entity name="ItemMaster" representedClassName="ItemMaster" syncable="YES">
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Filters" inverseName="itemMaster" inverseEntity="Filters" syncable="YES"/>
+        <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StockDetails" inverseName="itemMaster" inverseEntity="StockDetails" syncable="YES"/>
+    </entity>
+    <entity name="StockDetails" representedClassName="StockDetails" syncable="YES">
+        <attribute name="codeId_s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Code_s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ordered_Quantity_s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product__s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stock__s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="warehouse_Name_s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="warehouse_s" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attrib" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Att" inverseName="stock" inverseEntity="Att" syncable="YES"/>
+        <relationship name="imagesArr" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImagesArray" inverseName="stock" inverseEntity="ImagesArray" syncable="YES"/>
+        <relationship name="itemMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemMaster" inverseName="stock" inverseEntity="ItemMaster" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Att" positionX="-198" positionY="297" width="128" height="90"/>
+        <element name="Att" positionX="-198" positionY="297" width="128" height="105"/>
         <element name="Filters" positionX="88" positionY="45" width="128" height="780"/>
-        <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="90"/>
+        <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="105"/>
+        <element name="StockDetails" positionX="-72" positionY="207" width="128" height="195"/>
+        <element name="ImagesArray" positionX="-63" positionY="216" width="128" height="105"/>
     </elements>
 </model>

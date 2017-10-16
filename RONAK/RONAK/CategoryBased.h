@@ -12,8 +12,8 @@
 -(instancetype)initWithArray:(NSArray*)arr;
 @property NSString *model;
 @property NSMutableArray *listItemsArray;
-@end
 
+@end
 
 @interface ModelBased : NSObject
 -(instancetype)initWithArray:(NSArray*)arr;

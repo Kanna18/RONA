@@ -32,7 +32,6 @@
 #import <SalesforceSDKCore/SFUserAccountManager.h>
 #import <SmartStore/SalesforceSDKManagerWithSmartStore.h>
 #import <SalesforceSDKCore/SFLoginViewController.h>
-
 #import <TOPasscodeViewController/TOPasscodeViewController.h>
 
 // Fill these in when creating a new Connected Application on Force.com
@@ -59,6 +58,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 @implementation AppDelegate{
     
     UIWindow* topWindow;
+    UIWindow* pWindow;
     
 }
 
@@ -68,6 +68,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 {
     self = [super init];
     if (self) {
+
 
         // Need to use SalesforceSDKManagerWithSmartStore when using smartstore
         [SalesforceSDKManager setInstanceClass:[SalesforceSDKManagerWithSmartStore class]];
@@ -395,39 +396,113 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
 //    [self presentPasscodeVC];
+    if(!defaultGet(passcode)){
+    [self setPasswordForFirstTime];
+    }
+    else{
+        [self presentPasscodeVC];
+    }
 }
 
 -(void)presentPasscodeVC{
     
     topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     TOPasscodeViewController *passcodeViewController = [[TOPasscodeViewController alloc] initWithStyle:TOPasscodeViewStyleTranslucentDark passcodeType:TOPasscodeTypeFourDigits];
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-//    button.titleLabel.font=[UIFont systemFontOfSize:16.0f];
-//    [button.titleLabel setTextColor:[UIColor whiteColor]];
-//    [button setTitle:@"Confirm" forState:UIControlStateNormal];
-//    passcodeViewController.passcodeView.rightButton=button;
-//    passcodeViewController.rightAccessoryButton=button;
      topWindow.rootViewController = [UIViewController new];
     passcodeViewController.delegate = self;
     topWindow.windowLevel = UIWindowLevelAlert + 1;
     [topWindow makeKeyAndVisible];
     [topWindow.rootViewController presentViewController:passcodeViewController animated:YES completion:nil];
-}
-
--(void)setPasswordForthefirstTimeFlow
-{
     
 }
 
 
 - (BOOL)passcodeViewController:(TOPasscodeViewController *)passcodeViewController isCorrectCode:(NSString *)code
 {
-    return [code isEqualToString:@"1234"];
+    return [code isEqualToString:defaultGet(passcode)];
     
 }
 - (void)didInputCorrectPasscodeInPasscodeViewController:(TOPasscodeViewController *)passcodeViewController
 {
     topWindow.hidden=YES;
+}
+-(void)setPasswordForFirstTime
+{
+    if(!pWindow){
+        pWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    pWindow.rootViewController = [UIViewController new];
+    pWindow.windowLevel = UIWindowLevelAlert + 1;
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"RONAK" message:@"Set Password for the first time" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+       textField.placeholder=@"Enter Passcode";
+        textField.keyboardType=UIKeyboardTypeNumberPad;
+        textField.secureTextEntry=YES;
+        textField.delegate=self;
+        
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder=@"Re-Enter Passcode";
+        textField.keyboardType=UIKeyboardTypeNumberPad;
+        textField.secureTextEntry=YES;
+        textField.delegate=self;
+        
+    }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *psCode1=alert.textFields[0];
+        UITextField *psCode2=alert.textFields[1];
+        
+        if(psCode1.text.length>0)
+        {
+            if([psCode1.text isEqualToString:psCode2.text]){
+                
+                showMessage(@"Password Set Successfully", pWindow);
+                defaultSet(psCode1.text , passcode);
+                pWindow.hidden=YES;
+        
+            }
+            else{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self setPasswordForFirstTime];            
+                });
+                showMessage(@"Passwords are not matching", pWindow);
+            }
+        }
+        else{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self setPasswordForFirstTime];
+            });
+            showMessage(@"Passwords should not be empty", pWindow);
+        }
+    }]];
+
+    
+    [pWindow makeKeyAndVisible];
+    [pWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+
+    /*  limit to only numeric characters  */
+    NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    for (int i = 0; i < [string length]; i++) {
+        unichar c = [string characterAtIndex:i];
+        if ([myCharSet characterIsMember:c]) {
+            
+            if(range.length + range.location > textField.text.length)
+            {
+                return NO;
+            }
+            
+            NSUInteger newLength = [textField.text length] + [string length] - range.length;
+            return newLength <= 4;
+        }
+    }
+    return NO;
+    
 }
 
 

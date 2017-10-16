@@ -156,6 +156,11 @@
 //        NSURL *url=[NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/smo4q5reh1yo0qq/ITEM%20IMAGES.zip?dl=0"];
 //        [UnzipViewController presentResourcesViewController:self withTitle:@"Loading" URL:url completion:nil];
 //    }
+    
+    if(defaultGet(savedUserEmail)&&defaultGet(savedUserPassword))
+    {
+        [self gotoMenu];
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

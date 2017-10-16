@@ -12,7 +12,10 @@
     
     ServerAPIManager *serverAPI;
     NSURLSessionDataTask *sessionDatatask;
+    NSMutableArray *custDataOffsetArray, *productsOffsetArray,*stockDetailsOffsetArray;
+    RESTCalls *rest;
 }
+int offSet=0, productsOffset=0,stockOffset=0;
 
 -(instancetype)init
 {
@@ -20,6 +23,10 @@
     if(self)
     {
         serverAPI=[ServerAPIManager sharedinstance];
+        rest=[[RESTCalls alloc]init];
+        custDataOffsetArray=[[NSMutableArray alloc]init];
+        productsOffsetArray=[[NSMutableArray alloc]init];
+        stockDetailsOffsetArray=[[NSMutableArray alloc]init];
     }
     return self;
     
@@ -29,32 +36,39 @@
     NSLog(@"--->%@",[NSPersistentContainer defaultDirectoryURL]);
     NSDictionary *headers = @{@"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-//    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
-//    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                  @"offSet":[NSNumber numberWithInteger:productsOffset]
+                                  };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_ProductList_B]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
-//    [request setHTTPBody:postData];
+    [request setHTTPBody:postData];
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        if(data!=nil)
-        {
-            [self performSelectorOnMainThread:@selector(fetchData:) withObject:data waitUntilDone:YES];
+        NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if(arr.count>1){
+            [productsOffsetArray addObjectsFromArray:arr];
+            [self downloadStockWareHouseSavetoCoreData];
+            productsOffset+=arr.count;
+        }
+        else{
+            [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
         }
         
     }];
     [dataTask resume];
+    
 }
--(void)fetchData:(NSData*)data
+-(void)fetchData:(NSMutableArray*)arr
 {
-    {
-        NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *code=obj[@"product"][@"Id"];
+//            NSString *code=obj[@"product"][@"Id"]; /*old*/
+            NSString *code=obj[@"Id"];
             NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
             [fetch setPredicate:predicate];
@@ -68,7 +82,8 @@
                 item.imageUrl=dic[@"imageURL"];
                 item.imageName=dic[@"imageName"];
                 
-                NSDictionary *filtersDict=dic[@"product"];
+//                NSDictionary *filtersDict=dic[@"product"];/*Old*/
+                NSDictionary *filtersDict=dic;
         NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:ronakGlobal.context];
 //                Filters *filter=[[Filters alloc]initWithContext:ronakGlobal.context];
                 Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:ronakGlobal.context];
@@ -135,11 +150,9 @@
                 [ronakGlobal.delegate saveContext];
             }            
         }];
-        [_delegateProducts productsListFetched];
-    }
+        [self downLoadStockDetails];
 }
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
-    
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity1 = [NSEntityDescription entityForName:@"Filters" inManagedObjectContext:cntxt];
@@ -283,5 +296,137 @@
     }];
     return items;
 }
+-(void)downloadCustomersListInBackground
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        [self restServiceForCustomerList];
+    });
+
+}
+
+
+-(void)restServiceForCustomerList
+{
+    
+    NSDictionary *headers = @{ @"content-type": @"application/json",
+                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                  @"offSet":[NSNumber numberWithInteger:offSet]
+                                  };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_customersList_B]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                      {
+                                          NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
+                                          
+                                          if(arr.count>0)
+                                          {
+                                              offSet+=arr.count;
+                                              [custDataOffsetArray addObjectsFromArray:arr];
+                                              [self restServiceForCustomerList];
+                                          }
+                                          else{
+                                              NSError *cerr;
+                                              NSData *jsonData=[NSJSONSerialization dataWithJSONObject:custDataOffsetArray options:0 error:nil];
+                                              [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
+                                          }
+                                      }];
+    
+    [dataTask resume];
+
+}
+
+
+-(void)downLoadStockDetails
+{
+
+        NSDictionary *headers = @{@"content-type": @"application/json",
+                                  @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+        NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                      /*@"offSet":[NSNumber numberWithInteger:stockOffset]*/
+                                      };
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
+        [request setHTTPMethod:@"POST"];
+        [request setAllHTTPHeaderFields:headers];
+        [request setHTTPBody:postData];
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                          {
+                                              //        if(data){
+                                              NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                                              //            if(arr.count>0){
+                                              [stockDetailsOffsetArray addObjectsFromArray:arr];
+                                              //                stockOffset+=arr.count;
+                                              //                [self downLoadStockDetails];
+                                              //            }
+                                              //            else{
+                                              [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
+                                              //            }
+                                              //        }
+                                              
+                                          }];
+        [dataTask resume];
+    
+//    NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//    NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://c.cs6.content.force.com/servlet/servlet.FileDownload?file=015N0000000fd6a"]]];
+//
+//    NSURLSessionDownloadTask *download=[session downloadTaskWithRequest:request completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//
+//        NSLog(@"Response---%@",response);
+//        NSLog(@"Error---%@",error);
+//        NSLog(@"Location--%@",location);
+//
+//        NSError *error1;
+//        NSString *cachePathE = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"resourImage.jpeg"]                                                      ;
+//        [fileManager moveItemAtPath:[location path]  toPath:cachePathE error:&error1];
+//        NSLog(@"Error---%@",error1);
+//    }];
+//    [download resume];
+}
+-(void)saveStockDetailstoCoreData:(NSMutableArray*)arr
+{
+    NSArray *ids=[arr valueForKeyPath:@"stock.Id"];
+    NSMutableArray *a=[[NSMutableArray alloc]init];
+    [a addObjectsFromArray:ids];
+    NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId_s LIKE codeId_s"];
+    [fetchIds setPredicate:predicate];
+    NSArray *idsarr=[[ronakGlobal.context executeFetchRequest:fetchIds error:nil] valueForKeyPath:@"codeId_s"];
+    [a removeObjectsInArray:idsarr];
+    
+    [a enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"stock.Id == %@",obj];
+        NSArray *sortedArray=[arr filteredArrayUsingPredicate:pre];
+        NSDictionary *dict=sortedArray[0];
+        NSDictionary *stDict=dict[@"stock"];
+        NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:ronakGlobal.context];
+        //                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
+        StockDetails *stockE=[[StockDetails alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
+        stockE.codeId_s=stDict[@"Id"];
+        stockE.item_Code_s=stDict[@"Item_Code__c"];
+        stockE.product__s=stDict[@"Product__c"];
+        stockE.stock__s=[NSString stringWithFormat:@"%@",stDict[@"Stock__c"]];
+        stockE.warehouse_Name_s=stDict[@"Warehouse_Name__c"];
+        stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
+        [ronakGlobal.delegate saveContext];
+        NSLog(@"Stock Count--%lu",(unsigned long)idx);
+    }];
+    
+    [_delegateProducts productsListFetched];
+
+}
+
 
 @end
