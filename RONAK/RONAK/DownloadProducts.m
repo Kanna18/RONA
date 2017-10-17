@@ -53,11 +53,12 @@ int offSet=0, productsOffset=0,stockOffset=0;
         NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if(arr.count>1){
             [productsOffsetArray addObjectsFromArray:arr];
-            [self downloadStockWareHouseSavetoCoreData];
             productsOffset+=arr.count;
+            [self downloadStockWareHouseSavetoCoreData];
         }
         else{
-            [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
+//            [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
+            [self fetchData:productsOffsetArray];
         }
         
     }];
@@ -66,8 +67,22 @@ int offSet=0, productsOffset=0,stockOffset=0;
 }
 -(void)fetchData:(NSMutableArray*)arr
 {
-        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            NSString *code=obj[@"product"][@"Id"]; /*old*/
+    NSArray *idsA=[arr valueForKeyPath:@"Id"];
+    NSMutableArray *ids=[[NSMutableArray alloc]initWithArray:idsA];
+    NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
+    [fetch setPredicate:predicate];
+    NSArray *coreIds=[[ronakGlobal.context executeFetchRequest:fetch error:nil] valueForKey:@"codeId"];
+    [ids removeObjectsInArray:coreIds];
+    __block NSInteger objectsCount=coreIds.count;
+    
+    for (NSString *uniQid in ids)
+    {
+        NSPredicate *pred=[NSPredicate predicateWithFormat:@"Id == %@",uniQid];
+        NSArray *sortedArr=[arr filteredArrayUsingPredicate:pred];
+        NSArray *duplicateArr=[NSArray arrayWithObjects:sortedArr.lastObject, nil];
+        [duplicateArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            //            NSString *code=obj[@"product"][@"Id"]; /*old*/
             NSString *code=obj[@"Id"];
             NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
@@ -77,15 +92,15 @@ int offSet=0, productsOffset=0,stockOffset=0;
             {
                 NSDictionary *dic=obj;
                 NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:ronakGlobal.context];
-//                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
+                //                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
                 ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
                 item.imageUrl=dic[@"imageURL"];
                 item.imageName=dic[@"imageName"];
                 
-//                NSDictionary *filtersDict=dic[@"product"];/*Old*/
+                //                NSDictionary *filtersDict=dic[@"product"];/*Old*/
                 NSDictionary *filtersDict=dic;
-        NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:ronakGlobal.context];
-//                Filters *filter=[[Filters alloc]initWithContext:ronakGlobal.context];
+                NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:ronakGlobal.context];
+                //                Filters *filter=[[Filters alloc]initWithContext:ronakGlobal.context];
                 Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:ronakGlobal.context];
                 filter.order_Month__c=filtersDict[@"Order_Month__c"];
                 filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
@@ -134,22 +149,23 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 filter.discount__c=[NSString stringWithFormat:@"%@",filtersDict[@"Discount__c"]];
                 filter.codeId=filtersDict[@"Id"];
                 filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
-        
-                        
                 NSDictionary *attDict=filtersDict[@"attributes"];
                 
                 NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:ronakGlobal.context];
                 Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:ronakGlobal.context];
-//                Att *attributes=[[Att alloc]initWithContext:ronakGlobal.context];
+                //                Att *attributes=[[Att alloc]initWithContext:ronakGlobal.context];
                 attributes.type=attDict[@"type"];
                 attributes.url=attDict[@"url"];
                 
                 item.filters=filter;
                 item.filters.attribute=attributes;
-                NSLog(@"%lu",(unsigned long)idx);
                 [ronakGlobal.delegate saveContext];
-            }            
+                objectsCount++;
+                NSLog(@"%lu",objectsCount);
+            }
         }];
+    }
+    
         [self downLoadStockDetails];
 }
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
@@ -224,6 +240,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
     ronakGlobal.priceArr=mrpF;
     ronakGlobal.stockArr=stockF;
     
+    NSLog(@"%@",brandsF);
     ronakGlobal.DefFiltersOne=   @[@{ @"heading":kBrand,
                                       @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]},
                                    @{ @"heading":kCategories,
@@ -351,7 +368,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
         NSDictionary *headers = @{@"content-type": @"application/json",
                                   @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
         NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
-                                      /*@"offSet":[NSNumber numberWithInteger:stockOffset]*/
+                                      @"offSet":[NSNumber numberWithInteger:stockOffset]
                                       };
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
         
@@ -361,21 +378,21 @@ int offSet=0, productsOffset=0,stockOffset=0;
         [request setHTTPBody:postData];
         NSURLSession *session = [NSURLSession sharedSession];
         NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-                                                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                                          {
-                                              //        if(data){
-                                              NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                                              //            if(arr.count>0){
-                                              [stockDetailsOffsetArray addObjectsFromArray:arr];
-                                              //                stockOffset+=arr.count;
-                                              //                [self downLoadStockDetails];
-                                              //            }
-                                              //            else{
-                                              [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
-                                              //            }
-                                              //        }
-                                              
-                                          }];
+                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                      {
+                          if(data){
+                                  NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                              if(arr.count>1)
+                                  {
+                                      [stockDetailsOffsetArray addObjectsFromArray:arr];
+                                      stockOffset+=arr.count;
+                                      [self downLoadStockDetails];
+                                  }
+                              else{
+                                      [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
+                                  }
+                              }
+            }];
         [dataTask resume];
     
 //    NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -419,10 +436,16 @@ int offSet=0, productsOffset=0,stockOffset=0;
         stockE.stock__s=[NSString stringWithFormat:@"%@",stDict[@"Stock__c"]];
         stockE.warehouse_Name_s=stDict[@"Warehouse_Name__c"];
         stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
+        
+//        for (NSString *key in dict[@"imageURL"]) {
+//            ImagesArray
+//            
+//        }
+        
+        
         [ronakGlobal.delegate saveContext];
         NSLog(@"Stock Count--%lu",(unsigned long)idx);
     }];
-    
     [self getBrandsAndWarehousesListandsavetoDefaults];
 }
 -(void)getBrandsAndWarehousesListandsavetoDefaults{
@@ -449,11 +472,11 @@ int offSet=0, productsOffset=0,stockOffset=0;
                     NSArray *warehouseLisA=dict[@"warehouseList"];
                     defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
                     defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
-                    NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
+                        NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
+                    [_delegateProducts productsListFetched];
                 }
             }];
     [dataTask resume];
-    [_delegateProducts productsListFetched];
 }
 
 @end

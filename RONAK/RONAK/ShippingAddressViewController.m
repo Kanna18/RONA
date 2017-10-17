@@ -49,10 +49,10 @@
     _headingBarLabel.font=gothBold(14);
     [_headingLabel addGestureRecognizer:taped];
     
-    UITapGestureRecognizer *custLblTapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBillsOfCustomer:)];
-    taped.numberOfTouchesRequired=1;
-    _customerNamelbl.userInteractionEnabled=YES;
-    [_customerNamelbl addGestureRecognizer:custLblTapped];
+//    UITapGestureRecognizer *custLblTapped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBillsOfCustomer:)];
+//    taped.numberOfTouchesRequired=1;
+//    _customerNamelbl.userInteractionEnabled=YES;
+//    [_customerNamelbl addGestureRecognizer:custLblTapped];
     
 
 }

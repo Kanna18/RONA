@@ -903,6 +903,7 @@
 				4F8D5E9B1B6C0568005E64D4 /* Resources */,
 				E57672B616CE5ACD1EACF7C8 /* [CP] Copy Pods Resources */,
 				2C3DEFD85FBF17C45ABBF316 /* [CP] Embed Pods Frameworks */,
+				F6ABDAC31F95A56F00B7CEC8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -924,7 +925,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1097,6 +1098,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F6ABDAC31F95A56F00B7CEC8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" c4d8d8a2d03da457ace67c60110c73d3d09bc879 929e7aaa8475acbc30a703ae0e73132f89393cd58c5f0ad4865e20b5e5f18019";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1277,8 +1291,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				ENABLE_BITCODE = NO;
@@ -1318,8 +1332,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
+				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1330,8 +1344,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 4VAM89DN8P;
 				ENABLE_BITCODE = NO;
@@ -1371,8 +1385,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
+				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

@@ -10,6 +10,7 @@
 #import "DownloadProducts.h"
 #import "SignInViewController.h"
 #import "CustomersViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 
 @interface MenuViewController ()<FetchedAllProducts,TOPasscodeViewControllerDelegate>
@@ -73,7 +74,6 @@
     defaultSet(@"Launched", firstTimeLaunching);
     [self getFetchFiltersAfteDataFetched];
     [load stop];
-
 }
 
 -(void)viewWillAppear:(BOOL)animate

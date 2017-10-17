@@ -21,7 +21,8 @@ pod 'UIDevice-PasscodeStatus', '~> 0.0.2'
 pod 'MARKRangeSlider'
 pod 'TOPasscodeViewController'
 pod 'SevenSwitch', '~> 2.1'
-
+pod 'Fabric'
+pod 'Crashlytics'
 
 post_install do | installer |
     print "SQLCipher: link Pods/Headers/sqlite3.h"
