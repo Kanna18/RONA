@@ -18,9 +18,17 @@
 }
 -(void)bindData:(ItemMaster*)item{
     
+    NSArray *imgsPaths=[item.stock.imagesArr allObjects];
+    NSMutableArray *imagesArray=[[NSMutableArray alloc]init];
+    [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        ImagesArray *coreImg=obj;
+        NSString  *path=[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"IMAGES/%@",coreImg.imageName]];
+        [imagesArray addObject:path];
+    }];
+    //    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
+    UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
-        NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c];
-        UIImage *image=[UIImage imageNamed:path];
         image=[self imageWithImage:image convertToSize:CGSizeMake(120, 85)];
 //        dispatch_sync(dispatch_get_main_queue(), ^(void) {
            _thubImage.image=image;

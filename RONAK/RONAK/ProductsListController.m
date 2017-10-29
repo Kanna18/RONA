@@ -16,7 +16,7 @@
 
 @implementation ProductsListController{
     
-    NSArray *imagesArray;
+    NSMutableArray *imagesArray;
     int index, categoryIndex,modelIndex;
     
     CGFloat height;
@@ -46,7 +46,7 @@
     modelIndex=0;
     categoryIndex=0;
 //    imagesArray=@[@"Angel1",@"Angel2",@"Angel3",@"Angel4",@"Angel5"];
-
+    imagesArray=[[NSMutableArray alloc]init];
     UICollectionViewFlowLayout *productsViewLayout = (UICollectionViewFlowLayout*)self.productsCollectionView.collectionViewLayout;
     productsViewLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
     
@@ -54,14 +54,11 @@
     customersViewLayout.scrollDirection=UICollectionViewScrollDirectionHorizontal;
     customersViewLayout.minimumInteritemSpacing = 5;
     customersViewLayout.minimumLineSpacing = 0;
-    
     _customersCollectionView.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor clearColor]);
-
     [self defaultShapesOfComponents];
     [self getProductItemsFilter];
     [self zoomImageFunctionality];
-    
-    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
+//    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
 }
 
 -(void)getProductItemsFilter{
@@ -69,6 +66,7 @@
     [load loadingWithlightAlpha:_productsCollectionView with_message:@""];
     [load start];
 
+    
     DownloadProducts *dow=[[DownloadProducts alloc]init];
     dispatch_async(dispatch_get_main_queue(), ^{
         ronakGlobal.filterdProductsArray=[dow pickProductsFromFilters];
@@ -81,6 +79,7 @@
         }
         [load stop];
     });
+    
 }
 -(void)divideWholeitemsintoCategories
 {
@@ -341,11 +340,12 @@
 {
     if(collectionView==_productsCollectionView)
     {
-        [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
         ItemMaster *item=showItemsOnscrnArry[indexPath.row];
         NSArray *arr=@[item];
         [self addOrRemoveItemsfromSelection:arr];
         [_customersCollectionView reloadData];
+        [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
+        
     }
     if(collectionView == _customersCollectionView)
     {
@@ -402,11 +402,18 @@
 
 -(void)changeLablesBasedOnitemsIndex:(int)myIndex
 {
-    
     ItemMaster *item=showItemsOnscrnArry[myIndex];
-//    imagesArray=@[item.filters.picture_Name__c];
-    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c];
-    UIImage *image=[UIImage imageNamed:path];
+    NSArray *imgsPaths=[item.stock.imagesArr allObjects];
+    [imagesArray removeAllObjects];
+    [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        ImagesArray *coreImg=obj;
+        NSString  *path=[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"IMAGES/%@",coreImg.imageName]];
+        [imagesArray addObject:path];
+    }];
+    NSLog(@"%@",imagesArray);
+//    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
+    UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
     _detailedImageView.image=image;
     _itemSizeLabel.text=item.filters.size__c;
     _selectedItemDesc.text=item.filters.item_Description__c;

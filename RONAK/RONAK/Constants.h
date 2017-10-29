@@ -43,7 +43,7 @@
 #define rest_ProductList_B @"https://cs6.salesforce.com/services/apexrest/SampleProductDetails/"
 #define rest_stockDetails_b @"https://cs6.salesforce.com/services/apexrest/StockDetails/"
 #define rest_warehouseMaster_b @"https://cs6.salesforce.com/services/apexrest/WarehouseMaster1/"
-
+#define rest_saveOrder_b  @"https://cs6.salesforce.com/services/apexrest/SaveSaleOrder"
 
 
 //constants to save in defaults

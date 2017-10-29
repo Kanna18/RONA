@@ -61,6 +61,7 @@
 		F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6496BE01F54378000028FF0 /* Launch Screen.storyboard */; };
 		F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
+		F684E3781FA18BF7005CF9B8 /* SaleOrderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */; };
 		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
 		F69DCEA41F69626F00156396 /* BillWiseDetailsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCEA21F69626F00156396 /* BillWiseDetailsCustomCell.m */; };
 		F69DCEA51F69626F00156396 /* BillWiseDetailsCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69DCEA31F69626F00156396 /* BillWiseDetailsCustomCell.xib */; };
@@ -247,6 +248,8 @@
 		F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Zooming.m"; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleOrderWrapper.h; sourceTree = "<group>"; };
+		F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleOrderWrapper.m; sourceTree = "<group>"; };
 		F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDataModel.h; sourceTree = "<group>"; };
 		F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDataModel.m; sourceTree = "<group>"; };
 		F69DCEA11F69626F00156396 /* BillWiseDetailsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillWiseDetailsCustomCell.h; sourceTree = "<group>"; };
@@ -461,6 +464,8 @@
 				F6EDC4461F3D906200F9DFCC /* Filters */,
 				F69A10E81F428D45005C2432 /* OrderTaking */,
 				F66352A31F501EDD00128137 /* OrderSummary */,
+				F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */,
+				F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */,
 				F6496BE01F54378000028FF0 /* Launch Screen.storyboard */,
 				84D4B2E61F63BF3500B76DD7 /* Main.storyboard */,
 				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
@@ -1142,6 +1147,7 @@
 				84D4B34E1F63C46200B76DD7 /* AdvancedViewController.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
 				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
+				F684E3781FA18BF7005CF9B8 /* SaleOrderWrapper.m in Sources */,
 				84D4B3141F63C29E00B76DD7 /* CustomerCell.m in Sources */,
 				84D4B31F1F63C2F900B76DD7 /* PDCCell.m in Sources */,
 				F6B2DC291F8481940055E3E1 /* UILabel+Padding.m in Sources */,
@@ -1294,7 +1300,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 4VAM89DN8P;
+				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
 				INFOPLIST_FILE = RONAK/Info.plist;
@@ -1330,10 +1336,10 @@
 					"\"UIDevice_PasscodeStatus\"",
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
-				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
+				PROVISIONING_PROFILE = "a3a8328f-70f8-400e-a841-d8d50a844e18";
+				PROVISIONING_PROFILE_SPECIFIER = Ronak_adhoc;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1347,7 +1353,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 4VAM89DN8P;
+				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/RONAK/RONAK.pch";
 				INFOPLIST_FILE = RONAK/Info.plist;
@@ -1383,10 +1389,10 @@
 					"\"UIDevice_PasscodeStatus\"",
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cd5c4cb3-9f54-4d1b-84f7-955226aa03f9";
-				PROVISIONING_PROFILE_SPECIFIER = New__RONAK;
+				PROVISIONING_PROFILE = "a3a8328f-70f8-400e-a841-d8d50a844e18";
+				PROVISIONING_PROFILE_SPECIFIER = Ronak_adhoc;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

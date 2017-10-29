@@ -34,6 +34,10 @@
 {
     [super viewDidLoad];
     
+    [ronakGlobal.selectedFilter.warehouseFilter addObjectsFromArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]];
+    
+    
+    
     //Set isMultipleExpansionAllowed = true is multiple expanded sections to be allowed at a time. Default is NO.
     isMultipleExpansionAllowed = YES;
 
@@ -105,7 +109,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
             case 0:
-                cell.imageNew.image=[ronakGlobal.selectedFilter.sampleHouseFilter containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                cell.imageNew.image=[ronakGlobal.selectedFilter.warehouseFilter containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
             case 1:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.stockHouseFilter containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
@@ -198,14 +202,14 @@
             NSMutableArray *globalArr;
             switch (indexPath.section) {
                 case 0:
-                    [ronakGlobal.selectedFilter.stockHouseFilter removeAllObjects];
-                    globalArr=ronakGlobal.selectedFilter.sampleHouseFilter;
+//                    [ronakGlobal.selectedFilter.stockHouseFilter removeAllObjects];
+                    globalArr=ronakGlobal.selectedFilter.warehouseFilter;
                     [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                     break;
                 case 1:
-                    [ronakGlobal.selectedFilter.sampleHouseFilter removeAllObjects];
-                    globalArr=ronakGlobal.selectedFilter.stockHouseFilter;
-                    [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+//                    [ronakGlobal.selectedFilter.sampleHouseFilter removeAllObjects];
+//                    globalArr=ronakGlobal.selectedFilter.stockHouseFilter;
+//                    [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                     break;
                 default:
                     break;

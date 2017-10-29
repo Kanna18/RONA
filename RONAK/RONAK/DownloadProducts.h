@@ -11,6 +11,7 @@
 #import "Att+CoreDataClass.h"
 #import "Filters+CoreDataClass.h"
 #import "StockDetails+CoreDataClass.h"
+#import "ImagesArray+CoreDataClass.h"
 
 #import "AppDelegate.h"
 
@@ -32,5 +33,7 @@
 -(NSArray*)getFilterFor:(NSString*)strFor;
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt;
 -(NSMutableArray*)pickProductsFromFilters;
+-(void)downloadImagesandSavetolocalDataBase;
+-(void)saveOrderWithAccessToken:(NSString*)jsonParameter;
 
 @end

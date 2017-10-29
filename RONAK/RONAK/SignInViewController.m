@@ -121,7 +121,7 @@
         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObj options:0 error:nil];
         if(dict[@"access_token"])
         {
-            default(dict[@"access_token"], kaccess_token);
+            defaultSet(dict[@"access_token"], kaccess_token);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [load stop];
                 [self gotoMenu];

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *imageName;
 @property (nullable, nonatomic, copy) NSString *imageUrlPath;
 @property (nullable, nonatomic, copy) NSString *localPath;
+@property (nullable, nonatomic, copy) NSString *itemCode;
 @property (nullable, nonatomic, retain) StockDetails *stock;
 
 @end

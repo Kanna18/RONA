@@ -19,6 +19,8 @@
         _collection=[[NSMutableArray alloc]init];
         _stockHouseFilter=[[NSMutableArray alloc]init];
         _sampleHouseFilter=[[NSMutableArray alloc]init];
+        _warehouseFilter=[[NSMutableArray alloc]init];
+        
         _lensDescription=[[NSMutableArray alloc]init];
         _shape=[[NSMutableArray alloc]init];
         _frameMaterial=[[NSMutableArray alloc]init];
@@ -40,15 +42,42 @@
         [_priceMinMax setValue:@"1" forKey:@"Min"];
         [_wsPriceMinMax setValue:@"1" forKey:@"Min"];
         
+
     }
     return self;
 }
+
+-(void)getStockDetailsIdsbasedonBrandWarehouse
+{
+    NSPredicate *Brandpred=[NSPredicate predicateWithFormat:@"SELF.brand_s == %@",_brand];
+    NSMutableArray *wareHousesPreArr=[[NSMutableArray alloc]init];
+    [_warehouseFilter enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate* pre=[NSPredicate predicateWithFormat:@"SELF.warehouse_Name_s == %@",obj];
+        [wareHousesPreArr addObject:pre];
+    }];
+    NSPredicate *whousePre=[NSCompoundPredicate orPredicateWithSubpredicates:wareHousesPreArr];
+    
+    NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[whousePre,Brandpred]];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:ronakGlobal.context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:finalPre];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [[ronakGlobal.context executeFetchRequest:fetchRequest error:&error] valueForKey:@"item_Code_s"];
+    ronakGlobal.stockIDsArray=fetchedObjects;
+    NSLog(@"%@",ronakGlobal.stockIDsArray);
+}
 -(NSPredicate*)getPredicateStringFromTable:(NSString*)str
 {
+    
+    [self getStockDetailsIdsbasedonBrandWarehouse];
+    
     NSMutableArray *preArrary=[[NSMutableArray alloc]init];
     NSMutableArray *cateGoryArray=[[NSMutableArray alloc]init];
     
     
+    /*************************************Filters1********************************************/
     //Brands
     NSPredicate *Brandpred=[NSPredicate predicateWithFormat:@"SELF.filters.brand__c == %@",_brand];
     
@@ -59,6 +88,13 @@
         [cateGoryArray addObject:pre];
     }];
     
+    //Collections
+    [_collection enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c ==  %@",obj];
+        [preArrary addObject:pre];
+    }];
+    
+    /***************************************************************************************************/
     //Gender
     [_gender enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -66,14 +102,7 @@
         [preArrary addObject:pre];
     }];
 
-    //Collections
-    [_collection enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c ==  %@",obj];
-        [preArrary addObject:pre];
-    }];
-    
 
-    
     //Descriptions
     [_lensDescription enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Description__c ==  %@",obj];
@@ -159,6 +188,7 @@
     [_collection removeAllObjects];
     [_stockHouseFilter removeAllObjects];
     [_sampleHouseFilter removeAllObjects];
+    [_warehouseFilter removeAllObjects];
     [_lensDescription removeAllObjects];
     [_shape removeAllObjects];
     [_frameMaterial removeAllObjects];

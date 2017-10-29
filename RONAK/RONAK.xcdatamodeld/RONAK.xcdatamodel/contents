@@ -60,6 +60,7 @@
     <entity name="ImagesArray" representedClassName="ImagesArray" syncable="YES">
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrlPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="localPath" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StockDetails" inverseName="imagesArr" inverseEntity="StockDetails" syncable="YES"/>
     </entity>
@@ -70,6 +71,7 @@
         <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StockDetails" inverseName="itemMaster" inverseEntity="StockDetails" syncable="YES"/>
     </entity>
     <entity name="StockDetails" representedClassName="StockDetails" syncable="YES">
+        <attribute name="brand_s" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="codeId_s" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item_Code_s" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ordered_Quantity_s" optional="YES" attributeType="String" syncable="YES"/>
@@ -84,8 +86,8 @@
     <elements>
         <element name="Att" positionX="-198" positionY="297" width="128" height="105"/>
         <element name="Filters" positionX="88" positionY="45" width="128" height="780"/>
+        <element name="ImagesArray" positionX="-63" positionY="216" width="128" height="120"/>
         <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="105"/>
-        <element name="StockDetails" positionX="-72" positionY="207" width="128" height="195"/>
-        <element name="ImagesArray" positionX="-63" positionY="216" width="128" height="105"/>
+        <element name="StockDetails" positionX="-72" positionY="207" width="128" height="210"/>
     </elements>
 </model>

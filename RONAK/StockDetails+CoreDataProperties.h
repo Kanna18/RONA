@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *warehouse_Name_s;
 @property (nullable, nonatomic, copy) NSString *ordered_Quantity_s;
 @property (nullable, nonatomic, copy) NSString *warehouse_s;
+@property (nullable, nonatomic, copy) NSString *brand_s;
 @property (nullable, nonatomic, retain) Att *attrib;
 @property (nullable, nonatomic, retain) NSSet<ImagesArray *> *imagesArr;
 @property (nullable, nonatomic, retain) ItemMaster *itemMaster;

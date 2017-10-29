@@ -31,6 +31,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
     return self;
     
 }
+
+#pragma  mark Product Master Integration
 -(void)downloadStockWareHouseSavetoCoreData
 {
     NSLog(@"--->%@",[NSPersistentContainer defaultDirectoryURL]);
@@ -50,17 +52,20 @@ int offSet=0, productsOffset=0,stockOffset=0;
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if(arr.count>1){
-            [productsOffsetArray addObjectsFromArray:arr];
-            productsOffset+=arr.count;
-            [self downloadStockWareHouseSavetoCoreData];
+        if(data){            
+            NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            if(arr.count>1){
+                
+                NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
+                productsOffset=[slNoc[slNoc.count-1] intValue];
+                [productsOffsetArray addObjectsFromArray:arr];
+                [self downloadStockWareHouseSavetoCoreData];
+            }
+            else{
+                //            [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
+                [self fetchData:productsOffsetArray];
+            }
         }
-        else{
-//            [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
-            [self fetchData:productsOffsetArray];
-        }
-        
     }];
     [dataTask resume];
     
@@ -308,10 +313,14 @@ int offSet=0, productsOffset=0,stockOffset=0;
     NSLog(@"%@",arr);
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ItemMaster *item=obj;
+        if([ronakGlobal.stockIDsArray containsObject:item.filters.item_No__c]){
         [items addObject:item];
+        }
     }];
     return items;
 }
+
+#pragma mark Customer Master Integration
 -(void)downloadCustomersListInBackground
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
@@ -342,11 +351,13 @@ int offSet=0, productsOffset=0,stockOffset=0;
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                       {
-                                          NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
-                                          
+                                          NSArray *arr;
+                                          if(data){
+                                              arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
                                           if(arr.count>0)
                                           {
-                                              offSet+=arr.count;
+                                              NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
+                                              offSet=[slNoc[slNoc.count-1] intValue];
                                               [custDataOffsetArray addObjectsFromArray:arr];
                                               [self restServiceForCustomerList];
                                           }
@@ -354,24 +365,55 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                               NSError *cerr;
                                               NSData *jsonData=[NSJSONSerialization dataWithJSONObject:custDataOffsetArray options:0 error:nil];
                                               [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
+                                              }
                                           }
                                       }];
     
     [dataTask resume];
 
 }
+#pragma mark Warehouse Master Integration
+-(void)getBrandsAndWarehousesListandsavetoDefaults{
+    
+    NSDictionary *headers = @{@"content-type": @"application/json",
+                              @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)
+                                  };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_warehouseMaster_b]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    if(data)
+                                                    {
+                                                        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                                        NSArray *brandsA=dict[@"brandList"];
+                                                        NSArray *warehouseLisA=dict[@"warehouseList"];
+                                                        defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
+                                                        defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
+                                                        NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
+                                                        //                    [_delegateProducts productsListFetched];
+                                                    }
+                                                }];
+    
+    [dataTask resume];
+}
 
-
+#pragma mark Stock Details Integration
 -(void)downLoadStockDetails
 {
-
         NSDictionary *headers = @{@"content-type": @"application/json",
                                   @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
         NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
                                       @"offSet":[NSNumber numberWithInteger:stockOffset]
                                       };
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
         [request setHTTPMethod:@"POST"];
         [request setAllHTTPHeaderFields:headers];
@@ -381,11 +423,12 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                       {
                           if(data){
-                                  NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                              NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
                               if(arr.count>1)
                                   {
+                                      NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
+                                      stockOffset=[slNoc[slNoc.count-1] intValue];
                                       [stockDetailsOffsetArray addObjectsFromArray:arr];
-                                      stockOffset+=arr.count;
                                       [self downLoadStockDetails];
                                   }
                               else{
@@ -421,7 +464,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
     [fetchIds setPredicate:predicate];
     NSArray *idsarr=[[ronakGlobal.context executeFetchRequest:fetchIds error:nil] valueForKeyPath:@"codeId_s"];
     [a removeObjectsInArray:idsarr];
-    
     [a enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"stock.Id == %@",obj];
         NSArray *sortedArray=[arr filteredArrayUsingPredicate:pre];
@@ -437,25 +479,94 @@ int offSet=0, productsOffset=0,stockOffset=0;
         stockE.warehouse_Name_s=stDict[@"Warehouse_Name__c"];
         stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
         
-//        for (NSString *key in dict[@"imageURL"]) {
-//            ImagesArray
-//            
-//        }
-        
-        
+        /*-----------------*/
+        for (NSString *key in dict[@"imageURL"]) {
+            NSLog(@"My Key-%@--Value-%@",key,[dict[@"imageURL"] valueForKey:key]);
+            NSEntityDescription *enti=[NSEntityDescription entityForName:NSStringFromClass([ImagesArray class]) inManagedObjectContext:ronakGlobal.context];
+            ImagesArray *imgD=[[ImagesArray alloc]initWithEntity:enti insertIntoManagedObjectContext:ronakGlobal.context];
+            imgD.imageName=key;
+            imgD.itemCode=stDict[@"Item_Code__c"];
+            imgD.imageUrlPath=[dict[@"imageURL"] valueForKey:key]!=[NSNull null]?[dict[@"imageURL"] valueForKey:key]:@" ";
+            [stockE addImagesArrObject:imgD];
+        }
+        /*-----------------*/
         [ronakGlobal.delegate saveContext];
         NSLog(@"Stock Count--%lu",(unsigned long)idx);
     }];
     [self getBrandsAndWarehousesListandsavetoDefaults];
+    [self downloadImagesandSavetolocalDataBase];
 }
--(void)getBrandsAndWarehousesListandsavetoDefaults{
+
+-(void)downloadImagesandSavetolocalDataBase
+{
+    NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s LIKE item_Code_s"];
+    [fetchIds setPredicate:predicate];
+    NSArray *idsarr=[ronakGlobal.context executeFetchRequest:fetchIds error:nil];
+    [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        StockDetails *st=obj;
+        /*-Attach Stock Object to Item  master Object in Core Data*/
+            NSFetchRequest *fetchitems=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"filters.item_No__c == %@",st.item_Code_s];
+            [fetchitems setPredicate:predicate];
+        NSArray *itemsObjs=[ronakGlobal.context executeFetchRequest:fetchitems error:nil];
+        if(itemsObjs.count>0)
+        {
+            ItemMaster *item=itemsObjs.lastObject;
+            NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
+            item.stock=st;
+            st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
+            [ronakGlobal.delegate saveContext];
+            /*----------------------------------------------------*/
+            NSArray *arrImgs=[st.imagesArr allObjects];
+            [arrImgs  enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                ImagesArray *img=obj;
+                [self downloadImageFromURL:img.imageUrlPath withName:img.imageName];
+            }];
     
-    NSDictionary *headers = @{@"content-type": @"application/json",
-                              @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)
-                                  };
+        }
+        else
+        {
+            NSLog(@"Id not matching in product Master-- %@",st.item_Code_s);
+        }
+        
+    }];
+    [_delegateProducts productsListFetched];
+}
+-(void) downloadImageFromURL :(NSString *)imageUrl withName:(NSString*)name{
+    
+    NSArray *listImageNames=[fileManager contentsOfDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES/"] error:nil];
+    if(![listImageNames containsObject:name])
+    {
+        NSURL  *url = [NSURL URLWithString:imageUrl];
+        NSData *urlData = [NSData dataWithContentsOfURL:url];
+        if ( urlData )
+        {
+//            NSLog(@"Downloading started...");
+            NSString *documentsDirectory = [docPath stringByAppendingString:@"IMAGES/"];
+            NSString *filePath = [NSString stringWithFormat:@"%@%@",documentsDirectory,name];
+//            NSLog(@"FILE : %@",filePath);
+            [urlData writeToFile:filePath atomically:YES];
+//            NSLog(@"Completed...");
+        }
+    }
+    else
+    {
+        return;
+    }
+}
+#pragma mark SaveOrder Integration
+
+-(void)saleOrderIntegration:(NSString*)jsonParameter
+{
+    NSDictionary *headers = @{ @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)],
+                               @"content-type": @"application/json" };
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                  @"saleOrderWrapper":jsonParameter};
+    
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_warehouseMaster_b]
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_saveOrder_b]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
@@ -464,19 +575,36 @@ int offSet=0, productsOffset=0,stockOffset=0;
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if(data)
-                {
-                    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                    NSArray *brandsA=dict[@"brandList"];
-                    NSArray *warehouseLisA=dict[@"warehouseList"];
-                    defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
-                    defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
-                        NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
-                    [_delegateProducts productsListFetched];
-                }
+                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+            {
+                NSArray *jsonD=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                NSLog(@"%@",jsonD);
+                NSString *str=jsonD.count>0?jsonD[0][@"message"]:@"Succes";
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:str];
+                        
             }];
     [dataTask resume];
+}
+
+
+-(void)saveOrderWithAccessToken:(NSString*)jsonParameter{
+    
+    NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,defaultGet(savedUserEmail),defaultGet(savedUserPassword)];
+    [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)
+     {
+         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObj options:0 error:nil];
+         NSLog(@"authToken Dictionary-->%@",dict);
+         if(dict[@"access_token"]){
+             defaultSet(dict[@"access_token"], kaccess_token);
+             [self saleOrderIntegration:jsonParameter];
+         }
+         else{
+             [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:dict[@"error_description"]];
+         }
+     } andErrorBlock:^(NSError *error) {
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:error.localizedDescription];
+     }];
+    
 }
 
 @end

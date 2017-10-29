@@ -108,8 +108,17 @@
     _totalLabel.text=[NSString stringWithFormat:@"%d",([item.filters.wS_Price__c intValue]*Count)];
     
     
-    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES"] stringByAppendingPathComponent:item.filters.picture_Name__c];
-    UIImage *image=[UIImage imageNamed:path];
+    NSMutableArray *imagesArray=[[NSMutableArray alloc]init];
+    NSArray *imgsPaths=[_item.stock.imagesArr allObjects];
+    [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        ImagesArray *coreImg=obj;
+        NSString  *path=[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"IMAGES/%@",coreImg.imageName]];
+        [imagesArray addObject:path];
+    }];
+    NSLog(@"%@",imagesArray);
+    //    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
+    UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
     image=[self imageWithImage:image convertToSize:CGSizeMake(120, 85)];
     _productImage.image=image;
     

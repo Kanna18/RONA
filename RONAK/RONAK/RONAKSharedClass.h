@@ -32,4 +32,8 @@
 //Order Booking
 @property BOOL showClearOptionInCustomerCell;
 @property NSMutableArray *selectedItemsTocartArr;/*items that save to cart*/
+
+
+//StockDetails IDS
+@property NSArray *stockIDsArray;
 @end

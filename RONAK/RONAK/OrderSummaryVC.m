@@ -9,6 +9,7 @@
 #import "OrderSummaryVC.h"
 #import "RemarksView.h"
 #import "CollectionPopUp.h"
+#import "SaleOrderWrapper.h"
 
 
 @interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate>
@@ -25,7 +26,9 @@
     
     PlaceOrder *placeOrderPop;
     RemarksView *remarksView;
-    CollectionPopUp *draftDCpop;
+    CollectionPopUp *draftDCpop,*saveOrderCollectionPop;
+    
+    LoadingView *load;
 }
 
 
@@ -35,6 +38,7 @@
     _summaryTableView.delegate=self;
     _summaryTableView.dataSource=self;
     _summaryTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    load=[[LoadingView alloc]init];
     [self calendarFunction];
     
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAllSubviewsandDeselectall)];
@@ -328,10 +332,13 @@
     }
     else
     {
+
         placeOrderPop=[[PlaceOrder alloc]initWithFrame:CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 0, 0) withSuperView:self];
         [self.view addSubview:placeOrderPop];
         _placeOrderBtn.selected=YES;
     }
+
+    
 }
 -(IBAction)remarksClick:(id)sender
 {
@@ -432,13 +439,46 @@
     }
     else
     {
-        placeOrderPop=[[PlaceOrder alloc]initWithFrame:CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 0, 0) withSuperView:self];
-        [self.view addSubview:placeOrderPop];
-        _placeOrderBtn.selected=YES;
+//        placeOrderPop=[[PlaceOrder alloc]initWithFrame:CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 0, 0) withSuperView:self];
+//        [self.view addSubview:placeOrderPop];
+//        _placeOrderBtn.selected=YES;
+        
+        saveOrderCollectionPop=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
+        saveOrderCollectionPop.center=self.view.center;
+        saveOrderCollectionPop.titleLabel.text=@"Do you want to Save Order";
+        [saveOrderCollectionPop.yesBtn addTarget:self action:@selector(saveOrderToProceed) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:saveOrderCollectionPop];
     }
 
 }
-
+-(void)saveOrderToProceed{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveOrderMessage:) name:@"SaveOrderStatus" object:nil];
+    [saveOrderCollectionPop removeFromSuperview];
+    SaleOrderWrapper *sale=[[SaleOrderWrapper alloc]init];
+    [sale sendResponse];
+    [load loadingWithlightAlpha:self.view with_message:@"Saving Order...."];
+    [load start];
+    
+    
+//    [ronakGlobal.selectedCustomersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//        CustomerDataModel *orderCst=obj;
+//        NSLog(@"Cst Name-%@-%@",orderCst.Name,orderCst.BP_Code__c);
+//        [orderCst.defaultsCustomer.itemsCount enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            ItemMaster *item=obj;
+//            NSLog(@"Brand:%@--%@",item.filters.brand__c,item.filters.item_No__c);
+//        }];
+//    }];
+}
+-(void)saveOrderMessage:(NSNotification*)notification{
+    NSString *str=notification.object;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [load waringLabelText:@"Order Saved Successfully" onView:self.view];
+        [load stop];
+    });
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SaveOrderStatus" object:nil];
+}
 
 -(void)removeAllSubviewsandDeselectall
 {

@@ -199,13 +199,14 @@
 {
     [super viewDidLoad];
     self.view.layer.allowsGroupOpacity = NO;
-    [self setUpBackgroundEffectViewForStyle:self.style];
+//    [self setUpBackgroundEffectViewForStyle:self.style];
     [self setUpBackgroundViewForStyle:self.style];
     [self setUpAccessoryButtons];
     [self applyThemeForStyle:self.style];
-//    UIImageView *imageV=[[UIImageView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-//    [self.view insertSubview:imageV atIndex:0];
-//    imageV.image=[UIImage imageNamed:@"signIn"];
+    
+    UIImageView *imageV=[[UIImageView alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    [self.view insertSubview:imageV atIndex:0];
+    imageV.image=[UIImage imageNamed:@"signIn"];
 }
 
 - (void)viewDidAppear:(BOOL)animated

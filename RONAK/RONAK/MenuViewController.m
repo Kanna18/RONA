@@ -30,6 +30,7 @@
     [self defaultComponentsStyle];
     
 //    DownloadProducts *dwn=[[DownloadProducts alloc]init];
+//    [dwn downloadImagesandSavetolocalDataBase];
     
    if(!defaultGet(firstTimeLaunching))
    {
@@ -41,9 +42,9 @@
        [dwn downloadCustomersListInBackground];
        [dwn downloadStockWareHouseSavetoCoreData];
    }
-    else
-    {
-        static dispatch_once_t onceToken;
+   else
+   {
+       static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             [self getFetchFiltersAfteDataFetched];
         });
@@ -71,9 +72,10 @@
 #pragma mark Downloading Products Protocol
 -(void)productsListFetched
 {
+    [load stop];
     defaultSet(@"Launched", firstTimeLaunching);
     [self getFetchFiltersAfteDataFetched];
-    [load stop];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animate

@@ -37,8 +37,9 @@
 #import "MARKRangeSlider.h"
 
 #import <TOPasscodeViewController/TOPasscodeViewController.h>
-
 #import "UILabel+Padding.h"
+#import "StockDetails+CoreDataClass.h"
+#import "ImagesArray+CoreDataClass.h"
 
 
 #endif /* RONAK_pch */

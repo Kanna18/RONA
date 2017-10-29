@@ -18,6 +18,7 @@
 @property NSString *warehouseType;
 @property NSMutableArray *stockHouseFilter;
 @property NSMutableArray *sampleHouseFilter;
+@property NSMutableArray *warehouseFilter;
 //Advanced Filters1
 @property NSMutableArray *lensDescription;
 @property NSMutableArray *shape,*frameMaterial,*templeMaterial,*templeColor,*tipsColor,*gender, *lensMaterial;
