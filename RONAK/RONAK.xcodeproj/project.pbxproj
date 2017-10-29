@@ -50,7 +50,7 @@
 		84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B3571F63C53F00B76DD7 /* Images.xcassets */; };
 		84D4B35C1F63CC5900B76DD7 /* universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D4B35B1F63CC5900B76DD7 /* universal.a */; };
 		BB98467CCA978EFA6D0B1208 /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */; };
-		F6108A3E1F678C6400252FDB /* PassCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6108A3D1F678C6400252FDB /* PassCodeViewController.m */; };
+		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
@@ -228,9 +228,9 @@
 		84D4B3571F63C53F00B76DD7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84D4B35B1F63CC5900B76DD7 /* universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = universal.a; sourceTree = "<group>"; };
 		90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
+		F606FF941FA63F9200D0290A /* CustomPassCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPassCode.h; sourceTree = "<group>"; };
+		F606FF951FA63F9200D0290A /* CustomPassCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPassCode.m; sourceTree = "<group>"; };
 		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		F6108A3C1F678C6400252FDB /* PassCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassCodeViewController.h; sourceTree = "<group>"; };
-		F6108A3D1F678C6400252FDB /* PassCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCodeViewController.m; sourceTree = "<group>"; };
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
 		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
 		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
@@ -451,6 +451,8 @@
 				84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */,
 				84D4B3021F63C1D400B76DD7 /* SelectedFilters.h */,
 				84D4B3051F63C1D400B76DD7 /* SelectedFilters.m */,
+				F606FF941FA63F9200D0290A /* CustomPassCode.h */,
+				F606FF951FA63F9200D0290A /* CustomPassCode.m */,
 				F6DADCD61F19DA5E00DC635E /* SalesForce */,
 				F6DADCE71F1A249F00DC635E /* Features */,
 				F64F10E61F2E5802001BC880 /* Loading */,
@@ -697,8 +699,6 @@
 		F6B71A691F3CB86F002AE0FB /* SignInVC */ = {
 			isa = PBXGroup;
 			children = (
-				F6108A3C1F678C6400252FDB /* PassCodeViewController.h */,
-				F6108A3D1F678C6400252FDB /* PassCodeViewController.m */,
 				84D4B30A1F63C22C00B76DD7 /* SignInViewController.h */,
 				84D4B3091F63C22C00B76DD7 /* SignInViewController.m */,
 			);
@@ -1142,6 +1142,7 @@
 				F6BCEAD21F94CA7D006D1084 /* Att+CoreDataClass.m in Sources */,
 				F6BCEAD41F94CA7D006D1084 /* ItemMaster+CoreDataClass.m in Sources */,
 				F6BCEAD31F94CA7D006D1084 /* Att+CoreDataProperties.m in Sources */,
+				F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */,
 				84D4B33A1F63C3AA00B76DD7 /* Discount.m in Sources */,
 				F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */,
 				84D4B34E1F63C46200B76DD7 /* AdvancedViewController.m in Sources */,
@@ -1181,7 +1182,6 @@
 				F6BCEACC1F94CA7D006D1084 /* StockDetails+CoreDataClass.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
 				84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */,
-				F6108A3E1F678C6400252FDB /* PassCodeViewController.m in Sources */,
 				84D4B30B1F63C22C00B76DD7 /* SignInViewController.m in Sources */,
 				84D4B2E21F63BE9000B76DD7 /* UnzipViewController.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,

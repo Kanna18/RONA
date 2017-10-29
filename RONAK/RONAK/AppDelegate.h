@@ -24,6 +24,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "CustomPassCode.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITextFieldDelegate>
 

@@ -34,6 +34,7 @@
 #import <SalesforceSDKCore/SFLoginViewController.h>
 #import <TOPasscodeViewController/TOPasscodeViewController.h>
 
+
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
@@ -41,7 +42,7 @@
 static NSString * const RemoteAccessConsumerKey = @"3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa";
 static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect/oauth/done";
 
-@interface AppDelegate ()<TOPasscodeViewControllerDelegate>
+@interface AppDelegate ()<CustomPasscodeController>
 
 /**
  * Convenience method for setting up the main UIViewController and setting self.window's rootViewController
@@ -411,25 +412,20 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 -(void)presentPasscodeVC{
     
     topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    TOPasscodeViewController *passcodeViewController = [[TOPasscodeViewController alloc] initWithStyle:TOPasscodeViewStyleTranslucentDark passcodeType:TOPasscodeTypeFourDigits];
-     topWindow.rootViewController = [UIViewController new];
-    passcodeViewController.delegate = self;
+    UIStoryboard *st=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CustomPassCode *pass=[st instantiateViewControllerWithIdentifier:@"passcodeVC"];
+    pass.delegate=self;
+     topWindow.rootViewController = pass;
     topWindow.windowLevel = UIWindowLevelAlert + 1;
     [topWindow makeKeyAndVisible];
-    [topWindow.rootViewController presentViewController:passcodeViewController animated:YES completion:nil];
     
 }
-
-
-- (BOOL)passcodeViewController:(TOPasscodeViewController *)passcodeViewController isCorrectCode:(NSString *)code
+-(void)enteredPasscode:(CustomPassCode *)passcodeController
 {
-    return [code isEqualToString:defaultGet(passcode)];
     
-}
-- (void)didInputCorrectPasscodeInPasscodeViewController:(TOPasscodeViewController *)passcodeViewController
-{
     topWindow.hidden=YES;
 }
+
 -(void)setPasswordForFirstTime
 {
     if(!pWindow){
