@@ -404,6 +404,7 @@
 {
     ItemMaster *item=showItemsOnscrnArry[myIndex];
     NSArray *imgsPaths=[item.stock.imagesArr allObjects];
+    NSLog(@"%@",item.filters.item_No__c);
     [imagesArray removeAllObjects];
     [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
        
@@ -449,6 +450,7 @@
     
     [_productsCollectionView reloadData];
 //    ronakGlobal.item=item;
+    index=0; //Count For imgages Array
     
 }
 
@@ -682,7 +684,6 @@
 {
     if(!(imagesArray.count<=0))
     {
-        
         if(sender.direction==UISwipeGestureRecognizerDirectionLeft)
         {
             if(!(index<=0))
@@ -690,7 +691,7 @@
                 index--;
                 
             }
-            if(index==0)
+            else if(index==0)
             {
                 index=(int)imagesArray.count-1;
             }
@@ -702,7 +703,7 @@
             {
                 index++;
             }
-            if(index==imagesArray.count-1)
+            else if(index==imagesArray.count-1)
             {
                 index=0;
             }
@@ -792,7 +793,8 @@
             
             CustomerDataModel *cst=obj;
             [cst.defaultsCustomer.itemsCount removeAllObjects];
-        }];    
+        }];
+    [_cartOption setTitle:@"0" forState:UIControlStateNormal];
     [_customersCollectionView reloadData];
 }
 - (IBAction)priceWithRupeeSymbolClick:(id)sender {
@@ -808,6 +810,21 @@
 //        _pricingLabel.hidden=NO;
 //        _wsLabel.hidden=NO;
 //    }
+}
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if([identifier isEqualToString:@"orderSummaryNavigate"])
+    {
+        int CartCount=[[_cartOption currentTitle] intValue];
+        if(CartCount>0){
+            return YES;
+        }
+        else{
+            showMessage(@"No items to view in Cart", self.view);
+            return NO;
+        }
+    }
+    return YES;
 }
 @end
 

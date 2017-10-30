@@ -49,8 +49,10 @@
 		84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */; };
 		84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B3571F63C53F00B76DD7 /* Images.xcassets */; };
 		84D4B35C1F63CC5900B76DD7 /* universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D4B35B1F63CC5900B76DD7 /* universal.a */; };
-		BB98467CCA978EFA6D0B1208 /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */; };
+		BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */; };
 		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
+		F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */; };
+		F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
@@ -144,6 +146,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.release.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.release.xcconfig"; sourceTree = "<group>"; };
+		40A81E085A53C777F54B5D66 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
 		4F277E8C1DC7F5DF00E5A77C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		4F8D5E9D1B6C0568005E64D4 /* RONAK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RONAK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8D5EA11B6C0568005E64D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,8 +159,7 @@
 		4F8D5EC91B6C0FE4005E64D4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RONAK.entitlements; sourceTree = "<group>"; };
-		5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RONAK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.release.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.release.xcconfig"; sourceTree = "<group>"; };
+		5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RONAK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMItalic.OTF; sourceTree = "<group>"; };
 		84D4B2D61F63BE4B00B76DD7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		84D4B2DD1F63BE9000B76DD7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -227,9 +230,12 @@
 		84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCellHeader.m; sourceTree = "<group>"; };
 		84D4B3571F63C53F00B76DD7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84D4B35B1F63CC5900B76DD7 /* universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = universal.a; sourceTree = "<group>"; };
-		90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
 		F606FF941FA63F9200D0290A /* CustomPassCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPassCode.h; sourceTree = "<group>"; };
 		F606FF951FA63F9200D0290A /* CustomPassCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPassCode.m; sourceTree = "<group>"; };
+		F6095E991FA7817300B7C455 /* OrderStatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusViewController.h; sourceTree = "<group>"; };
+		F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusViewController.m; sourceTree = "<group>"; };
+		F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusCell.h; sourceTree = "<group>"; };
+		F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusCell.m; sourceTree = "<group>"; };
 		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
 		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
@@ -364,8 +370,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */,
-				BB98467CCA978EFA6D0B1208 /* Pods_RONAK.framework in Frameworks */,
 				84D4B35C1F63CC5900B76DD7 /* universal.a in Frameworks */,
+				BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +383,7 @@
 			children = (
 				F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */,
 				F60A77521F39E716008CB094 /* LocalAuthentication.framework */,
-				5FAD05ACF96B79994243D901 /* Pods_RONAK.framework */,
+				5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -388,8 +394,8 @@
 				84D4B3571F63C53F00B76DD7 /* Images.xcassets */,
 				4F8D5E9F1B6C0568005E64D4 /* RONAK */,
 				4F8D5E9E1B6C0568005E64D4 /* Products */,
-				95FC818BCB0A26B1EC67A6D7 /* Pods */,
 				37B95F29A292887A2CC072C3 /* Frameworks */,
+				B783143B6192D2DE4C6DBEA4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -468,6 +474,10 @@
 				F66352A31F501EDD00128137 /* OrderSummary */,
 				F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */,
 				F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */,
+				F6095E991FA7817300B7C455 /* OrderStatusViewController.h */,
+				F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */,
+				F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */,
+				F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */,
 				F6496BE01F54378000028FF0 /* Launch Screen.storyboard */,
 				84D4B2E61F63BF3500B76DD7 /* Main.storyboard */,
 				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
@@ -490,11 +500,11 @@
 			name = UNZIP;
 			sourceTree = "<group>";
 		};
-		95FC818BCB0A26B1EC67A6D7 /* Pods */ = {
+		B783143B6192D2DE4C6DBEA4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */,
-				641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */,
+				40A81E085A53C777F54B5D66 /* Pods-RONAK.debug.xcconfig */,
+				082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -902,13 +912,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "RONAK" */;
 			buildPhases = (
-				39F115428CDB04A31C62D5B3 /* [CP] Check Pods Manifest.lock */,
+				5C99358B38CF5C85D0AA5ED2 /* [CP] Check Pods Manifest.lock */,
 				4F8D5E991B6C0568005E64D4 /* Sources */,
 				4F8D5E9A1B6C0568005E64D4 /* Frameworks */,
 				4F8D5E9B1B6C0568005E64D4 /* Resources */,
-				E57672B616CE5ACD1EACF7C8 /* [CP] Copy Pods Resources */,
-				2C3DEFD85FBF17C45ABBF316 /* [CP] Embed Pods Frameworks */,
 				F6ABDAC31F95A56F00B7CEC8 /* ShellScript */,
+				BF7CE53724BE577E7BFC3B85 /* [CP] Embed Pods Frameworks */,
+				D2990DB9FC5A46D96DB274DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -930,7 +940,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1029,49 +1039,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C3DEFD85FBF17C45ABBF316 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
-				"${BUILT_PRODUCTS_DIR}/MARKRangeSlider/MARKRangeSlider.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
-				"${BUILT_PRODUCTS_DIR}/SalesforceAnalytics/SalesforceAnalytics.framework",
-				"${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework",
-				"${BUILT_PRODUCTS_DIR}/SevenSwitch/SevenSwitch.framework",
-				"${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework",
-				"${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework",
-				"${BUILT_PRODUCTS_DIR}/TOPasscodeViewController/TOPasscodeViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/UIDevice-PasscodeStatus/UIDevice_PasscodeStatus.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MARKRangeSlider.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceAnalytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceSDKCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SevenSwitch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartStore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartSync.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOPasscodeViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIDevice_PasscodeStatus.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39F115428CDB04A31C62D5B3 /* [CP] Check Pods Manifest.lock */ = {
+		5C99358B38CF5C85D0AA5ED2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1089,7 +1057,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E57672B616CE5ACD1EACF7C8 /* [CP] Copy Pods Resources */ = {
+		BF7CE53724BE577E7BFC3B85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
+				"${BUILT_PRODUCTS_DIR}/MARKRangeSlider/MARKRangeSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
+				"${BUILT_PRODUCTS_DIR}/SalesforceAnalytics/SalesforceAnalytics.framework",
+				"${BUILT_PRODUCTS_DIR}/SalesforceSDKCore/SalesforceSDKCore.framework",
+				"${BUILT_PRODUCTS_DIR}/SevenSwitch/SevenSwitch.framework",
+				"${BUILT_PRODUCTS_DIR}/SmartStore/SmartStore.framework",
+				"${BUILT_PRODUCTS_DIR}/SmartSync/SmartSync.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MARKRangeSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceAnalytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceSDKCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SevenSwitch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartStore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartSync.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2990DB9FC5A46D96DB274DC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1160,10 +1166,12 @@
 				84D4B2E41F63BE9000B76DD7 /* Reachability.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
 				84D4B3321F63C36B00B76DD7 /* OrderSummaryVC.m in Sources */,
+				F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */,
 				84D4B32B1F63C34B00B76DD7 /* SideMenuFilters.m in Sources */,
+				F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */,
 				F6BCEAD11F94CA7D006D1084 /* Filters+CoreDataProperties.m in Sources */,
 				F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */,
 				F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */,
@@ -1245,7 +1253,7 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC ";
+				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
 			};
 			name = Debug;
 		};
@@ -1287,18 +1295,18 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC ";
+				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
 			};
 			name = Release;
 		};
 		4F8D5EC11B6C0568005E64D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90400F35EE8FD2C6D3B8B7E7 /* Pods-RONAK.debug.xcconfig */;
+			baseConfigurationReference = 40A81E085A53C777F54B5D66 /* Pods-RONAK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1310,48 +1318,24 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RONAK",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"JSONModel\"",
-					"-framework",
-					"\"MARKRangeSlider\"",
-					"-framework",
-					"\"SDWebImage\"",
-					"-framework",
-					"\"SQLCipher\"",
-					"-framework",
-					"\"SalesforceAnalytics\"",
-					"-framework",
-					"\"SalesforceSDKCore\"",
-					"-framework",
-					"\"SmartStore\"",
-					"-framework",
-					"\"SmartSync\"",
-					"-framework",
-					"\"UIDevice_PasscodeStatus\"",
-					"-lz",
-				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3a8328f-70f8-400e-a841-d8d50a844e18";
-				PROVISIONING_PROFILE_SPECIFIER = Ronak_adhoc;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		4F8D5EC21B6C0568005E64D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 641A79C6255C9F5C2DC614D8 /* Pods-RONAK.release.xcconfig */;
+			baseConfigurationReference = 082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1363,36 +1347,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RONAK",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"JSONModel\"",
-					"-framework",
-					"\"MARKRangeSlider\"",
-					"-framework",
-					"\"SDWebImage\"",
-					"-framework",
-					"\"SQLCipher\"",
-					"-framework",
-					"\"SalesforceAnalytics\"",
-					"-framework",
-					"\"SalesforceSDKCore\"",
-					"-framework",
-					"\"SmartStore\"",
-					"-framework",
-					"\"SmartSync\"",
-					"-framework",
-					"\"UIDevice_PasscodeStatus\"",
-					"-lz",
-				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3a8328f-70f8-400e-a841-d8d50a844e18";
-				PROVISIONING_PROFILE_SPECIFIER = Ronak_adhoc;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

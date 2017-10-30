@@ -36,6 +36,7 @@ typedef enum{ Plus,Minus,Multiply,Divide} CalcOperation;
 @property (strong, nonatomic) IBOutlet UITextField *displayTF;
 - (IBAction)button8:(id)sender;
 - (IBAction)button3:(id)sender;
+- (IBAction)buttondot:(id)sender;
 
 
 @end

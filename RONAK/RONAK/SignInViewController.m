@@ -11,7 +11,7 @@
 #import "SignInViewController.h"
 
 
-@interface SignInViewController ()<TOPasscodeViewControllerDelegate>
+@interface SignInViewController ()
 
 @end
 

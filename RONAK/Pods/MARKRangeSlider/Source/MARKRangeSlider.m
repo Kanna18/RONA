@@ -236,7 +236,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
 - (UIImage *)trackImage
 {
     if (!_trackImage) {
-        _trackImage = [UIImage imageNamed:@"blueBG"];
+        _trackImage = [self bundleImageNamed: kMARKRangeSliderTrackImage];
     }
     return _trackImage;
 }
@@ -244,7 +244,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
 - (UIImage *)rangeImage
 {
     if (!_rangeImage) {
-        _rangeImage = [UIImage imageNamed:@"blueBG"];
+        _rangeImage = [self bundleImageNamed: kMARKRangeSliderTrackRangeImage];
     }
     return _rangeImage;
 }
@@ -391,6 +391,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
 }
 
 #pragma mark - Setters
+
 - (void)setTrackImage:(UIImage *)trackImage
 {
     _trackImage = trackImage;
@@ -416,6 +417,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
 }
 
 #pragma mark - Helpers
+
 - (UIImage *)bundleImageNamed:(NSString *)imageName
 {
     NSString *bundlePath = [[[NSBundle bundleForClass:self.class] resourcePath]
@@ -439,6 +441,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
                                                             [imageName stringByDeletingPathExtension],
                                                             scale,
                                                             [imageName pathExtension]]];
+        
         if ([[NSFileManager defaultManager] fileExistsAtPath:scalledImagePath]) {
             return [[UIImage alloc] initWithContentsOfFile:scalledImagePath];
         }

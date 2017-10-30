@@ -33,6 +33,9 @@
         _gender=[[NSMutableArray alloc]init];
         _lensMaterial=[[NSMutableArray alloc]init];
         
+        _rim=[[NSMutableArray alloc]init];
+        _posterModel=[[NSMutableArray alloc]init];
+        
         _disCountMinMax=[[NSMutableDictionary alloc] init];
         _priceMinMax=[[NSMutableDictionary alloc] init];
         _stockMinMax=[[NSMutableDictionary alloc] init];
@@ -73,8 +76,23 @@
     
     [self getStockDetailsIdsbasedonBrandWarehouse];
     
-    NSMutableArray *preArrary=[[NSMutableArray alloc]init];
+
     NSMutableArray *cateGoryArray=[[NSMutableArray alloc]init];
+    NSMutableArray *collectionArray=[[NSMutableArray alloc]init];
+    NSMutableArray *lensDescArray=[[NSMutableArray alloc]init];
+    NSMutableArray *shapeArray=[[NSMutableArray alloc]init];
+    NSMutableArray *genderArray=[[NSMutableArray alloc]init];
+    NSMutableArray *frameMateArray=[[NSMutableArray alloc]init];
+    NSMutableArray *templeMateArray=[[NSMutableArray alloc]init];
+    NSMutableArray *templeColorArray=[[NSMutableArray alloc]init];
+    NSMutableArray *tipColorArray=[[NSMutableArray alloc]init];
+    NSMutableArray *rimArray=[[NSMutableArray alloc]init];
+    NSMutableArray *sizeArray=[[NSMutableArray alloc]init];
+    NSMutableArray *lensMaterialArray=[[NSMutableArray alloc]init];
+    NSMutableArray *frontColorArray=[[NSMutableArray alloc]init];
+    NSMutableArray *lensColorArray=[[NSMutableArray alloc]init];
+    NSMutableArray *p=[[NSMutableArray alloc]init];
+    
     
     
     /*************************************Filters1********************************************/
@@ -91,94 +109,123 @@
     //Collections
     [_collection enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [collectionArray addObject:pre];
     }];
     
     /***************************************************************************************************/
-    //Gender
-    [_gender enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.category__c == %@",obj];
-        [preArrary addObject:pre];
-    }];
-
-
     //Descriptions
     [_lensDescription enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Description__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [lensDescArray addObject:pre];
     }];
     
     //Shape
     [_shape enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.shape__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [shapeArray addObject:pre];
     }];
     
-    //Stock Warehouse
-    [_stockHouseFilter enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    //Gender
+    [_gender enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.stock_Warehouse__c ==  %@",obj];
-        [preArrary addObject:pre];
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.category__c == %@",obj];
+        [genderArray addObject:pre];
     }];
+    
+//    //Stock Warehouse
+//    [_stockHouseFilter enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.stock_Warehouse__c ==  %@",obj];
+////        [preArrary addObject:pre];
+//    }];
     
     //Frame Material
     [_frameMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.frame_Material__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [frameMateArray addObject:pre];
     }];
     //Temple Material
     [_templeMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Material__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [templeMateArray addObject:pre];
     }];
     
     //Temple Color
     [_templeColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Color__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [templeColorArray addObject:pre];
     }];
     
     //Tips Color
     [_tipsColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.tips_Color__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [tipColorArray addObject:pre];
     }];
     
-    [_lensMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Material__c ==  %@",obj];
-        [preArrary addObject:pre];
+    //rim
+    [_rim enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.frame_Structure__c ==  %@",obj];
+        [rimArray addObject:pre];
     }];
+
     
     //Size
     [_size enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.size__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [sizeArray addObject:pre];
     }];
+    
+    //lens Material
+    [_lensMaterial enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Material__c ==  %@",obj];
+        [lensMaterialArray addObject:pre];
+    }];
+    
+    
     
     //Front Color
     [_FrontColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.front_Color__c ==  %@",obj];
-        [preArrary addObject:pre];
+        [frontColorArray addObject:pre];
     }];
     
     //LensColor
     [_LensColor enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *pre=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Color__c ==  %@",obj];
 
-        [preArrary addObject:pre];
+        [lensColorArray addObject:pre];
     }];
     
-    NSPredicate *remPre=[NSCompoundPredicate orPredicateWithSubpredicates:preArrary];
+    
+    
     NSPredicate *catePre=[NSCompoundPredicate orPredicateWithSubpredicates:cateGoryArray];
-    NSPredicate *finalPre;
-    NSArray *precArr=@[remPre,catePre];
-    for (NSPredicate *pre in precArr) {
-        if(![pre.predicateFormat isEqualToString:@"FALSEPREDICATE"])
-        {
-            finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[Brandpred,pre]];
+    NSPredicate *collePre=[NSCompoundPredicate orPredicateWithSubpredicates:collectionArray];
+    NSPredicate *lensPre=[NSCompoundPredicate orPredicateWithSubpredicates:lensDescArray];
+    NSPredicate *shapePre=[NSCompoundPredicate orPredicateWithSubpredicates:shapeArray];
+    NSPredicate *genderPre=[NSCompoundPredicate orPredicateWithSubpredicates:genderArray];
+    NSPredicate *frameMatePre=[NSCompoundPredicate orPredicateWithSubpredicates:frameMateArray];
+    NSPredicate *templeMatePre=[NSCompoundPredicate orPredicateWithSubpredicates:templeMateArray];
+    NSPredicate *templeColorPre=[NSCompoundPredicate orPredicateWithSubpredicates:templeColorArray];
+    NSPredicate *tipColorPre=[NSCompoundPredicate orPredicateWithSubpredicates:tipColorArray];
+    NSPredicate *rimPre=[NSCompoundPredicate orPredicateWithSubpredicates:rimArray];
+    NSPredicate *sizePre=[NSCompoundPredicate orPredicateWithSubpredicates:sizeArray];
+    NSPredicate *lensMaterialPre=[NSCompoundPredicate orPredicateWithSubpredicates:lensMaterialArray];
+    NSPredicate *frontColorPre=[NSCompoundPredicate orPredicateWithSubpredicates:frontColorArray];
+    NSPredicate *lensColorPre=[NSCompoundPredicate orPredicateWithSubpredicates:lensColorArray];
+    
+    
+    NSMutableArray *allpredicates=[[NSMutableArray alloc]initWithObjects:Brandpred,catePre,collePre,lensPre,shapePre,genderPre,frameMatePre,templeMatePre,templeColorPre,tipColorPre,rimPre,sizePre,lensMaterialPre,frontColorPre,lensColorPre, nil];
+    
+    [allpredicates enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSPredicate *p=obj;
+        if([p.predicateFormat isEqualToString:@"FALSEPREDICATE"]){
+            [allpredicates removeObject:p];
         }
-    }
+    }];
+    
+    NSPredicate *finalPre;
+    finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:allpredicates];
+    
     return finalPre!=nil?finalPre:Brandpred;
     
 }
@@ -205,6 +252,9 @@
     [_priceMinMax removeAllObjects];
     [_wsPriceMinMax removeAllObjects];
     [_stockMinMax removeAllObjects];
+    
+    [_rim removeAllObjects];
+    [_posterModel removeAllObjects];
     _brand=@"";
     
     

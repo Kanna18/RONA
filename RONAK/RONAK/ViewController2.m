@@ -108,7 +108,7 @@
         
         switch (indexPath.section) {
             case 2:
-                cell.imageNew.image=[ronakGlobal.selectedFilter.size containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                cell.imageNew.image=[ronakGlobal.selectedFilter.rim containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
             case 3:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.size containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
@@ -216,8 +216,9 @@
          NSString *text=cell.lblName.text;
          NSMutableArray *globalArr;
          switch (indexPath.section) {
-                 
              case 2:
+                 globalArr=ronakGlobal.selectedFilter.rim;
+                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                  break;
              case 3:
                  globalArr=ronakGlobal.selectedFilter.size;

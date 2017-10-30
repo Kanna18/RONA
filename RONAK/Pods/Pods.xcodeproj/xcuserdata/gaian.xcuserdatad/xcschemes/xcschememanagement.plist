@@ -74,16 +74,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TOPasscodeViewController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>UIDevice-PasscodeStatus.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict/>

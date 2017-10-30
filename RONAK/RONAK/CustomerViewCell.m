@@ -138,8 +138,11 @@
 }
 - (IBAction)clearCustomerClick:(id)sender {
     
+    if(ronakGlobal.selectedCustomersArray.count>1){
     [ronakGlobal.selectedCustomersArray removeObject:self.cstData];
     [_delegate customerNameDeleted];
+    }
+    
     
 }
 @end

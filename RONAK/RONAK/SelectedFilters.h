@@ -21,9 +21,9 @@
 @property NSMutableArray *warehouseFilter;
 //Advanced Filters1
 @property NSMutableArray *lensDescription;
-@property NSMutableArray *shape,*frameMaterial,*templeMaterial,*templeColor,*tipsColor,*gender, *lensMaterial;
+@property NSMutableArray *shape,*frameMaterial,*templeMaterial,*templeColor,*tipsColor,*gender;
 //Advanced Filters2
-@property NSMutableArray *size,*FrontColor,*LensColor;
+@property NSMutableArray *rim,*size,*lensMaterial,*FrontColor,*LensColor,*posterModel;
 
 
 -(NSPredicate*)getPredicateStringFromTable:(NSString*)str;

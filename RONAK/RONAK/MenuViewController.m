@@ -13,7 +13,7 @@
 #import <Crashlytics/Crashlytics.h>
 
 
-@interface MenuViewController ()<FetchedAllProducts,TOPasscodeViewControllerDelegate>
+@interface MenuViewController ()<FetchedAllProducts>
 
 @end
 

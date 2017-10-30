@@ -29,7 +29,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
         stockDetailsOffsetArray=[[NSMutableArray alloc]init];
     }
     return self;
-    
 }
 
 #pragma  mark Product Master Integration
@@ -48,14 +47,12 @@ int offSet=0, productsOffset=0,stockOffset=0;
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
     [request setHTTPBody:postData];
-    
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         if(data){            
             NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             if(arr.count>1){
-                
                 NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
                 productsOffset=[slNoc[slNoc.count-1] intValue];
                 [productsOffsetArray addObjectsFromArray:arr];
@@ -68,7 +65,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
         }
     }];
     [dataTask resume];
-    
 }
 -(void)fetchData:(NSMutableArray*)arr
 {
@@ -80,7 +76,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
     NSArray *coreIds=[[ronakGlobal.context executeFetchRequest:fetch error:nil] valueForKey:@"codeId"];
     [ids removeObjectsInArray:coreIds];
     __block NSInteger objectsCount=coreIds.count;
-    
     for (NSString *uniQid in ids)
     {
         NSPredicate *pred=[NSPredicate predicateWithFormat:@"Id == %@",uniQid];
@@ -166,7 +161,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 item.filters.attribute=attributes;
                 [ronakGlobal.delegate saveContext];
                 objectsCount++;
-                NSLog(@"%lu",objectsCount);
+                [ronakGlobal.context reset];
+                NSLog(@"%lu--%lu",(long)objectsCount,(unsigned long)ronakGlobal.context.registeredObjects.count);
             }
         }];
     }
@@ -320,7 +316,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
     return items;
 }
 
-#pragma mark Customer Master Integration
+#pragma mark  -Customer Master Integration-
+
 -(void)downloadCustomersListInBackground
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);

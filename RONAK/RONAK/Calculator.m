@@ -94,16 +94,16 @@
     NSString *val = self.displayTF.text;
     switch(operation) {
         case Plus :
-            self.displayTF.text= [NSString stringWithFormat:@"%qi",[val longLongValue]+[storage longLongValue]];
+            self.displayTF.text= [NSString stringWithFormat:@"%f",[val floatValue]+[storage floatValue]];
             break;
         case Minus:
-            self.displayTF.text= [NSString stringWithFormat:@"%qi",[storage longLongValue]-[val longLongValue]];
+            self.displayTF.text= [NSString stringWithFormat:@"%f",[storage floatValue]-[val floatValue]];
             break;
         case Divide:
-            self.displayTF.text= [NSString stringWithFormat:@"%qi",[storage longLongValue]/[val longLongValue]];
+            self.displayTF.text= [NSString stringWithFormat:@"%f",[storage floatValue]/[val floatValue]];
             break;
         case Multiply:
-            self.displayTF.text= [NSString stringWithFormat:@"%qi",[val longLongValue]*[storage longLongValue]];
+            self.displayTF.text= [NSString stringWithFormat:@"%f",[val floatValue]*[storage floatValue]];
             break;
     }
     
@@ -124,5 +124,11 @@
     self.displayTF.text=[NSString stringWithFormat:@"%@3",self.displayTF.text];
     
 }
+
+- (IBAction)buttondot:(id)sender {
+    
+    self.displayTF.text=[NSString stringWithFormat:@"%@.",self.displayTF.text];
+}
+
 
 @end

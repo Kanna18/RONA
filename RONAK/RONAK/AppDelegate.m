@@ -32,7 +32,6 @@
 #import <SalesforceSDKCore/SFUserAccountManager.h>
 #import <SmartStore/SalesforceSDKManagerWithSmartStore.h>
 #import <SalesforceSDKCore/SFLoginViewController.h>
-#import <TOPasscodeViewController/TOPasscodeViewController.h>
 
 
 #import <Fabric/Fabric.h>
