@@ -45,6 +45,11 @@
     tap.numberOfTapsRequired=1;
     [self.view addGestureRecognizer:tap];
     
+    
+    UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
+    taped.numberOfTouchesRequired=1;
+    [_headingLabel addGestureRecognizer:taped];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -79,8 +84,11 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.delegate=self;
     [cell bindData:_itemsArray[indexPath.row] withCount:(int)[_itemsCount countForObject:_itemsArray[indexPath.row]] customerData:_cstdDataModel forCustome:_presentCustomerBtn];
+    
     return cell;
 }
+
+
 -(void)scrollViewDisplayListofCstmrs
 {
     __block int X=0,Y=0;
@@ -211,8 +219,16 @@
 
 - (IBAction)jumptoMenuVC:(id)sender
 {
-    MenuViewController *men=[self.storyboard instantiateViewControllerWithIdentifier:@"menuVC"];
-    [self.navigationController popToViewController:men animated:YES];
+    
+    NSArray *arr=self.navigationController.viewControllers;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if([obj isKindOfClass:[MenuViewController class]])
+        {
+            [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
+            return ;
+        }
+    }];
 }
 #pragma mark - OrderCell Delegate
 -(void)quantityChangedforCustomer:(CustomButton *)cst
@@ -220,6 +236,7 @@
     [self fillLabelsWithText:cst];
     [_summaryTableView reloadData];
 }
+
 /*
 #pragma mark - Navigation
 

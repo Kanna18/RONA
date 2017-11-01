@@ -26,6 +26,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    NSLog(@"%@%@",defaultGet(savedUserEmail),    defaultGet(savedUserPassword));
+    DownloadProducts *dwn=[[DownloadProducts alloc]init];
+    [dwn regenerateAuthtenticationToken];
     // Do any additional setup after loading the view.
     [self defaultComponentsStyle];
     
@@ -37,7 +41,6 @@
        load=[[LoadingView alloc]init];
        [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
        [load start];
-       DownloadProducts *dwn=[[DownloadProducts alloc]init];
        dwn.delegateProducts=self;
        [dwn downloadCustomersListInBackground];
        [dwn downloadStockWareHouseSavetoCoreData];
@@ -135,6 +138,9 @@
 }
 
 - (IBAction)reports_click:(id)sender {
+    
+    OrderStatusViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"orderStatusVC"];
+    [self.navigationController pushViewController:ovc animated:YES];
 }
 
 - (IBAction)activity_click:(id)sender {

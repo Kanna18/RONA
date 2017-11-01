@@ -71,4 +71,7 @@
 @property (strong, nonatomic) IBOutlet UIView *bottomViewonScroll;
 
 -(IBAction)swipeToBookAnotheOrder:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *headingLabel;
+
+
 @end

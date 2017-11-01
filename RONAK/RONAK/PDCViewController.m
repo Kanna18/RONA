@@ -51,7 +51,7 @@
 
 //    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
 
-    NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Cheque_Date__c" ascending:YES];
+    NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Receipt_Date__c" ascending:YES];
     tvArray=[_cst.PDC__r.records sortedArrayUsingDescriptors:@[sort]];
     [_listTableView reloadData];
 }

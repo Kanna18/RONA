@@ -17,7 +17,7 @@
         <attribute name="color_Code__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="custom__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="delivery_Month__c" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="discount__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="discount__c" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="drawing_Code__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="factory_Company__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flex_Temple__c" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +39,7 @@
         <attribute name="logo_Color__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo_Size__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo_Type__c" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="mRP__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mRP__c" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="number__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="order_Month__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="picture_Name__c" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,7 +53,7 @@
         <attribute name="temple_Color__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="temple_Material__c" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tips_Color__c" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="wS_Price__c" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wS_Price__c" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Att" inverseName="filters" inverseEntity="Att" syncable="YES"/>
         <relationship name="itemMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemMaster" inverseName="filters" inverseEntity="ItemMaster" syncable="YES"/>
     </entity>
@@ -76,7 +76,7 @@
         <attribute name="item_Code_s" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ordered_Quantity_s" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="product__s" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stock__s" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stock__s" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="warehouse_Name_s" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="warehouse_s" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attrib" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Att" inverseName="stock" inverseEntity="Att" syncable="YES"/>

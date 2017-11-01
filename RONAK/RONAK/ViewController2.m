@@ -80,6 +80,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if(indexPath.section==1||indexPath.section==0)
     {
         static NSString *CellIdentifier = @"RangeCell";
@@ -105,7 +106,7 @@
             cell = [tblView dequeueReusableCellWithIdentifier:@"ViewControllerCell"];
         }
         cell.lblName.text=arr[indexPath.section][@"options"][indexPath.row];
-        
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
             case 2:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.rim containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
@@ -122,9 +123,13 @@
             case 6:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.LensColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
+            case 7:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.posterModel containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
                 
             default:
                 break;
+            
         }
         return cell;
     }
@@ -234,6 +239,10 @@
                  break;
              case 6:
                  globalArr=ronakGlobal.selectedFilter.LensColor;
+                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                 break;
+             case 7:
+                 globalArr=ronakGlobal.selectedFilter.posterModel;
                  [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                  break;
              default:

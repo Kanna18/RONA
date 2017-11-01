@@ -717,42 +717,50 @@
     [ZoomscrollVw removeFromSuperview];
 }
 - (IBAction)allmodelTopClick:(id)sender {
-    
-    _allColorsTopBtn.selected=NO;
-    if(_allModelsTopBtn.selected==YES)
-    {
-        _allModelsTopBtn.selected=NO;
-        [self divideWholeitemsintoCategories];
 
-    }
-    else{
-        NSMutableArray *allItems=[[NSMutableArray alloc]init];
-        _allModelsTopBtn.selected=YES;
-        [categoryBasedSort enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {            
-            NSArray *arr=[obj valueForKeyPath:@"ColorsArray.listItemsArray"];
-            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [allItems addObjectsFromArray:obj];
+    if(showItemsOnscrnArry.count>0){
+        
+        _allColorsTopBtn.selected=NO;
+        if(_allModelsTopBtn.selected==YES)
+        {
+            _allModelsTopBtn.selected=NO;
+            [self divideWholeitemsintoCategories];
+            
+        }
+        else{
+            NSMutableArray *allItems=[[NSMutableArray alloc]init];
+            _allModelsTopBtn.selected=YES;
+            [categoryBasedSort enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray *arr=[obj valueForKeyPath:@"ColorsArray.listItemsArray"];
+                [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [allItems addObjectsFromArray:obj];
+                }];
             }];
-        }];
-        showItemsOnscrnArry=allItems;
+            showItemsOnscrnArry=allItems;
+        }
+        [_productsCollectionView reloadData];
+        [self changeLablesBasedOnitemsIndex:0];
+    
     }
-    [_productsCollectionView reloadData];
-    [self changeLablesBasedOnitemsIndex:0];
 }
 
 - (IBAction)allColorsTopClick:(id)sender {
     
-    if(_allColorsTopBtn.selected==YES)
-    {
-        _allColorsTopBtn.selected=NO;
+    if(showItemsOnscrnArry.count>0){
+        
+        if(_allColorsTopBtn.selected==YES)
+        {
+            _allColorsTopBtn.selected=NO;
+        }
+        else
+        {
+            [ronakGlobal.selectedItemsTocartArr removeAllObjects];
+            _allColorsTopBtn.selected=YES;
+        }
+        [self addOrRemoveItemsfromSelection:showItemsOnscrnArry];
+        [self changeLablesBasedOnitemsIndex:0];
     }
-    else
-    {
-        [ronakGlobal.selectedItemsTocartArr removeAllObjects];
-        _allColorsTopBtn.selected=YES;
-    }
-    [self addOrRemoveItemsfromSelection:showItemsOnscrnArry];
-    [self changeLablesBasedOnitemsIndex:0];
+    
 }
 - (IBAction)cancelOrderClick:(id)sender {
     

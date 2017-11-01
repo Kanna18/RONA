@@ -60,7 +60,11 @@
     }];
     NSPredicate *whousePre=[NSCompoundPredicate orPredicateWithSubpredicates:wareHousesPreArr];
     
-    NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[whousePre,Brandpred]];
+    float minV=[ronakGlobal.selectedFilter.stockMinMax[@"Min"] length]>0?[ronakGlobal.selectedFilter.stockMinMax[@"Min"] floatValue]:0;
+    float maxV= [ronakGlobal.selectedFilter.stockMinMax[@"Max"] length]>0?  [ronakGlobal.selectedFilter.stockMinMax[@"Max"] floatValue]:100000;
+//    NSPredicate *stockQtyPred=[NSPredicate predicateWithFormat:@"(SELF.stock__s.floatValue >= %f) AND (SELF.stock__s.floatValue <= %f)", minV,maxV];
+    
+    NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[whousePre,Brandpred/*stockQtyPred*/]];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:ronakGlobal.context];
@@ -197,6 +201,18 @@
     }];
     
     
+    float mrpMin =[ronakGlobal.selectedFilter.priceMinMax[@"Min"] floatValue];
+    float mrpMax =[ronakGlobal.selectedFilter.priceMinMax[@"Max"] floatValue];
+    NSPredicate *mrpPredicate =
+    [NSPredicate predicateWithFormat:@"(SELF.filters.mRP__c.floatValue >= %f) AND (SELF.filters.mRP__c.floatValue <= %f)",mrpMin>0?mrpMin:0,mrpMax>0?mrpMax:100000];
+    
+    float wsMin =[ronakGlobal.selectedFilter.wsPriceMinMax[@"Min"] floatValue];
+    float wsMax =[ronakGlobal.selectedFilter.wsPriceMinMax[@"Max"] floatValue];
+    NSPredicate *wsPricePredicate =[NSPredicate predicateWithFormat:@"(SELF.filters.wS_Price__c.floatValue >= %f) AND (SELF.filters.wS_Price__c.floatValue <= %f)",wsMin>0?wsMin:0, wsMax>0?wsMax:100000];
+    
+    float discMin =[ronakGlobal.selectedFilter.disCountMinMax[@"Min"] floatValue];
+    float discMax =[ronakGlobal.selectedFilter.disCountMinMax[@"Max"] floatValue];
+    NSPredicate *discountPricePredicate =[NSPredicate predicateWithFormat:@"(SELF.filters.discount__c.floatValue >= %f) AND (SELF.filters.discount__c.floatValue <= %f)",discMin>0?discMin:0, discMax>0?discMax:100];
     
     NSPredicate *catePre=[NSCompoundPredicate orPredicateWithSubpredicates:cateGoryArray];
     NSPredicate *collePre=[NSCompoundPredicate orPredicateWithSubpredicates:collectionArray];
@@ -214,7 +230,7 @@
     NSPredicate *lensColorPre=[NSCompoundPredicate orPredicateWithSubpredicates:lensColorArray];
     
     
-    NSMutableArray *allpredicates=[[NSMutableArray alloc]initWithObjects:Brandpred,catePre,collePre,lensPre,shapePre,genderPre,frameMatePre,templeMatePre,templeColorPre,tipColorPre,rimPre,sizePre,lensMaterialPre,frontColorPre,lensColorPre, nil];
+    NSMutableArray *allpredicates=[[NSMutableArray alloc]initWithObjects:Brandpred,catePre,collePre,lensPre,shapePre,genderPre,frameMatePre,templeMatePre,templeColorPre,tipColorPre,rimPre,sizePre,lensMaterialPre,frontColorPre,lensColorPre,mrpPredicate,wsPricePredicate,/*discountPricePredicate,*/ nil];
     
     [allpredicates enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *p=obj;
@@ -222,7 +238,6 @@
             [allpredicates removeObject:p];
         }
     }];
-    
     NSPredicate *finalPre;
     finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:allpredicates];
     
@@ -256,7 +271,5 @@
     [_rim removeAllObjects];
     [_posterModel removeAllObjects];
     _brand=@"";
-    
-    
 }
 @end

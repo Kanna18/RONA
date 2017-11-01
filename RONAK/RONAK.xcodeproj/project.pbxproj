@@ -12,9 +12,6 @@
 		4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EC71B6C0F94005E64D4 /* InitialViewController.m */; };
 		4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */; };
 		84D4B2CF1F62E8B000B76DD7 /* GMItalic.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */; };
-		84D4B2E21F63BE9000B76DD7 /* UnzipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B2DE1F63BE9000B76DD7 /* UnzipViewController.m */; };
-		84D4B2E31F63BE9000B76DD7 /* UnzipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B2DF1F63BE9000B76DD7 /* UnzipViewController.xib */; };
-		84D4B2E41F63BE9000B76DD7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B2E01F63BE9000B76DD7 /* Reachability.m */; };
 		84D4B2E71F63BF3500B76DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B2E61F63BF3500B76DD7 /* Main.storyboard */; };
 		84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B2EA1F63BFB400B76DD7 /* RESTCalls.m */; };
 		84D4B3061F63C1D400B76DD7 /* DownloadProducts.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */; };
@@ -48,11 +45,11 @@
 		84D4B3551F63C48900B76DD7 /* ViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3521F63C48900B76DD7 /* ViewControllerCell.m */; };
 		84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */; };
 		84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B3571F63C53F00B76DD7 /* Images.xcassets */; };
-		84D4B35C1F63CC5900B76DD7 /* universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D4B35B1F63CC5900B76DD7 /* universal.a */; };
 		BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */; };
 		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
 		F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */; };
 		F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */; };
+		F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
@@ -161,12 +158,6 @@
 		4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RONAK.entitlements; sourceTree = "<group>"; };
 		5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RONAK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMItalic.OTF; sourceTree = "<group>"; };
-		84D4B2D61F63BE4B00B76DD7 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
-		84D4B2DD1F63BE9000B76DD7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		84D4B2DE1F63BE9000B76DD7 /* UnzipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnzipViewController.m; sourceTree = "<group>"; };
-		84D4B2DF1F63BE9000B76DD7 /* UnzipViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnzipViewController.xib; sourceTree = "<group>"; };
-		84D4B2E01F63BE9000B76DD7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		84D4B2E11F63BE9000B76DD7 /* UnzipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnzipViewController.h; sourceTree = "<group>"; };
 		84D4B2E61F63BF3500B76DD7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		84D4B2E81F63BF5400B76DD7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		84D4B2E91F63BFB400B76DD7 /* RESTCalls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTCalls.h; sourceTree = "<group>"; };
@@ -229,7 +220,6 @@
 		84D4B3531F63C48900B76DD7 /* ViewControllerCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCellHeader.h; sourceTree = "<group>"; };
 		84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCellHeader.m; sourceTree = "<group>"; };
 		84D4B3571F63C53F00B76DD7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		84D4B35B1F63CC5900B76DD7 /* universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = universal.a; sourceTree = "<group>"; };
 		F606FF941FA63F9200D0290A /* CustomPassCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPassCode.h; sourceTree = "<group>"; };
 		F606FF951FA63F9200D0290A /* CustomPassCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPassCode.m; sourceTree = "<group>"; };
 		F6095E991FA7817300B7C455 /* OrderStatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusViewController.h; sourceTree = "<group>"; };
@@ -237,6 +227,8 @@
 		F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusCell.h; sourceTree = "<group>"; };
 		F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusCell.m; sourceTree = "<group>"; };
 		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		F633665F1FA9E7D400E045B4 /* OrderStatsResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatsResponse.h; sourceTree = "<group>"; };
+		F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatsResponse.m; sourceTree = "<group>"; };
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
 		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
 		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
@@ -370,7 +362,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */,
-				84D4B35C1F63CC5900B76DD7 /* universal.a in Frameworks */,
 				BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +404,6 @@
 				4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */,
 				F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */,
 				F6C2BBE01F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg */,
-				84D4B2E51F63BEA500B76DD7 /* UNZIP */,
 				F6DADCDC1F19DC4800DC635E /* RONAK.pch */,
 				84D4B2E81F63BF5400B76DD7 /* Constants.h */,
 				F6D10AE71F25C886003AF699 /* ServerAPIManager.h */,
@@ -472,32 +462,14 @@
 				F6EDC4461F3D906200F9DFCC /* Filters */,
 				F69A10E81F428D45005C2432 /* OrderTaking */,
 				F66352A31F501EDD00128137 /* OrderSummary */,
-				F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */,
-				F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */,
-				F6095E991FA7817300B7C455 /* OrderStatusViewController.h */,
-				F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */,
-				F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */,
-				F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */,
+				F633665C1FA9E65400E045B4 /* SaleOrderWrapper */,
+				F633665D1FA9E66200E045B4 /* OrderStatusVc */,
 				F6496BE01F54378000028FF0 /* Launch Screen.storyboard */,
 				84D4B2E61F63BF3500B76DD7 /* Main.storyboard */,
 				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
 				F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		84D4B2E51F63BEA500B76DD7 /* UNZIP */ = {
-			isa = PBXGroup;
-			children = (
-				84D4B35B1F63CC5900B76DD7 /* universal.a */,
-				84D4B2DD1F63BE9000B76DD7 /* Reachability.h */,
-				84D4B2DE1F63BE9000B76DD7 /* UnzipViewController.m */,
-				84D4B2DF1F63BE9000B76DD7 /* UnzipViewController.xib */,
-				84D4B2E01F63BE9000B76DD7 /* Reachability.m */,
-				84D4B2E11F63BE9000B76DD7 /* UnzipViewController.h */,
-				84D4B2D61F63BE4B00B76DD7 /* ZipArchive.h */,
-			);
-			name = UNZIP;
 			sourceTree = "<group>";
 		};
 		B783143B6192D2DE4C6DBEA4 /* Pods */ = {
@@ -507,6 +479,36 @@
 				082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F633665C1FA9E65400E045B4 /* SaleOrderWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */,
+				F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */,
+			);
+			name = SaleOrderWrapper;
+			sourceTree = "<group>";
+		};
+		F633665D1FA9E66200E045B4 /* OrderStatusVc */ = {
+			isa = PBXGroup;
+			children = (
+				F6095E991FA7817300B7C455 /* OrderStatusViewController.h */,
+				F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */,
+				F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */,
+				F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */,
+				F633665E1FA9E67600E045B4 /* OrdeStatusResponse */,
+			);
+			name = OrderStatusVc;
+			sourceTree = "<group>";
+		};
+		F633665E1FA9E67600E045B4 /* OrdeStatusResponse */ = {
+			isa = PBXGroup;
+			children = (
+				F633665F1FA9E7D400E045B4 /* OrderStatsResponse.h */,
+				F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */,
+			);
+			name = OrdeStatusResponse;
 			sourceTree = "<group>";
 		};
 		F6404EE51F212BDD00530188 /* Categories */ = {
@@ -940,7 +942,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1024,7 +1026,6 @@
 				F6A4F9A11F60358E00472A96 /* custremgrey.png in Resources */,
 				F6D389EF1F6EED62008B8022 /* tick.png in Resources */,
 				F6A4F9711F600FED00472A96 /* GMedium.OTF in Resources */,
-				84D4B2E31F63BE9000B76DD7 /* UnzipViewController.xib in Resources */,
 				84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */,
 				F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */,
 				F6A4F9A31F60358E00472A96 /* disc.png in Resources */,
@@ -1163,9 +1164,9 @@
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				84D4B32A1F63C34B00B76DD7 /* ProductsListController.m in Sources */,
 				84D4B34F1F63C46200B76DD7 /* ViewController.m in Sources */,
-				84D4B2E41F63BE9000B76DD7 /* Reachability.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
 				84D4B3321F63C36B00B76DD7 /* OrderSummaryVC.m in Sources */,
+				F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */,
 				F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
@@ -1191,7 +1192,6 @@
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
 				84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */,
 				84D4B30B1F63C22C00B76DD7 /* SignInViewController.m in Sources */,
-				84D4B2E21F63BE9000B76DD7 /* UnzipViewController.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				84D4B3081F63C1D400B76DD7 /* SelectedFilters.m in Sources */,
 				84D4B3061F63C1D400B76DD7 /* DownloadProducts.m in Sources */,
@@ -1305,8 +1305,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1322,8 +1322,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a3a8328f-70f8-400e-a841-d8d50a844e18";
+				PROVISIONING_PROFILE_SPECIFIER = Ronak_adhoc;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1334,8 +1334,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1351,8 +1351,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a3a8328f-70f8-400e-a841-d8d50a844e18";
+				PROVISIONING_PROFILE_SPECIFIER = Ronak_adhoc;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

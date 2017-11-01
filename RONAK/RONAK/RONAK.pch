@@ -40,5 +40,6 @@
 #import "StockDetails+CoreDataClass.h"
 #import "ImagesArray+CoreDataClass.h"
 
+#import "OrderStatusViewController.h"
 
 #endif /* RONAK_pch */

@@ -34,6 +34,7 @@
 
 @property int count;
 -(void)bindData:(ItemMaster *)item withCount:(int)Count customerData:(CustomerDataModel*)cst forCustome:(CustomButton*)btn;
+@property (strong, nonatomic) IBOutlet UIButton *deleteProductOrderCell;
 
 @property id<ReloadInstruction> delegate;
 

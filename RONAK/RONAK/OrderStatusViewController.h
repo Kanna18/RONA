@@ -13,4 +13,6 @@
 @interface OrderStatusViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *statusTableView;
 
+- (IBAction)homeClick:(id)sender;
+
 @end

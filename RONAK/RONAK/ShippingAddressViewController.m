@@ -201,7 +201,7 @@
     }
     
     CustomerDataModel *cst=btn.cstData;
-    NSString *billAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\n%@.",cst.BillingStreet,cst.BillingState,cst.BillingCity,cst.BillingPostalCode];
+    NSString *billAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\n%@.",cst.Address_Street__c,cst.Address_State__c,cst.Address_City__c,cst.Address_Zip_Code__c];
     
     UITextView *textVi=[[UITextView alloc]initWithFrame:CGRectMake(10, 10, _billAddress_scrlView.frame.size.width-10, _billAddress_scrlView.frame.size.height-10)];
     textVi.font=gothBook(12);
@@ -216,7 +216,7 @@
     for (int i=0; i<arr.count; i++)
     {
         Recodrs *rec=(Recodrs*)arr[i];
-        NSString *shpAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\n%@,\nGSTIN : (nil) ",rec.Street__c,rec.City__c,rec.State__c,rec.Zipcode__c];
+        NSString *shpAddress=[NSString stringWithFormat:@"%@,\n%@,\n%@,\nGSTIN : (nil) ",rec.Street__c,rec.City__c,rec.Zipcode__c];
         UITextView *textVi=[[UITextView alloc]initWithFrame:CGRectMake(vX, vY, _billAddress_scrlView.frame.size.width, _billAddress_scrlView.frame.size.height-20)];
         textVi.font=gothBook(12);
         textVi.textColor=RGB(45, 45, 45);

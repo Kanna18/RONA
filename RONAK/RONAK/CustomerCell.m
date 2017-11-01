@@ -30,7 +30,7 @@
     _addressLabel.font=gothMedium(12);
     _amountLabel.font=gothMedium(16);
     self.nameLabel.text=[data.Name uppercaseString];
-    self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.ShippingAddress.street,data.ShippingAddress.state,data.ShippingAddress.postalCode,data.ShippingAddress.country];
+    self.addressLabel.text=[NSString stringWithFormat:@"%@ %@ %@ %@",data.Address_Street__c,data.Address_State__c,data.Address_Zip_Code__c,data.Address_Country__c];
     self.amountLabel.text=[NSString stringWithFormat:@"₹%@",data.Account_Balance__c];
 //    self.selectedImage.backgroundColor=GrayLight;
     self.selectedImage.image=[UIImage imageNamed:@"grayBackground"];

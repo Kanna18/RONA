@@ -27,7 +27,7 @@
 -(void)bindData:(PDCRecodrs*)rec
 {
     _chequeNo.text=rec.Cheque_No__c;
-    _chequeDate.text=rec.Cheque_Date__c;
+    _chequeDate.text=rec.Receipt_Date__c;
     _amount.text=rec.Amount__c;
     _drawOn.text=rec.Customer_Bank__c;
     _cheQueType.text=rec.attributes.type;

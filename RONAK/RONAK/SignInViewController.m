@@ -157,7 +157,7 @@
 //        [UnzipViewController presentResourcesViewController:self withTitle:@"Loading" URL:url completion:nil];
 //    }
     
-    if(defaultGet(savedUserEmail)&&defaultGet(savedUserPassword))
+    if(defaultGet(savedUserEmail)&&defaultGet(savedUserPassword)&&defaultGet(kaccess_token))
     {
         [self gotoMenu];
     }

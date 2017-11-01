@@ -57,10 +57,11 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 productsOffset=[slNoc[slNoc.count-1] intValue];
                 [productsOffsetArray addObjectsFromArray:arr];
                 [self downloadStockWareHouseSavetoCoreData];
+                return ;
             }
             else{
-                //            [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
                 [self fetchData:productsOffsetArray];
+                return ;
             }
         }
     }];
@@ -81,6 +82,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
         NSPredicate *pred=[NSPredicate predicateWithFormat:@"Id == %@",uniQid];
         NSArray *sortedArr=[arr filteredArrayUsingPredicate:pred];
         NSArray *duplicateArr=[NSArray arrayWithObjects:sortedArr.lastObject, nil];
+        sortedArr=nil;
         [duplicateArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             //            NSString *code=obj[@"product"][@"Id"]; /*old*/
             NSString *code=obj[@"Id"];
@@ -247,7 +249,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                    @{ @"heading":kCategories,
                                       @"options":categoriesF},
                                    @{ @"heading":kCollection,
-                                      @"options":collectionF}];
+                                      @"options":[collectionF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]}];
     ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kStockWareHouse,
                                       @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]},
 //                                   @{ @"heading":kStockWareHouse,
@@ -263,11 +265,11 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                    @{ @"heading":kGender,
                                       @"options":genderF},
                                    @{ @"heading":kFrameMaterial,
-                                      @"options":frameMateF},
+                                      @"options":[frameMateF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kTempleMaterial,
-                                      @"options":templeMateF},
+                                      @"options":[templeMateF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kTempleColour,
-                                      @"options":templeColF},
+                                      @"options":[templeColF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kTipColor,
                                       @"options":tipColourF},
                                    ];
@@ -279,13 +281,13 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                    @{ @"heading":kRim,
                                       @"options":[rimF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kSize,
-                                      @"options":sizeF},
+                                      @"options":[sizeF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kLensMaterial,
-                                      @"options":lensMAteF},
+                                      @"options":[lensMAteF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kFrontColor,
-                                      @"options":frontColF},
+                                      @"options":[frontColF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kLensColor,
-                                      @"options":lensColF},
+                                      @"options":[lensColF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":@"Poster Model",
                                       @"options":@[@"Yes",@"No"]}];
     
@@ -602,6 +604,24 @@ int offSet=0, productsOffset=0,stockOffset=0;
          [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:error.localizedDescription];
      }];
     
+}
+
+#pragma mark -Getting Auth Token--
+
+-(void)regenerateAuthtenticationToken{
+    
+    NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,defaultGet(savedUserEmail),defaultGet(savedUserPassword)];
+    [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)
+     {
+         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObj options:0 error:nil];
+         if(dict[@"access_token"])
+         {
+             defaultSet(dict[@"access_token"], kaccess_token);
+             NSLog(@"--New Auth Token Generated -%@",defaultGet(kaccess_token));
+         }
+     } andErrorBlock:^(NSError *error) {
+         
+     }];
 }
 
 @end

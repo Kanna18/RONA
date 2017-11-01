@@ -44,7 +44,13 @@
 
 - (IBAction)deleteProduct:(id)sender {
     
+    if([_cstData.defaultsCustomer.itemsCount containsObject:_item]){
+        
+        [_cstData.defaultsCustomer.itemsCount removeObject:_item];
+    }
     
+    [_delegate quantityChangedforCustomer:_cstButtomCustomer];
+
     
 }
 - (IBAction)qtyFunction:(id)sender {

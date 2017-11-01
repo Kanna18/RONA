@@ -35,5 +35,5 @@
 -(NSMutableArray*)pickProductsFromFilters;
 -(void)downloadImagesandSavetolocalDataBase;
 -(void)saveOrderWithAccessToken:(NSString*)jsonParameter;
-
+-(void)regenerateAuthtenticationToken;
 @end

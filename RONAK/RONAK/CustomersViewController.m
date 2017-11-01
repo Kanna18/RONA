@@ -50,16 +50,12 @@ static NSString *reuse=@"reuseCustomerCell";
     
 
     
-    collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
-    alphabets=@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"];
-    
+    collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);    alphabets=@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"];
     [self defaultComponentsStyle];
-    
     serverAPI=[ServerAPIManager sharedinstance];
     customersList=[[NSMutableArray alloc]init];
     [load loadingWithlightAlpha:self.view with_message:@"Loading customers"];
     [load start];
-    
 //    NSString *path=[[NSBundle mainBundle] pathForResource:@"Customers" ofType:@"json"];
 
         dispatch_async(dispatch_get_main_queue(), ^{

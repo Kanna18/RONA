@@ -44,7 +44,7 @@
 #define rest_stockDetails_b @"https://cs6.salesforce.com/services/apexrest/StockDetails/"
 #define rest_warehouseMaster_b @"https://cs6.salesforce.com/services/apexrest/WarehouseMaster1/"
 #define rest_saveOrder_b  @"https://cs6.salesforce.com/services/apexrest/SaveSaleOrder"
-
+#define rest_OrderStatus_b  @"https://cs6.salesforce.com/services/apexrest/SalesOrderStatus/"
 
 //constants to save in defaults
 #define kaccess_token @"access_token"
