@@ -6,6 +6,8 @@
 //  Copyright © 2017 RONAKOrganizationName. All rights reserved.
 //
 
+
+
 #import "DownloadProducts.h"
 
 @implementation DownloadProducts{
@@ -27,6 +29,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
         custDataOffsetArray=[[NSMutableArray alloc]init];
         productsOffsetArray=[[NSMutableArray alloc]init];
         stockDetailsOffsetArray=[[NSMutableArray alloc]init];
+        
+        
     }
     return self;
 }
@@ -106,7 +110,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:ronakGlobal.context];
                 filter.order_Month__c=filtersDict[@"Order_Month__c"];
                 filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
-                filter.mRP__c=[NSString stringWithFormat:@"%@",filtersDict[@"MRP__c"]];
+                filter.mRP__c=[filtersDict[@"MRP__c"] floatValue];
                 filter.collection_Name__c=filtersDict[@"Collection_Name__c"];
                 filter.tips_Color__c=filtersDict[@"Tips_Color__c"];
                 filter.temple_Material__c=filtersDict[@"Temple_Material__c"];
@@ -115,7 +119,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 filter.size__c=filtersDict[@"Size__c"];
                 filter.shape__c=filtersDict[@"Shape__c"];
                 filter.product__c=filtersDict[@"Product__c"];
-                filter.wS_Price__c=[NSString stringWithFormat:@"%@",filtersDict[@"WS_Price__c"]];
+                filter.wS_Price__c=[filtersDict[@"WS_Price__c"] floatValue];
                 filter.number__c=[NSString stringWithFormat:@"%@",filtersDict[@"Number__c"]];
                 filter.logo_Type__c=filtersDict[@"Logo_Type__c"];
                 filter.logo_Size__c=filtersDict[@"Logo_Size__c"];
@@ -148,7 +152,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
                 filter.rim__c=filtersDict[@"Rim__c"];
                 filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
-                filter.discount__c=[NSString stringWithFormat:@"%@",filtersDict[@"Discount__c"]];
+                filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
                 filter.codeId=filtersDict[@"Id"];
                 filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
                 NSDictionary *attDict=filtersDict[@"attributes"];
@@ -220,7 +224,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
      
          
          !([lensDesF containsObject:fil.lens_Description__c])&&!(fil.lens_Description__c==NULL)?[lensDesF addObject:fil.lens_Description__c]:@"";
-         !([wsPrice containsObject:fil.wS_Price__c])&&!(fil.wS_Price__c==NULL)?[wsPrice addObject:fil.wS_Price__c]:@"";
+//         !([wsPrice containsObject:fil.wS_Price__c])&&!(fil.wS_Price__c==NULL)?[wsPrice addObject:fil.wS_Price__c]:@"";
          !([shapeF containsObject:fil.shape__c])&&!(fil.shape__c==NULL)?[shapeF addObject:fil.shape__c]:@"";
          !([genderF containsObject:fil.category__c])&&!(fil.category__c==NULL)?[genderF addObject:fil.category__c]:@"";
          !([frameMateF containsObject:fil.frame_Material__c])&&!(fil.frame_Material__c==NULL)?[frameMateF addObject:fil.frame_Material__c]:@"";
@@ -228,8 +232,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
          !([templeColF containsObject:fil.temple_Color__c])&&!(fil.temple_Color__c==NULL)?[templeColF addObject:fil.temple_Color__c]:@"";
          !([tipColourF containsObject:fil.tips_Color__c])&&!(fil.tips_Color__c==NULL)?[tipColourF addObject:fil.tips_Color__c]:@"";
          
-         !([discountF containsObject:fil.discount__c])&&!(fil.discount__c==NULL)?[discountF addObject:fil.discount__c]:@"";
-         !([mrpF containsObject:fil.mRP__c])&&!(fil.mRP__c==NULL)?[mrpF addObject:fil.mRP__c]:@"";
+//         !([discountF containsObject:fil.discount__c])&&!(fil.discount__c==NULL)?[discountF addObject:fil.discount__c]:@"";
+//         !([mrpF containsObject:fil.mRP__c])&&!(fil.mRP__c==NULL)?[mrpF addObject:fil.mRP__c]:@"";
          !([rimF containsObject:fil.frame_Structure__c])&&!(fil.frame_Structure__c==NULL)?[rimF addObject:fil.frame_Structure__c]:@"";
          !([sizeF containsObject:fil.size__c])&&!(fil.size__c==NULL)?[sizeF addObject:fil.size__c]:@"";
          !([lensMAteF containsObject:fil.lens_Material__c])&&!(fil.lens_Material__c==NULL)?[lensMAteF addObject:fil.lens_Material__c]:@"";
@@ -257,7 +261,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                    @{ @"heading":kStockvalue,
                                       @"options":@[@"nil"]}];
     ronakGlobal.advancedFilters1=@[@{ @"heading":kLensDescription,
-                                      @"options":lensDesF},
+                                      @"options":[lensDesF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kWSPrice,
                                       @"options":@[@"nil"]},
                                    @{ @"heading":kShape,
@@ -474,7 +478,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
         stockE.codeId_s=stDict[@"Id"];
         stockE.item_Code_s=stDict[@"Item_Code__c"];
         stockE.product__s=stDict[@"Product__c"];
-        stockE.stock__s=[NSString stringWithFormat:@"%@",stDict[@"Stock__c"]];
+        stockE.stock__s=[stDict[@"Stock__c"] floatValue];
         stockE.warehouse_Name_s=stDict[@"Warehouse_Name__c"];
         stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
         

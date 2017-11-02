@@ -101,7 +101,7 @@
 -(void)bindData:(CustomerDataModel*)cstData{
     
     _cstData=cstData;
-    [_customerName setTitle:_cstData.Name forState:UIControlStateNormal];
+    [_customerNameBtn setTitle:_cstData.Name forState:UIControlStateNormal];
     if(ronakGlobal.selectedItemsTocartArr.count==1)
     {
         NSCountedSet *set=[NSCountedSet setWithArray:_cstData.defaultsCustomer.itemsCount];

@@ -53,10 +53,6 @@
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
-		F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6496BD41F53FC6000028FF0 /* WSCalendarView.xib */; };
-		F6496BDD1F53FC6000028FF0 /* WSCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BD61F53FC6000028FF0 /* WSCalendarView.m */; };
-		F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BD81F53FC6000028FF0 /* WSLabel.m */; };
-		F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BDA1F53FC6000028FF0 /* WSEventView.m */; };
 		F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6496BE01F54378000028FF0 /* Launch Screen.storyboard */; };
 		F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
@@ -109,16 +105,19 @@
 		F6AC7D661F752F6700D6F8EC /* collapsed.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D651F752F6700D6F8EC /* collapsed.png */; };
 		F6AC7D681F752F7C00D6F8EC /* expanded.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D671F752F7C00D6F8EC /* expanded.png */; };
 		F6B2DC291F8481940055E3E1 /* UILabel+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2DC281F8481940055E3E1 /* UILabel+Padding.m */; };
-		F6BCEACC1F94CA7D006D1084 /* StockDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEAB91F94CA7D006D1084 /* StockDetails+CoreDataClass.m */; };
-		F6BCEACD1F94CA7D006D1084 /* StockDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEABB1F94CA7D006D1084 /* StockDetails+CoreDataProperties.m */; };
-		F6BCEACE1F94CA7D006D1084 /* ImagesArray+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEABD1F94CA7D006D1084 /* ImagesArray+CoreDataClass.m */; };
-		F6BCEACF1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEABF1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.m */; };
-		F6BCEAD01F94CA7D006D1084 /* Filters+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEAC11F94CA7D006D1084 /* Filters+CoreDataClass.m */; };
-		F6BCEAD11F94CA7D006D1084 /* Filters+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEAC31F94CA7D006D1084 /* Filters+CoreDataProperties.m */; };
-		F6BCEAD21F94CA7D006D1084 /* Att+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEAC51F94CA7D006D1084 /* Att+CoreDataClass.m */; };
-		F6BCEAD31F94CA7D006D1084 /* Att+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEAC71F94CA7D006D1084 /* Att+CoreDataProperties.m */; };
-		F6BCEAD41F94CA7D006D1084 /* ItemMaster+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEAC91F94CA7D006D1084 /* ItemMaster+CoreDataClass.m */; };
-		F6BCEAD51F94CA7D006D1084 /* ItemMaster+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6BCEACB1F94CA7D006D1084 /* ItemMaster+CoreDataProperties.m */; };
+		F6B41C161FAA432100471C1A /* WSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C101FAA431E00471C1A /* WSLabel.m */; };
+		F6B41C171FAA432100471C1A /* WSEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C121FAA431F00471C1A /* WSEventView.m */; };
+		F6B41C181FAA432100471C1A /* WSCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C151FAA432000471C1A /* WSCalendarView.m */; };
+		F6B41C2E1FAA4F6500471C1A /* StockDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C1B1FAA4F6500471C1A /* StockDetails+CoreDataClass.m */; };
+		F6B41C2F1FAA4F6500471C1A /* StockDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C1D1FAA4F6500471C1A /* StockDetails+CoreDataProperties.m */; };
+		F6B41C301FAA4F6500471C1A /* Att+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C1F1FAA4F6500471C1A /* Att+CoreDataClass.m */; };
+		F6B41C311FAA4F6500471C1A /* Att+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C211FAA4F6500471C1A /* Att+CoreDataProperties.m */; };
+		F6B41C321FAA4F6500471C1A /* ItemMaster+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C231FAA4F6500471C1A /* ItemMaster+CoreDataClass.m */; };
+		F6B41C331FAA4F6500471C1A /* ItemMaster+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C251FAA4F6500471C1A /* ItemMaster+CoreDataProperties.m */; };
+		F6B41C341FAA4F6500471C1A /* Filters+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C271FAA4F6500471C1A /* Filters+CoreDataClass.m */; };
+		F6B41C351FAA4F6500471C1A /* Filters+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C291FAA4F6500471C1A /* Filters+CoreDataProperties.m */; };
+		F6B41C361FAA4F6500471C1A /* ImagesArray+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C2B1FAA4F6500471C1A /* ImagesArray+CoreDataClass.m */; };
+		F6B41C371FAA4F6500471C1A /* ImagesArray+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C2D1FAA4F6500471C1A /* ImagesArray+CoreDataProperties.m */; };
 		F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */; };
 		F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */; };
 		F6C2BBE11F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */; };
@@ -135,6 +134,7 @@
 		F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD11F19DA1800DC635E /* CustomLabel.m */; };
 		F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD41F19DA3100DC635E /* CustomTextField.m */; };
 		F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */; };
+		F6FA18511FAA5F7C0082A89E /* WSCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B41C131FAA432000471C1A /* WSCalendarView.xib */; };
 		F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */; };
 		F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */; };
 		F6FBB78B1F55E8C800CF2732 /* RangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */; };
@@ -234,13 +234,6 @@
 		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
 		F6496B981F52A83E00028FF0 /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
 		F6496B991F52A83E00028FF0 /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
-		F6496BD41F53FC6000028FF0 /* WSCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSCalendarView.xib; sourceTree = "<group>"; };
-		F6496BD51F53FC6000028FF0 /* WSCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCalendarView.h; sourceTree = "<group>"; };
-		F6496BD61F53FC6000028FF0 /* WSCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCalendarView.m; sourceTree = "<group>"; };
-		F6496BD71F53FC6000028FF0 /* WSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLabel.h; sourceTree = "<group>"; };
-		F6496BD81F53FC6000028FF0 /* WSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLabel.m; sourceTree = "<group>"; };
-		F6496BD91F53FC6000028FF0 /* WSEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSEventView.h; sourceTree = "<group>"; };
-		F6496BDA1F53FC6000028FF0 /* WSEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSEventView.m; sourceTree = "<group>"; };
 		F6496BE01F54378000028FF0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		F6496BE21F54468A00028FF0 /* UIImageView+Zooming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Zooming.h"; sourceTree = "<group>"; };
 		F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Zooming.m"; sourceTree = "<group>"; };
@@ -302,26 +295,33 @@
 		F6AC7D671F752F7C00D6F8EC /* expanded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded.png; sourceTree = "<group>"; };
 		F6B2DC271F8481940055E3E1 /* UILabel+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Padding.h"; sourceTree = "<group>"; };
 		F6B2DC281F8481940055E3E1 /* UILabel+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Padding.m"; sourceTree = "<group>"; };
-		F6BCEAB81F94CA7D006D1084 /* StockDetails+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "StockDetails+CoreDataClass.h"; path = "../StockDetails+CoreDataClass.h"; sourceTree = "<group>"; };
-		F6BCEAB91F94CA7D006D1084 /* StockDetails+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "StockDetails+CoreDataClass.m"; path = "../StockDetails+CoreDataClass.m"; sourceTree = "<group>"; };
-		F6BCEABA1F94CA7D006D1084 /* StockDetails+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "StockDetails+CoreDataProperties.h"; path = "../StockDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F6BCEABB1F94CA7D006D1084 /* StockDetails+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "StockDetails+CoreDataProperties.m"; path = "../StockDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F6BCEABC1F94CA7D006D1084 /* ImagesArray+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ImagesArray+CoreDataClass.h"; path = "../ImagesArray+CoreDataClass.h"; sourceTree = "<group>"; };
-		F6BCEABD1F94CA7D006D1084 /* ImagesArray+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ImagesArray+CoreDataClass.m"; path = "../ImagesArray+CoreDataClass.m"; sourceTree = "<group>"; };
-		F6BCEABE1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ImagesArray+CoreDataProperties.h"; path = "../ImagesArray+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F6BCEABF1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ImagesArray+CoreDataProperties.m"; path = "../ImagesArray+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F6BCEAC01F94CA7D006D1084 /* Filters+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Filters+CoreDataClass.h"; path = "../Filters+CoreDataClass.h"; sourceTree = "<group>"; };
-		F6BCEAC11F94CA7D006D1084 /* Filters+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Filters+CoreDataClass.m"; path = "../Filters+CoreDataClass.m"; sourceTree = "<group>"; };
-		F6BCEAC21F94CA7D006D1084 /* Filters+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Filters+CoreDataProperties.h"; path = "../Filters+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F6BCEAC31F94CA7D006D1084 /* Filters+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Filters+CoreDataProperties.m"; path = "../Filters+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F6BCEAC41F94CA7D006D1084 /* Att+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Att+CoreDataClass.h"; path = "../Att+CoreDataClass.h"; sourceTree = "<group>"; };
-		F6BCEAC51F94CA7D006D1084 /* Att+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Att+CoreDataClass.m"; path = "../Att+CoreDataClass.m"; sourceTree = "<group>"; };
-		F6BCEAC61F94CA7D006D1084 /* Att+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Att+CoreDataProperties.h"; path = "../Att+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F6BCEAC71F94CA7D006D1084 /* Att+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Att+CoreDataProperties.m"; path = "../Att+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F6BCEAC81F94CA7D006D1084 /* ItemMaster+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemMaster+CoreDataClass.h"; path = "../ItemMaster+CoreDataClass.h"; sourceTree = "<group>"; };
-		F6BCEAC91F94CA7D006D1084 /* ItemMaster+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ItemMaster+CoreDataClass.m"; path = "../ItemMaster+CoreDataClass.m"; sourceTree = "<group>"; };
-		F6BCEACA1F94CA7D006D1084 /* ItemMaster+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ItemMaster+CoreDataProperties.h"; path = "../ItemMaster+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F6BCEACB1F94CA7D006D1084 /* ItemMaster+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "ItemMaster+CoreDataProperties.m"; path = "../ItemMaster+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F6B41C0F1FAA431E00471C1A /* WSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSLabel.h; sourceTree = "<group>"; };
+		F6B41C101FAA431E00471C1A /* WSLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSLabel.m; sourceTree = "<group>"; };
+		F6B41C111FAA431F00471C1A /* WSCalendarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSCalendarView.h; sourceTree = "<group>"; };
+		F6B41C121FAA431F00471C1A /* WSEventView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSEventView.m; sourceTree = "<group>"; };
+		F6B41C131FAA432000471C1A /* WSCalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WSCalendarView.xib; sourceTree = "<group>"; };
+		F6B41C141FAA432000471C1A /* WSEventView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSEventView.h; sourceTree = "<group>"; };
+		F6B41C151FAA432000471C1A /* WSCalendarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSCalendarView.m; sourceTree = "<group>"; };
+		F6B41C1A1FAA4F6500471C1A /* StockDetails+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StockDetails+CoreDataClass.h"; sourceTree = "<group>"; };
+		F6B41C1B1FAA4F6500471C1A /* StockDetails+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "StockDetails+CoreDataClass.m"; sourceTree = "<group>"; };
+		F6B41C1C1FAA4F6500471C1A /* StockDetails+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StockDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F6B41C1D1FAA4F6500471C1A /* StockDetails+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "StockDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F6B41C1E1FAA4F6500471C1A /* Att+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Att+CoreDataClass.h"; sourceTree = "<group>"; };
+		F6B41C1F1FAA4F6500471C1A /* Att+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Att+CoreDataClass.m"; sourceTree = "<group>"; };
+		F6B41C201FAA4F6500471C1A /* Att+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Att+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F6B41C211FAA4F6500471C1A /* Att+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Att+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F6B41C221FAA4F6500471C1A /* ItemMaster+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ItemMaster+CoreDataClass.h"; sourceTree = "<group>"; };
+		F6B41C231FAA4F6500471C1A /* ItemMaster+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ItemMaster+CoreDataClass.m"; sourceTree = "<group>"; };
+		F6B41C241FAA4F6500471C1A /* ItemMaster+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ItemMaster+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F6B41C251FAA4F6500471C1A /* ItemMaster+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ItemMaster+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F6B41C261FAA4F6500471C1A /* Filters+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filters+CoreDataClass.h"; sourceTree = "<group>"; };
+		F6B41C271FAA4F6500471C1A /* Filters+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Filters+CoreDataClass.m"; sourceTree = "<group>"; };
+		F6B41C281FAA4F6500471C1A /* Filters+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Filters+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F6B41C291FAA4F6500471C1A /* Filters+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Filters+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F6B41C2A1FAA4F6500471C1A /* ImagesArray+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagesArray+CoreDataClass.h"; sourceTree = "<group>"; };
+		F6B41C2B1FAA4F6500471C1A /* ImagesArray+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ImagesArray+CoreDataClass.m"; sourceTree = "<group>"; };
+		F6B41C2C1FAA4F6500471C1A /* ImagesArray+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImagesArray+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F6B41C2D1FAA4F6500471C1A /* ImagesArray+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ImagesArray+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F6BFD94B1F4C9CFE0057C4A0 /* RONAK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RONAK.xcdatamodel; sourceTree = "<group>"; };
 		F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "GU 6739 BLK-35item1.jpg"; sourceTree = "<group>"; };
@@ -418,7 +418,7 @@
 				F6A4F96A1F600F4600472A96 /* GBold.OTF */,
 				84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */,
 				F6404EE21F2124F400530188 /* SF.OTF */,
-				F6496BDB1F53FC6000028FF0 /* WSCalendarView */,
+				F6B41C191FAA432600471C1A /* WSCalendar */,
 				4F8D5ECC1B6C1021005E64D4 /* Classes */,
 				F6BFD94A1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld */,
 				4F8D5EA01B6C0568005E64D4 /* Supporting Files */,
@@ -533,21 +533,6 @@
 				84D4B33D1F63C3BF00B76DD7 /* Discount.xib */,
 			);
 			name = Discount;
-			sourceTree = "<group>";
-		};
-		F6496BDB1F53FC6000028FF0 /* WSCalendarView */ = {
-			isa = PBXGroup;
-			children = (
-				F6496BD41F53FC6000028FF0 /* WSCalendarView.xib */,
-				F6496BD51F53FC6000028FF0 /* WSCalendarView.h */,
-				F6496BD61F53FC6000028FF0 /* WSCalendarView.m */,
-				F6496BD71F53FC6000028FF0 /* WSLabel.h */,
-				F6496BD81F53FC6000028FF0 /* WSLabel.m */,
-				F6496BD91F53FC6000028FF0 /* WSEventView.h */,
-				F6496BDA1F53FC6000028FF0 /* WSEventView.m */,
-			);
-			name = WSCalendarView;
-			path = "../../../../Downloads/WSCalendar-master/WSCalendar";
 			sourceTree = "<group>";
 		};
 		F6496BEF1F5472DC00028FF0 /* Calculator */ = {
@@ -689,6 +674,20 @@
 			path = imagesblue;
 			sourceTree = "<group>";
 		};
+		F6B41C191FAA432600471C1A /* WSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				F6B41C111FAA431F00471C1A /* WSCalendarView.h */,
+				F6B41C151FAA432000471C1A /* WSCalendarView.m */,
+				F6B41C131FAA432000471C1A /* WSCalendarView.xib */,
+				F6B41C141FAA432000471C1A /* WSEventView.h */,
+				F6B41C121FAA431F00471C1A /* WSEventView.m */,
+				F6B41C0F1FAA431E00471C1A /* WSLabel.h */,
+				F6B41C101FAA431E00471C1A /* WSLabel.m */,
+			);
+			name = WSCalendar;
+			sourceTree = "<group>";
+		};
 		F6B71A671F3CB84F002AE0FB /* Shipping AddressVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,26 +719,26 @@
 		F6BFD9FA1F4CC0870057C4A0 /* CoreDataProducts */ = {
 			isa = PBXGroup;
 			children = (
-				F6BCEAB81F94CA7D006D1084 /* StockDetails+CoreDataClass.h */,
-				F6BCEAB91F94CA7D006D1084 /* StockDetails+CoreDataClass.m */,
-				F6BCEABA1F94CA7D006D1084 /* StockDetails+CoreDataProperties.h */,
-				F6BCEABB1F94CA7D006D1084 /* StockDetails+CoreDataProperties.m */,
-				F6BCEABC1F94CA7D006D1084 /* ImagesArray+CoreDataClass.h */,
-				F6BCEABD1F94CA7D006D1084 /* ImagesArray+CoreDataClass.m */,
-				F6BCEABE1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.h */,
-				F6BCEABF1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.m */,
-				F6BCEAC01F94CA7D006D1084 /* Filters+CoreDataClass.h */,
-				F6BCEAC11F94CA7D006D1084 /* Filters+CoreDataClass.m */,
-				F6BCEAC21F94CA7D006D1084 /* Filters+CoreDataProperties.h */,
-				F6BCEAC31F94CA7D006D1084 /* Filters+CoreDataProperties.m */,
-				F6BCEAC41F94CA7D006D1084 /* Att+CoreDataClass.h */,
-				F6BCEAC51F94CA7D006D1084 /* Att+CoreDataClass.m */,
-				F6BCEAC61F94CA7D006D1084 /* Att+CoreDataProperties.h */,
-				F6BCEAC71F94CA7D006D1084 /* Att+CoreDataProperties.m */,
-				F6BCEAC81F94CA7D006D1084 /* ItemMaster+CoreDataClass.h */,
-				F6BCEAC91F94CA7D006D1084 /* ItemMaster+CoreDataClass.m */,
-				F6BCEACA1F94CA7D006D1084 /* ItemMaster+CoreDataProperties.h */,
-				F6BCEACB1F94CA7D006D1084 /* ItemMaster+CoreDataProperties.m */,
+				F6B41C1A1FAA4F6500471C1A /* StockDetails+CoreDataClass.h */,
+				F6B41C1B1FAA4F6500471C1A /* StockDetails+CoreDataClass.m */,
+				F6B41C1C1FAA4F6500471C1A /* StockDetails+CoreDataProperties.h */,
+				F6B41C1D1FAA4F6500471C1A /* StockDetails+CoreDataProperties.m */,
+				F6B41C1E1FAA4F6500471C1A /* Att+CoreDataClass.h */,
+				F6B41C1F1FAA4F6500471C1A /* Att+CoreDataClass.m */,
+				F6B41C201FAA4F6500471C1A /* Att+CoreDataProperties.h */,
+				F6B41C211FAA4F6500471C1A /* Att+CoreDataProperties.m */,
+				F6B41C221FAA4F6500471C1A /* ItemMaster+CoreDataClass.h */,
+				F6B41C231FAA4F6500471C1A /* ItemMaster+CoreDataClass.m */,
+				F6B41C241FAA4F6500471C1A /* ItemMaster+CoreDataProperties.h */,
+				F6B41C251FAA4F6500471C1A /* ItemMaster+CoreDataProperties.m */,
+				F6B41C261FAA4F6500471C1A /* Filters+CoreDataClass.h */,
+				F6B41C271FAA4F6500471C1A /* Filters+CoreDataClass.m */,
+				F6B41C281FAA4F6500471C1A /* Filters+CoreDataProperties.h */,
+				F6B41C291FAA4F6500471C1A /* Filters+CoreDataProperties.m */,
+				F6B41C2A1FAA4F6500471C1A /* ImagesArray+CoreDataClass.h */,
+				F6B41C2B1FAA4F6500471C1A /* ImagesArray+CoreDataClass.m */,
+				F6B41C2C1FAA4F6500471C1A /* ImagesArray+CoreDataProperties.h */,
+				F6B41C2D1FAA4F6500471C1A /* ImagesArray+CoreDataProperties.m */,
 			);
 			name = CoreDataProducts;
 			sourceTree = "<group>";
@@ -974,6 +973,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6FA18511FAA5F7C0082A89E /* WSCalendarView.xib in Resources */,
 				84D4B33C1F63C3B400B76DD7 /* righticon.png in Resources */,
 				F6A4F9991F60358E00472A96 /* CancelorderBlue.png in Resources */,
 				F6A4F9AF1F60358E00472A96 /* cancelblue.png in Resources */,
@@ -1007,7 +1007,6 @@
 				F6A4F9B61F60358E00472A96 /* dwldblue.png in Resources */,
 				F6A4F9AA1F60358E00472A96 /* ROIPLGrey.png in Resources */,
 				F6FF3C4C1F583C7B003269EC /* collapsed1.png in Resources */,
-				F6496BDC1F53FC6000028FF0 /* WSCalendarView.xib in Resources */,
 				F6A4F9B91F60358E00472A96 /* mailblue.png in Resources */,
 				F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */,
 				84D4B33E1F63C3BF00B76DD7 /* Discount.xib in Resources */,
@@ -1132,29 +1131,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */,
+				F6B41C361FAA4F6500471C1A /* ImagesArray+CoreDataClass.m in Sources */,
 				F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */,
 				84D4B32C1F63C34B00B76DD7 /* ProductCollectionViewCell.m in Sources */,
 				84D4B3071F63C1D400B76DD7 /* RONAKSharedClass.m in Sources */,
 				84D4B3461F63C43D00B76DD7 /* DefaultFilter2.m in Sources */,
-				F6496BDD1F53FC6000028FF0 /* WSCalendarView.m in Sources */,
+				F6B41C331FAA4F6500471C1A /* ItemMaster+CoreDataProperties.m in Sources */,
 				84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */,
-				F6BCEACD1F94CA7D006D1084 /* StockDetails+CoreDataProperties.m in Sources */,
 				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
 				84D4B3451F63C43D00B76DD7 /* DefaultFilter1.m in Sources */,
 				84D4B3501F63C46200B76DD7 /* ViewController2.m in Sources */,
 				84D4B3311F63C36B00B76DD7 /* OrderCell.m in Sources */,
+				F6B41C341FAA4F6500471C1A /* Filters+CoreDataClass.m in Sources */,
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
 				84D4B3361F63C38700B76DD7 /* Calculator.m in Sources */,
 				84D4B3201F63C2F900B76DD7 /* PDCViewController.m in Sources */,
-				F6BCEAD21F94CA7D006D1084 /* Att+CoreDataClass.m in Sources */,
-				F6BCEAD41F94CA7D006D1084 /* ItemMaster+CoreDataClass.m in Sources */,
-				F6BCEAD31F94CA7D006D1084 /* Att+CoreDataProperties.m in Sources */,
+				F6B41C161FAA432100471C1A /* WSLabel.m in Sources */,
+				F6B41C181FAA432100471C1A /* WSCalendarView.m in Sources */,
 				F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */,
 				84D4B33A1F63C3AA00B76DD7 /* Discount.m in Sources */,
-				F6496BDF1F53FC6000028FF0 /* WSEventView.m in Sources */,
 				84D4B34E1F63C46200B76DD7 /* AdvancedViewController.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
 				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
+				F6B41C321FAA4F6500471C1A /* ItemMaster+CoreDataClass.m in Sources */,
 				F684E3781FA18BF7005CF9B8 /* SaleOrderWrapper.m in Sources */,
 				84D4B3141F63C29E00B76DD7 /* CustomerCell.m in Sources */,
 				84D4B31F1F63C2F900B76DD7 /* PDCCell.m in Sources */,
@@ -1162,6 +1161,7 @@
 				F6D389E81F6EEC56008B8022 /* RemarksView.m in Sources */,
 				F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
+				F6B41C371FAA4F6500471C1A /* ImagesArray+CoreDataProperties.m in Sources */,
 				84D4B32A1F63C34B00B76DD7 /* ProductsListController.m in Sources */,
 				84D4B34F1F63C46200B76DD7 /* ViewController.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
@@ -1170,35 +1170,34 @@
 				F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
+				F6B41C351FAA4F6500471C1A /* Filters+CoreDataProperties.m in Sources */,
 				F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */,
 				84D4B32B1F63C34B00B76DD7 /* SideMenuFilters.m in Sources */,
 				F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */,
-				F6BCEAD11F94CA7D006D1084 /* Filters+CoreDataProperties.m in Sources */,
-				F6496BDE1F53FC6000028FF0 /* WSLabel.m in Sources */,
 				F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */,
-				F6BCEACE1F94CA7D006D1084 /* ImagesArray+CoreDataClass.m in Sources */,
 				84D4B30E1F63C24A00B76DD7 /* MenuViewController.m in Sources */,
 				F69DCEAD1F697C0A00156396 /* CollectionPopUp.m in Sources */,
 				84D4B3551F63C48900B76DD7 /* ViewControllerCell.m in Sources */,
 				F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */,
-				F6BCEAD51F94CA7D006D1084 /* ItemMaster+CoreDataProperties.m in Sources */,
 				4F8D5EA31B6C0568005E64D4 /* main.m in Sources */,
 				F69DCEA41F69626F00156396 /* BillWiseDetailsCustomCell.m in Sources */,
+				F6B41C2E1FAA4F6500471C1A /* StockDetails+CoreDataClass.m in Sources */,
+				F6B41C2F1FAA4F6500471C1A /* StockDetails+CoreDataProperties.m in Sources */,
 				F6A59D3D1F65C5E4007469F8 /* CategoryBased.m in Sources */,
 				84D4B3471F63C43D00B76DD7 /* DefaultFiltersViewController.m in Sources */,
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
-				F6BCEAD01F94CA7D006D1084 /* Filters+CoreDataClass.m in Sources */,
-				F6BCEACC1F94CA7D006D1084 /* StockDetails+CoreDataClass.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
+				F6B41C171FAA432100471C1A /* WSEventView.m in Sources */,
 				84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */,
+				F6B41C311FAA4F6500471C1A /* Att+CoreDataProperties.m in Sources */,
 				84D4B30B1F63C22C00B76DD7 /* SignInViewController.m in Sources */,
 				4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */,
 				84D4B3081F63C1D400B76DD7 /* SelectedFilters.m in Sources */,
 				84D4B3061F63C1D400B76DD7 /* DownloadProducts.m in Sources */,
 				F69DCEA81F6962F100156396 /* BillAddressVC.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
+				F6B41C301FAA4F6500471C1A /* Att+CoreDataClass.m in Sources */,
 				84D4B3291F63C34B00B76DD7 /* CustomerViewCell.m in Sources */,
-				F6BCEACF1F94CA7D006D1084 /* ImagesArray+CoreDataProperties.m in Sources */,
 				84D4B3171F63C2AC00B76DD7 /* HeaderReusableView.m in Sources */,
 				84D4B31A1F63C2D400B76DD7 /* ShippingAddressViewController.m in Sources */,
 				84D4B3111F63C27500B76DD7 /* CustomersViewController.m in Sources */,

@@ -62,9 +62,9 @@
     
     float minV=[ronakGlobal.selectedFilter.stockMinMax[@"Min"] length]>0?[ronakGlobal.selectedFilter.stockMinMax[@"Min"] floatValue]:0;
     float maxV= [ronakGlobal.selectedFilter.stockMinMax[@"Max"] length]>0?  [ronakGlobal.selectedFilter.stockMinMax[@"Max"] floatValue]:100000;
-//    NSPredicate *stockQtyPred=[NSPredicate predicateWithFormat:@"(SELF.stock__s.floatValue >= %f) AND (SELF.stock__s.floatValue <= %f)", minV,maxV];
+    NSPredicate *stockQtyPred=[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"(SELF.stock__s.floatValue >=%f) AND (SELF.stock__s.floatValue <=%f)",minV,maxV]];
     
-    NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[whousePre,Brandpred/*stockQtyPred*/]];
+    NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[whousePre,Brandpred,stockQtyPred]];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:ronakGlobal.context];
@@ -72,6 +72,7 @@
     [fetchRequest setPredicate:finalPre];
     NSError *error = nil;
     NSArray *fetchedObjects = [[ronakGlobal.context executeFetchRequest:fetchRequest error:&error] valueForKey:@"item_Code_s"];
+    
     ronakGlobal.stockIDsArray=fetchedObjects;
     NSLog(@"%@",ronakGlobal.stockIDsArray);
 }
@@ -230,7 +231,7 @@
     NSPredicate *lensColorPre=[NSCompoundPredicate orPredicateWithSubpredicates:lensColorArray];
     
     
-    NSMutableArray *allpredicates=[[NSMutableArray alloc]initWithObjects:Brandpred,catePre,collePre,lensPre,shapePre,genderPre,frameMatePre,templeMatePre,templeColorPre,tipColorPre,rimPre,sizePre,lensMaterialPre,frontColorPre,lensColorPre,mrpPredicate,wsPricePredicate,/*discountPricePredicate,*/ nil];
+    NSMutableArray *allpredicates=[[NSMutableArray alloc]initWithObjects:Brandpred,catePre,collePre,lensPre,shapePre,genderPre,frameMatePre,templeMatePre,templeColorPre,tipColorPre,rimPre,sizePre,lensMaterialPre,frontColorPre,lensColorPre,wsPricePredicate,mrpPredicate,discountPricePredicate, nil];
     
     [allpredicates enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSPredicate *p=obj;

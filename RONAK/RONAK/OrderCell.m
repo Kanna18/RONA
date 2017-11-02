@@ -109,9 +109,9 @@
     _qtyLabel.text=[NSString stringWithFormat:@"%d",Count];
     _brandLabel.text=item.filters.brand__c;
     _descriptionLabel.text=item.filters.item_Description__c;
-    _priceLabel.text=item.filters.wS_Price__c;
-    _discountLabel.text=_item.filters.discount__c;
-    _totalLabel.text=[NSString stringWithFormat:@"%d",([item.filters.wS_Price__c intValue]*Count)];
+    _priceLabel.text=[NSString stringWithFormat:@"%0.1f",item.filters.wS_Price__c];
+    _discountLabel.text=[NSString stringWithFormat:@"%0.1f",_item.filters.discount__c];
+    _totalLabel.text=[NSString stringWithFormat:@"%0.1f",(item.filters.wS_Price__c*Count)];
     
     
     NSMutableArray *imagesArray=[[NSMutableArray alloc]init];

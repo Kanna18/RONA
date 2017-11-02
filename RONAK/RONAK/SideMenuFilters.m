@@ -101,6 +101,12 @@
         }
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        if(indexPath.section==8){
+            cell.sliderView.hidden=NO;
+        }
+        else{
+            cell.sliderView.hidden=YES;
+        }
         [cell DefaultMaxMinValues];
         return cell;
     }
@@ -137,19 +143,23 @@
                 cell.imageNew.image=[ronakGlobal.selectedFilter.tipsColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
                 
-            case 9:
+            case 10:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.rim containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
-            case 12:
+            case 11:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.size containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
-            case 13:
+            case 12:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.lensMaterial containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
-            case 14:
+            case 13:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.FrontColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
-            case 15:
+            case 14:
                 cell.imageNew.image=[ronakGlobal.selectedFilter.LensColor containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
+                break;
+            case 15:
+                cell.imageNew.image=[ronakGlobal.selectedFilter.posterModel containsObject:cell.lblName.text]?[UIImage imageNamed:@"checkBlue"]:[UIImage imageNamed:@"uncheckFilter"];
                 break;
                 
             default:
@@ -270,6 +280,31 @@
                 globalArr=ronakGlobal.selectedFilter.tipsColor;
                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                 break;
+            case 10:
+                globalArr=ronakGlobal.selectedFilter.rim;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 11:
+                globalArr=ronakGlobal.selectedFilter.size;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 12:
+                globalArr=ronakGlobal.selectedFilter.lensMaterial;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 13:
+                globalArr=ronakGlobal.selectedFilter.FrontColor;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 14:
+                globalArr=ronakGlobal.selectedFilter.lensMaterial;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+            case 15:
+                globalArr=ronakGlobal.selectedFilter.posterModel;
+                [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
+                break;
+                
             default:
                 break;
         }

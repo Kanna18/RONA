@@ -418,16 +418,16 @@
     _detailedImageView.image=image;
     _itemSizeLabel.text=item.filters.size__c;
     _selectedItemDesc.text=item.filters.item_Description__c;
-    _pricingLabel.text=[@"₹" stringByAppendingString:item.filters.mRP__c];
+    _pricingLabel.text=[NSString stringWithFormat:@"₹%0.0f",item.filters.mRP__c];
     
-    if(!([item.filters.discount__c integerValue]>0))    {
+    if(!(item.filters.discount__c>0))    {
         _discountVw.hidden=YES;
     }
     else{
-    _discountLabel.text=[item.filters.discount__c stringByAppendingString:@"%"];
+    _discountLabel.text=[NSString stringWithFormat:@"%0.1f%%",item.filters.discount__c];
     }
     _itemSizeLabel.text=item.filters.size__c;
-    _wsLabel.text=[[@"₹" stringByAppendingString:item.filters.wS_Price__c] stringByAppendingString:@"/"];
+    _wsLabel.text=[NSString stringWithFormat:@"₹%0.0f/",item.filters.wS_Price__c];
     
     NSString *strSele=@"";
     if(_allModelsTopBtn.selected==YES){

@@ -21,6 +21,8 @@
     _statusTableView.delegate=self;
     _statusTableView.dataSource=self;
     
+    [self getOrderStatusResponse];
+    
 }
 
 - (void)didReceiveMemoryWarning {

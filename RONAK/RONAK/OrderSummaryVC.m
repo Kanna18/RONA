@@ -42,7 +42,7 @@
     [self calendarFunction];
     
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAllSubviewsandDeselectall)];
-    tap.numberOfTapsRequired=1;
+    tap.numberOfTapsRequired=2;
     [self.view addGestureRecognizer:tap];
     
     
@@ -134,14 +134,14 @@
     
     for (ItemMaster *item in _cstdDataModel.defaultsCustomer.itemsCount)
     {
-        total+=[item.filters.wS_Price__c intValue];
+        total+=item.filters.wS_Price__c;
         if([item.filters.product__c isEqualToString:@"Sunglasses"])
         {
-            sunGlassesGST+=[item.filters.wS_Price__c intValue];
+            sunGlassesGST+=item.filters.wS_Price__c;
         }
         if([item.filters.product__c isEqualToString:@"Frames"])
         {
-            framesGST+=[item.filters.wS_Price__c intValue];
+            framesGST+=item.filters.wS_Price__c;
         }
     }
     

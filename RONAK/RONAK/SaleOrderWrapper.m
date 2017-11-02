@@ -18,7 +18,7 @@
         _Brand=item.filters.brand__c;
         _Description=@"description";//item.filters.description;
         _Quantity=[NSString stringWithFormat:@"%d",count];
-        float tot=count*[item.filters.mRP__c floatValue];
+        float tot=count*item.filters.mRP__c;
         _Total=@"total";//[NSString stringWithFormat:@"%f",tot];
         _Price=@"price";//[NSString stringWithFormat:@"%@",item.filters.mRP__c];
         _Discount=@"disc";//[NSString stringWithFormat:@"%@",item.filters.discount__c];

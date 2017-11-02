@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RONAK/SelectedFilters.m"
-            timestampString = "531202037.891217"
+            filePath = "RONAK/CustomerViewCell.m"
+            timestampString = "531259425.744277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "-getStockDetailsIdsbasedonBrandWarehouse"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-bindData:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RONAK/RemarksView.m"
+            timestampString = "531258799.183251"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-checkClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
