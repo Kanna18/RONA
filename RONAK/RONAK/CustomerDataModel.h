@@ -99,6 +99,9 @@
 @property (nonatomic) NSMutableArray *itemsCount;
 @property (nonatomic) NSString *discount;
 @property (nonatomic) NSString *dateFuture;
+@property (nonatomic) NSString *customerRemarks;
+@property (nonatomic) NSString *customerROIPL;
+@property (nonatomic) NSString *netAmount;
 
 @end
 

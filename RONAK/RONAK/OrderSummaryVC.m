@@ -12,7 +12,7 @@
 #import "SaleOrderWrapper.h"
 
 
-@interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate>
+@interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate,RemarksViewProtocol>
 
 @end
 
@@ -147,14 +147,20 @@
     
     sunGlassesGST=sunGlassesGST*28/100;
     framesGST=framesGST*14/100;
-    _sunGST.text=[NSString stringWithFormat:@"%0.2f",(float)sunGlassesGST];
-    _frameGST.text=[NSString stringWithFormat:@"%0.2f",(float)framesGST];
+    _sunGST.text=[NSString stringWithFormat:@"GST on SG 28%%"];
+    _gstSGValueLbl.text=[NSString stringWithFormat:@"%0.2f",(float)sunGlassesGST];
+
+    _frameGST.text=[NSString stringWithFormat:@"GST on FR 14%%"];
+    _gstFRValueLbl.text=[NSString stringWithFormat:@"%0.2f",(float)framesGST];
     _totalAmount.text=[NSString stringWithFormat:@"%0.2f",(float)(total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100)];
-    _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)(total+sunGlassesGST+framesGST)];
+    _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)([_totalAmount.text floatValue]+sunGlassesGST+framesGST)];
     
-    
+    _ropilLabel.text=_cstdDataModel.defaultsCustomer.customerROIPL;
+    _remarksLabel.text=_cstdDataModel.defaultsCustomer.customerRemarks;
+        
     [self dynamicscrollViewContentHeight];
     [_summaryTableView reloadData];
+    _cstdDataModel.defaultsCustomer.netAmount=_netAmount.text;
 }
 
 -(void)clikedOnCustomer:(CustomButton*)sender
@@ -213,6 +219,7 @@
 -(void)reslut:(NSString *)str
 {
     _cstdDataModel.defaultsCustomer.discount=[str stringByAppendingString:@"%"];
+    [self removeAllSubviewsandDeselectall];
     [self fillLabelsWithText:_presentCustomerBtn];
 
 }
@@ -371,6 +378,7 @@
         remarksView=[[RemarksView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) withTitle:@"CUSTOMER REMARKS" withSuperView:self];
         [self.view addSubview:remarksView];
         [remarksView.textView becomeFirstResponder];
+        remarksView.delegate=self;
     }
 }
 - (IBAction)roiplClick:(id)sender {
@@ -387,6 +395,7 @@
         remarksView=[[RemarksView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) withTitle:@"ROIPL REMARKS" withSuperView:self];
         [self.view addSubview:remarksView];
         [remarksView.textView becomeFirstResponder];
+        remarksView.delegate=self;
     }
 }
 - (IBAction)draftClick:(id)sender {
@@ -519,5 +528,17 @@
     _scrollViewDynamic.contentSize=CGSizeMake(0, [NSCountedSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount].count*100+200);
     
 }
+#pragma mark remarksROIPLDelegate
 
+-(void)remarksROIPLvalueSelected:(NSString *)str
+{
+    if([str isEqualToString:@"CUSTOMER REMARKS"]){
+        _cstdDataModel.defaultsCustomer.customerRemarks=_remarksLabel.text;
+    }
+    else if ([str isEqualToString:@"ROIPL REMARKS"])
+    {
+        _cstdDataModel.defaultsCustomer.customerROIPL=_ropilLabel.text;
+    }
+    
+}
 @end

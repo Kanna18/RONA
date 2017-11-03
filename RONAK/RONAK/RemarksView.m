@@ -77,12 +77,19 @@ CGFloat _currentKeyboardHeight = 0.0f;
 
 - (IBAction)checkClick:(id)sender {
     
+    NSString *page=@"";
     if([_titleLabel.text isEqualToString:@"CUSTOMER REMARKS"]){
+        page=@"CUSTOMER REMARKS";
         _superView.remarksLabel.text=_textView.text;
     }
     if([_titleLabel.text isEqualToString:@"ROIPL REMARKS"]){
+        page=@"ROIPL REMARKS";
         _superView.ropilLabel.text=_textView.text;
     }
+    
+    [_delegate remarksROIPLvalueSelected:page];
     [self keyboardWillHide:nil];
+    
+    
 }
 @end

@@ -72,6 +72,8 @@
 
 -(IBAction)swipeToBookAnotheOrder:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *headingLabel;
+@property (strong, nonatomic) IBOutlet UILabel *gstFRValueLbl;
 
+@property (strong, nonatomic) IBOutlet UILabel *gstSGValueLbl;
 
 @end

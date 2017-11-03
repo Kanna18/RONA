@@ -10,6 +10,10 @@
 #import <UIKit/UIKit.h>
 #import "OrderSummaryVC.h"
 
+@protocol RemarksViewProtocol <NSObject>
+-(void)remarksROIPLvalueSelected:(NSString*)str;
+@end
+
 @interface RemarksView : UIView
 
 -(instancetype)initWithFrame:(CGRect)frame withTitle:(NSString*)str withSuperView:(OrderSummaryVC*)superVC;
@@ -20,6 +24,6 @@
 @property OrderSummaryVC *superView;
 - (IBAction)cancelClick:(id)sender;
 - (IBAction)checkClick:(id)sender;
-
+@property id<RemarksViewProtocol> delegate;
 
 @end

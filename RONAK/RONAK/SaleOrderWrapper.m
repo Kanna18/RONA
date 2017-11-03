@@ -19,9 +19,9 @@
         _Description=@"description";//item.filters.description;
         _Quantity=[NSString stringWithFormat:@"%d",count];
         float tot=count*item.filters.mRP__c;
-        _Total=@"total";//[NSString stringWithFormat:@"%f",tot];
-        _Price=@"price";//[NSString stringWithFormat:@"%@",item.filters.mRP__c];
-        _Discount=@"disc";//[NSString stringWithFormat:@"%@",item.filters.discount__c];
+        _Total=[NSString stringWithFormat:@"%f",tot];
+        _Price=[NSString stringWithFormat:@"%f",item.filters.mRP__c];
+        _Discount=[NSString stringWithFormat:@"%f",item.filters.discount__c];
     }
     return self;
 }
@@ -36,14 +36,19 @@
     if(self)
     {
         _listItemsArray=[[NSMutableArray alloc]init];
-        _account=@"accont";
+        _account=cst.Id;
         Recodrs *rec=cst.Ship_to_Party__r.records[cst.defaultsCustomer.defaultAddressIndex.integerValue];
         _shipToParty=rec.Id;
         _DeliveryChallan=@"challan";
-        _NetAmount=@"netammount";
-        _Discount=@"discount";
-        _FutureDeliveryDate=@"27-10-18";
-        _Remarks=@"remarks";
+        _NetAmount=@"";
+        _Discount=cst.defaultsCustomer.discount>0?cst.defaultsCustomer.discount:0;
+        
+        NSString *date=cst.defaultsCustomer.dateFuture;
+        _FutureDeliveryDate=date.length>0?date:@" ";
+        
+        NSString *str=cst.defaultsCustomer.customerRemarks;
+        _Remarks=str.length>0?str:@" ";
+        
         _WarehouseCode=@"warehouse";
         _TaxCode=@"taxcode";
         
@@ -120,7 +125,8 @@
     NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@",jsinStr);
     DownloadProducts *dow=[[DownloadProducts alloc]init];
-    [dow saveOrderWithAccessToken:jsinStr];
+    
+s    [dow saveOrderWithAccessToken:jsinStr];
 }
 
 @end

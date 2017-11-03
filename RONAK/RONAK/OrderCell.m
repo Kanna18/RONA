@@ -113,7 +113,6 @@
     _discountLabel.text=[NSString stringWithFormat:@"%0.1f",_item.filters.discount__c];
     _totalLabel.text=[NSString stringWithFormat:@"%0.1f",(item.filters.wS_Price__c*Count)];
     
-    
     NSMutableArray *imagesArray=[[NSMutableArray alloc]init];
     NSArray *imgsPaths=[_item.stock.imagesArr allObjects];
     [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
