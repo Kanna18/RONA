@@ -127,7 +127,10 @@
     _items=[NSSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount];
     _itemsArray=[[_items allObjects] mutableCopy];
     
-    _futureDateLabl.text=_cstdDataModel.defaultsCustomer.dateFuture;
+    NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
+    [monthFormatter setDateFormat:@"dd MMMM yyyy"];
+    NSString *str=[monthFormatter stringFromDate:_cstdDataModel.defaultsCustomer.dateFuture];
+    _futureDateLabl.text=str;
     _percentageLabel.text=_cstdDataModel.defaultsCustomer.discount;
     
     int total=0,sunGlassesGST=0,framesGST=0;
@@ -311,7 +314,7 @@
             NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
             [monthFormatter setDateFormat:@"dd MMMM yyyy"];
             NSString *str=[monthFormatter stringFromDate:selectedDate];
-            _cstdDataModel.defaultsCustomer.dateFuture=str;
+            _cstdDataModel.defaultsCustomer.dateFuture=selectedDate;
             if(_futureDelivery.selected==YES)
             {
                 containerView.hidden=YES;

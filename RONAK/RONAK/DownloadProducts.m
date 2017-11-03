@@ -560,7 +560,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
 }
 #pragma mark SaveOrder Integration
 
--(void)saleOrderIntegration:(NSString*)jsonParameter
+-(void)saleOrderIntegration:(NSMutableArray*)jsonParameter
 {
     NSDictionary *headers = @{ @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)],
                                @"content-type": @"application/json" };
@@ -584,13 +584,11 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 NSLog(@"%@",jsonD);
                 NSString *str=jsonD.count>0?jsonD[0][@"message"]:@"Succes";
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:str];
-                        
             }];
     [dataTask resume];
 }
 
-
--(void)saveOrderWithAccessToken:(NSString*)jsonParameter{
+-(void)saveOrderWithAccessToken:(NSMutableArray*)jsonParameter{
     
     NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,defaultGet(savedUserEmail),defaultGet(savedUserPassword)];
     [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)

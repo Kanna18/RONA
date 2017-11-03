@@ -43,9 +43,11 @@
         _NetAmount=@"";
         _Discount=cst.defaultsCustomer.discount>0?cst.defaultsCustomer.discount:0;
         
-        NSString *date=cst.defaultsCustomer.dateFuture;
-        _FutureDeliveryDate=date.length>0?date:@" ";
-        
+    
+        NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
+        [monthFormatter setDateFormat:@"yyyy-dd-MM"];
+        NSString *dateStr=[monthFormatter stringFromDate: cst.defaultsCustomer.dateFuture];
+        _FutureDeliveryDate=dateStr;
         NSString *str=cst.defaultsCustomer.customerRemarks;
         _Remarks=str.length>0?str:@" ";
         
@@ -120,13 +122,13 @@
                                  @"saleOrdeLineItems":itemsArr
                                  }];
     }];
-//    NSDictionary *dict=@{@"saleOrderWrapper":responseArr};
-    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
-    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",jsinStr);
+//    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
+//    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",jsinStr);
     DownloadProducts *dow=[[DownloadProducts alloc]init];
     
-s    [dow saveOrderWithAccessToken:jsinStr];
+//    [dow regenerateAuthtenticationToken];
+    [dow saveOrderWithAccessToken:responseArr];
 }
 
 @end
