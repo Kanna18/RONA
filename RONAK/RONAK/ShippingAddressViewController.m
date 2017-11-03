@@ -175,6 +175,7 @@
     [_creditLimitLbl labelleftPadding];
     [_acntBalanceLbl labelleftPadding];
     [_pdcLbl labelleftPadding];
+    [_statusLbl labelleftPadding];
 }
 
 -(NSString*)numberFormatter:(float)fValue

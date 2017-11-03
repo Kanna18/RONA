@@ -22,7 +22,7 @@
             NSArray *modelArr=[arr filteredArrayUsingPredicate:modelPre];
             [modelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 ItemMaster *item=obj;
-                [_listItemsArray addObject:item];
+                [_listItemsArray addObject:item];                        
             }];
             
         }];

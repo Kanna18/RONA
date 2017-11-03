@@ -505,6 +505,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [load waringLabelText:@"Order Saved Successfully" onView:self.view];
         [load stop];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self jumptoMenuVC:nil];
+        });
+        
     });
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SaveOrderStatus" object:nil];
 }
@@ -544,4 +549,5 @@
     }
     
 }
+
 @end

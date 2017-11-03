@@ -7,12 +7,17 @@
 //
 
 #import "OrderStatusViewController.h"
+#import "OrderStatsResponse.h"
 
 @interface OrderStatusViewController ()
 
 @end
 
 @implementation OrderStatusViewController
+{
+    
+    NSMutableArray *dataResp;
+}
 
 
 - (void)viewDidLoad {
@@ -60,10 +65,11 @@
         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) 
     {
         if(data){
-            NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Dictionary--%@",dict);
+            NSArray *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSError *err;
+           dataResp=[OrderStatsResponse arrayOfModelsFromDictionaries:dict error:&err];
+            NSLog(@"%@",dataResp);
         }
-                                                   
     }];
     [dataTask resume];
    
