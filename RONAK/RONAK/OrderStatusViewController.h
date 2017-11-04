@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderStatusCell.h"
-
+#import "RepotrsPopTV.h"
 
 @interface OrderStatusViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *statusTableView;
 
 - (IBAction)homeClick:(id)sender;
+
+@property RepotrsPopTV *reportStatus;
+
 
 @end

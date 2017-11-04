@@ -7,8 +7,12 @@
 //
 
 #import "OrderStatusCell.h"
-
-@implementation OrderStatusCell
+#import "RepotrsPopTV.h"
+@implementation OrderStatusCell{
+    
+    OrderStatusViewController *orderStatusVC;
+    OrderStatsResponse *currentresponse;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -20,5 +24,18 @@
 
     // Configure the view for the selected state
 }
+-(void)bindData:(OrderStatsResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
+{
+    [_sfID setAdjustsFontSizeToFitWidth:YES];
+    _sfID.text=resp.Id;
+    _customerNameLabel.text=resp.Customer_Name__c;
+    orderStatusVC=superVc;
+    currentresponse=resp;
+    
+}
 
+- (IBAction)statusClick:(id)sender {
+    
+    [orderStatusVC.reportStatus bindData:currentresponse];
+}
 @end

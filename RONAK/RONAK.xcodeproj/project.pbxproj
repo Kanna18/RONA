@@ -49,6 +49,8 @@
 		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
 		F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */; };
 		F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */; };
+		F615AFB01FAD89A700BF2CBC /* RepotrsPopTV.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */; };
+		F615AFB41FAD975300BF2CBC /* ReportsStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */; };
 		F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
@@ -227,6 +229,10 @@
 		F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusCell.h; sourceTree = "<group>"; };
 		F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusCell.m; sourceTree = "<group>"; };
 		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		F615AFAE1FAD89A700BF2CBC /* RepotrsPopTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepotrsPopTV.h; sourceTree = "<group>"; };
+		F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepotrsPopTV.m; sourceTree = "<group>"; };
+		F615AFB21FAD975200BF2CBC /* ReportsStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsStatusCell.h; sourceTree = "<group>"; };
+		F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsStatusCell.m; sourceTree = "<group>"; };
 		F633665F1FA9E7D400E045B4 /* OrderStatsResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatsResponse.h; sourceTree = "<group>"; };
 		F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatsResponse.m; sourceTree = "<group>"; };
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
@@ -481,6 +487,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F615AFB11FAD972700BF2CBC /* statusTV */ = {
+			isa = PBXGroup;
+			children = (
+				F6095E991FA7817300B7C455 /* OrderStatusViewController.h */,
+				F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */,
+				F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */,
+				F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */,
+			);
+			name = statusTV;
+			sourceTree = "<group>";
+		};
+		F615AFB51FAD975A00BF2CBC /* ReportsTV */ = {
+			isa = PBXGroup;
+			children = (
+				F615AFAE1FAD89A700BF2CBC /* RepotrsPopTV.h */,
+				F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */,
+				F615AFB21FAD975200BF2CBC /* ReportsStatusCell.h */,
+				F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */,
+			);
+			name = ReportsTV;
+			sourceTree = "<group>";
+		};
 		F633665C1FA9E65400E045B4 /* SaleOrderWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,10 +521,8 @@
 		F633665D1FA9E66200E045B4 /* OrderStatusVc */ = {
 			isa = PBXGroup;
 			children = (
-				F6095E991FA7817300B7C455 /* OrderStatusViewController.h */,
-				F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */,
-				F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */,
-				F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */,
+				F615AFB11FAD972700BF2CBC /* statusTV */,
+				F615AFB51FAD975A00BF2CBC /* ReportsTV */,
 				F633665E1FA9E67600E045B4 /* OrdeStatusResponse */,
 			);
 			name = OrderStatusVc;
@@ -1172,6 +1198,7 @@
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6B41C351FAA4F6500471C1A /* Filters+CoreDataProperties.m in Sources */,
 				F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */,
+				F615AFB41FAD975300BF2CBC /* ReportsStatusCell.m in Sources */,
 				84D4B32B1F63C34B00B76DD7 /* SideMenuFilters.m in Sources */,
 				F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */,
 				F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */,
@@ -1195,6 +1222,7 @@
 				84D4B3081F63C1D400B76DD7 /* SelectedFilters.m in Sources */,
 				84D4B3061F63C1D400B76DD7 /* DownloadProducts.m in Sources */,
 				F69DCEA81F6962F100156396 /* BillAddressVC.m in Sources */,
+				F615AFB01FAD89A700BF2CBC /* RepotrsPopTV.m in Sources */,
 				F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */,
 				F6B41C301FAA4F6500471C1A /* Att+CoreDataClass.m in Sources */,
 				84D4B3291F63C34B00B76DD7 /* CustomerViewCell.m in Sources */,

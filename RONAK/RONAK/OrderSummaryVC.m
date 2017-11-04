@@ -550,4 +550,35 @@
     
 }
 
+#pragma mark SearchField to Search for LOCAL/GLOBAl
+
+-(void)globalOrLocalSearchFunctiontxt:(NSString*)str LocalSearch:(BOOL)search
+{
+    
+    NSPredicate *brandP=[NSPredicate predicateWithFormat:@"SELF.filters.brand__s CONTAINS[cd]  %@",str];
+    
+    NSPredicate *collectionP=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c CONTAINS[cd]  %@",str];
+    NSPredicate *lensDP=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Description__c CONTAINS[cd]  %@",str];
+    NSPredicate *wsPre=[NSPredicate predicateWithFormat:@"SELF.filters.wS_Price__c CONTAINS[cd]  %@",str];
+    NSPredicate *shapeP=[NSPredicate predicateWithFormat:@"SELF.filters.shape__c CONTAINS[cd]  %@",str];
+    NSPredicate *genderP=[NSPredicate predicateWithFormat:@"SELF.filters.category__c CONTAINS[cd] %@",str];
+    NSPredicate *frameMaP=[NSPredicate predicateWithFormat:@"SELF.filters.frame_Material__c CONTAINS[cd]  %@",str];
+    NSPredicate *tempMP=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Material__c CONTAINS[cd]  %@",str];
+    NSPredicate *temCP=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Color__c CONTAINS[cd]  %@",str];
+    NSPredicate *tipP=[NSPredicate predicateWithFormat:@"SELF.filters.tips_Color__c CONTAINS[cd]  %@",str];
+    
+    NSPredicate *disP=[NSPredicate predicateWithFormat:@"SELF.filters.discount__c CONTAINS[cd]  %@",str];
+    NSPredicate *mrpP=[NSPredicate predicateWithFormat:@"SELF.filters.mRP__c CONTAINS[cd]  %@",str];
+    NSPredicate *rimP=[NSPredicate predicateWithFormat:@"SELF.filters.rim__c CONTAINS[cd]  %@",str];
+    NSPredicate *size=[NSPredicate predicateWithFormat:@"SELF.filters.size__c CONTAINS[cd]  %@",str];
+    NSPredicate *lensMP=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Material__c CONTAINS[cd]  %@",str];
+    NSPredicate *frontP=[NSPredicate predicateWithFormat:@"SELF.filters.front_Color__c CONTAINS[cd]  %@",str];
+    NSPredicate *lensCoP=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Color__c CONTAINS[cd]  %@",str];
+
+    NSArray *arrP=@[lensDP,wsPre,shapeP,genderP,frameMaP,tempMP,temCP,tipP,disP,mrpP,rimP,size,lensMP,frontP,lensCoP,collectionP];
+
+    NSCompoundPredicate *fP=[NSCompoundPredicate orPredicateWithSubpredicates:arrP];
+//    NSCompoundPredicate *finalPre=[NSCompoundPredicate ]
+
+}
 @end

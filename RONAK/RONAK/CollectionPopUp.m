@@ -7,7 +7,7 @@
 //
 
 #import "CollectionPopUp.h"
-
+#import "DefaultFiltersViewController.h"
 @implementation CollectionPopUp
 
 -(instancetype)initWithFrame:(CGRect)frame witTitle:(NSString*)title withSuperView:(OrderSummaryVC*)supVw
@@ -49,6 +49,18 @@
     if(_osVC){
     _osVC.draftBtn.selected=NO;
     _osVC.deliveryBtn.selected=NO;
+    }
+    if([_titleLabel.text isEqualToString:@"Are you sure you want to cancel the order?"])
+    {
+        NSArray *arr=_osVC.navigationController.viewControllers;
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if([obj isKindOfClass:[DefaultFiltersViewController class]])
+            {
+                [_osVC.navigationController popToViewController:(DefaultFiltersViewController*)obj animated:YES];
+                return ;
+            }
+        }];
     }
 }
 @end

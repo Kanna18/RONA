@@ -58,8 +58,8 @@
 @property (nonatomic) NSString<Optional> *Status__c;
 @property (nonatomic) NSString<Optional> *SAP_Date__c;
 @property (nonatomic) NSString<Optional> *Sale_Order_No_Created_Date__c;
-@property (nonatomic) Deliveries__R<Optional> *deliveries__r;
-@property (nonatomic) Invoices__R<Optional> *invoices__r;
+@property (nonatomic) Deliveries__R<Optional> *Deliveries__r;
+@property (nonatomic) Invoices__R<Optional> *Invoices__r;
 
 
 @end
