@@ -119,6 +119,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
         [Fabric with:@[[Crashlytics class]]];
+    DownloadProducts *dwn=[[DownloadProducts alloc]init];
+    [dwn regenerateAuthtenticationToken];
 //    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    [self initializeAppViewState];
     

@@ -9,15 +9,20 @@
 #import <UIKit/UIKit.h>
 
 
-typedef enum{ Plus,Minus,Multiply,Divide} CalcOperation;
+typedef enum{ Plus=1,Minus,Multiply,Divide} CalcOperation;
 
-@interface Calculator : UIView
+@interface Calculator : UIView<UITextFieldDelegate>
 {
     
     NSString *storage;
     CalcOperation operation;
 }
 
+@property (strong, nonatomic) IBOutlet UIButton *percentageButton;
+- (IBAction)percentageClick:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *plusOrMinusButton;
+@property (strong, nonatomic) IBOutlet UIButton *clearButton;
 - (IBAction)button1:(id)sender;
 - (IBAction)button2:(id)sender;
 - (IBAction)button4:(id)sender;
@@ -37,6 +42,7 @@ typedef enum{ Plus,Minus,Multiply,Divide} CalcOperation;
 - (IBAction)button8:(id)sender;
 - (IBAction)button3:(id)sender;
 - (IBAction)buttondot:(id)sender;
+- (IBAction)plusOrMinusClick:(id)sender;
 
 
 @end

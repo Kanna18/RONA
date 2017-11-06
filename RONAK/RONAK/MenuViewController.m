@@ -28,8 +28,6 @@
     [super viewDidLoad];
     
     NSLog(@"%@%@",defaultGet(savedUserEmail),    defaultGet(savedUserPassword));
-    DownloadProducts *dwn=[[DownloadProducts alloc]init];
-    [dwn regenerateAuthtenticationToken];
     // Do any additional setup after loading the view.
     [self defaultComponentsStyle];
     
@@ -38,6 +36,7 @@
     
    if(!defaultGet(firstTimeLaunching))
    {
+       DownloadProducts *dwn=[[DownloadProducts alloc]init];
        load=[[LoadingView alloc]init];
        [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
        [load start];

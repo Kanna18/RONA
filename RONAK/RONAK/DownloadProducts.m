@@ -339,7 +339,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
 
 }
 
-
 -(void)restServiceForCustomerList
 {
     
@@ -363,7 +362,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                           NSArray *arr;
                                           if(data){
                                               arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
-                                          if(arr.count>0)
+                                          if(arr.count>1)
                                           {
                                               NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
                                               offSet=[slNoc[slNoc.count-1] intValue];
@@ -377,7 +376,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                               }
                                           }
                                       }];
-    
     [dataTask resume];
 
 }
@@ -433,7 +431,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                       {
                           if(data){
                               NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
-                              if(arr.count>1)
+                              if(arr.count>0)
                                   {
                                       NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
                                       stockOffset=[slNoc[slNoc.count-1] intValue];
