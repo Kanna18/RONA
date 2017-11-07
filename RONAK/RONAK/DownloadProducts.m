@@ -14,7 +14,7 @@
     
     ServerAPIManager *serverAPI;
     NSURLSessionDataTask *sessionDatatask;
-    NSMutableArray *custDataOffsetArray, *productsOffsetArray,*stockDetailsOffsetArray;
+    NSMutableArray *custDataOffsetArray, *productsOffsetArray,*stockDetailsOffsetArray, *issueStockDetailsArray;
     RESTCalls *rest;
     BOOL fetchedStockMaster;
 }
@@ -30,6 +30,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
         custDataOffsetArray=[[NSMutableArray alloc]init];
         productsOffsetArray=[[NSMutableArray alloc]init];
         stockDetailsOffsetArray=[[NSMutableArray alloc]init];
+        issueStockDetailsArray=[[NSMutableArray alloc]init];
         
         
     }
@@ -176,6 +177,12 @@ int offSet=0, productsOffset=0,stockOffset=0;
     if(fetchedStockMaster){
     [self performSelectorOnMainThread:@selector(saveStockDetailstoCoreData:) withObject:stockDetailsOffsetArray waitUntilDone:YES];
     }
+    else
+    {
+        [self performSelectorOnMainThread:@selector(downLoadStockDetailsWhenRaisedWithISsues) withObject:stockDetailsOffsetArray waitUntilDone:YES];
+        
+    }
+   
 }
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
     
@@ -434,6 +441,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                                   [self downLoadStockDetails];
                                               }
                                               else{
+                                              
                                                   fetchedStockMaster=YES;
                                                   NSArray *imgs=[stockDetailsOffsetArray valueForKeyPath:@"imageURL"];
                                                   [self firstSaveAllImagestoLocalDataBase:imgs];
@@ -442,6 +450,42 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                       }];
     [dataTask resume];
 }
+
+-(void)downLoadStockDetailsWhenRaisedWithISsues{
+    NSLog(@"Stock Started Getting");
+    NSDictionary *headers = @{@"content-type": @"application/json",
+                              @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                  @"offSet":[NSNumber numberWithInteger:stockOffset]
+                                  };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                      {
+                                          if(data){
+                                              NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
+                                              if(arr.count>1)
+                                              {
+                                                  NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
+                                                  stockOffset=[slNoc[slNoc.count-1] intValue];
+                                                  [issueStockDetailsArray addObjectsFromArray:arr];
+                                                  [self downLoadStockDetailsWhenRaisedWithISsues];
+                                              }
+                                              else{
+                                                  
+                                                  [self saveStockDetailstoCoreData:issueStockDetailsArray];
+                                              }
+                                          }
+                                      }];
+    [dataTask resume];
+}
+
+
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
     NSLog(@"Thread 2-Started Saving Images");

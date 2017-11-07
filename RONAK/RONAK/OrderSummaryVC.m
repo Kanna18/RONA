@@ -41,10 +41,10 @@
     load=[[LoadingView alloc]init];
     [self calendarFunction];
     
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAllSubviewsandDeselectall)];
-    tap.numberOfTapsRequired=2;
-    [self.view addGestureRecognizer:tap];
-    
+//    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeAllSubviewsandDeselectall)];
+//    tap.numberOfTapsRequired=2;
+//    [self.view addGestureRecognizer:tap];
+//    
     
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
     taped.numberOfTouchesRequired=1;
