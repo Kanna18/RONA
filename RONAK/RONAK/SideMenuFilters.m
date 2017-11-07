@@ -297,7 +297,7 @@
                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                 break;
             case 14:
-                globalArr=ronakGlobal.selectedFilter.lensMaterial;
+                globalArr=ronakGlobal.selectedFilter.LensColor;
                 [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
                 break;
             case 15:

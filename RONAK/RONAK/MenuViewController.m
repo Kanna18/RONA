@@ -27,13 +27,11 @@
     
     [super viewDidLoad];
     
+    
     NSLog(@"%@%@",defaultGet(savedUserEmail),    defaultGet(savedUserPassword));
     // Do any additional setup after loading the view.
     [self defaultComponentsStyle];
-    
-//    DownloadProducts *dwn=[[DownloadProducts alloc]init];
-//    [dwn downloadImagesandSavetolocalDataBase];
-    
+
    if(!defaultGet(firstTimeLaunching))
    {
        DownloadProducts *dwn=[[DownloadProducts alloc]init];
@@ -41,8 +39,10 @@
        [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
        [load start];
        dwn.delegateProducts=self;
+       [dwn downLoadStockDetails];
        [dwn downloadCustomersListInBackground];
        [dwn downloadStockWareHouseSavetoCoreData];
+       
    }
    else
    {
@@ -59,7 +59,6 @@
         }
     }
 }
-
 
 -(void)getFetchFiltersAfteDataFetched
 {

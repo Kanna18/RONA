@@ -16,6 +16,7 @@
     NSURLSessionDataTask *sessionDatatask;
     NSMutableArray *custDataOffsetArray, *productsOffsetArray,*stockDetailsOffsetArray;
     RESTCalls *rest;
+    BOOL fetchedStockMaster;
 }
 int offSet=0, productsOffset=0,stockOffset=0;
 
@@ -38,6 +39,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
 #pragma  mark Product Master Integration
 -(void)downloadStockWareHouseSavetoCoreData
 {
+    NSLog(@"Products Started Getting");
+    
     NSLog(@"--->%@",[NSPersistentContainer defaultDirectoryURL]);
     NSDictionary *headers = @{@"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
@@ -78,107 +81,99 @@ int offSet=0, productsOffset=0,stockOffset=0;
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
         [fetch setPredicate:predicate];
         NSArray *coreIds=[[ronakGlobal.context executeFetchRequest:fetch error:nil] valueForKey:@"codeId"];//Get All IdsArray From Core Data
-
-    NSSet *set2=[NSSet setWithArray:coreIds];
-    NSIndexSet *ind=[ids indexesOfObjectsPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return [set2 containsObject:obj];
-    }];
-    [arr removeObjectsAtIndexes:ind];//Find out dupilcate IDS indexes that existed in Coredata with Response and remove them
-            __block NSInteger objectsCount=coreIds.count;
-            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSString *code=obj[@"Id"];
-                NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
-                NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
-                [fetch setPredicate:predicate];
-                NSArray *filArr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
+    
+        NSSet *set2=[NSSet setWithArray:coreIds];
+        NSIndexSet *ind=[ids indexesOfObjectsPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            return [set2 containsObject:obj];
+        }];
+        [arr removeObjectsAtIndexes:ind];//Find out dupilcate IDS indexes that existed in Coredata with Response and remove them
+        __block NSInteger objectsCount=coreIds.count;
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *code=obj[@"Id"];
+            NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
+            [fetch setPredicate:predicate];
+            NSArray *filArr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
+            [ronakGlobal.context reset];
+            if(!(filArr.count>0))
+            {
+                NSDictionary *dic=obj;
+                NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:ronakGlobal.context];
+                //                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
+                ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
+                item.imageUrl=dic[@"imageURL"];
+                item.imageName=dic[@"imageName"];
+                //                NSDictionary *filtersDict=dic[@"product"];/*Old*/
+                NSDictionary *filtersDict=dic;
+                NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:ronakGlobal.context];
+                //                Filters *filter=[[Filters alloc]initWithContext:ronakGlobal.context];
+                Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:ronakGlobal.context];
+                filter.order_Month__c=filtersDict[@"Order_Month__c"];
+                filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
+                filter.mRP__c=[filtersDict[@"MRP__c"] floatValue];
+                filter.collection_Name__c=filtersDict[@"Collection_Name__c"];
+                filter.tips_Color__c=filtersDict[@"Tips_Color__c"];
+                filter.temple_Material__c=filtersDict[@"Temple_Material__c"];
+                filter.temple_Color__c=filtersDict[@"Temple_Color__c"];
+                filter.style_Code__c=filtersDict[@"Style_Code__c"];
+                filter.size__c=filtersDict[@"Size__c"];
+                filter.shape__c=filtersDict[@"Shape__c"];
+                filter.product__c=filtersDict[@"Product__c"];
+                filter.wS_Price__c=[filtersDict[@"WS_Price__c"] floatValue];
+                filter.number__c=[NSString stringWithFormat:@"%@",filtersDict[@"Number__c"]];
+                filter.logo_Type__c=filtersDict[@"Logo_Type__c"];
+                filter.logo_Size__c=filtersDict[@"Logo_Size__c"];
+                filter.logo_Color__c=filtersDict[@"Logo_Color__c"];
+                filter.lens_Description__c=filtersDict[@"Lens_Description__c"];
+                filter.lens_Color__c=filtersDict[@"Lens_Color__c"];
+                filter.lens_Code__c=filtersDict[@"Lens_Code__c"];
+                filter.item_No__c=filtersDict[@"Item_No__c"];
+                filter.item_Group_Product_Family__c=filtersDict[@"Item_Group_Product_Family__c"];
+                filter.item_Description__c=filtersDict[@"Item_Description__c"];
+                filter.inactive_To__c=filtersDict[@"Inactive_To__c"];
+                filter.inactive_From__c=filtersDict[@"Inactive_From__c"];
+                filter.inactive__c=filtersDict[@"Inactive__c"];
+                filter.group_Name__c=filtersDict[@"Group_Name__c"];
+                filter.front_Color__c=filtersDict[@"Front_Color__c"];
+                filter.frame_Structure__c=filtersDict[@"Frame_Structure__c"];
+                filter.frame_Material__c=filtersDict[@"Frame_Material__c"];
+                filter.foreign_Name__c=filtersDict[@"Foreign_Name__c"];
+                filter.flex_Temple__c=filtersDict[@"Flex_Temple__c"];
+                filter.factory_Company__c=filtersDict[@"Factory_Company__c"];
+                filter.drawing_Code__c=filtersDict[@"Drawing_Code__c"];
+                filter.delivery_Month__c=filtersDict[@"Delivery_Month__c"];
+                filter.custom__c=filtersDict[@"Custom__c"];
+                filter.color_Code__c=filtersDict[@"Color_Code__c"];
+                filter.collection__c=filtersDict[@"Collection__c"];
+                filter.category__c=filtersDict[@"Category__c"];
+                filter.brand__c=filtersDict[@"Brand__c"];
+                filter.active_To__c=filtersDict[@"Active_To__c"];
+                filter.active_From__c=filtersDict[@"Active_From__c"];
+                filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
+                filter.rim__c=filtersDict[@"Rim__c"];
+                filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
+                filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
+                filter.codeId=filtersDict[@"Id"];
+                filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
+                NSDictionary *attDict=filtersDict[@"attributes"];
+                
+                NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:ronakGlobal.context];
+                Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:ronakGlobal.context];
+                //                Att *attributes=[[Att alloc]initWithContext:ronakGlobal.context];
+                attributes.type=attDict[@"type"];
+                attributes.url=attDict[@"url"];
+                
+                item.filters=filter;
+                item.filters.attribute=attributes;
+                [ronakGlobal.delegate saveContext];
+                objectsCount++;
                 [ronakGlobal.context reset];
-                if(!(filArr.count>0))
-                {
-                    NSDictionary *dic=obj;
-                    NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:ronakGlobal.context];
-                    //                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
-                    ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
-                    item.imageUrl=dic[@"imageURL"];
-                    item.imageName=dic[@"imageName"];
-                    
-                    //                NSDictionary *filtersDict=dic[@"product"];/*Old*/
-                    NSDictionary *filtersDict=dic;
-                    NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:ronakGlobal.context];
-                    //                Filters *filter=[[Filters alloc]initWithContext:ronakGlobal.context];
-                    Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:ronakGlobal.context];
-                    filter.order_Month__c=filtersDict[@"Order_Month__c"];
-                    filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
-                    filter.mRP__c=[filtersDict[@"MRP__c"] floatValue];
-                    filter.collection_Name__c=filtersDict[@"Collection_Name__c"];
-                    filter.tips_Color__c=filtersDict[@"Tips_Color__c"];
-                    filter.temple_Material__c=filtersDict[@"Temple_Material__c"];
-                    filter.temple_Color__c=filtersDict[@"Temple_Color__c"];
-                    filter.style_Code__c=filtersDict[@"Style_Code__c"];
-                    filter.size__c=filtersDict[@"Size__c"];
-                    filter.shape__c=filtersDict[@"Shape__c"];
-                    filter.product__c=filtersDict[@"Product__c"];
-                    filter.wS_Price__c=[filtersDict[@"WS_Price__c"] floatValue];
-                    filter.number__c=[NSString stringWithFormat:@"%@",filtersDict[@"Number__c"]];
-                    filter.logo_Type__c=filtersDict[@"Logo_Type__c"];
-                    filter.logo_Size__c=filtersDict[@"Logo_Size__c"];
-                    filter.logo_Color__c=filtersDict[@"Logo_Color__c"];
-                    filter.lens_Description__c=filtersDict[@"Lens_Description__c"];
-                    filter.lens_Color__c=filtersDict[@"Lens_Color__c"];
-                    filter.lens_Code__c=filtersDict[@"Lens_Code__c"];
-                    filter.item_No__c=filtersDict[@"Item_No__c"];
-                    filter.item_Group_Product_Family__c=filtersDict[@"Item_Group_Product_Family__c"];
-                    filter.item_Description__c=filtersDict[@"Item_Description__c"];
-                    filter.inactive_To__c=filtersDict[@"Inactive_To__c"];
-                    filter.inactive_From__c=filtersDict[@"Inactive_From__c"];
-                    filter.inactive__c=filtersDict[@"Inactive__c"];
-                    filter.group_Name__c=filtersDict[@"Group_Name__c"];
-                    filter.front_Color__c=filtersDict[@"Front_Color__c"];
-                    filter.frame_Structure__c=filtersDict[@"Frame_Structure__c"];
-                    filter.frame_Material__c=filtersDict[@"Frame_Material__c"];
-                    filter.foreign_Name__c=filtersDict[@"Foreign_Name__c"];
-                    filter.flex_Temple__c=filtersDict[@"Flex_Temple__c"];
-                    filter.factory_Company__c=filtersDict[@"Factory_Company__c"];
-                    filter.drawing_Code__c=filtersDict[@"Drawing_Code__c"];
-                    filter.delivery_Month__c=filtersDict[@"Delivery_Month__c"];
-                    filter.custom__c=filtersDict[@"Custom__c"];
-                    filter.color_Code__c=filtersDict[@"Color_Code__c"];
-                    filter.collection__c=filtersDict[@"Collection__c"];
-                    filter.category__c=filtersDict[@"Category__c"];
-                    filter.brand__c=filtersDict[@"Brand__c"];
-                    filter.active_To__c=filtersDict[@"Active_To__c"];
-                    filter.active_From__c=filtersDict[@"Active_From__c"];
-                    filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
-                    filter.rim__c=filtersDict[@"Rim__c"];
-                    filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
-                    filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
-                    filter.codeId=filtersDict[@"Id"];
-                    filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
-                    NSDictionary *attDict=filtersDict[@"attributes"];
-                    
-                    NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:ronakGlobal.context];
-                    Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:ronakGlobal.context];
-                    //                Att *attributes=[[Att alloc]initWithContext:ronakGlobal.context];
-                    attributes.type=attDict[@"type"];
-                    attributes.url=attDict[@"url"];
-                    
-                    item.filters=filter;
-                    item.filters.attribute=attributes;
-                    [ronakGlobal.delegate saveContext];
-                    objectsCount++;
-                    [ronakGlobal.context reset];
-                    NSLog(@"%lu--%lu",(long)objectsCount,(unsigned long)ronakGlobal.context.registeredObjects.count);
-                }
-                else
-                {
-                    NSLog(@"Count greater than 0 -- %@",obj);
-                }
-                NSLog(@"%lu--%lu",(unsigned long)idx,arr.count);
-                if(idx==arr.count-1){
-                    [self downLoadStockDetails];
-                }
-            }];
-    if(!(arr.count>0)){
-        [self downLoadStockDetails];//if the above condition fails Call Download Stock if no items Matching
+            }
+            NSLog(@"Thread1-itemMaster %lu--%lu",(unsigned long)idx,(unsigned long)arr.count);
+        }];
+    
+    if(fetchedStockMaster){
+    [self performSelectorOnMainThread:@selector(saveStockDetailstoCoreData:) withObject:stockDetailsOffsetArray waitUntilDone:YES];
     }
 }
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
@@ -318,7 +313,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.item_No__c"                                                                   ascending:YES];
     [fetch setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
     NSArray *arr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
-    NSLog(@"%@",arr);
+//    NSLog(@"%@",arr);
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ItemMaster *item=obj;
         if([ronakGlobal.stockIDsArray containsObject:item.filters.item_No__c]){
@@ -405,7 +400,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                                         defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
                                                         defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
                                                         NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
-                                                        //                    [_delegateProducts productsListFetched];
                                                     }
                                                 }];
     
@@ -413,53 +407,75 @@ int offSet=0, productsOffset=0,stockOffset=0;
 }
 
 #pragma mark Stock Details Integration
--(void)downLoadStockDetails
+
+-(void)downLoadStockDetails{
+    NSLog(@"Stock Started Getting");
+    NSDictionary *headers = @{@"content-type": @"application/json",
+                              @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
+                                  @"offSet":[NSNumber numberWithInteger:stockOffset]
+                                  };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                      {
+                                          if(data){
+                                              NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
+                                              if(arr.count>0)
+                                              {
+                                                  NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
+                                                  stockOffset=[slNoc[slNoc.count-1] intValue];
+                                                  [stockDetailsOffsetArray addObjectsFromArray:arr];
+                                                  [self downLoadStockDetails];
+                                              }
+                                              else{
+                                                  fetchedStockMaster=YES;
+                                                  NSArray *imgs=[stockDetailsOffsetArray valueForKeyPath:@"imageURL"];
+                                                  [self firstSaveAllImagestoLocalDataBase:imgs];
+                                              }
+                                          }
+                                      }];
+    [dataTask resume];
+}
+-(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
-        NSDictionary *headers = @{@"content-type": @"application/json",
-                                  @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-        NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
-                                      @"offSet":[NSNumber numberWithInteger:stockOffset]
-                                      };
-        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
-        [request setHTTPMethod:@"POST"];
-        [request setAllHTTPHeaderFields:headers];
-        [request setHTTPBody:postData];
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                      {
-                          if(data){
-                              NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
-                              if(arr.count>0)
-                                  {
-                                      NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
-                                      stockOffset=[slNoc[slNoc.count-1] intValue];
-                                      [stockDetailsOffsetArray addObjectsFromArray:arr];
-                                      [self downLoadStockDetails];
-                                  }
-                              else{
-                                      [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
-                                  }
-                              }
-            }];
-        [dataTask resume];
+    NSLog(@"Thread 2-Started Saving Images");
     
-//    NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//    NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://c.cs6.content.force.com/servlet/servlet.FileDownload?file=015N0000000fd6a"]]];
-//
-//    NSURLSessionDownloadTask *download=[session downloadTaskWithRequest:request completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//
-//        NSLog(@"Response---%@",response);
-//        NSLog(@"Error---%@",error);
-//        NSLog(@"Location--%@",location);
-//
-//        NSError *error1;
-//        NSString *cachePathE = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]stringByAppendingPathComponent:@"resourImage.jpeg"]                                                      ;
-//        [fileManager moveItemAtPath:[location path]  toPath:cachePathE error:&error1];
-//        NSLog(@"Error---%@",error1);
-//    }];
-//    [download resume];
+    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
+    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *imgDict=obj;
+            for (NSString *keyName in imgDict) {
+                if(keyName&&imgDict[keyName]!=[NSNull null])
+                {
+                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+                }
+                NSLog(@"Downloading Array1 Image-%@",keyName);
+            }
+        }];
+    });
+    
+    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue2, ^{
+        
+        [secondHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *imgDict=obj;
+            for (NSString *keyName in imgDict) {
+                if(keyName&&imgDict[keyName]!=[NSNull null])
+                {
+                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+                }
+                NSLog(@"Downloading Array 2-%@",keyName);
+            }
+        }];
+    });
 }
 -(void)saveStockDetailstoCoreData:(NSMutableArray*)arr
 {
@@ -501,7 +517,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
         NSLog(@"Stock Count--%lu",(unsigned long)idx);
     }];
     [self getBrandsAndWarehousesListandsavetoDefaults];
-    [self downloadImagesandSavetolocalDataBase];
+    [self performSelectorOnMainThread:@selector(downloadImagesandSavetolocalDataBase) withObject:nil waitUntilDone:YES];
 }
 
 -(void)downloadImagesandSavetolocalDataBase
@@ -525,12 +541,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
             st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
             [ronakGlobal.delegate saveContext];
             /*----------------------------------------------------*/
-            NSArray *arrImgs=[st.imagesArr allObjects];
-            [arrImgs  enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                ImagesArray *img=obj;
-                [self downloadImageFromURL:img.imageUrlPath withName:img.imageName];
-            }];
-    
         }
         else
         {

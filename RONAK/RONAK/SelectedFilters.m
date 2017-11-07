@@ -74,7 +74,7 @@
     NSArray *fetchedObjects = [[ronakGlobal.context executeFetchRequest:fetchRequest error:&error] valueForKey:@"item_Code_s"];
     
     ronakGlobal.stockIDsArray=fetchedObjects;
-    NSLog(@"%@",ronakGlobal.stockIDsArray);
+//    NSLog(@"%@",ronakGlobal.stockIDsArray);
 }
 -(NSPredicate*)getPredicateStringFromTable:(NSString*)str
 {

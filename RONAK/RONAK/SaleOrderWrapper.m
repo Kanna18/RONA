@@ -45,7 +45,7 @@
         
     
         NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
-        [monthFormatter setDateFormat:@"yyyy-dd-MM"];
+        [monthFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr=[monthFormatter stringFromDate: cst.defaultsCustomer.dateFuture];
         _FutureDeliveryDate=dateStr;
         NSString *str=cst.defaultsCustomer.customerRemarks;

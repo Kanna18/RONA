@@ -13,7 +13,6 @@ typedef enum{ Plus=1,Minus,Multiply,Divide} CalcOperation;
 
 @interface Calculator : UIView<UITextFieldDelegate>
 {
-    
     NSString *storage;
     CalcOperation operation;
 }
