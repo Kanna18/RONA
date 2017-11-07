@@ -106,6 +106,7 @@
 		F6AC7D641F752CEB00D6F8EC /* GBooK.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D631F752CEB00D6F8EC /* GBooK.OTF */; };
 		F6AC7D661F752F6700D6F8EC /* collapsed.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D651F752F6700D6F8EC /* collapsed.png */; };
 		F6AC7D681F752F7C00D6F8EC /* expanded.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AC7D671F752F7C00D6F8EC /* expanded.png */; };
+		F6B056F71FB20F370092701E /* OrderStatusCustomResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B056F61FB20F370092701E /* OrderStatusCustomResponse.m */; };
 		F6B2DC291F8481940055E3E1 /* UILabel+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2DC281F8481940055E3E1 /* UILabel+Padding.m */; };
 		F6B41C161FAA432100471C1A /* WSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C101FAA431E00471C1A /* WSLabel.m */; };
 		F6B41C171FAA432100471C1A /* WSEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B41C121FAA431F00471C1A /* WSEventView.m */; };
@@ -299,6 +300,8 @@
 		F6AC7D631F752CEB00D6F8EC /* GBooK.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GBooK.OTF; sourceTree = "<group>"; };
 		F6AC7D651F752F6700D6F8EC /* collapsed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collapsed.png; sourceTree = "<group>"; };
 		F6AC7D671F752F7C00D6F8EC /* expanded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded.png; sourceTree = "<group>"; };
+		F6B056F51FB20F370092701E /* OrderStatusCustomResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusCustomResponse.h; sourceTree = "<group>"; };
+		F6B056F61FB20F370092701E /* OrderStatusCustomResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusCustomResponse.m; sourceTree = "<group>"; };
 		F6B2DC271F8481940055E3E1 /* UILabel+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Padding.h"; sourceTree = "<group>"; };
 		F6B2DC281F8481940055E3E1 /* UILabel+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Padding.m"; sourceTree = "<group>"; };
 		F6B41C0F1FAA431E00471C1A /* WSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSLabel.h; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 			children = (
 				F633665F1FA9E7D400E045B4 /* OrderStatsResponse.h */,
 				F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */,
+				F6B056F51FB20F370092701E /* OrderStatusCustomResponse.h */,
+				F6B056F61FB20F370092701E /* OrderStatusCustomResponse.m */,
 			);
 			name = OrdeStatusResponse;
 			sourceTree = "<group>";
@@ -1180,6 +1185,7 @@
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
 				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
 				F6B41C321FAA4F6500471C1A /* ItemMaster+CoreDataClass.m in Sources */,
+				F6B056F71FB20F370092701E /* OrderStatusCustomResponse.m in Sources */,
 				F684E3781FA18BF7005CF9B8 /* SaleOrderWrapper.m in Sources */,
 				84D4B3141F63C29E00B76DD7 /* CustomerCell.m in Sources */,
 				84D4B31F1F63C2F900B76DD7 /* PDCCell.m in Sources */,

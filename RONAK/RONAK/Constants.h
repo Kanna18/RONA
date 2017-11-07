@@ -117,6 +117,12 @@
 #define warehouseArrayList @"warehouseArrayLisy"
 
 
+typedef NS_ENUM(NSUInteger, TypeOfRecord) {
+    Parent_Type,
+    DELIVERY_Type,
+    INVOICE_Type,    
+};
+
 #endif /* Constants_h */
 
 

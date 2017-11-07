@@ -17,6 +17,7 @@
 {
     NSMutableArray *dataResp;
     UIView *overlayView;
+    NSMutableArray *tVData;
     
     
 }
@@ -36,6 +37,8 @@
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissStatus:)];
     [self.view addGestureRecognizer:tap];
     tap.numberOfTapsRequired=2;
+    
+    tVData=[[NSMutableArray alloc]init];
 
 }
 -(void)dismissStatus:(id)sender{
@@ -105,10 +108,7 @@
             NSArray *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             NSError *err;
            dataResp=[OrderStatsResponse arrayOfModelsFromDictionaries:dict error:&err];
-            NSLog(@"%@",dataResp);
-            dispatch_async(dispatch_get_main_queue(), ^{
-            [_statusTableView reloadData];
-            });
+            [self customResponseFunction:dataResp];
         }
     }];
     [dataTask resume];
@@ -122,13 +122,13 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return dataResp.count;
+    return tVData.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *reuse=@"orderStatusCustomCell";
     OrderStatusCell *cell=[tableView dequeueReusableCellWithIdentifier:reuse];
-    OrderStatsResponse *resp=dataResp[indexPath.row];
+    OrderStatusCustomResponse *resp=tVData[indexPath.row];
     [cell bindData:resp superViewCon:self];
     [cell.statusBtn addTarget:self action:@selector(showStatus:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -149,5 +149,39 @@
             return ;
         }
     }];
+}
+
+-(void)customResponseFunction:(NSMutableArray*)arra{
+    
+    [tVData removeAllObjects];
+    [arra enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        OrderStatsResponse *resPonse=obj;
+        OrderStatusCustomResponse *ordCustResp=[[OrderStatusCustomResponse alloc]initWithDict:resPonse];
+        [tVData addObject:ordCustResp];// Step 1 add Parent to array
+        
+        //InvoiceRecordsParsing
+        NSArray *invRec=resPonse.Invoices__r.records;
+        [invRec enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+        {
+            OrderStatusCustomResponse *ordCSt=[[OrderStatusCustomResponse alloc]initWithDict:resPonse andRecord:obj];
+            // Step 2 add Parent with InvoiceRecord;
+            [tVData addObject:ordCSt];
+        }];
+        //Deliveries Parsing
+        NSArray *delRec=resPonse.Deliveries__r.records;
+        [delRec enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+        {
+            OrderStatusCustomResponse *ordCSt=[[OrderStatusCustomResponse alloc]initWithDict:resPonse andRecord:obj];
+            // Step 2 add Parent with DEliveryRecord;
+            [tVData addObject:ordCSt];
+        }];
+    }];
+    
+    [self performSelectorOnMainThread:@selector(tvDataReload) withObject:tVData waitUntilDone:YES];
+}
+-(void)tvDataReload{
+
+    [_statusTableView reloadData];
 }
 @end

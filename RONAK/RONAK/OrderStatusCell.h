@@ -10,7 +10,7 @@
 #import "OrderStatsResponse.h"
 
 @class OrderStatusViewController;
-
+@class OrderStatusCustomResponse;
 
 @interface OrderStatusCell : UITableViewCell
 
@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *dateLbl;
 @property (strong, nonatomic) IBOutlet UILabel *customerNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *brandLabel;
+@property (strong, nonatomic) IBOutlet UILabel *invoiceIDLbl;
 
 @property (strong, nonatomic) IBOutlet UILabel *qtyLabel;
 @property (strong, nonatomic) IBOutlet UILabel *discLabel;
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *amountLabel;
 @property (strong, nonatomic) IBOutlet UIButton *statusBtn;
 - (IBAction)statusClick:(id)sender;
--(void)bindData:(OrderStatsResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
+
+-(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
 
 @end

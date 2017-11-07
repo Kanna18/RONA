@@ -47,7 +47,7 @@
         NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
         [monthFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr=[monthFormatter stringFromDate: cst.defaultsCustomer.dateFuture];
-        _FutureDeliveryDate=dateStr;
+        _FutureDeliveryDate=dateStr?dateStr:[NSNull null];
         NSString *str=cst.defaultsCustomer.customerRemarks;
         _Remarks=str.length>0?str:@" ";
         
@@ -122,11 +122,10 @@
                                  @"saleOrdeLineItems":itemsArr
                                  }];
     }];
-//    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
-//    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
+    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 //    NSLog(@"%@",jsinStr);
     DownloadProducts *dow=[[DownloadProducts alloc]init];
-    
 //    [dow regenerateAuthtenticationToken];
     [dow saveOrderWithAccessToken:responseArr];
 }

@@ -12,12 +12,16 @@
 
 @end
 
+
 @implementation RepotrsPopTV{
     
-    OrderStatsResponse *respData;
+    OrderStatusCustomResponse *respData;
     
-    NSArray *tvData;
+    NSMutableArray *tvData;
+    NSMutableDictionary *dict;
+    NSMutableArray *daysCount;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,18 +29,58 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    tvData=@[@"SR",@"RSM",@"HOD",@"MD",@"SAP",@"SO",@"Invoiced",@"Dispatched",@"Delivered"];
+    tvData=[[NSMutableArray alloc]init];
+    dict=[[NSMutableDictionary alloc]init];
+    daysCount=[[NSMutableArray alloc]init];
+
     
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)bindData:(OrderStatsResponse *)resp
+-(void)bindData:(OrderStatusCustomResponse *)resp
 {
+    
+    [tvData removeAllObjects];
     _titleLabel.text=resp.Customer_Name__c;
-
+    respData=resp;
+    
+    
+    if(respData.CreatedDate)
+    {
+        [dict setValue:[respData.CreatedDate substringToIndex:10] forKey:@"SR"];
+        [tvData addObject:@"SR"];
+    }
+    if(respData.RSM_Date__c)
+    {
+        [dict setValue:respData.RSM_Date__c forKey:@"RSM"];
+        [tvData addObject:@"RSM"];
+    }
+    if(respData.HOD_Date__c)
+    {
+        [dict setValue:respData.HOD_Date__c forKey:@"HOD"];
+        [tvData addObject:@"HOD"];
+    }
+    if(respData.MD_Date__c)
+    {
+        [dict setValue:respData.MD_Date__c forKey:@"MD"];
+        [tvData addObject:@"MD"];
+    }
+    if(respData.SAP_Date__c)
+    {
+        [dict setValue:respData.SAP_Date__c forKey:@"SAP"];
+        [tvData addObject:@"SAP"];
+    }
+    if(respData.Sale_Order_Date__c)
+    {
+        [dict setValue:respData.Sale_Order_Date__c forKey:@"SO"];
+        [tvData addObject:@"SO"];
+    }
+    [self.tableView reloadData];
 }
+
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -49,100 +93,23 @@
     [cell bindData:respData];
     _titleLabel.text=respData.Customer_Name__c;
     cell.statusCell.text=tvData[indexPath.row];
-    switch (indexPath.row) {
-        case 0:
-            {
-                cell.dateCell.text=respData.Sale_Order_No_Created_Date__c;
-            }
-            break;
-        case 1:
-        {
-            cell.dateCell.text=respData.RSM_Date__c;
-        }
-            break;
-        case 2:
-        {
-            cell.dateCell.text=respData.HOD_Date__c;
-        }
-            break;
-        case 3:
-        {
-        
-        }
-            break;
-        case 4:
-        {
-            cell.dateCell.text=respData.SAP_Date__c;
-        }
-            break;
-        case 5:
-        {
-
-        }
-            break;
-        case 6:
-        {
-            
-        }
-            break;
-        case 7:
-        {
-            
-        }
-            break;
-        case 8:
-        {
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
+    cell.dateCell.text=[dict valueForKey:tvData[indexPath.row]];
+    
     
     return cell;
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(int)compareTwoDatesandReturnDays:(NSString*)datStr1 Dt2:(NSString*)datStr2
+{
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date1 = [f dateFromString:datStr1];
+    NSDate *date2 = [f dateFromString:datStr2];
+    NSTimeInterval secondsBetween = [date2 timeIntervalSinceDate:date1];
+    int numberOfDays = secondsBetween / 86400;
+    
+    return numberOfDays;
 }
-*/
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

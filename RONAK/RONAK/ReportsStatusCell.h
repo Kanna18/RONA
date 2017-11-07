@@ -15,6 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *daysLbl;
 @property (strong, nonatomic) IBOutlet UILabel *detailsLbl;
 
--(void)bindData:(OrderStatsResponse*)resp;
+-(void)bindData:(OrderStatusCustomResponse*)resp;
 
 @end

@@ -468,9 +468,6 @@
     }
     else
     {
-//        placeOrderPop=[[PlaceOrder alloc]initWithFrame:CGRectMake(self.view.frame.size.width, self.view.frame.size.height, 0, 0) withSuperView:self];
-//        [self.view addSubview:placeOrderPop];
-//        _placeOrderBtn.selected=YES;
         
         saveOrderCollectionPop=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
         saveOrderCollectionPop.center=self.view.center;
@@ -489,20 +486,14 @@
     [load loadingWithlightAlpha:self.view with_message:@"Saving Order...."];
     [load start];
     
-    
-//    [ronakGlobal.selectedCustomersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//        CustomerDataModel *orderCst=obj;
-//        NSLog(@"Cst Name-%@-%@",orderCst.Name,orderCst.BP_Code__c);
-//        [orderCst.defaultsCustomer.itemsCount enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            ItemMaster *item=obj;
-//            NSLog(@"Brand:%@--%@",item.filters.brand__c,item.filters.item_No__c);
-//        }];
-//    }];
 }
 -(void)saveOrderMessage:(NSNotification*)notification{
+
     NSString *str=notification.object;
-    dispatch_async(dispatch_get_main_queue(), ^{
+
+    if([str isEqualToString:@"Succes"])
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
         [load waringLabelText:@"Order Saved Successfully" onView:self.view];
         [load stop];
         
@@ -510,7 +501,17 @@
             [self jumptoMenuVC:nil];
         });
         
-    });
+        });
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        [load waringLabelText:str onView:self.view];
+        [load stop];
+        });
+    }
+    
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SaveOrderStatus" object:nil];
 }
 

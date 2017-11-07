@@ -20,7 +20,9 @@
 
     // Configure the view for the selected state
 }
--(void)bindData:(OrderStatsResponse*)resp{
+-(void)bindData:(OrderStatusCustomResponse*)resp{
+    
+    
 }
 
 @end

@@ -46,9 +46,7 @@
     if (!isMultipleExpansionAllowed) {
         [arrSelectedSectionIndex addObject:[NSNumber numberWithInt:(int)arr.count+2]];
     }
-    
     arr=ronakGlobal.DefFiltersTwo;
-    
     [tblView registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
     

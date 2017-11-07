@@ -11,7 +11,7 @@
 @implementation OrderStatusCell{
     
     OrderStatusViewController *orderStatusVC;
-    OrderStatsResponse *currentresponse;
+    OrderStatusCustomResponse *currentresponse;
 }
 
 - (void)awakeFromNib {
@@ -24,13 +24,43 @@
 
     // Configure the view for the selected state
 }
--(void)bindData:(OrderStatsResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
+-(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
 {
+    _dateLbl.text=@"";
+    _brandLabel.text=@"";
+    _qtyLabel.text=@"";
+    _invoiceIDLbl.text=@"";
+    _customerNameLabel.text=@"";
+    _discLabel.text=@"";
+    _amountLabel.text=@"";
+    [_statusBtn setTitle:@"" forState:UIControlStateNormal];
+    
     [_sfID setAdjustsFontSizeToFitWidth:YES];
-    _sfID.text=resp.Id;
+    [_invoiceIDLbl setAdjustsFontSizeToFitWidth:YES];
+    [_dateLbl setAdjustsFontSizeToFitWidth:YES];
+    _sfID.text=resp.cdId;
     _customerNameLabel.text=resp.Customer_Name__c;
     orderStatusVC=superVc;
     currentresponse=resp;
+    _dateLbl.text=resp.CreatedDate;
+    _brandLabel.text=resp.Brand__c;
+    _qtyLabel.text=resp.Quantity__c;
+    _discLabel.text=resp.Discount__c;
+    _amountLabel.text=resp.Net_Amount__c;
+    _dateLbl.text=[resp.CreatedDate substringToIndex:10];
+    
+    if(resp.typeOfRec==INVOICE_Type)
+    {
+        _dateLbl.text=@"";
+        _invoiceIDLbl.text=resp.record.typeId;
+        _dateLbl.text=resp.record.typeDate__c;
+    }
+    if(resp.typeOfRec==DELIVERY_Type)
+    {
+        _dateLbl.text=@"";
+        _dateLbl.text=resp.record.typeDate__c;
+
+    }
     
 }
 

@@ -67,7 +67,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 return ;
             }
             else{
-                [self fetchData:productsOffsetArray];
+//                [self fetchData:productsOffsetArray];
+                [self performSelectorOnMainThread:@selector(fetchData:) withObject:productsOffsetArray waitUntilDone:YES];
                 return ;
             }
         }
@@ -336,7 +337,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
 
 -(void)restServiceForCustomerList
 {
-    
     NSDictionary *headers = @{ @"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
     NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
@@ -426,7 +426,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                                       {
                                           if(data){
                                               NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
-                                              if(arr.count>0)
+                                              if(arr.count>1)
                                               {
                                                   NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
                                                   stockOffset=[slNoc[slNoc.count-1] intValue];
@@ -617,7 +617,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
              [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:dict[@"error_description"]];
          }
      } andErrorBlock:^(NSError *error) {
-         [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:error.localizedDescription];
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:@"Order not saved please try again later :("];
      }];
     
 }

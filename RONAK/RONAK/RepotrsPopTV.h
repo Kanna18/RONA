@@ -11,5 +11,5 @@
 
 @interface RepotrsPopTV : UITableViewController
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
--(void)bindData:(OrderStatsResponse*)resp;
+-(void)bindData:(OrderStatusCustomResponse*)resp;
 @end
