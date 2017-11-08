@@ -67,9 +67,9 @@
         _filterView.hidden=YES;
         if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
         {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(Cheque_Date__c >= %@) AND (Cheque_Date__c <= %@)", _fromDateTf.text, _toDateTF.text];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(Receipt_Date__c >= %@) AND (Receipt_Date__c <= %@)", _fromDateTf.text, _toDateTF.text];
             tvArray=[_cst.PDC__r.records filteredArrayUsingPredicate:predicate];
-            NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Cheque_Date__c" ascending:YES];
+            NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Receipt_Date__c" ascending:YES];
             tvArray=[tvArray sortedArrayUsingDescriptors:@[sort]];
             [_listTableView reloadData];
         }

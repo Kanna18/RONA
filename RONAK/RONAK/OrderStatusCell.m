@@ -38,7 +38,8 @@
     [_sfID setAdjustsFontSizeToFitWidth:YES];
     [_invoiceIDLbl setAdjustsFontSizeToFitWidth:YES];
     [_dateLbl setAdjustsFontSizeToFitWidth:YES];
-    _sfID.text=resp.cdId;
+    
+    _sfID.text=resp.Name;
     _customerNameLabel.text=resp.Customer_Name__c;
     orderStatusVC=superVc;
     currentresponse=resp;
@@ -52,7 +53,7 @@
     if(resp.typeOfRec==INVOICE_Type)
     {
         _dateLbl.text=@"";
-        _invoiceIDLbl.text=resp.record.typeId;
+        _invoiceIDLbl.text=resp.record.typeName;
         _dateLbl.text=resp.record.typeDate__c;
     }
     if(resp.typeOfRec==DELIVERY_Type)

@@ -401,7 +401,6 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 }
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
-//    [self presentPasscodeVC];
     if(!defaultGet(passcode)){
     [self setPasswordForFirstTime];
     }

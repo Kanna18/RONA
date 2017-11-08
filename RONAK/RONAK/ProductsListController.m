@@ -190,75 +190,78 @@
 
 -(void)swipeActions:(UISwipeGestureRecognizer*)swipe
 {
-    _allModelsTopBtn.selected=NO;
-    _allColorsTopBtn.selected=NO;
-    switch (swipe.numberOfTouches) {
-            
-        case 2:
-        {
-            ModelBased *model=categoryBasedSort[categoryIndex];
-            
-            if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
+    if(showItemsOnscrnArry.count>0){
+        
+        _allModelsTopBtn.selected=NO;
+        _allColorsTopBtn.selected=NO;
+        switch (swipe.numberOfTouches) {
+                
+            case 2:
             {
-                if(modelIndex<model.ColorsArray.count-1)
+                ModelBased *model=categoryBasedSort[categoryIndex];
+                
+                if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
                 {
-                    modelIndex++;
-                }
-                else
-                {
-                    showMessage(@"No Models Available", self.view);
-                }
-            }
-            
-            else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
-            {
-                if(modelIndex>0)
-                {
-                    modelIndex--;
-                }
-                else
-                {
-                    showMessage(@"No Models Available", self.view);
-                }
-            }
-        }
-            break;
-            
-            
-        case 3:
-            if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
-            {
-                if(categoryIndex<categoryBasedSort.count-1)
-                {
-                    modelIndex=0;
-                    categoryIndex++;
-                }
-                else
-                {
-                    showMessage(@"No Products Available", self.view);
+                    if(modelIndex<model.ColorsArray.count-1)
+                    {
+                        modelIndex++;
+                    }
+                    else
+                    {
+                        showMessage(@"No Models Available", self.view);
+                    }
                 }
                 
-            }
-            else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
-            {
-                if(categoryIndex>0)
+                else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
                 {
-                    modelIndex=0;
-                    categoryIndex--;
-                }
-                else
-                {
-                    showMessage(@"No Products Available", self.view);
+                    if(modelIndex>0)
+                    {
+                        modelIndex--;
+                    }
+                    else
+                    {
+                        showMessage(@"No Models Available", self.view);
+                    }
                 }
             }
-            
-            break;
-            
-        default:
-            break;
+                break;
+                
+                
+            case 3:
+                if(swipe.direction==UISwipeGestureRecognizerDirectionUp)
+                {
+                    if(categoryIndex<categoryBasedSort.count-1)
+                    {
+                        modelIndex=0;
+                        categoryIndex++;
+                    }
+                    else
+                    {
+                        showMessage(@"No Products Available", self.view);
+                    }
+                    
+                }
+                else if(swipe.direction==UISwipeGestureRecognizerDirectionDown)
+                {
+                    if(categoryIndex>0)
+                    {
+                        modelIndex=0;
+                        categoryIndex--;
+                    }
+                    else
+                    {
+                        showMessage(@"No Products Available", self.view);
+                    }
+                }
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        [self divideWholeitemsintoCategories];
     }
-    
-    [self divideWholeitemsintoCategories];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -419,7 +422,7 @@
     UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
     _detailedImageView.image=image;
     _itemSizeLabel.text=item.filters.size__c;
-    _selectedItemDesc.text=item.filters.item_Description__c;
+    _selectedItemDesc.text=item.filters.product__c;
     _pricingLabel.text=[NSString stringWithFormat:@"₹%0.0f",item.filters.mRP__c];
     
     if(!(item.filters.discount__c>0))    {

@@ -78,6 +78,8 @@ int offSet=0, productsOffset=0,stockOffset=0;
 }
 -(void)fetchData:(NSMutableArray*)arr
 {
+        NSMutableArray *savingItemsMOC=[[NSMutableArray alloc]init];
+    
         NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
         NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
@@ -101,6 +103,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
             {
                 NSDictionary *dic=obj;
                 NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:ronakGlobal.context];
+                
                 //                ItemMaster *item=[[ItemMaster alloc]initWithContext:ronakGlobal.context];
                 ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:ronakGlobal.context];
                 item.imageUrl=dic[@"imageURL"];
@@ -158,29 +161,27 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 filter.codeId=filtersDict[@"Id"];
                 filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
                 NSDictionary *attDict=filtersDict[@"attributes"];
-                
                 NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:ronakGlobal.context];
                 Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:ronakGlobal.context];
                 //                Att *attributes=[[Att alloc]initWithContext:ronakGlobal.context];
                 attributes.type=attDict[@"type"];
                 attributes.url=attDict[@"url"];
-                
                 item.filters=filter;
                 item.filters.attribute=attributes;
-                [ronakGlobal.delegate saveContext];
                 objectsCount++;
+                [savingItemsMOC addObject:item];
+                [ronakGlobal.delegate saveContext];
                 [ronakGlobal.context reset];
             }
             NSLog(@"Thread1-itemMaster %lu--%lu",(unsigned long)idx,(unsigned long)arr.count);
         }];
-    
+
     if(fetchedStockMaster){
     [self performSelectorOnMainThread:@selector(saveStockDetailstoCoreData:) withObject:stockDetailsOffsetArray waitUntilDone:YES];
     }
     else
     {
         [self performSelectorOnMainThread:@selector(downLoadStockDetailsWhenRaisedWithISsues) withObject:stockDetailsOffsetArray waitUntilDone:YES];
-        
     }
    
 }
@@ -258,13 +259,13 @@ int offSet=0, productsOffset=0,stockOffset=0;
     
     NSLog(@"%@",brandsF);
     ronakGlobal.DefFiltersOne=   @[@{ @"heading":kBrand,
-                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]},
+                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]?[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]:@[]},
                                    @{ @"heading":kCategories,
                                       @"options":categoriesF},
                                    @{ @"heading":kCollection,
                                       @"options":[collectionF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]}];
     ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kStockWareHouse,
-                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]},
+                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]?[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]:@[]},
 //                                   @{ @"heading":kStockWareHouse,
 //                                      @"options":stockWarehouseF},
                                    @{ @"heading":kStockvalue,
