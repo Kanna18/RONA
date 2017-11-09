@@ -24,6 +24,7 @@
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _statusTableView.delegate=self;
@@ -31,13 +32,15 @@
     _statusTableView.layer.borderWidth=1.0f;
     _statusTableView.layer.borderColor=RGB(209, 210, 212).CGColor;
     _statusTableView.clipsToBounds=YES;
-    [self getOrderStatusResponse];
-    [self allocAwindowOntop];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        [self getOrderStatusResponse];
+        });
     
+    [self allocAwindowOntop];
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissStatus:)];
     [self.view addGestureRecognizer:tap];
     tap.numberOfTapsRequired=2;
-    
     tVData=[[NSMutableArray alloc]init];
 
 }
@@ -83,7 +86,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 
 -(void)getOrderStatusResponse{
     

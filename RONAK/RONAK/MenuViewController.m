@@ -41,8 +41,7 @@
        dwn.delegateProducts=self;
        [dwn downLoadStockDetails];
        [dwn downloadCustomersListInBackground];
-       [dwn downloadStockWareHouseSavetoCoreData];
-       
+       [dwn downloadStockWareHouseSavetoCoreData];       
    }
    else
    {

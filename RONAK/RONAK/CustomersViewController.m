@@ -32,8 +32,6 @@ static NSString *reuse=@"reuseCustomerCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
      self.automaticallyAdjustsScrollViewInsets = NO;
     
     load=[[LoadingView alloc]init];
@@ -74,6 +72,10 @@ static NSString *reuse=@"reuseCustomerCell";
     _searchTextField.font=gothMedium(23);
     _collectionView.indicatorStyle=UIScrollViewIndicatorStyleBlack;
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self createPDFfromUIView:self.view saveToDocumentsWithFileName:@"sample.pdf"];
+    });
     
 }
 
@@ -511,5 +513,36 @@ static NSString *reuse=@"reuseCustomerCell";
     if(!(selectedCustomersList.count>0)){
         clearSelectedCstBtn.hidden=YES;
     }
+}
+
+
+-(void)createPDFfromUIView:(UIView*)aView saveToDocumentsWithFileName:(NSString*)aFilename
+{
+
+    // Creates a mutable data object for updating with binary data, like a byte array
+    NSMutableData *pdfData = [NSMutableData data];
+    
+    // Points the pdf converter to the mutable data object and to the UIView to be converted
+    UIGraphicsBeginPDFContextToData(pdfData, self.collectionView.bounds, nil);
+    UIGraphicsBeginPDFPage();
+    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    
+    
+    // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
+    
+    [aView.layer renderInContext:pdfContext];
+    
+    // remove PDF rendering context
+    UIGraphicsEndPDFContext();
+    
+    // Retrieves the document directories from the iOS device
+    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    
+    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:aFilename];
+    
+    // instructs the mutable data object to write its context to a file on disk
+    [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+    NSLog(@"documentDirectoryFileName: %@",documentDirectoryFilename);
 }
 @end

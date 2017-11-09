@@ -31,12 +31,9 @@ int offSet=0, productsOffset=0,stockOffset=0;
         productsOffsetArray=[[NSMutableArray alloc]init];
         stockDetailsOffsetArray=[[NSMutableArray alloc]init];
         issueStockDetailsArray=[[NSMutableArray alloc]init];
-        
-        
     }
     return self;
 }
-
 #pragma  mark Product Master Integration
 -(void)downloadStockWareHouseSavetoCoreData
 {
@@ -78,8 +75,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
 }
 -(void)fetchData:(NSMutableArray*)arr
 {
-        NSMutableArray *savingItemsMOC=[[NSMutableArray alloc]init];
-    
         NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
         NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
@@ -98,7 +93,6 @@ int offSet=0, productsOffset=0,stockOffset=0;
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
             [fetch setPredicate:predicate];
             NSArray *filArr=[ronakGlobal.context executeFetchRequest:fetch error:nil];
-            [ronakGlobal.context reset];
             if(!(filArr.count>0))
             {
                 NSDictionary *dic=obj;
@@ -169,9 +163,11 @@ int offSet=0, productsOffset=0,stockOffset=0;
                 item.filters=filter;
                 item.filters.attribute=attributes;
                 objectsCount++;
-                [savingItemsMOC addObject:item];
+                
+                if(idx%2000==0||arr.count-idx==1){
                 [ronakGlobal.delegate saveContext];
                 [ronakGlobal.context reset];
+                }
             }
             NSLog(@"Thread1-itemMaster %lu--%lu",(unsigned long)idx,(unsigned long)arr.count);
         }];
@@ -422,7 +418,7 @@ int offSet=0, productsOffset=0,stockOffset=0;
                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
     NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
                                   @"offSet":[NSNumber numberWithInteger:stockOffset]
-                                  };
+                                };
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
     [request setHTTPMethod:@"POST"];
