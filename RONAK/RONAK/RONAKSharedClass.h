@@ -36,4 +36,5 @@
 
 //StockDetails IDS
 @property NSArray *stockIDsArray;
+
 @end

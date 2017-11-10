@@ -20,28 +20,36 @@
 @implementation MenuViewController{
     
     LoadingView *load;
-
+    AppDelegate *delegate;
+    NSManagedObjectContext *context;
+    BOOL productsFetched,stockFetched,imagesFetched,savedData;
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    _ProgressView.hidden=YES;
     
-    
-    NSLog(@"%@%@",defaultGet(savedUserEmail),    defaultGet(savedUserPassword));
-    // Do any additional setup after loading the view.
-    [self defaultComponentsStyle];
+    delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    context=delegate.managedObjectContext;
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProductLabel:) name:PRODUC_FETCHING_STATUS_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImagesLabel:) name:IMAGES_FETCHING_STATUS_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateStockLabel:) name:STOCK_FETCHING_STATUS_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMatchingLabel:) name:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION object:nil];
+    
+    [self defaultComponentsStyle];
+    
+    
    if(!defaultGet(firstTimeLaunching))
    {
        DownloadProducts *dwn=[[DownloadProducts alloc]init];
-       load=[[LoadingView alloc]init];
-       [load loadingWithlightAlpha:self.view with_message:@"Fetching......."];
-       [load start];
        dwn.delegateProducts=self;
        [dwn downLoadStockDetails];
        [dwn downloadCustomersListInBackground];
-       [dwn downloadStockWareHouseSavetoCoreData];       
+       [dwn downloadStockWareHouseSavetoCoreData];
+       [dwn getBrandsAndWarehousesListandsavetoDefaults];
+       _ProgressView.hidden=NO;
    }
    else
    {
@@ -59,11 +67,66 @@
     }
 }
 
+-(void)updateProductLabel:(NSNotification*)notification{
+    
+    int percentage=[notification.object intValue];
+    if(percentage>=99){
+        productsFetched=YES;
+        [self allDownloadsCompleted];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+       _downloadStatus.text=[NSString stringWithFormat:@"Fetching Products...%@%%",notification.object];
+    });
+}
+-(void)updateImagesLabel:(NSNotification*)notification{
+    int percentage=[notification.object intValue];
+    if(percentage>=70){
+        imagesFetched=YES;
+        [self allDownloadsCompleted];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _imagesDownload.text=[NSString stringWithFormat:@"Downloading Images...%@%%",notification.object];
+    });
+}
+-(void)updateStockLabel:(NSNotification*)notification{
+    int percentage=[notification.object intValue];
+    if(percentage>=99){
+        stockFetched=YES;
+        [self allDownloadsCompleted];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _downloadStockDetails.text=[NSString stringWithFormat:@"Downloading Stock...%@%%",notification.object];
+    });
+}
+-(void)updateMatchingLabel:(NSNotification*)notification{
+    int percentage=[notification.object intValue];
+    if(percentage>=99){
+        savedData=YES;
+        [self allDownloadsCompleted];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _matchingLabel.text=[NSString stringWithFormat:@"Saving Data...%@%%",notification.object];
+    });
+}
+
+
+-(void)allDownloadsCompleted{
+    
+    if(productsFetched&&stockFetched&&imagesFetched&&savedData){
+        defaultSet(@"Launched", firstTimeLaunching);
+        [self getFetchFiltersAfteDataFetched];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _ProgressView.hidden=YES;
+        });
+    }
+}
+
 -(void)getFetchFiltersAfteDataFetched
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         NSManagedObjectContext *contextChild1=[[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        contextChild1.parentContext=ronakGlobal.context;
+        contextChild1.parentContext=context;
         DownloadProducts *dw=[[DownloadProducts alloc]init];
         [dw getFilterFor:@"brands__c" withContext:contextChild1];
     });
@@ -76,6 +139,9 @@
     defaultSet(@"Launched", firstTimeLaunching);
     [self getFetchFiltersAfteDataFetched];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _ProgressView.hidden=YES;
+    });
 }
 
 -(void)viewWillAppear:(BOOL)animate
@@ -108,12 +174,21 @@
     [_bookOrder setBackgroundImage:[UIImage imageNamed:@"BtnHilighted"] forState:UIControlStateHighlighted];
     [_reports setBackgroundImage:[UIImage imageNamed:@"BtnHilighted"] forState:UIControlStateHighlighted];
     [_logout setBackgroundImage:[UIImage imageNamed:@"BtnHilighted"] forState:UIControlStateHighlighted];
-        
     
 //    [_logout setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://konlinejobs.com/wp-content/uploads/2017/02/tom-and-jerry-best-friends-free-hd-wallpaper.jpg"]]] forState:UIControlStateNormal];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:PRODUC_FETCHING_STATUS_NOTIFICATION];
+    [[NSNotificationCenter defaultCenter] removeObserver:IMAGES_FETCHING_STATUS_NOTIFICATION];
+    [[NSNotificationCenter defaultCenter] removeObserver:STOCK_FETCHING_STATUS_NOTIFICATION];
+    [[NSNotificationCenter defaultCenter] removeObserver:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION];
     
 }
-- (void)didReceiveMemoryWarning {
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

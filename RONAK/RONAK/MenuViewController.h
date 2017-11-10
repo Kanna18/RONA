@@ -23,7 +23,9 @@
 - (IBAction)logout_click:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *downloadStatus;
-
-
+@property (strong, nonatomic) IBOutlet UILabel *downloadStockDetails;
+@property (strong, nonatomic) IBOutlet UILabel *imagesDownload;
+@property (strong, nonatomic) IBOutlet UIView *ProgressView;
+@property (strong, nonatomic) IBOutlet UILabel *matchingLabel;
 
 @end

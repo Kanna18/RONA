@@ -8,7 +8,11 @@
 
 #import "SelectedFilters.h"
 
-@implementation SelectedFilters
+@implementation SelectedFilters{
+    
+    AppDelegate *delegate;
+    NSManagedObjectContext *filterContext;
+}
 
 -(instancetype)init
 {
@@ -45,7 +49,8 @@
         [_priceMinMax setValue:@"1" forKey:@"Min"];
         [_wsPriceMinMax setValue:@"1" forKey:@"Min"];
         
-
+        delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+        filterContext=delegate.managedObjectContext;
     }
     return self;
 }
@@ -67,11 +72,11 @@
     NSPredicate *finalPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[whousePre,Brandpred,stockQtyPred]];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:ronakGlobal.context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:filterContext];
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:finalPre];
     NSError *error = nil;
-    NSArray *fetchedObjects = [[ronakGlobal.context executeFetchRequest:fetchRequest error:&error] valueForKey:@"item_Code_s"];
+    NSArray *fetchedObjects = [[filterContext executeFetchRequest:fetchRequest error:&error] valueForKey:@"item_Code_s"];
     
     ronakGlobal.stockIDsArray=fetchedObjects;
 //    NSLog(@"%@",ronakGlobal.stockIDsArray);
