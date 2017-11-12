@@ -424,8 +424,8 @@ int totalImages=0, currentImage=0, savedImages=0;
             if(data)
             {
                 NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                NSArray *brandsA=dict[@"brandList"];
-                NSArray *warehouseLisA=dict[@"warehouseList"];
+                NSMutableArray *brandsA=dict[@"brandList"];
+                NSMutableArray *warehouseLisA=dict[@"warehouseList"];
                 defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
                 defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
                 NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
@@ -592,7 +592,7 @@ int totalImages=0, currentImage=0, savedImages=0;
         
         NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s LIKE item_Code_s"];
-        [fetchIds setPredicate:predicate];
+        [fetchIds setPredicate:predicate];//Get All Stock Details in to array and macth the id to  Item master
         NSArray *idsarr=[downloadContext executeFetchRequest:fetchIds error:nil];
         [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             StockDetails *st=obj;
@@ -607,7 +607,8 @@ int totalImages=0, currentImage=0, savedImages=0;
                 NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
                 item.stock=st;
                 st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
-                [ronakGlobal.delegate saveContext];
+                NSError *error;
+                [downloadContext save:&error];
                 /*----------------------------------------------------*/
             }
             else

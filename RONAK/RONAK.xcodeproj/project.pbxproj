@@ -1099,7 +1099,6 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
 				"${BUILT_PRODUCTS_DIR}/MARKRangeSlider/MARKRangeSlider.framework",
-				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
 				"${BUILT_PRODUCTS_DIR}/SalesforceAnalytics/SalesforceAnalytics.framework",
@@ -1114,7 +1113,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MARKRangeSlider.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SalesforceAnalytics.framework",
@@ -1288,7 +1286,10 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
+				WARNING_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					" ",
+				);
 			};
 			name = Debug;
 		};
@@ -1330,7 +1331,10 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
+				WARNING_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					" ",
+				);
 			};
 			name = Release;
 		};

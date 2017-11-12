@@ -80,7 +80,7 @@
 }
 -(void)updateImagesLabel:(NSNotification*)notification{
     int percentage=[notification.object intValue];
-    if(percentage>=70){
+    if(percentage>=30){
         imagesFetched=YES;
         [self allDownloadsCompleted];
     }

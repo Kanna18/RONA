@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '03E744DB964560C3E83D6B4577B8F3FA'
+               BlueprintIdentifier = '0569F88DBD32A29778ED4EED536F617B'
                BlueprintName = 'SevenSwitch'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SevenSwitch.framework'>

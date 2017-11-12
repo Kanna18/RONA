@@ -75,5 +75,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *gstFRValueLbl;
 
 @property (strong, nonatomic) IBOutlet UILabel *gstSGValueLbl;
+@property (strong, nonatomic) IBOutlet UIView *bottomCalculationsView;
 
 @end

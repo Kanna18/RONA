@@ -43,8 +43,6 @@
 #import "OrderStatusViewController.h"
 #import "OrderStatusCustomResponse.h"
 
-#import <MagicalRecord/MagicalRecord.h>
-#import <MagicalRecord/MagicalRecord+ShorthandMethods.h>
 
 
 #endif /* RONAK_pch */

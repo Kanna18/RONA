@@ -118,8 +118,6 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [MagicalRecord setupCoreDataStack];
-    
     [Fabric with:@[[Crashlytics class]]];
     DownloadProducts *dwn=[[DownloadProducts alloc]init];
     [dwn regenerateAuthtenticationToken];

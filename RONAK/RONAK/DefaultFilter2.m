@@ -103,7 +103,7 @@
             cell = [tblView dequeueReusableCellWithIdentifier:@"ViewControllerCell"];
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        cell.lblName.text=arr[indexPath.section][@"options"][indexPath.row];
+        cell.lblName.text=arr[indexPath.section][@"options"][indexPath.row]!=[NSNull null]?arr[indexPath.section][@"options"][indexPath.row]:@"";
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
             case 0:

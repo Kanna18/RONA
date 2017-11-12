@@ -523,7 +523,7 @@ static NSString *reuse=@"reuseCustomerCell";
     NSMutableData *pdfData = [NSMutableData data];
     
     // Points the pdf converter to the mutable data object and to the UIView to be converted
-    UIGraphicsBeginPDFContextToData(pdfData, self.collectionView.bounds, nil);
+    UIGraphicsBeginPDFContextToData(pdfData, self.view.bounds, nil);
     UIGraphicsBeginPDFPage();
     CGContextRef pdfContext = UIGraphicsGetCurrentContext();
     

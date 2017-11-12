@@ -11,7 +11,6 @@
 #import "CollectionPopUp.h"
 #import "SaleOrderWrapper.h"
 
-
 @interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate,RemarksViewProtocol>
 
 @end
@@ -45,10 +44,17 @@
 //    tap.numberOfTapsRequired=2;
 //    [self.view addGestureRecognizer:tap];
 //    
+
     
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
     taped.numberOfTouchesRequired=1;
     [_headingLabel addGestureRecognizer:taped];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self tvImage:self.summaryTableView aview:self.view];
+        
+    });
     
 }
 
@@ -582,4 +588,77 @@
 //    NSCompoundPredicate *finalPre=[NSCompoundPredicate ]
 
 }
+
+-(void)tvImage:(UITableView*)tv aview:(UIView*)aView
+{
+
+//    NSMutableData *pdfData = [NSMutableData data];
+//
+//    // Points the pdf converter to the mutable data object and to the UIView to be converted
+//    UIGraphicsBeginPDFContextToData(pdfData, _bottomBarView.bounds, nil);
+//    UIGraphicsBeginPDFPage();
+//    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+//
+//
+//    // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
+//
+//    [aView.layer renderInContext:pdfContext];
+//
+//    // remove PDF rendering context
+//    UIGraphicsEndPDFContext();
+//    // Retrieves the document directories from the iOS device
+//    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+//
+//    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+//    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:@"cheking.pdf"];
+//
+//    // instructs the mutable data object to write its context to a file on disk
+//    [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+//    NSLog(@"documentDirectoryFileName: %@",documentDirectoryFilename);
+
+    UIGraphicsBeginImageContext(CGSizeMake(_dynamicScrollViewContentView.bounds.size.width, _dynamicScrollViewContentView.bounds.size.height+_bottomCalculationsView.bounds.size.height));
+    [_bottomCalculationsView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
+    int rows = [tv numberOfRowsInSection:0];
+    int numberofRowsInView = 4;
+    for (int i =0; i < rows/numberofRowsInView; i++) {
+        [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(i+1)*numberofRowsInView inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
+
+    }
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImageView *myImage=[[UIImageView alloc]initWithImage:image];
+    UIGraphicsEndImageContext();
+
+
+    
+    [self createPDFfromUIViews:myImage saveToDocumentsWithFileName:@"myFile.pdf"];
+    
+}
+
+- (void)createPDFfromUIViews:(UIView *)myImage saveToDocumentsWithFileName:(NSString *)string
+{
+    NSMutableData *pdfData = [NSMutableData data];
+    
+    UIGraphicsBeginPDFContextToData(pdfData, myImage.bounds, nil);
+    UIGraphicsBeginPDFPage();
+    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    
+    
+    // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
+    
+    [myImage.layer renderInContext:pdfContext];
+    
+    // remove PDF rendering context
+    UIGraphicsEndPDFContext();
+    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    
+    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:string];
+    
+    NSLog(@"%@",documentDirectoryFilename);
+    [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+}
+
 @end

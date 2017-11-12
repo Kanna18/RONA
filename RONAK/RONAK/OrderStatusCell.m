@@ -12,11 +12,13 @@
     
     OrderStatusViewController *orderStatusVC;
     OrderStatusCustomResponse *currentresponse;
+    NSMutableArray *tvData;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    tvData=[[NSMutableArray alloc]init];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -50,6 +52,7 @@
     _amountLabel.text=resp.Net_Amount__c;
     _dateLbl.text=[resp.CreatedDate substringToIndex:10];
     
+    [self getDatesToshowStatus:resp];
     if(resp.typeOfRec==INVOICE_Type)
     {
         _dateLbl.text=@"";
@@ -60,11 +63,38 @@
     {
         _dateLbl.text=@"";
         _dateLbl.text=resp.record.typeDate__c;
-
     }
     
 }
-
+-(void)getDatesToshowStatus:(OrderStatusCustomResponse*)respData
+{
+    if(respData.CreatedDate)
+    {
+        [tvData addObject:@"SR"];
+    }
+    if(respData.RSM_Date__c)
+    {
+        [tvData addObject:@"RSM"];
+    }
+    if(respData.HOD_Date__c)
+    {
+        [tvData addObject:@"HOD"];
+    }
+    if(respData.MD_Date__c)
+    {
+        [tvData addObject:@"MD"];
+    }
+    if(respData.SAP_Date__c)
+    {
+        [tvData addObject:@"SAP"];
+    }
+    if(respData.Sale_Order_Date__c)
+    {
+        [tvData addObject:@"SO"];
+    }
+    
+    [_statusBtn setTitle:tvData.lastObject forState:UIControlStateNormal];
+}
 - (IBAction)statusClick:(id)sender {
     
     [orderStatusVC.reportStatus bindData:currentresponse];

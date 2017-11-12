@@ -2405,6 +2405,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomBarView" destination="gE1-nn-QE8" id="t6d-fA-LFU"/>
+                        <outlet property="bottomCalculationsView" destination="tkX-rn-N6N" id="EMg-yU-l5e"/>
                         <outlet property="calculator" destination="i6n-S5-Qlp" id="jwA-WR-3jc"/>
                         <outlet property="cancelOrderBtn" destination="mFY-8h-N6R" id="bi6-CK-xid"/>
                         <outlet property="cntnViewconstraint" destination="RZA-jl-DqS" id="jDF-Vk-0ox"/>
@@ -4978,7 +4979,7 @@
                 <navigationController storyboardIdentifier="navMenu" automaticallyAdjustsScrollViewInsets="NO" id="unc-Gp-BU1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OoB-NT-Vr6">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="48"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -5193,7 +5194,7 @@
         <image name="futureinvblue.png" width="200" height="200"/>
         <image name="futureinvgrey.png" width="200" height="200"/>
         <image name="grayBackground" width="60" height="60"/>
-        <image name="home" width="542" height="548"/>
+        <image name="home" width="20" height="20"/>
         <image name="home01" width="544" height="556"/>
         <image name="listblue.png" width="200" height="200"/>
         <image name="listgrey.png" width="200" height="200"/>

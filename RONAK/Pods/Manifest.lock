@@ -26,9 +26,6 @@ PODS:
     - Fabric (~> 1.7.0)
   - Fabric (1.7.1)
   - JSONModel (1.7.0)
-  - MagicalRecord (2.3.2):
-    - MagicalRecord/Core (= 2.3.2)
-  - MagicalRecord/Core (2.3.2)
   - MARKRangeSlider (1.1.1)
   - SalesforceAnalytics (5.2.0):
     - SalesforceAnalytics/SalesforceAnalytics (= 5.2.0)
@@ -73,7 +70,6 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - JSONModel
-  - MagicalRecord (~> 2.3)
   - MARKRangeSlider
   - SalesforceAnalytics (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SalesforceSDKCore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
@@ -98,7 +94,6 @@ SPEC CHECKSUMS:
   Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
   Fabric: c7cfc652f036180a72fe2539646c8a624420419d
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
-  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   MARKRangeSlider: ef7e1fe84d22996f47fd72dcb8de50b9410aac47
   SalesforceAnalytics: 9c415d350f3acf6f41d45077436226c4b19008d1
   SalesforceSDKCore: f2523c9d55e2cc719f188d9dc4bf2362de9b7762
@@ -108,6 +103,6 @@ SPEC CHECKSUMS:
   SmartSync: 822e24b5d7de8b7d105441121ec5503bda70441b
   SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
 
-PODFILE CHECKSUM: 07e17976ff69a951e749e2fdd3ca3cdb5704ba3c
+PODFILE CHECKSUM: ff3c5ddff26f839d77359054bbf41eb35ffba763
 
 COCOAPODS: 1.3.0.beta.2
