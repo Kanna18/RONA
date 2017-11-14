@@ -43,7 +43,6 @@
     tap.numberOfTapsRequired=2;
     tVData=[[NSMutableArray alloc]init];
     
-    
 
 }
 -(void)dismissStatus:(id)sender{
@@ -188,5 +187,6 @@
 
     [_statusTableView reloadData];
 }
+
 
 @end

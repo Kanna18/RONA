@@ -40,18 +40,28 @@
     {
         [fileManager createDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES"] withIntermediateDirectories:NO attributes:nil error:nil];
     }
+
     if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES"]])
     {
         [fileManager createDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES"] withIntermediateDirectories:NO attributes:nil error:nil];
     }
-    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item1.jpg"]])
+    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:orderStatusFolder]])
     {
-        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"GU 6739 BLK-35item1" ofType:@"jpg"] toPath:[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item1.jpg"] error:nil];
+        [fileManager createDirectoryAtPath:[docPath stringByAppendingString:orderStatusFolder] withIntermediateDirectories:NO attributes:nil error:nil];
     }
-    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item2.jpg"]])
+    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:orderSummaryFolder]])
     {
-        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"GU 6739 BLK-35item2" ofType:@"jpg"] toPath:[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item2.jpg"] error:nil];
+        [fileManager createDirectoryAtPath:[docPath stringByAppendingString:orderSummaryFolder] withIntermediateDirectories:NO attributes:nil error:nil];
     }
+    
+//    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item1.jpg"]])
+//    {
+//        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"GU 6739 BLK-35item1" ofType:@"jpg"] toPath:[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item1.jpg"] error:nil];
+//    }
+//    if(![fileManager fileExistsAtPath:[docPath stringByAppendingString:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item2.jpg"]])
+//    {
+//        [fileManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"GU 6739 BLK-35item2" ofType:@"jpg"] toPath:[docPath stringByAppendingPathComponent:@"IMAGES/ITEM IMAGES/GU 6739 BLK-35item2.jpg"] error:nil];
+//    }
 }
 -(void)unzippedSuccess
 {

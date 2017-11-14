@@ -49,6 +49,7 @@
 		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
 		F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */; };
 		F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */; };
+		F60FB46C1FB884D400F0B546 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60FB46B1FB884D400F0B546 /* MessageUI.framework */; };
 		F615AFB01FAD89A700BF2CBC /* RepotrsPopTV.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */; };
 		F615AFB41FAD975300BF2CBC /* ReportsStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */; };
 		F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */; };
@@ -230,6 +231,7 @@
 		F6095E9C1FA781B800B7C455 /* OrderStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusCell.h; sourceTree = "<group>"; };
 		F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatusCell.m; sourceTree = "<group>"; };
 		F60A77521F39E716008CB094 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		F60FB46B1FB884D400F0B546 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F615AFAE1FAD89A700BF2CBC /* RepotrsPopTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepotrsPopTV.h; sourceTree = "<group>"; };
 		F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepotrsPopTV.m; sourceTree = "<group>"; };
 		F615AFB21FAD975200BF2CBC /* ReportsStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsStatusCell.h; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60FB46C1FB884D400F0B546 /* MessageUI.framework in Frameworks */,
 				F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */,
 				BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */,
 			);
@@ -381,6 +384,7 @@
 		37B95F29A292887A2CC072C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F60FB46B1FB884D400F0B546 /* MessageUI.framework */,
 				F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */,
 				F60A77521F39E716008CB094 /* LocalAuthentication.framework */,
 				5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */,
@@ -972,7 +976,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1286,10 +1290,7 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = (
-					"-DSQLITE_HAS_CODEC",
-					" ",
-				);
+				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
 			};
 			name = Debug;
 		};
@@ -1331,10 +1332,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = (
-					"-DSQLITE_HAS_CODEC",
-					" ",
-				);
+				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
 			};
 			name = Release;
 		};
@@ -1344,8 +1342,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1361,8 +1359,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4770c4a8-5c75-4d5e-bc3d-fbe739e327a3";
-				PROVISIONING_PROFILE_SPECIFIER = newProvisional;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1373,8 +1371,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1390,8 +1388,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4770c4a8-5c75-4d5e-bc3d-fbe739e327a3";
-				PROVISIONING_PROFILE_SPECIFIER = newProvisional;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

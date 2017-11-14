@@ -639,7 +639,7 @@ int totalImages=0, currentImage=0, savedImages=0;
 
     if([listImageNames containsObject:name])
     {
-                return;
+        return;
     }
     else
     {

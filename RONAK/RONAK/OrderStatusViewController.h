@@ -17,5 +17,6 @@
 
 @property RepotrsPopTV *reportStatus;
 
+@property (strong, nonatomic) IBOutlet UIView *headingsView;
 
 @end

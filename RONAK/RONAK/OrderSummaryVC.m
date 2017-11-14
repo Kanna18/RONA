@@ -49,13 +49,7 @@
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
     taped.numberOfTouchesRequired=1;
     [_headingLabel addGestureRecognizer:taped];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [self tvImage:self.summaryTableView aview:self.view];
-        
-    });
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -591,74 +585,76 @@
 
 -(void)tvImage:(UITableView*)tv aview:(UIView*)aView
 {
-
-//    NSMutableData *pdfData = [NSMutableData data];
-//
-//    // Points the pdf converter to the mutable data object and to the UIView to be converted
-//    UIGraphicsBeginPDFContextToData(pdfData, _bottomBarView.bounds, nil);
-//    UIGraphicsBeginPDFPage();
-//    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-//
-//
-//    // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
-//
-//    [aView.layer renderInContext:pdfContext];
-//
-//    // remove PDF rendering context
-//    UIGraphicsEndPDFContext();
-//    // Retrieves the document directories from the iOS device
-//    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-//
-//    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-//    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:@"cheking.pdf"];
-//
-//    // instructs the mutable data object to write its context to a file on disk
-//    [pdfData writeToFile:documentDirectoryFilename atomically:YES];
-//    NSLog(@"documentDirectoryFileName: %@",documentDirectoryFilename);
-
-    UIGraphicsBeginImageContext(CGSizeMake(_dynamicScrollViewContentView.bounds.size.width, _dynamicScrollViewContentView.bounds.size.height+_bottomCalculationsView.bounds.size.height));
-    [_bottomCalculationsView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIGraphicsBeginImageContextWithOptions(tv.bounds.size, tv.opaque, 0.0);
+    [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
     [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
     int rows = [tv numberOfRowsInSection:0];
     int numberofRowsInView = 4;
-    for (int i =0; i < rows/numberofRowsInView; i++) {
+    for (int i =0; i < rows/numberofRowsInView; i++)
+    {
         [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(i+1)*numberofRowsInView inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
         [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
-
     }
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIImageView *myImage=[[UIImageView alloc]initWithImage:image];
+    UIImage *tVimage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    CGRect rect1 = _bottomCalculationsView.bounds;
+    UIGraphicsBeginImageContextWithOptions(rect1.size, self.view.opaque, 0.0);
+    CGContextRef context2 = UIGraphicsGetCurrentContext();
+    [_bottomCalculationsView.layer renderInContext:context2];
+    UIImage *calcImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGRect headingImageRect =  CGRectMake(0, 200, self.view.frame.size.width, 238);
+    UIGraphicsBeginImageContextWithOptions(headingImageRect.size, self.view.opaque, 0.0);
+    CGContextRef headingcontext2 = UIGraphicsGetCurrentContext();
+    [self.view.layer renderInContext:headingcontext2];
+    UIImage *heading = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
-
     
-    [self createPDFfromUIViews:myImage saveToDocumentsWithFileName:@"myFile.pdf"];
+    CGSize newSize = CGSizeMake(heading.size.width,heading.size.height+calcImg.size.height+tVimage.size.height);
+    UIGraphicsBeginImageContext( newSize );
+    // Use existing opacity as is
+    [heading drawInRect:CGRectMake(0,0,heading.size.width,heading.size.height)];
+    // Apply supplied opacity if applicable
+    [tVimage drawInRect:CGRectMake(0,heading.size.height,heading.size.width,tVimage.size.height) blendMode:kCGBlendModeNormal alpha:1];
+    [calcImg drawInRect:CGRectMake(0,tVimage.size.height+heading.size.height,heading.size.width,calcImg.size.height) blendMode:kCGBlendModeNormal alpha:1];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    
+    UIImageView *imgV=[[UIImageView alloc]initWithImage:newImage];
+    NSString * timestamp = [NSString stringWithFormat:@"%d", (int) ([[NSDate date] timeIntervalSince1970] * 1000)];
+    [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@.pdf",timestamp]];
 }
 
 - (void)createPDFfromUIViews:(UIView *)myImage saveToDocumentsWithFileName:(NSString *)string
 {
     NSMutableData *pdfData = [NSMutableData data];
-    
     UIGraphicsBeginPDFContextToData(pdfData, myImage.bounds, nil);
     UIGraphicsBeginPDFPage();
     CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-    
-    
     // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
-    
     [myImage.layer renderInContext:pdfContext];
-    
     // remove PDF rendering context
     UIGraphicsEndPDFContext();
     NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
-    
     NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:string];
-    
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:[orderSummaryFolder stringByAppendingPathComponent:string]];
     NSLog(@"%@",documentDirectoryFilename);
     [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+    [load waringLabelText:[NSString stringWithFormat:@"Summary saved as PDF for Customer %@",_cstdDataModel.Name] onView:self.view];
+    
+    
 }
 
+- (IBAction)dowloadPDF:(id)sender {
+    
+    if(_cstdDataModel)
+    [self tvImage:self.summaryTableView aview:self.view];
+    
+}
 @end

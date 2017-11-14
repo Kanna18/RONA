@@ -76,5 +76,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *gstSGValueLbl;
 @property (strong, nonatomic) IBOutlet UIView *bottomCalculationsView;
+- (IBAction)dowloadPDF:(id)sender;
 
 @end

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderStatsResponse.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
 @class OrderStatusViewController;
 @class OrderStatusCustomResponse;
 
-@interface OrderStatusCell : UITableViewCell
+@interface OrderStatusCell : UITableViewCell<MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *sfID;
 
@@ -27,6 +28,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *amountLabel;
 @property (strong, nonatomic) IBOutlet UIButton *statusBtn;
 - (IBAction)statusClick:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *downloadImgVw;
+@property (strong, nonatomic) IBOutlet UIImageView *emailImageVw;
+
+
 
 -(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
 

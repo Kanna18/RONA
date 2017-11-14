@@ -127,6 +127,9 @@ typedef NS_ENUM(NSUInteger, TypeOfRecord) {
 #define STOCK_FETCHING_STATUS_NOTIFICATION @"StockFetchingStatus"
 #define IMAGES_FETCHING_STATUS_NOTIFICATION @"ImagesFecthingStatus"
 #define STOCK_PRODUCT_ID_MATCHING_NOTIFICATION @"StockAndProductMatching"
+
+#define orderStatusFolder @"ORDERSTATUS/"
+#define orderSummaryFolder @"ORDERSUMMARYFOLDER/"
 #endif /* Constants_h */
 
 
