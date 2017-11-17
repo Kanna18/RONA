@@ -10,7 +10,7 @@
 #import "OrderCell.h"
 #import "PlaceOrder.h"
 
-@interface OrderSummaryVC : UIViewController<UITableViewDelegate,UITableViewDataSource,DiscountResult,ReloadInstruction>
+@interface OrderSummaryVC : UIViewController<UITableViewDelegate,UITableViewDataSource,DiscountResult,ReloadInstruction,MFMailComposeViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIView *bottomBarView;
 
 @property (strong, nonatomic) IBOutlet UITableView *summaryTableView;
@@ -77,5 +77,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *gstSGValueLbl;
 @property (strong, nonatomic) IBOutlet UIView *bottomCalculationsView;
 - (IBAction)dowloadPDF:(id)sender;
+- (IBAction)sendEmailClick:(id)sender;
 
 @end

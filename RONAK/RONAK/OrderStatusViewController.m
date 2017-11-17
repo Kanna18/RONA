@@ -132,7 +132,7 @@
     static NSString *reuse=@"orderStatusCustomCell";
     OrderStatusCell *cell=[tableView dequeueReusableCellWithIdentifier:reuse];
     OrderStatusCustomResponse *resp=tVData[indexPath.row];
-    [cell bindData:resp superViewCon:self];
+    [cell bindData:resp superViewCon:self withIndex:indexPath.row+1000];
     [cell.statusBtn addTarget:self action:@selector(showStatus:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }

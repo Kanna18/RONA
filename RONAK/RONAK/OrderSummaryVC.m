@@ -628,7 +628,7 @@
     
     UIImageView *imgV=[[UIImageView alloc]initWithImage:newImage];
     NSString * timestamp = [NSString stringWithFormat:@"%d", (int) ([[NSDate date] timeIntervalSince1970] * 1000)];
-    [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@.pdf",timestamp]];
+    [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@.pdf",_cstdDataModel.Name]];
 }
 
 - (void)createPDFfromUIViews:(UIView *)myImage saveToDocumentsWithFileName:(NSString *)string
@@ -657,4 +657,64 @@
     [self tvImage:self.summaryTableView aview:self.view];
     
 }
+
+- (IBAction)sendEmailClick:(id)sender {
+    [load start];
+    [load loadingWithlightAlpha:self.view with_message:@"Please Wait"];
+    [self dowloadPDF:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([MFMailComposeViewController canSendMail])
+        {
+            [load stop];
+            NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+            NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+            NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:[orderSummaryFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.pdf",_cstdDataModel.Name]]];
+            NSLog(@"%@",documentDirectoryFilename);
+            
+            NSString *emailTitle = [NSString stringWithFormat:@"Order Summary of the Cutomer %@",_cstdDataModel.Name];
+            NSString *messageBody = @"";
+            NSArray *toRecipents = [NSArray arrayWithObject:@""];
+            NSString *path = [[NSBundle mainBundle] pathForResource:documentDirectoryFilename ofType:@"pdf"];
+            NSData *myData= [NSData dataWithContentsOfFile: documentDirectoryFilename];
+            MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+            mc.mailComposeDelegate = self;
+            [mc setSubject:emailTitle];
+            [mc setMessageBody:messageBody isHTML:NO];
+            [mc addAttachmentData:myData mimeType:@"application/pdf" fileName:[_cstdDataModel.Name stringByAppendingPathExtension:@"pdf"]];
+            [mc setToRecipients:toRecipents];
+            [self presentViewController:mc animated:YES completion:NULL];
+        }
+        else
+        {
+            showMessage(@"Please Configure Mail Settings in your Device", self.view);
+        }
+
+        
+    });
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
 @end

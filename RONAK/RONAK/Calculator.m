@@ -1,8 +1,8 @@
 //
-//  Calculator.m
-//  CalcTask
+//  Calc.m
+//  CalTsk
 //
-//  Created by Gaian on 8/28/17.
+//  Created by TTPLCOMAC1 on 13/11/17.
 //  Copyright © 2017 TTPLCOMAC1. All rights reserved.
 //
 
@@ -19,147 +19,213 @@
         frame.size.width=212;
         frame.size.height=330;
         self.frame=frame;
-        self.displayTF.delegate=self;
-        _plusOrMinusButton.selected=YES;
+        self.dataArray = [[NSMutableArray alloc]init];
+
         
     }
     return self;
 }
 
 
-- (IBAction)button1:(id)sender {
+- (IBAction)clearButton:(id)sender {
     
-    self.displayTF.text=[NSString stringWithFormat:@"%@1",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
+    self.dotDetect = NO;
+    self.dataArray = [[NSMutableArray alloc]init];
+    self.displayTF.text = @"0";
+    self.equalsStr = @"";
+    [self.clearButton setTitle:@"AC" forState:UIControlStateNormal];
+    signDetect = NO;
 }
 
-- (IBAction)button2:(id)sender {
+- (IBAction)numBtnActn:(UIButton*)sender {
+    if ([self.displayTF.text isEqualToString:@"0"]) {
+        self.dataArray = [[NSMutableArray alloc]init];
+        self.displayTF.text = @"";
+        self.equalsStr = @"";
+    }
     
-    self.displayTF.text=[NSString stringWithFormat:@"%@2",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
+    [self.clearButton setTitle:@"C" forState:UIControlStateNormal];
+    NSLog(@"title %@",sender.currentTitle);
+    
+    
+    
+    NSString *str = sender.titleLabel.text;
+    if ([str isEqualToString:@"."]) {
+        self.dotDetect = YES;
+    }
+    if ([self.dataArray containsObject:@"."] && [str isEqualToString:@"."]) {
+    }else{
+        if (signDetect == YES) {
+            signDetect = NO;
+            [self.dataArray addObject:@"-"];
+        }
+        [self.dataArray addObject:str];
+        NSLog(@"data array %@",self.dataArray);
+        NSString *joinedString = [self.dataArray componentsJoinedByString:@""];
+        self.displayTF.text=joinedString;
+    }
+
 }
 
-- (IBAction)button3:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@3",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-    
-}
-
-- (IBAction)button4:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@4",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)button5:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@5",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)button6:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@6",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)button7:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@7",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)button8:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@8",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)button9:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@9",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)button0:(id)sender {
-    
-    self.displayTF.text=[NSString stringWithFormat:@"%@0",self.displayTF.text];
-    [_clearButton setTitle:@"C" forState:UIControlStateNormal];
-}
-
-- (IBAction)clearDisplay:(id)sender {
-    self.displayTF.text = @"";
-    [_clearButton setTitle:@"AC" forState:UIControlStateNormal];
-}
-
-- (IBAction)multiplyButton:(id)sender {
-    operation = Multiply;
+- (IBAction)modBtnActn:(id)sender {
+    float val = [self.displayTF.text floatValue];
+    float calcVal = val/100;
+    //    if (self.dotDetect == YES) {
+    //        self.displayTF.text= [NSString stringWithFormat:@"%.1f",calcVal];
+    //    }
+    //    else{
+    self.displayTF.text= [NSString stringWithFormat:@"%.2f",calcVal];
     storage = self.displayTF.text;
-    self.displayTF.text=@"";
+    //self.displayTF.text=@"";
+    self.equalsStr = self.displayTF.text;
+    NSLog(@"eql %@",self.equalsStr);
+    self.dotDetect = YES;
+    //}
+
 }
 
-- (IBAction)minusButton:(id)sender {
-    operation = Minus;
-    storage = self.displayTF.text;
-    self.displayTF.text=@"";
+- (IBAction)plsMnsBtnActn:(id)sender {
+    NSString *strSign = self.displayTF.text;
+    
+    if([strSign hasPrefix:@"-"]) {
+        signDetect = NO;
+        strSign = [strSign stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        
+    }else{
+        signDetect = YES;
+        strSign = [NSString stringWithFormat:@"-%@",strSign];
+    }
+    
+    //storage = strSign;
+    self.equalsStr = strSign;
+    self.displayTF.text= strSign;
+    
+    if (self.minBool == YES) {
+        self.minBool = NO;
+        self.equalsStr = @"";
+    }
+    
+
 }
 
 - (IBAction)plusButton:(id)sender {
-    
+    self.dataArray = [[NSMutableArray alloc]init];
     operation = Plus;
     storage = self.displayTF.text;
     self.displayTF.text=@"";
+    signDetect = NO;
+    self.equalsStr = @"";
 }
 
-- (IBAction)equalsButton:(id)sender {
-    
-    NSString *val = self.displayTF.text;
+- (IBAction)minusButton:(id)sender {
+    self.minBool = YES;
+    self.dataArray = [[NSMutableArray alloc]init];
+    operation = Minus;
+    storage = self.displayTF.text;
+    self.displayTF.text=@"";
+    signDetect = NO;
+    self.equalsStr = @"";
 
-        switch(operation) {
-            case Plus :
-                self.displayTF.text= [NSString stringWithFormat:@"%qi",[storage longLongValue]+[val longLongValue]];
-                break;
-            case Minus:
-                self.displayTF.text= [NSString stringWithFormat:@"%qi",[storage longLongValue]-[val longLongValue]];
-                break;
-            case Divide:
-                self.displayTF.text= [NSString stringWithFormat:@"%qi",[storage longLongValue]/[val longLongValue]];
-                break;
-            case Multiply:
-                self.displayTF.text= [NSString stringWithFormat:@"%qi",[storage longLongValue]*[val longLongValue]];
-                break;
-        }
-    
+}
+
+- (IBAction)multiplyButton:(id)sender {
+    self.dataArray = [[NSMutableArray alloc]init];
+    operation = Multiply;
+    storage = self.displayTF.text;
+    self.displayTF.text=@"";
+    self.equalsStr = @"";
+    signDetect = NO;
+
 }
 
 - (IBAction)divideButton:(id)sender {
+    self.dataArray = [[NSMutableArray alloc]init];
     operation = Divide;
     storage = self.displayTF.text;
     self.displayTF.text=@"";
+    signDetect = NO;
+    self.equalsStr = @"";
+
 }
 
-
-
-- (IBAction)buttondot:(id)sender {
-    self.displayTF.text=[NSString stringWithFormat:@"%@.",self.displayTF.text];
-}
-
-- (IBAction)plusOrMinusClick:(id)sender {
-    if(_plusOrMinusButton.isSelected){
-        _plusOrMinusButton.selected=NO;
-        self.displayTF.text=[NSString stringWithFormat:@"-%@",self.displayTF.text];
+- (IBAction)equalsButton:(id)sender {
+    NSString *val = self.displayTF.text;
+    if ([val isEqualToString:@"0"]) {
+        self.dotDetect = NO;
     }
-    else{
-        _plusOrMinusButton.selected=YES;
-         self.displayTF.text=[NSString stringWithFormat:@"%@",[self.displayTF.text stringByReplacingOccurrencesOfString:@"-" withString:@""]];
+    if ([self.equalsStr isEqualToString:@"-"]) {
+        self.equalsStr = @"";
+        self.equalsStr = storage;
     }
-        
+    
+    switch(operation) {
+        case Plus :
+            if (self.equalsStr.length) {
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[self.equalsStr floatValue]+[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[self.equalsStr floatValue]+[val floatValue]];
+                }
+            }else{
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[storage floatValue]+[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[storage floatValue]+[val floatValue]];
+                }
+            }
+            break;
+        case Minus:
+            if (self.equalsStr.length) {
+                //                if ([val containsString:@"-"]) {
+                //                    val = [val stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                //                }
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[self.equalsStr floatValue]-[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[self.equalsStr floatValue]-[val floatValue]];
+                }
+            }else{
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[storage floatValue]-[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[storage floatValue]-[val floatValue]];
+                }
+            }
+            break;
+        case Divide:
+            if (self.equalsStr.length) {
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[self.equalsStr floatValue]/[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[self.equalsStr floatValue]/[val floatValue]];
+                }
+            }else{
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[storage floatValue]/[val floatValue]];
+                    
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[storage floatValue]/[val floatValue]];
+                }
+            }
+            break;
+        case Multiply:
+            if (self.equalsStr.length) {
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[self.equalsStr floatValue]*[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[self.equalsStr floatValue]*[val floatValue]];
+                }
+            }else{
+                if (self.dotDetect == YES) {
+                    self.displayTF.text= [NSString stringWithFormat:@"%.2f",[storage floatValue]*[val floatValue]];
+                }else{
+                    self.displayTF.text= [NSString stringWithFormat:@"%.f",[storage floatValue]*[val floatValue]];
+                }
+            }
+            break;
+    }
+    self.equalsStr = self.displayTF.text;
+    NSLog(@"eql %@",self.equalsStr);
+
 }
-
-
-- (IBAction)percentageClick:(id)sender {
-    self.displayTF.text=[NSString stringWithFormat:@"%f",self.displayTF.text.floatValue/100.0];
-}
-
 @end

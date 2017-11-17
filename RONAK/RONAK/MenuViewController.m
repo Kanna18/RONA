@@ -72,6 +72,7 @@
     int percentage=[notification.object intValue];
     if(percentage>=99){
         productsFetched=YES;
+        _downloadStatus.text=@"Completed";
         [self allDownloadsCompleted];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -82,6 +83,7 @@
     int percentage=[notification.object intValue];
     if(percentage>=30){
         imagesFetched=YES;
+        _imagesDownload.text=@"Completed";
         [self allDownloadsCompleted];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -92,6 +94,7 @@
     int percentage=[notification.object intValue];
     if(percentage>=99){
         stockFetched=YES;
+        _downloadStockDetails.text=@"Completed";
         [self allDownloadsCompleted];
     }
     dispatch_async(dispatch_get_main_queue(), ^{

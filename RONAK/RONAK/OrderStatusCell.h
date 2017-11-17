@@ -33,6 +33,6 @@
 
 
 
--(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
+-(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc withIndex:(NSInteger*)integer;
 
 @end

@@ -13,6 +13,7 @@
     OrderStatusViewController *orderStatusVC;
     OrderStatusCustomResponse *currentresponse;
     NSMutableArray *tvData;
+    NSInteger *indexInteger;
 }
 
 - (void)awakeFromNib {
@@ -35,19 +36,25 @@
 }
 -(void)sendEmail:(id)sender{
     
-    
+    [self dowloadToPdf:nil];
     if ([MFMailComposeViewController canSendMail])
     {
-        NSString *emailTitle =  @"elllo";
+        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+        NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+        NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:[orderStatusFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%d.pdf",_sfID.text,(int)indexInteger]]];
+        NSLog(@"%@",documentDirectoryFilename);
+        
+        
+        NSString *emailTitle = [NSString stringWithFormat:@"Order Status of the Cutomer %@",_sfID.text];
         NSString *messageBody = @"";
-        NSArray *toRecipents = [NSArray arrayWithObject:@"m1891@gmail.com"];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"MV" ofType:@"pdf"]; NSData *myData
-            = [NSData dataWithContentsOfFile: path];
+        NSArray *toRecipents = [NSArray arrayWithObject:@""];
+        NSString *path = [[NSBundle mainBundle] pathForResource:documentDirectoryFilename ofType:@"pdf"];
+        NSData *myData= [NSData dataWithContentsOfFile:documentDirectoryFilename];
         MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
         mc.mailComposeDelegate = self;
         [mc setSubject:emailTitle];
         [mc setMessageBody:messageBody isHTML:NO];
-        [mc addAttachmentData:myData mimeType:@"application/pdf" fileName:@"MV.pdf"];
+        [mc addAttachmentData:myData mimeType:@"application/pdf" fileName:[_sfID.text stringByAppendingPathExtension:@"pdf"]];
         [mc setToRecipients:toRecipents];
         [orderStatusVC presentViewController:mc animated:YES completion:NULL];
     }
@@ -65,8 +72,9 @@
 
     // Configure the view for the selected state
 }
--(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc;
+-(void)bindData:(OrderStatusCustomResponse*)resp superViewCon:(OrderStatusViewController*)superVc withIndex:(NSInteger*)integer;
 {
+    indexInteger=integer;
     _dateLbl.text=@"";
     _brandLabel.text=@"";
     _qtyLabel.text=@"";
@@ -164,28 +172,19 @@
 }
 -(void)convertToImages
 {
-    //hide controls if needed
     CGRect rect = [orderStatusVC.headingsView bounds];
-//    UIGraphicsBeginImageContext(rect.size);
     UIGraphicsBeginImageContextWithOptions(rect.size, orderStatusVC.headingsView.opaque, 0.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [orderStatusVC.headingsView.layer renderInContext:context];
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-//    NSData * binaryImageData = UIImagePNGRepresentation(img);
-//    [binaryImageData writeToFile:[docPath stringByAppendingPathComponent:@"heading.png"] atomically:YES];
-    
-    //hide controls if needed
+
     CGRect rect1 = [self.contentView bounds];
-//    UIGraphicsBeginImageContext(rect1.size);
     UIGraphicsBeginImageContextWithOptions(rect1.size, self.contentView.opaque, 0.0);
     CGContextRef context2 = UIGraphicsGetCurrentContext();
     [self.contentView.layer renderInContext:context2];
     UIImage *img2 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-//    NSData * binaryImageData2 = UIImagePNGRepresentation(img2);
-//    [binaryImageData2 writeToFile:[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.sfID]] atomically:YES];
-    
     
     CGSize newSize = CGSizeMake(img.size.width,img.size.height+img2.size.height);
     UIGraphicsBeginImageContext( newSize );
@@ -195,11 +194,11 @@
     [img2 drawInRect:CGRectMake(0,img.size.height,img2.size.width,img2.size.height) blendMode:kCGBlendModeNormal alpha:1];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    NSData * binaryImageData2 = UIImagePNGRepresentation(newImage);
-    [binaryImageData2 writeToFile:[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.sfID.text]] atomically:YES];
+//    NSData * binaryImageData2 = UIImagePNGRepresentation(newImage);
+//    [binaryImageData2 writeToFile:[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",self.sfID.text]] atomically:YES];
     
     UIImageView *imgV=[[UIImageView alloc]initWithImage:newImage];
-    [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:@"sample.pdf"];
+    [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@%d.pdf",_sfID.text,(int)indexInteger]];
 }
 
 - (void)createPDFfromUIViews:(UIView *)myImage saveToDocumentsWithFileName:(NSString *)string
@@ -214,9 +213,10 @@
     UIGraphicsEndPDFContext();
     NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:string];
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:[orderStatusFolder stringByAppendingPathComponent:string]];
     NSLog(@"%@",documentDirectoryFilename);
     [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+    showMessage(@"Status Saved as PDF ", orderStatusVC.view);
 }
 
 
