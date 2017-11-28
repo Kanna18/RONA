@@ -88,18 +88,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return tvData.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ReportsStatusCell *cell=(ReportsStatusCell*)[tableView dequeueReusableCellWithIdentifier:@"reportsStatusCell"];
     [cell bindData:respData];
     _titleLabel.text=respData.Customer_Name__c;
     cell.statusCell.text=tvData[indexPath.row];
     cell.dateCell.text=[dict valueForKey:tvData[indexPath.row]];
-    
-    
+    if(indexPath.row==0){
+        cell.daysLbl.text=@"1";
+    }
+    else{
+    cell.daysLbl.text=[self compareTwoDatesandReturnDays:[dict valueForKey:tvData[indexPath.row-1]] Dt2:[dict valueForKey:tvData[indexPath.row]]];
+    }
     return cell;
 }
 
--(int)compareTwoDatesandReturnDays:(NSString*)datStr1 Dt2:(NSString*)datStr2
+-(NSString*)compareTwoDatesandReturnDays:(NSString*)datStr1 Dt2:(NSString*)datStr2
 {
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy-MM-dd"];
@@ -107,8 +111,8 @@
     NSDate *date2 = [f dateFromString:datStr2];
     NSTimeInterval secondsBetween = [date2 timeIntervalSinceDate:date1];
     int numberOfDays = secondsBetween / 86400;
-    
-    return numberOfDays;
+    NSString *daysStr=[NSString stringWithFormat:@"%d",numberOfDays];
+    return daysStr;
 }
 
 @end

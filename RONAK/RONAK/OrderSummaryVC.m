@@ -181,9 +181,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)calculatorClick:(id)sender {
-    [self removeAllSubviewsandDeselectall];
-    if(_calculator.selected==NO)
+    
+    if(_calculator.isSelected==NO)
     {
+        [self removeAllSubviewsandDeselectall];
         CGRect frame= _calculator.frame;
         //cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-350-70,350,350)];
         
@@ -201,7 +202,7 @@
 }
 
 -(IBAction)discountClick:(id)sender {
-    [self removeAllSubviewsandDeselectall];
+
     if(_discountBtn.selected==YES)
     {
         [dis removeFromSuperview];
@@ -209,6 +210,7 @@
     }
     else
     {
+        [self removeAllSubviewsandDeselectall];
         _discountBtn.selected=YES;
         CGRect frame = _discountBtn.frame;
         dis= [[Discount alloc]initWithFrame:CGRectMake(frame.origin.x-40, self.view.frame.size.height-330-60, 153, 330)];
@@ -259,7 +261,7 @@
 
 - (IBAction)futureDeliveryCLick:(id)sender {
     
-    [self removeAllSubviewsandDeselectall];
+    
     if(_futureDelivery.selected==YES)
     {
         containerView.hidden=YES;
@@ -267,6 +269,7 @@
     }
     else
     {
+        [self removeAllSubviewsandDeselectall];
         containerView.hidden=NO;
         _futureDelivery.selected=YES;
     }
@@ -686,6 +689,7 @@
         }
         else
         {
+            [load stop];
             showMessage(@"Please Configure Mail Settings in your Device", self.view);
         }
 

@@ -59,8 +59,13 @@
             {
                 [_osVC.navigationController popToViewController:(DefaultFiltersViewController*)obj animated:YES];
                 return ;
+                
             }
         }];
+        for (CustomerDataModel *cst in selectedCustomersList)
+        {
+            [cst.defaultsCustomer.itemsCount removeAllObjects];
+        }
     }
 }
 @end

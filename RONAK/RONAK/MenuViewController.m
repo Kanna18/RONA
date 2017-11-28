@@ -72,45 +72,56 @@
     int percentage=[notification.object intValue];
     if(percentage>=99){
         productsFetched=YES;
-        _downloadStatus.text=@"Completed";
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _downloadStatus.text=@"Completed";
+        });
         [self allDownloadsCompleted];
-    }
+    }else{
     dispatch_async(dispatch_get_main_queue(), ^{
        _downloadStatus.text=[NSString stringWithFormat:@"Fetching Products...%@%%",notification.object];
     });
+    }
 }
 -(void)updateImagesLabel:(NSNotification*)notification{
     int percentage=[notification.object intValue];
-    if(percentage>=30){
+    if(percentage>=99){
         imagesFetched=YES;
-        _imagesDownload.text=@"Completed";
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _imagesDownload.text=@"Completed";
+        });
         [self allDownloadsCompleted];
-    }
+    }else{
     dispatch_async(dispatch_get_main_queue(), ^{
         _imagesDownload.text=[NSString stringWithFormat:@"Downloading Images...%@%%",notification.object];
     });
+    }
 }
 -(void)updateStockLabel:(NSNotification*)notification{
     int percentage=[notification.object intValue];
     if(percentage>=99){
         stockFetched=YES;
-        _downloadStockDetails.text=@"Completed";
+        dispatch_async(dispatch_get_main_queue(), ^{
+           _downloadStockDetails.text=@"Completed";
+        });
         [self allDownloadsCompleted];
-    }
+    }else{
     dispatch_async(dispatch_get_main_queue(), ^{
         _downloadStockDetails.text=[NSString stringWithFormat:@"Downloading Stock...%@%%",notification.object];
     });
+    }
 }
 -(void)updateMatchingLabel:(NSNotification*)notification{
     int percentage=[notification.object intValue];
     if(percentage>=99){
         savedData=YES;
         [self allDownloadsCompleted];
-    }
+    }else{
     dispatch_async(dispatch_get_main_queue(), ^{
         _matchingLabel.text=[NSString stringWithFormat:@"Saving Data...%@%%",notification.object];
     });
+    }
 }
+    
 
 
 -(void)allDownloadsCompleted{

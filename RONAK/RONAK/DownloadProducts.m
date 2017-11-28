@@ -13,7 +13,7 @@
 #define Local_CallBackFor_Products_Stock_Fetched  @"PRODUCTS_FETCHED"
 
 
-@implementation DownloadProducts{
+@interface DownloadProducts(){
     
     ServerAPIManager *serverAPI;
     NSURLSessionDataTask *sessionDatatask;
@@ -24,8 +24,12 @@
     NSManagedObjectContext *downloadContext;
     
 }
+@end
 int offSet=0, productsOffset=0,stockOffset=0;
 int totalImages=0, currentImage=0, savedImages=0;
+
+@implementation DownloadProducts
+
 
 -(instancetype)init
 {
@@ -93,117 +97,119 @@ int totalImages=0, currentImage=0, savedImages=0;
 }
 -(void)fetchData:(NSMutableArray*)arr
 {
-    
-    NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
-    NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
-    [fetch setPredicate:predicate];
-    NSArray *coreIds=[[downloadContext executeFetchRequest:fetch error:nil] valueForKey:@"codeId"];//Get All IdsArray From Core Data
-    NSSet *set2=[NSSet setWithArray:coreIds];
-    NSIndexSet *ind=[ids indexesOfObjectsPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return [set2 containsObject:obj];
-    }];
-    [arr removeObjectsAtIndexes:ind];//Find out dupilcate IDS indexes that existed in Coredata with Response and remove them
     NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [productsContext setParentContext:downloadContext];
-    
+    [productsContext performBlock:^{
+        
+        NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
+        NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
+        [fetch setPredicate:predicate];
+        NSArray *coreIds=[[productsContext executeFetchRequest:fetch error:nil] valueForKey:@"codeId"];//Get All IdsArray From Core Data
+        NSSet *set2=[NSSet setWithArray:coreIds];
+        NSIndexSet *ind=[ids indexesOfObjectsPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            return [set2 containsObject:obj];
+        }];
+        [arr removeObjectsAtIndexes:ind];//Find out dupilcate IDS indexes that existed in Coredata with Response and remove them
+        
         int Count=0;
         for (NSDictionary *obj in arr)
         {
-                NSString *code=obj[@"Id"];
-                NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
-                NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
-                [fetch setPredicate:predicate];
-                NSArray *filArr=[productsContext executeFetchRequest:fetch error:nil];
-                if(!(filArr.count>0))
-                {
-                    NSDictionary *dic=obj;
-                    NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:productsContext];
-                    
-                    //                ItemMaster *item=[[ItemMaster alloc]initWithContext:downloadContext];
-                    ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:productsContext];
-                    item.imageUrl=dic[@"imageURL"];
-                    item.imageName=dic[@"imageName"];
-                    //                NSDictionary *filtersDict=dic[@"product"];/*Old*/
-                    NSDictionary *filtersDict=dic;
-                    NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:productsContext];
-                    Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:productsContext];
-                    filter.order_Month__c=filtersDict[@"Order_Month__c"];
-                    filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
-                    filter.mRP__c=[filtersDict[@"MRP__c"] floatValue];
-                    filter.collection_Name__c=filtersDict[@"Collection_Name__c"];
-                    filter.tips_Color__c=filtersDict[@"Tips_Color__c"];
-                    filter.temple_Material__c=filtersDict[@"Temple_Material__c"];
-                    filter.temple_Color__c=filtersDict[@"Temple_Color__c"];
-                    filter.style_Code__c=filtersDict[@"Style_Code__c"];
-                    filter.size__c=filtersDict[@"Size__c"];
-                    filter.shape__c=filtersDict[@"Shape__c"];
-                    filter.product__c=filtersDict[@"Product__c"];
-                    filter.wS_Price__c=[filtersDict[@"WS_Price__c"] floatValue];
-                    filter.number__c=[NSString stringWithFormat:@"%@",filtersDict[@"Number__c"]];
-                    filter.logo_Type__c=filtersDict[@"Logo_Type__c"];
-                    filter.logo_Size__c=filtersDict[@"Logo_Size__c"];
-                    filter.logo_Color__c=filtersDict[@"Logo_Color__c"];
-                    filter.lens_Description__c=filtersDict[@"Lens_Description__c"];
-                    filter.lens_Color__c=filtersDict[@"Lens_Color__c"];
-                    filter.lens_Code__c=filtersDict[@"Lens_Code__c"];
-                    filter.item_No__c=filtersDict[@"Item_No__c"];
-                    filter.item_Group_Product_Family__c=filtersDict[@"Item_Group_Product_Family__c"];
-                    filter.item_Description__c=filtersDict[@"Item_Description__c"];
-                    filter.inactive_To__c=filtersDict[@"Inactive_To__c"];
-                    filter.inactive_From__c=filtersDict[@"Inactive_From__c"];
-                    filter.inactive__c=filtersDict[@"Inactive__c"];
-                    filter.group_Name__c=filtersDict[@"Group_Name__c"];
-                    filter.front_Color__c=filtersDict[@"Front_Color__c"];
-                    filter.frame_Structure__c=filtersDict[@"Frame_Structure__c"];
-                    filter.frame_Material__c=filtersDict[@"Frame_Material__c"];
-                    filter.foreign_Name__c=filtersDict[@"Foreign_Name__c"];
-                    filter.flex_Temple__c=filtersDict[@"Flex_Temple__c"];
-                    filter.factory_Company__c=filtersDict[@"Factory_Company__c"];
-                    filter.drawing_Code__c=filtersDict[@"Drawing_Code__c"];
-                    filter.delivery_Month__c=filtersDict[@"Delivery_Month__c"];
-                    filter.custom__c=filtersDict[@"Custom__c"];
-                    filter.color_Code__c=filtersDict[@"Color_Code__c"];
-                    filter.collection__c=filtersDict[@"Collection__c"];
-                    filter.category__c=filtersDict[@"Category__c"];
-                    filter.brand__c=filtersDict[@"Brand__c"];
-                    filter.active_To__c=filtersDict[@"Active_To__c"];
-                    filter.active_From__c=filtersDict[@"Active_From__c"];
-                    filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
-                    filter.rim__c=filtersDict[@"Rim__c"];
-                    filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
-                    filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
-                    filter.codeId=filtersDict[@"Id"];
-                    filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
-                    NSDictionary *attDict=filtersDict[@"attributes"];
-                    NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:productsContext];
-                    Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:productsContext];
-                    attributes.type=attDict[@"type"];
-                    attributes.url=attDict[@"url"];
-                    item.filters=filter;
-                    item.filters.attribute=attributes;
-                }
-            if(Count%2000==0||arr.count-Count==1)
+            NSString *code=obj[@"Id"];
+            NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
+            [fetch setPredicate:predicate];
+            NSArray *filArr=[productsContext executeFetchRequest:fetch error:nil];
+            if(!(filArr.count>0))
+            {
+                NSDictionary *dic=obj;
+                NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:productsContext];
+                
+                //                ItemMaster *item=[[ItemMaster alloc]initWithContext:downloadContext];
+                ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:productsContext];
+                item.imageUrl=dic[@"imageURL"];
+                item.imageName=dic[@"imageName"];
+                //                NSDictionary *filtersDict=dic[@"product"];/*Old*/
+                NSDictionary *filtersDict=dic;
+                NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:productsContext];
+                Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:productsContext];
+                filter.order_Month__c=filtersDict[@"Order_Month__c"];
+                filter.stock__c=[NSString stringWithFormat:@"%@",filtersDict[@"Stock__c"]];
+                filter.mRP__c=[filtersDict[@"MRP__c"] floatValue];
+                filter.collection_Name__c=filtersDict[@"Collection_Name__c"];
+                filter.tips_Color__c=filtersDict[@"Tips_Color__c"];
+                filter.temple_Material__c=filtersDict[@"Temple_Material__c"];
+                filter.temple_Color__c=filtersDict[@"Temple_Color__c"];
+                filter.style_Code__c=filtersDict[@"Style_Code__c"];
+                filter.size__c=filtersDict[@"Size__c"];
+                filter.shape__c=filtersDict[@"Shape__c"];
+                filter.product__c=filtersDict[@"Product__c"];
+                filter.wS_Price__c=[filtersDict[@"WS_Price__c"] floatValue];
+                filter.number__c=[NSString stringWithFormat:@"%@",filtersDict[@"Number__c"]];
+                filter.logo_Type__c=filtersDict[@"Logo_Type__c"];
+                filter.logo_Size__c=filtersDict[@"Logo_Size__c"];
+                filter.logo_Color__c=filtersDict[@"Logo_Color__c"];
+                filter.lens_Description__c=filtersDict[@"Lens_Description__c"];
+                filter.lens_Color__c=filtersDict[@"Lens_Color__c"];
+                filter.lens_Code__c=filtersDict[@"Lens_Code__c"];
+                filter.item_No__c=filtersDict[@"Item_No__c"];
+                filter.item_Group_Product_Family__c=filtersDict[@"Item_Group_Product_Family__c"];
+                filter.item_Description__c=filtersDict[@"Item_Description__c"];
+                filter.inactive_To__c=filtersDict[@"Inactive_To__c"];
+                filter.inactive_From__c=filtersDict[@"Inactive_From__c"];
+                filter.inactive__c=filtersDict[@"Inactive__c"];
+                filter.group_Name__c=filtersDict[@"Group_Name__c"];
+                filter.front_Color__c=filtersDict[@"Front_Color__c"];
+                filter.frame_Structure__c=filtersDict[@"Frame_Structure__c"];
+                filter.frame_Material__c=filtersDict[@"Frame_Material__c"];
+                filter.foreign_Name__c=filtersDict[@"Foreign_Name__c"];
+                filter.flex_Temple__c=filtersDict[@"Flex_Temple__c"];
+                filter.factory_Company__c=filtersDict[@"Factory_Company__c"];
+                filter.drawing_Code__c=filtersDict[@"Drawing_Code__c"];
+                filter.delivery_Month__c=filtersDict[@"Delivery_Month__c"];
+                filter.custom__c=filtersDict[@"Custom__c"];
+                filter.color_Code__c=filtersDict[@"Color_Code__c"];
+                filter.collection__c=filtersDict[@"Collection__c"];
+                filter.category__c=filtersDict[@"Category__c"];
+                filter.brand__c=filtersDict[@"Brand__c"];
+                filter.active_To__c=filtersDict[@"Active_To__c"];
+                filter.active_From__c=filtersDict[@"Active_From__c"];
+                filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
+                filter.rim__c=filtersDict[@"Rim__c"];
+                filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
+                filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
+                filter.codeId=filtersDict[@"Id"];
+                filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
+                NSDictionary *attDict=filtersDict[@"attributes"];
+                NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:productsContext];
+                Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:productsContext];
+                attributes.type=attDict[@"type"];
+                attributes.url=attDict[@"url"];
+                item.filters=filter;
+                item.filters.attribute=attributes;
+            }
+            if(Count%1000==0||arr.count-Count==1)
             {
                 [productsContext save:nil];
                 [downloadContext save:nil];
                 [productsContext reset];
             }
             if(arr.count-Count==1){
-            fetchedProductMaster=YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:Local_CallBackFor_Products_Stock_Fetched object:nil];//Local Notification When All products fetched Completely
+                fetchedProductMaster=YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:Local_CallBackFor_Products_Stock_Fetched object:nil];//Local Notification When All products fetched Completely
             }
             Count++;
             NSLog(@"Product-%d",Count);
             int percentage=[self progressofdownloadtotalValue:ids.count currentValue:Count remainingValue:arr.count];
             [[NSNotificationCenter defaultCenter] postNotificationName:PRODUC_FETCHING_STATUS_NOTIFICATION object:[NSNumber numberWithInteger:percentage]];
         }
-    if(arr.count==0){
-        fetchedProductMaster=YES;
-        int percentage=[self progressofdownloadtotalValue:ids.count currentValue:Count remainingValue:arr.count];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PRODUC_FETCHING_STATUS_NOTIFICATION object:[NSNumber numberWithInteger:percentage]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:Local_CallBackFor_Products_Stock_Fetched object:nil];//Local Notification When All products fetched Completely
-    }
+        if(arr.count==0){
+            fetchedProductMaster=YES;
+            int percentage=[self progressofdownloadtotalValue:ids.count currentValue:Count remainingValue:arr.count];
+            [[NSNotificationCenter defaultCenter] postNotificationName:PRODUC_FETCHING_STATUS_NOTIFICATION object:[NSNumber numberWithInteger:percentage]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Local_CallBackFor_Products_Stock_Fetched object:nil];//Local Notification When All products fetched Completely
+        }
+    }];
 }
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt{
     
@@ -475,9 +481,13 @@ int totalImages=0, currentImage=0, savedImages=0;
 
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
+//    NSMutableArray *allImagesArray=[[NSMutableArray alloc]init];
     for (NSDictionary *dic in arr)
     {
         totalImages+=(int)dic.allKeys.count;
+//        for (NSString *pathKey in dic.allKeys) {
+//            [allImagesArray addObject:@{pathKey:dic[pathKey]}];
+//        }
     }
     
     NSLog(@"Thread 2-Started Saving Images");
@@ -589,52 +599,55 @@ int totalImages=0, currentImage=0, savedImages=0;
     if(fetchedStockMaster&&fetchedProductMaster)
     {
         [[NSNotificationCenter defaultCenter]removeObserver:Local_CallBackFor_Products_Stock_Fetched];
-        
-        NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
-        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s LIKE item_Code_s"];
-        [fetchIds setPredicate:predicate];//Get All Stock Details in to array and macth the id to  Item master
-        NSArray *idsarr=[downloadContext executeFetchRequest:fetchIds error:nil];
-        [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            StockDetails *st=obj;
-            /*-Attach Stock Object to Item  master Object in Core Data*/
-            NSFetchRequest *fetchitems=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
-            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"filters.item_No__c == %@",st.item_Code_s];
-            [fetchitems setPredicate:predicate];
-            NSArray *itemsObjs=[downloadContext executeFetchRequest:fetchitems error:nil];
-            if(itemsObjs.count>0)
-            {
-                ItemMaster *item=itemsObjs.lastObject;
-                NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
-                item.stock=st;
-                st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
-                NSError *error;
-                [downloadContext save:&error];
-                /*----------------------------------------------------*/
-            }
-            else
-            {
-                NSLog(@"Id not matching in product Master-- %@",st.item_Code_s);
+        NSManagedObjectContext *mathingContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        mathingContext.parentContext=downloadContext;
+        [mathingContext performBlock:^{
+            NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s LIKE item_Code_s"];
+            [fetchIds setPredicate:predicate];//Get All Stock Details in to array and macth the id to  Item master
+            NSArray *idsarr=[mathingContext executeFetchRequest:fetchIds error:nil];
+            [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                StockDetails *st=obj;
+                NSLog(@"checking Code %@",st.item_Code_s);
+                /*-Attach Stock Object to Item  master Object in Core Data*/
+                NSFetchRequest *fetchitems=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
+                NSPredicate *predicate=[NSPredicate predicateWithFormat:@"filters.item_No__c == %@",st.item_Code_s];
+                [fetchitems setPredicate:predicate];
+                NSArray *itemsObjs=[mathingContext executeFetchRequest:fetchitems error:nil];
+                if(itemsObjs.count>0){
+                    ItemMaster *item=itemsObjs.lastObject;
+                    NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
+                    item.stock=st;
+                    st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
+                    NSError *error;
+                    [mathingContext save:&error];
+                    [downloadContext save:nil];
+                    NSLog(@"Error while saving--%@",error);
+                    /*----------------------------------------------------*/
+                }else{
+                    NSLog(@"Id not matching in product Master-- %@",st.item_Code_s);
+                }
+                if(idsarr.count-idx==1)
+                {
+                    //                [_delegateProducts productsListFetched];
+                }
+                float percent=((float)idx/(float)idsarr.count)*100.0;
+                [[NSNotificationCenter defaultCenter] postNotificationName:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION object:[NSNumber numberWithInteger:percent]];
+            }];
+            
+            if(idsarr.count==0){
+                float percent=100.0;
+                [[NSNotificationCenter defaultCenter] postNotificationName:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION object:[NSNumber numberWithInteger:percent]];
             }
             
-            if(idsarr.count-idx==1)
-            {
-//                [_delegateProducts productsListFetched];
-            }
-            float percent=((float)idx/(float)idsarr.count)*100.0;
-            [[NSNotificationCenter defaultCenter] postNotificationName:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION object:[NSNumber numberWithInteger:percent]];
         }];
-        
-        if(idsarr.count==0){
-            float percent=100.0;
-            [[NSNotificationCenter defaultCenter] postNotificationName:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION object:[NSNumber numberWithInteger:percent]];
-        }
     }
 }
 -(void) downloadImageFromURL :(NSString *)imageUrl withName:(NSString*)name{
-    
+    currentImage++;//SampleCode
     NSArray *listImageNames=[fileManager contentsOfDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES/"] error:nil];
     savedImages=(int)listImageNames.count;
-    float ImagesPercentage=((float)savedImages/(float)totalImages) * 100.0;
+    float ImagesPercentage=((float)currentImage/(float)totalImages) * 100.0;
     [[NSNotificationCenter defaultCenter]postNotificationName:IMAGES_FETCHING_STATUS_NOTIFICATION object:[NSNumber numberWithInteger:ImagesPercentage]];
 
     if([listImageNames containsObject:name])
