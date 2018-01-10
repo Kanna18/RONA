@@ -588,50 +588,55 @@
 
 -(void)tvImage:(UITableView*)tv aview:(UIView*)aView
 {
-    UIGraphicsBeginImageContextWithOptions(tv.bounds.size, tv.opaque, 0.0);
-    [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
-    [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
-    int rows = [tv numberOfRowsInSection:0];
-    int numberofRowsInView = 4;
-    for (int i =0; i < rows/numberofRowsInView; i++)
-    {
-        [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(i+1)*numberofRowsInView inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    if([tv numberOfRowsInSection:0]>0){
+        UIGraphicsBeginImageContextWithOptions(tv.bounds.size, tv.opaque, 0.0);
         [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
+        [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
+        int rows = [tv numberOfRowsInSection:0];
+        int numberofRowsInView = 4;
+        for (int i =0; i < rows/numberofRowsInView; i++)
+        {
+            [tv scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(i+1)*numberofRowsInView inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            [tv.layer renderInContext:UIGraphicsGetCurrentContext()];
+        }
+        UIImage *tVimage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        
+        CGRect rect1 = _bottomCalculationsView.bounds;
+        UIGraphicsBeginImageContextWithOptions(rect1.size, self.view.opaque, 0.0);
+        CGContextRef context2 = UIGraphicsGetCurrentContext();
+        [_bottomCalculationsView.layer renderInContext:context2];
+        UIImage *calcImg = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        CGRect headingImageRect =  CGRectMake(0, 200, self.view.frame.size.width, 238);
+        UIGraphicsBeginImageContextWithOptions(headingImageRect.size, self.view.opaque, 0.0);
+        CGContextRef headingcontext2 = UIGraphicsGetCurrentContext();
+        [self.view.layer renderInContext:headingcontext2];
+        UIImage *heading = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        
+        CGSize newSize = CGSizeMake(heading.size.width,heading.size.height+calcImg.size.height+tVimage.size.height);
+        UIGraphicsBeginImageContext( newSize );
+        // Use existing opacity as is
+        [heading drawInRect:CGRectMake(0,0,heading.size.width,heading.size.height)];
+        // Apply supplied opacity if applicable
+        [tVimage drawInRect:CGRectMake(0,heading.size.height,heading.size.width,tVimage.size.height) blendMode:kCGBlendModeNormal alpha:1];
+        [calcImg drawInRect:CGRectMake(0,tVimage.size.height+heading.size.height,heading.size.width,calcImg.size.height) blendMode:kCGBlendModeNormal alpha:1];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        
+        UIImageView *imgV=[[UIImageView alloc]initWithImage:newImage];
+        NSString * timestamp = [NSString stringWithFormat:@"%d", (int) ([[NSDate date] timeIntervalSince1970] * 1000)];
+        [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@.pdf",_cstdDataModel.Name]];
     }
-    UIImage *tVimage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    
-    CGRect rect1 = _bottomCalculationsView.bounds;
-    UIGraphicsBeginImageContextWithOptions(rect1.size, self.view.opaque, 0.0);
-    CGContextRef context2 = UIGraphicsGetCurrentContext();
-    [_bottomCalculationsView.layer renderInContext:context2];
-    UIImage *calcImg = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    CGRect headingImageRect =  CGRectMake(0, 200, self.view.frame.size.width, 238);
-    UIGraphicsBeginImageContextWithOptions(headingImageRect.size, self.view.opaque, 0.0);
-    CGContextRef headingcontext2 = UIGraphicsGetCurrentContext();
-    [self.view.layer renderInContext:headingcontext2];
-    UIImage *heading = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    
-    CGSize newSize = CGSizeMake(heading.size.width,heading.size.height+calcImg.size.height+tVimage.size.height);
-    UIGraphicsBeginImageContext( newSize );
-    // Use existing opacity as is
-    [heading drawInRect:CGRectMake(0,0,heading.size.width,heading.size.height)];
-    // Apply supplied opacity if applicable
-    [tVimage drawInRect:CGRectMake(0,heading.size.height,heading.size.width,tVimage.size.height) blendMode:kCGBlendModeNormal alpha:1];
-    [calcImg drawInRect:CGRectMake(0,tVimage.size.height+heading.size.height,heading.size.width,calcImg.size.height) blendMode:kCGBlendModeNormal alpha:1];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    
-    UIImageView *imgV=[[UIImageView alloc]initWithImage:newImage];
-    NSString * timestamp = [NSString stringWithFormat:@"%d", (int) ([[NSDate date] timeIntervalSince1970] * 1000)];
-    [self createPDFfromUIViews:imgV saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@.pdf",_cstdDataModel.Name]];
+    else{
+        showMessage(@"No Products to save as pdf", self.view);
+    }
 }
 
 - (void)createPDFfromUIViews:(UIView *)myImage saveToDocumentsWithFileName:(NSString *)string

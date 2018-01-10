@@ -422,7 +422,7 @@
     UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
     _detailedImageView.image=image;
     _itemSizeLabel.text=item.filters.size__c;
-    _selectedItemDesc.text=item.filters.product__c;
+    _selectedItemDesc.text=[NSString stringWithFormat:@"%@ %@ %@ %@",item.filters.brand__c,item.filters.product__c,item.filters.style_Code__c,item.filters.color_Code__c];
     _pricingLabel.text=[NSString stringWithFormat:@"₹%0.0f",item.filters.mRP__c];
     
     if(!(item.filters.discount__c>0))    {
@@ -448,15 +448,10 @@
         strSele=item.filters.color_Code__c;
     }
     [_allColoursBtn setTitle:strSele forState:UIControlStateNormal];
-    
-    
-    _itemModelNameLabel.text=item.filters.group_Name__c;
-    
-    
+    _itemModelNameLabel.text=item.filters.item_No__c;
     [_productsCollectionView reloadData];
 //    ronakGlobal.item=item;
     index=0; //Count For imgages Array
-    
 }
 
 
@@ -477,6 +472,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    [self cartCount];
+    [self.customersCollectionView reloadData];
     _sideView.hidden=NO;
 }
 - (IBAction)searchEveryWhereClick:(id)sender {
@@ -488,7 +485,7 @@
     }
     else
     {
-        [_searchEveryWhereOptn setBackgroundImage:nil forState:UIControlStateNormal];
+        [_searchEveryWhereOptn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         _searchEveryWhereOptn.selected=YES;
     }
 }
@@ -572,26 +569,29 @@
     }
 }
 - (IBAction)sideMenuClick:(id)sender {
-    _sideMenuButton.hidden=YES;
-    CGRect newFrame=_sideView.frame;
-    CGRect mainFrame=_containerView.frame;
-    if(newFrame.origin.x==0)
-    {
-        newFrame.origin.x=-300;
-        mainFrame.origin.x=0;
-        [self getProductItemsFilter];
-    }
-//    else
-//    {
-//        newFrame.origin.x=0;
-//        mainFrame.origin.x=350;
-//        
-//    }
-    [UIView animateWithDuration:0.3 animations:^{
-        _sideView.frame=newFrame;
-//        _containerView.frame=mainFrame;
-       
-    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _sideMenuButton.hidden=YES;
+        CGRect newFrame=_sideView.frame;
+        CGRect mainFrame=_containerView.frame;
+        if(newFrame.origin.x==0)
+        {
+            newFrame.origin.x=-300;
+            mainFrame.origin.x=0;
+            [self getProductItemsFilter];
+        }
+        //    else
+        //    {
+        //        newFrame.origin.x=0;
+        //        mainFrame.origin.x=350;
+        //
+        //    }
+        [UIView animateWithDuration:0.3 animations:^{
+            _sideView.frame=newFrame;
+            //        _containerView.frame=mainFrame;
+            
+        }];
+    });
 }
 
 
@@ -829,6 +829,11 @@
     if([identifier isEqualToString:@"orderSummaryNavigate"])
     {
         int CartCount=[[_cartOption currentTitle] intValue];
+//        NSMutableArray *countsArr=[[NSMutableArray alloc]init];
+//        for (int i=0; i<ronakGlobal.selectedCustomersArray.count; i++) {
+//            [countsArr addObject:[NSNumber numberWithInteger:[[ronakGlobal.selectedCustomersArray valueForKeyPath:@"defaultsCustomer.itemsCount"] count]]];
+//        }
+//        CartCount=[[countsArr valueForKey:@"Max"] intValue];
         if(CartCount>0){
             return YES;
         }

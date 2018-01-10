@@ -100,7 +100,6 @@ int totalImages=0, currentImage=0, savedImages=0;
     NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [productsContext setParentContext:downloadContext];
     [productsContext performBlock:^{
-        
         NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
         NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == codeId"];
@@ -180,13 +179,13 @@ int totalImages=0, currentImage=0, savedImages=0;
                 filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
                 filter.codeId=filtersDict[@"Id"];
                 filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
-                NSDictionary *attDict=filtersDict[@"attributes"];
-                NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:productsContext];
-                Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:productsContext];
-                attributes.type=attDict[@"type"];
-                attributes.url=attDict[@"url"];
+//                NSDictionary *attDict=filtersDict[@"attributes"];
+//                NSEntityDescription *entityAtt=[NSEntityDescription entityForName:NSStringFromClass([Att class]) inManagedObjectContext:productsContext];
+//                Att *attributes=[[Att alloc]initWithEntity:entityAtt insertIntoManagedObjectContext:productsContext];
+//                attributes.type=attDict[@"type"];
+//                attributes.url=attDict[@"url"];
                 item.filters=filter;
-                item.filters.attribute=attributes;
+//                item.filters.attribute=attributes;
             }
             if(Count%1000==0||arr.count-Count==1)
             {
@@ -430,11 +429,13 @@ int totalImages=0, currentImage=0, savedImages=0;
             if(data)
             {
                 NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                if([dict isKindOfClass:[NSDictionary class]]){
                 NSMutableArray *brandsA=dict[@"brandList"];
                 NSMutableArray *warehouseLisA=dict[@"warehouseList"];
                 defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
                 defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
                 NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
+                }
             }
     }];
     [dataTask resume];
@@ -485,42 +486,52 @@ int totalImages=0, currentImage=0, savedImages=0;
     for (NSDictionary *dic in arr)
     {
         totalImages+=(int)dic.allKeys.count;
-//        for (NSString *pathKey in dic.allKeys) {
-//            [allImagesArray addObject:@{pathKey:dic[pathKey]}];
-//        }
     }
-    
-    NSLog(@"Thread 2-Started Saving Images");
-    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
-    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
-        [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *imgDict=obj;
-            for (NSString *keyName in imgDict) {
-                if(keyName&&imgDict[keyName]!=[NSNull null])
-                {
-                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
-                }
-                NSLog(@"Downloading Array1 Image-%@",keyName);
-            }
-        }];
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *imgDict=obj;
+                    for (NSString *keyName in imgDict) {
+                        if(keyName&&imgDict[keyName]!=[NSNull null])
+                        {
+                            [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+                        }
+                        NSLog(@"Downloading Images-%@",keyName);
+                    }
+    }];
     });
     
-    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-    dispatch_async(queue2, ^{
-        
-        [secondHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSDictionary *imgDict=obj;
-            for (NSString *keyName in imgDict) {
-                if(keyName&&imgDict[keyName]!=[NSNull null])
-                {
-                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
-                }
-                NSLog(@"Downloading Array 2-%@",keyName);
-            }
-        }];
-    });
+//    NSLog(@"Thread 2-Started Saving Images");
+//    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
+//    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+//    dispatch_async(queue, ^{
+//        [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            NSDictionary *imgDict=obj;
+//            for (NSString *keyName in imgDict) {
+//                if(keyName&&imgDict[keyName]!=[NSNull null])
+//                {
+//                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+//                }
+//                NSLog(@"Downloading Array1 Image-%@",keyName);
+//            }
+//        }];
+//    });
+//
+//    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+//    dispatch_async(queue2, ^{
+//
+//        [secondHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            NSDictionary *imgDict=obj;
+//            for (NSString *keyName in imgDict) {
+//                if(keyName&&imgDict[keyName]!=[NSNull null])
+//                {
+//                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+//                }
+//                NSLog(@"Downloading Array 2-%@",keyName);
+//            }
+//        }];
+//    });
 }
 -(void)saveStockDetailstoCoreData:(NSMutableArray*)arr
 {

@@ -65,6 +65,7 @@
         for (CustomerDataModel *cst in selectedCustomersList)
         {
             [cst.defaultsCustomer.itemsCount removeAllObjects];
+            cst.defaultsCustomer.discount=@"";
         }
     }
 }
