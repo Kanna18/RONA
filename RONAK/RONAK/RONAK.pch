@@ -46,4 +46,7 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
+#import "SyncDBClass.h"
+#import "Reachability.h"
+
 #endif /* RONAK_pch */

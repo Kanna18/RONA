@@ -66,8 +66,10 @@ int totalImages=0, currentImage=0, savedImages=0;
     NSDictionary *headers = @{@"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
     NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
-                                  @"offSet":[NSNumber numberWithInteger:productsOffset]
+                                  @"offSet":[NSNumber numberWithInteger:productsOffset],
+                                  @"sync":@""
                                   };
+    
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_ProductList_B]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -98,7 +100,8 @@ int totalImages=0, currentImage=0, savedImages=0;
 -(void)fetchData:(NSMutableArray*)arr
 {
     NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    [productsContext setParentContext:downloadContext];
+    productsContext.parentContext=downloadContext;
+    
     [productsContext performBlock:^{
         NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
         NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
@@ -114,21 +117,12 @@ int totalImages=0, currentImage=0, savedImages=0;
         int Count=0;
         for (NSDictionary *obj in arr)
         {
-            NSString *code=obj[@"Id"];
-            NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
-            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId == %@",code];
-            [fetch setPredicate:predicate];
-            NSArray *filArr=[productsContext executeFetchRequest:fetch error:nil];
-            if(!(filArr.count>0))
-            {
                 NSDictionary *dic=obj;
                 NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:productsContext];
                 
-                //                ItemMaster *item=[[ItemMaster alloc]initWithContext:downloadContext];
                 ItemMaster *item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:productsContext];
                 item.imageUrl=dic[@"imageURL"];
                 item.imageName=dic[@"imageName"];
-                //                NSDictionary *filtersDict=dic[@"product"];/*Old*/
                 NSDictionary *filtersDict=dic;
                 NSEntityDescription *entityFilter=[NSEntityDescription entityForName:NSStringFromClass([Filters class]) inManagedObjectContext:productsContext];
                 Filters *filter=[[Filters alloc]initWithEntity:entityFilter insertIntoManagedObjectContext:productsContext];
@@ -186,11 +180,11 @@ int totalImages=0, currentImage=0, savedImages=0;
 //                attributes.url=attDict[@"url"];
                 item.filters=filter;
 //                item.filters.attribute=attributes;
-            }
             if(Count%1000==0||arr.count-Count==1)
             {
+                NSError *err;
                 [productsContext save:nil];
-                [downloadContext save:nil];
+                [downloadContext save:&err];
                 [productsContext reset];
             }
             if(arr.count-Count==1){
@@ -246,7 +240,6 @@ int totalImages=0, currentImage=0, savedImages=0;
     NSMutableArray *frontColF=[[NSMutableArray alloc]init];
     NSMutableArray *lensColF=[[NSMutableArray alloc]init];
     
-    
     [allFilters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
         Filters *fil=obj;
@@ -257,7 +250,6 @@ int totalImages=0, currentImage=0, savedImages=0;
 !([stockWarehouseF containsObject:fil.stock_Warehouse__c])&&!(fil.stock_Warehouse__c==NULL)?[stockWarehouseF addObject:fil.stock_Warehouse__c]:@"";
     !([stockF containsObject:fil.stock__c])&&!(fil.stock__c==NULL)?[stockF addObject:fil.stock__c]:@"";
      
-         
          !([lensDesF containsObject:fil.lens_Description__c])&&!(fil.lens_Description__c==NULL)?[lensDesF addObject:fil.lens_Description__c]:@"";
 //         !([wsPrice containsObject:fil.wS_Price__c])&&!(fil.wS_Price__c==NULL)?[wsPrice addObject:fil.wS_Price__c]:@"";
          !([shapeF containsObject:fil.shape__c])&&!(fil.shape__c==NULL)?[shapeF addObject:fil.shape__c]:@"";
@@ -329,9 +321,7 @@ int totalImages=0, currentImage=0, savedImages=0;
                                       @"options":[lensColF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":@"Poster Model",
                                       @"options":@[@"Yes",@"No"]}];
-    
     NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);
-    
 }
 
 
@@ -373,7 +363,8 @@ int totalImages=0, currentImage=0, savedImages=0;
     NSDictionary *headers = @{ @"content-type": @"application/json",
                                @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
     NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
-                                  @"offSet":[NSNumber numberWithInteger:offSet]
+                                  @"offSet":[NSNumber numberWithInteger:offSet],
+                                  @"sync":@""
                                   };
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_customersList_B]
@@ -384,26 +375,23 @@ int totalImages=0, currentImage=0, savedImages=0;
     [request setHTTPBody:postData];
     
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                                      {
-                                          NSArray *arr;
-                                          if(data){
-                                              arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
-                                          if(arr.count>1)
-                                          {
-                                              NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
-                                              offSet=[slNoc[slNoc.count-1] intValue];
-                                              [custDataOffsetArray addObjectsFromArray:arr];
-                                              [self restServiceForCustomerList];
-                                          }
-                                          else{
-                                              NSError *cerr;
-                                              NSData *jsonData=[NSJSONSerialization dataWithJSONObject:custDataOffsetArray options:0 error:nil];
-                                              [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
-                                              }
-                                          }
-                                      }];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+            NSArray *arr;
+            if(data){
+            arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
+            if(arr.count>1){
+                NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
+                offSet=[slNoc[slNoc.count-1] intValue];
+                [custDataOffsetArray addObjectsFromArray:arr];
+                [self restServiceForCustomerList];
+            }
+            else{
+                    NSError *cerr;
+                    NSData *jsonData=[NSJSONSerialization dataWithJSONObject:custDataOffsetArray options:0 error:nil];
+                    [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
+                }
+            }
+    }];
     [dataTask resume];
 
 }
@@ -412,12 +400,9 @@ int totalImages=0, currentImage=0, savedImages=0;
     
     NSDictionary *headers = @{@"content-type": @"application/json",
                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
-    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)
-                                  };
+    NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_warehouseMaster_b]
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:10.0];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_warehouseMaster_b] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
     [request setHTTPBody:postData];
@@ -449,7 +434,8 @@ int totalImages=0, currentImage=0, savedImages=0;
     NSDictionary *headers = @{@"content-type": @"application/json",
                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
     NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail),
-                                  @"offSet":[NSNumber numberWithInteger:stockOffset]
+                                  @"offSet":[NSNumber numberWithInteger:stockOffset],
+                                  @"sync":@""
                                 };
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_stockDetails_b]];
@@ -487,51 +473,51 @@ int totalImages=0, currentImage=0, savedImages=0;
     {
         totalImages+=(int)dic.allKeys.count;
     }
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-    dispatch_async(queue, ^{
-    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDictionary *imgDict=obj;
-                    for (NSString *keyName in imgDict) {
-                        if(keyName&&imgDict[keyName]!=[NSNull null])
-                        {
-                            [self downloadImageFromURL:imgDict[keyName] withName:keyName];
-                        }
-                        NSLog(@"Downloading Images-%@",keyName);
-                    }
-    }];
-    });
-    
-//    NSLog(@"Thread 2-Started Saving Images");
-//    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
-//    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
 //    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
 //    dispatch_async(queue, ^{
-//        [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            NSDictionary *imgDict=obj;
-//            for (NSString *keyName in imgDict) {
-//                if(keyName&&imgDict[keyName]!=[NSNull null])
-//                {
-//                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
-//                }
-//                NSLog(@"Downloading Array1 Image-%@",keyName);
-//            }
-//        }];
+//    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSDictionary *imgDict=obj;
+//                    for (NSString *keyName in imgDict) {
+//                        if(keyName&&imgDict[keyName]!=[NSNull null])
+//                        {
+//                            [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+//                        }
+//                        NSLog(@"Downloading Images-%@",keyName);
+//                    }
+//    }];
 //    });
-//
-//    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
-//    dispatch_async(queue2, ^{
-//
-//        [secondHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            NSDictionary *imgDict=obj;
-//            for (NSString *keyName in imgDict) {
-//                if(keyName&&imgDict[keyName]!=[NSNull null])
-//                {
-//                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
-//                }
-//                NSLog(@"Downloading Array 2-%@",keyName);
-//            }
-//        }];
-//    });
+    
+    NSLog(@"Thread 2-Started Saving Images");
+    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
+    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *imgDict=obj;
+            for (NSString *keyName in imgDict) {
+                if(keyName&&imgDict[keyName]!=[NSNull null])
+                {
+                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+                }
+                NSLog(@"Downloading Array1 Image-%@",keyName);
+            }
+        }];
+    });
+
+    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue2, ^{
+
+        [secondHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSDictionary *imgDict=obj;
+            for (NSString *keyName in imgDict) {
+                if(keyName&&imgDict[keyName]!=[NSNull null])
+                {
+                    [self downloadImageFromURL:imgDict[keyName] withName:keyName];
+                }
+                NSLog(@"Downloading Array 2-%@",keyName);
+            }
+        }];
+    });
 }
 -(void)saveStockDetailstoCoreData:(NSMutableArray*)arr
 {
@@ -539,9 +525,7 @@ int totalImages=0, currentImage=0, savedImages=0;
     stockContext.parentContext=downloadContext;
     
     [stockContext performBlock:^{
-        
         int localCount=0;
-       
         NSMutableArray *ids=[arr valueForKeyPath:@"stock.Id"];//Get All IdsArray From Response
         NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId_s LIKE codeId_s"];
@@ -706,12 +690,12 @@ int totalImages=0, currentImage=0, savedImages=0;
                 NSLog(@"%@",jsonD);
                 NSString *str=jsonD.count>0?jsonD[0][@"message"]:@"Succes";
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:str];
+                [self removeFromOfflineDraftsArray:jsonParameter];
             }];
     [dataTask resume];
 }
 
 -(void)saveOrderWithAccessToken:(NSMutableArray*)jsonParameter{
-    
     NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,defaultGet(savedUserEmail),defaultGet(savedUserPassword)];
     [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)
      {
@@ -726,14 +710,28 @@ int totalImages=0, currentImage=0, savedImages=0;
          }
      } andErrorBlock:^(NSError *error) {
          [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:@"Order not saved please try again later :("];
+         [self addtoOfflineDraftsArray:jsonParameter];
      }];
-    
+}
+-(void)addtoOfflineDraftsArray:(NSMutableArray*)jsonStr
+{
+    NSMutableArray *demoArr=[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(saveOrDraftsOrderArrayOffline)]];
+    if(![demoArr containsObject:jsonStr]){
+        [demoArr addObject:jsonStr];
+    }
+    defaultSet([NSKeyedArchiver archivedDataWithRootObject:demoArr], saveOrDraftsOrderArrayOffline);
+}
+-(void)removeFromOfflineDraftsArray:(NSMutableArray*)jsonStr
+{
+    NSMutableArray *demoArr=[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(saveOrDraftsOrderArrayOffline)]];
+    if([demoArr containsObject:jsonStr]){
+        [demoArr removeObject:jsonStr];
+    }
+    defaultSet([NSKeyedArchiver archivedDataWithRootObject:demoArr], saveOrDraftsOrderArrayOffline);
 }
 
 #pragma mark -Getting Auth Token--
-
 -(void)regenerateAuthtenticationToken{
-    
     NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,defaultGet(savedUserEmail),defaultGet(savedUserPassword)];
     [serverAPI getAuthTokenPath:rest_generateToken_B bodyString:bodyStr SuccessBlock:^(id responseObj)
      {
@@ -744,7 +742,6 @@ int totalImages=0, currentImage=0, savedImages=0;
              NSLog(@"--New Auth Token Generated -%@",defaultGet(kaccess_token));
          }
      } andErrorBlock:^(NSError *error) {
-         
      }];
 }
 
@@ -756,5 +753,4 @@ int totalImages=0, currentImage=0, savedImages=0;
     float Pdown=(percentage / total)*100;
     return Pdown;
 }
-
 @end

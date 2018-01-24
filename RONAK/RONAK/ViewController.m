@@ -16,13 +16,15 @@
 
 
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 {
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
     CGFloat customHeight;
-    NSArray *arr;
+    NSMutableArray *arr;
+    int indexForSearch;
+    NSString *searchtext;
 }
 @end
 
@@ -37,16 +39,13 @@
     //Set isMultipleExpansionAllowed = true is multiple expanded sections to be allowed at a time. Default is NO.
     isMultipleExpansionAllowed = YES;
     
-    
     arrSelectedSectionIndex = [[NSMutableArray alloc] init];
     
     if (!isMultipleExpansionAllowed) {
         [arrSelectedSectionIndex addObject:[NSNumber numberWithInt:(int)arr.count+2]];
     }
     
-    
-    arr=ronakGlobal.advancedFilters1;
-    
+    arr=[NSMutableArray arrayWithArray:ronakGlobal.advancedFilters1];
  
     
     [tblView registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
@@ -56,15 +55,17 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
 }
 
 #pragma mark - TableView methods
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return arr.count;
 }
 
@@ -154,11 +155,11 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ViewControllerCellHeader *headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
-    
+    headerView.searchField.delegate=self;
+    headerView.searchField.tag=section+1000;
     if (headerView ==nil)
     {
         [tblView registerClass:[ViewControllerCellHeader class] forCellReuseIdentifier:@"ViewControllerCellHeader"];
-
         headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
     }
 
@@ -167,6 +168,12 @@
     if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]])
     {
         headerView.btnShowHide.selected = YES;
+        if([ronakGlobal.advancedFilters1[section][@"options"] count]>searchFiilterCount){
+            headerView.searchField.hidden=NO;
+        }
+    }
+    if(section+1000 == indexForSearch+1000){
+//        [headerView.searchField becomeFirstResponder];
     }
     
     [[headerView btnShowHide] setTag:section];
@@ -248,6 +255,41 @@
     }
 }
 
+-(void)searchEnabledForAdvancedOne:(id)notification{
+    UITextField *textField;
+    if([notification isKindOfClass:[NSNotification class]]){
+        textField=[(NSNotification*)notification object];
+    }else if([notification isKindOfClass:[UITextField class]]){
+        textField=(UITextField*)notification;
+    }
+    indexForSearch=(int)textField.tag-1000;
+    searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *head=ronakGlobal.advancedFilters1[indexForSearch][@"heading"];
+    if(searchtext.length>0){
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF BEGINSWITH[c] %@",searchtext];
+        NSArray *filArr = [ronakGlobal.advancedFilters1[indexForSearch][@"options"] filteredArrayUsingPredicate:predicate];
+        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":filArr}];
+    }else{
+        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters1[indexForSearch][@"options"]}];
+    }
+    [textField resignFirstResponder];
+    [tblView reloadData];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedOne:) name:UITextFieldTextDidChangeNotification object:textField];
+    
+    if(textField.tag == indexForSearch+1000){
+        textField.text=searchtext;
+    }else{
+        textField.text=@"";
+    }
+    NSLog(@"address of table view %@",textField);
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:textField];
+}
 
 #pragma mark - Memory Warning
 

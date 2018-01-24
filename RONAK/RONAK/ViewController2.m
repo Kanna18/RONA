@@ -17,13 +17,15 @@
 //#define count 20
 
 
-@interface ViewController2 ()<UITableViewDataSource, UITableViewDelegate>
+@interface ViewController2 ()<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 {
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
     CGFloat customHeight,customHeightSecondCell;
-    NSArray *arr;
+    NSMutableArray *arr;
+    int indexForSearch;
+    NSString *searchtext;
 }
 @end
 
@@ -41,7 +43,8 @@
     arrSelectedSectionIndex = [[NSMutableArray alloc] init];
     
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    arr=ronakGlobal.advancedFilters2;
+
+    arr=[NSMutableArray arrayWithArray:ronakGlobal.advancedFilters2];
     
     if (!isMultipleExpansionAllowed) {
         [arrSelectedSectionIndex addObject:[NSNumber numberWithInt:(int)arr.count+2]];
@@ -158,6 +161,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {    
     ViewControllerCellHeader *headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
+    headerView.searchField.delegate=self;
+    headerView.searchField.tag=section+1000;
     
     if (headerView ==nil)
     {
@@ -166,10 +171,15 @@
         headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
     }
     headerView.lbTitle.text=arr[section][@"heading"];
-    
     if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]])
     {
         headerView.btnShowHide.selected = YES;
+        if([ronakGlobal.advancedFilters2[section][@"options"] count]>searchFiilterCount){
+            headerView.searchField.hidden=NO;
+        }
+    }
+    if(section+1000 == indexForSearch+1000){
+//        [headerView.searchField becomeFirstResponder];
     }
     
     [[headerView btnShowHide] setTag:section];
@@ -251,6 +261,44 @@
      }
     [tableView reloadData];
 }
+
+-(void)searchEnabledForAdvancedTwo:(id)notification{
+    UITextField *textField;
+    if([notification isKindOfClass:[NSNotification class]]){
+        textField=[(NSNotification*)notification object];
+    }else if([notification isKindOfClass:[UITextField class]]){
+        textField=(UITextField*)notification;
+    }
+    indexForSearch=(int)textField.tag-1000;
+    searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *head=ronakGlobal.advancedFilters2[indexForSearch][@"heading"];
+    if(searchtext.length>0){
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF BEGINSWITH[c] %@",searchtext];
+        NSArray *filArr = [ronakGlobal.advancedFilters2[indexForSearch][@"options"] filteredArrayUsingPredicate:predicate];
+        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":filArr}];
+    }else{
+        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters2[indexForSearch][@"options"]}];
+    }
+    [textField resignFirstResponder];
+    [tblView reloadData];
+    
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedTwo:) name:UITextFieldTextDidChangeNotification object:textField];
+    
+    if(textField.tag == indexForSearch+1000){
+        textField.text=searchtext;
+    }else{
+        textField.text=@"";
+    }
+    NSLog(@"address of table view %@",textField);
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:textField];
+}
+
 
 
 #pragma mark - Memory Warning

@@ -21,6 +21,8 @@
 - (IBAction)reports_click:(id)sender;
 - (IBAction)activity_click:(id)sender;
 - (IBAction)logout_click:(id)sender;
+- (IBAction)multimedia_click:(id)sender;
+- (IBAction)settings_click:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *downloadStatus;
 @property (strong, nonatomic) IBOutlet UILabel *downloadStockDetails;

@@ -15,6 +15,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
+    
 }
 -(void)awakeFromNib
 {
@@ -23,6 +24,7 @@
     
     _headerButton.imageEdgeInsets=UIEdgeInsetsMake(0, 0, 0,30);
 //    UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>)
+    _searchField.hidden=YES;
     
 }
 

@@ -15,6 +15,10 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    UILongPressGestureRecognizer *longgest=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(showStockCount)];
+    longgest.minimumPressDuration=1;
+    [self addGestureRecognizer:longgest];
 }
 -(void)bindData:(ItemMaster*)item{
     
@@ -50,6 +54,12 @@
     UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return destImage;
+}
+
+-(void)showStockCount{
+    
+    [_delegate showStockCountofProduct:_item.stock frame:self.frame];
+    
 }
 
 @end

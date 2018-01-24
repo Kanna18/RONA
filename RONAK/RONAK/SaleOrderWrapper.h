@@ -33,6 +33,8 @@
 @property NSString *Remarks;
 @property NSString *WarehouseCode;
 @property NSString *TaxCode;
+@property BOOL draft;
+@property NSString *salesforceID;
 
 @property NSMutableArray *listItemsArray;
 -(instancetype)initWithCustomerDetails:(CustomerDataModel*)cst;
@@ -42,6 +44,6 @@
 @interface SaleOrderWrapper : NSObject
 -(instancetype)init;
 @property NSMutableArray *finalArray;
--(void)sendResponse;
+-(void)sendResponseForString:(NSString*)str;
 
 @end

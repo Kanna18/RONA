@@ -11,18 +11,23 @@
 #import "ViewControllerCell.h"
 #import "RangTableViewCell.h"
 #import "ViewControllerCellHeader.h"
-
 #include <stdlib.h>
 
+#define bottomPaddingSpace 80.0
 
-
-@interface DefaultFilter1 ()<UITableViewDataSource, UITableViewDelegate>
+@interface DefaultFilter1 ()<UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 {
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
     CGFloat customHeight;
-    NSArray *arr;
+    NSMutableArray *arr;
+    int indexForSearch;
+    NSString *searchtext;
+  
+    CGRect tableViewRect;
+    UITextField *actifText;
+    
 }
 @end
 
@@ -37,27 +42,42 @@
     //Set isMultipleExpansionAllowed = true is multiple expanded sections to be allowed at a time. Default is NO.
     isMultipleExpansionAllowed = YES;
     
-    
     arrSelectedSectionIndex = [[NSMutableArray alloc] init];
     
     if (!isMultipleExpansionAllowed) {
         [arrSelectedSectionIndex addObject:[NSNumber numberWithInt:(int)arr.count+2]];
     }
     
-    
-    arr=ronakGlobal.DefFiltersOne;
-    
-    
+    arr=[NSMutableArray arrayWithArray:ronakGlobal.DefFiltersOne];
     
     [tblView registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
     tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     customHeight=44;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    // Register notification when the keyboard will be hide
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    tableViewRect=tblView.frame;
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:YES];
 }
 
 #pragma mark - TableView methods
@@ -113,23 +133,26 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ViewControllerCellHeader *headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
-    
+    headerView.searchField.delegate=self;
+    headerView.searchField.tag=section+1000;
     if (headerView ==nil)
     {
         [tblView registerClass:[ViewControllerCellHeader class] forCellReuseIdentifier:@"ViewControllerCellHeader"];
-        
         headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
-    }
-    
+    }    
     headerView.lbTitle.text=arr[section][@"heading"];
     
     if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]])
     {
         headerView.btnShowHide.selected = YES;
+        if([ronakGlobal.DefFiltersOne[section][@"options"] count]>searchFiilterCount){
+        headerView.searchField.hidden=NO;
+        }
     }
-    
+    if(section+1000 == indexForSearch+1000){
+//        [headerView.searchField becomeFirstResponder];
+    }
     [[headerView btnShowHide] setTag:section];
-    
     [[headerView btnShowHide] addTarget:self action:@selector(btnTapShowHideSection:) forControlEvents:UIControlEventTouchUpInside];
     
     return headerView.contentView;
@@ -187,6 +210,113 @@
     [tableView reloadData];
 }
 
+-(void)searchEnabled:(id)notification{
+    UITextField *textField;
+    if([notification isKindOfClass:[NSNotification class]]){
+        textField=[(NSNotification*)notification object];
+    }else if([notification isKindOfClass:[UITextField class]]){
+        textField=(UITextField*)notification;
+    }
+    indexForSearch=(int)textField.tag-1000;
+    searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *head=ronakGlobal.DefFiltersOne[indexForSearch][@"heading"];
+    if(searchtext.length>0){
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF BEGINSWITH[c] %@",searchtext];
+        NSArray *filArr = [ronakGlobal.DefFiltersOne[indexForSearch][@"options"] filteredArrayUsingPredicate:predicate];
+        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":filArr}];
+    }else{
+        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.DefFiltersOne[indexForSearch][@"options"]}];
+    }
+//    [textField resignFirstResponder];
+    [tblView reloadData];
+    
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabled:) name:UITextFieldTextDidChangeNotification object:textField];
+//    actifText = textField;
+    
+    if(textField.tag == indexForSearch+1000){
+        textField.text=searchtext;
+    }else{
+        textField.text=@"";
+    }
+    NSLog(@"address of table view %@",textField);
+
+}
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    textField.text=@"";
+    [self searchEnabled:textField];
+    return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:textField];
+}
+
+
+
+-(void) keyboardWillShow:(NSNotification *)note
+{
+    // Get the keyboard size
+    CGRect keyboardBounds;
+    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+    
+    // Detect orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect frame = tableViewRect;
+    
+    // Start animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    // Reduce size of the Table view
+//    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+//        frame.size.height -= keyboardBounds.size.height;
+//    else
+        frame.size.height -= keyboardBounds.size.height;
+        
+    frame.size.height=frame.size.height;
+    // Apply new size of table view
+    tblView.frame = frame;
+    
+    // Scroll the table view to see the TextField just above the keyboard
+//    if (actifText)
+//    {
+//        CGRect textFieldRect = [tblView convertRect:actifText.bounds fromView:actifText];
+//        [tblView scrollRectToVisible:textFieldRect animated:NO];
+//    }
+    
+    [UIView commitAnimations];
+}
+
+-(void) keyboardWillHide:(NSNotification *)note
+{
+    // Get the keyboard size
+    CGRect keyboardBounds;
+    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+    
+    // Detect orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect frame = tableViewRect;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    // Increase size of the Table view
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+        frame.size.height += keyboardBounds.size.height;
+    else
+        frame.size.height += keyboardBounds.size.width;
+    
+    // Apply new size of table view
+    tblView.frame = tableViewRect;
+    
+    [UIView commitAnimations];
+}
 
 #pragma mark - Memory Warning
 

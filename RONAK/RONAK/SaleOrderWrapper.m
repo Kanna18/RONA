@@ -88,7 +88,7 @@
 }
 
 
--(void)sendResponse{
+-(void)sendResponseForString:(NSString*)oderStr{
     
     NSMutableArray *responseArr=[[NSMutableArray alloc]init];
     [_finalArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -109,21 +109,27 @@
             [itemsArr addObject:dict];
         }];
         
-        
-        [responseArr addObject:@{@"account":sl.account,
-                                 @"shipToParty":sl.shipToParty,
-                                 @"DeliveryChallan":sl.DeliveryChallan,
-                                 @"NetAmount":[NSNumber numberWithInt:[sl.NetAmount intValue]],
-                                 @"Discount":[NSNumber numberWithInt:[sl.Discount intValue]],
-                                 @"FutureDeliveryDate":sl.FutureDeliveryDate,
-                                 @"Remarks":sl.Remarks,
-                                 @"WarehouseCode":sl.WarehouseCode,
-                                 @"TaxCode":sl.TaxCode,
-                                 @"saleOrdeLineItems":itemsArr
-                                 }];
+        sl.draft=[oderStr isEqualToString:kSaleOrder]?false:true;
+        sl.salesforceID=[oderStr isEqualToString:ksaveDraft]?@"":@"";
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc]initWithObjectsAndKeys:                                       sl.account,@"account",
+            sl.shipToParty,@"shipToParty",
+            sl.DeliveryChallan,@"DeliveryChallan",
+            [NSNumber numberWithInt:[sl.NetAmount intValue]],@"NetAmount",
+            [NSNumber numberWithInt:[sl.Discount intValue]],@"Discount",
+            sl.FutureDeliveryDate,@"FutureDeliveryDate",
+            sl.Remarks,@"Remarks",
+            sl.WarehouseCode,@"WarehouseCode",
+            sl.TaxCode,@"TaxCode",
+            itemsArr,@"saleOrdeLineItems",
+            [NSNumber numberWithBool:sl.draft],@"draft",
+                                   nil];
+//        if([oderStr isEqualToString:ksaveDraft]){
+//            [dict setValue:sl.salesforceID forKey:@"salesforceID"];
+//        }
+        [responseArr addObject:dict];
     }];
-    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
-    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
+//    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 //    NSLog(@"%@",jsinStr);
     DownloadProducts *dow=[[DownloadProducts alloc]init];
 //    [dow regenerateAuthtenticationToken];

@@ -152,6 +152,7 @@
     if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]])
     {
         headerView.btnShowHide.selected = YES;
+        
     }
     
     [[headerView btnShowHide] setTag:section];

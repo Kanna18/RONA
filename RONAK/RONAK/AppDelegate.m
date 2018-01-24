@@ -62,6 +62,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     
     UIWindow* topWindow;
     UIWindow* pWindow;
+    Reachability *reachability;
     
 }
 
@@ -145,10 +146,29 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 //    [[UITextField appearance] setFont:sfFont(17.0)];
     
 //    self.context=self.persistentContainer.viewContext;
+    reachability= [Reachability reachabilityForInternetConnection];
+    reachability.reachableBlock = ^(Reachability *reachability) {
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            //Background Thread
+            NSMutableArray *demoArr=[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(saveOrDraftsOrderArrayOffline)]];
+            if(demoArr.count>0){
+                DownloadProducts *dow=[[DownloadProducts alloc]init];
+                for (NSMutableArray *arr in demoArr) {
+                    [dow saveOrderWithAccessToken:arr];
+                }
+            }
+        });
+          NSLog(@"UnReaching Network");
+    };
+    reachability.unreachableBlock = ^(Reachability *reachability) {
+        NSLog(@"UnReaching Network");
+    };
+    [reachability startNotifier];
     
     NSLog(@"CoreData Path--->%@",[self applicationDocumentsDirectory]);
     return YES;
 }
+
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {

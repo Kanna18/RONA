@@ -65,6 +65,9 @@
             btn.titleLabel.font=gothMedium(15);
         }
     }
+    
+    SyncDBClass *sync=[[SyncDBClass alloc]init];
+    [sync syncProductMaster];
 }
 
 -(void)updateProductLabel:(NSNotification*)notification{
@@ -114,6 +117,9 @@
     int percentage=[notification.object intValue];
     if(percentage>=99){
         savedData=YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _matchingLabel.text=@"Completed";
+        });
         [self allDownloadsCompleted];
     }else{
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -230,6 +236,7 @@
 }
 
 - (IBAction)activity_click:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://test.salesforce.com"]];
 }
 
 - (IBAction)logout_click:(id)sender {
@@ -242,5 +249,23 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserPassword];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserEmail];
     
+}
+
+- (IBAction)multimedia_click:(id)sender {
+}
+
+- (IBAction)settings_click:(id)sender {
+    LoadingView *load=[[LoadingView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    [load WithView:self.view with_message:@"Syncing All data"];
+    [load start];
+    SyncDBClass *sync=[[SyncDBClass alloc]init];
+    [sync syncProductMaster];
+    [sync syncStockWarehouse];
+    [sync syncOrderStatusResponse];
+    DownloadProducts *dow=[[DownloadProducts alloc]init];
+    [dow downloadCustomersListInBackground];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{        
+        [load stop];
+    });
 }
 @end

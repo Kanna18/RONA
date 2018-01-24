@@ -9,6 +9,7 @@
 #ifndef Constants_h
 #define Constants_h
 
+#define searchFiilterCount 10
 
 //Fonts
 #define  helvTica(hgt)  [UIFont fontWithName:@"Helvetica" size:hgt]
@@ -104,6 +105,12 @@
 #define kStockvalue @"Stock Qty"
 #define  firstTimeLaunching @"FirstTime"
 #define unzipedItemsSuccess @"unzip"
+
+//OrderStatus
+#define orderStatusArrayOffline @"OrderstatusArray" // Reports -Json Response saving array key
+#define kSaleOrder @"SaleOrder"
+#define ksaveDraft @"SaveDraft"
+#define saveOrDraftsOrderArrayOffline @"SaveDraftOrder"
 
 
 //Additional

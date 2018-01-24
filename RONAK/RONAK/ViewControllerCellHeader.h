@@ -14,5 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *btnShowHide;
 @property (strong, nonatomic) IBOutlet UIButton *headerButton;
+@property (strong, nonatomic) IBOutlet UITextField *searchField;
+
 
 @end

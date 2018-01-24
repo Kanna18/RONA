@@ -9,7 +9,7 @@
 #import "OrderStatusViewController.h"
 #import "OrderStatsResponse.h"
 
-@interface OrderStatusViewController ()
+@interface OrderStatusViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -18,7 +18,7 @@
     NSMutableArray *dataResp;
     UIView *overlayView;
     NSMutableArray *tVData;
-    
+    LoadingView *load;
     
 }
 
@@ -32,6 +32,10 @@
     _statusTableView.layer.borderWidth=1.0f;
     _statusTableView.layer.borderColor=RGB(209, 210, 212).CGColor;
     _statusTableView.clipsToBounds=YES;
+    
+    load=[[LoadingView alloc]init];
+    [load loadingWithlightAlpha:self.view with_message:@"Loading Order Status Reports"];
+    [load start];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
         [self getOrderStatusResponse];
@@ -42,6 +46,24 @@
     [self.view addGestureRecognizer:tap];
     tap.numberOfTapsRequired=2;
     tVData=[[NSMutableArray alloc]init];
+    
+    _fromDateTf.delegate=self;
+    _toDateTF.delegate=self;
+    _customerNameTF.delegate=self;
+    _StatusTF.delegate=self;
+    
+    _filterView.hidden=YES;
+    
+    UITapGestureRecognizer *tapTwice=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showFilter:)];
+    tapTwice.numberOfTapsRequired=2;
+    [self.view addGestureRecognizer:tapTwice];
+    
+    UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+    datePicker.datePickerMode=UIDatePickerModeDate;
+    [datePicker setDate:[NSDate date]];
+
+    [self.toDateTF setInputView:datePicker];
+    [self.fromDateTf setInputView:datePicker];
     
 
 }
@@ -110,9 +132,20 @@
         if(data){
             NSArray *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             NSError *err;
-           dataResp=[OrderStatsResponse arrayOfModelsFromDictionaries:dict error:&err];
+            defaultSet(dict, orderStatusArrayOffline);//Saving to defaults
+            dataResp=[OrderStatsResponse arrayOfModelsFromDictionaries:dict error:&err];
             [self customResponseFunction:dataResp];
+        }else{
+            NSArray *dict=defaultGet(orderStatusArrayOffline);//retrevingFrom Defaults
+            NSError *err;
+            if(dict){
+            dataResp=[OrderStatsResponse arrayOfModelsFromDictionaries:dict error:&err];
+            [self customResponseFunction:dataResp];
+            }
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+                [load stop];
+        });
     }];
     [dataTask resume];
    
@@ -180,13 +213,76 @@
             [tVData addObject:ordCSt];
         }];
     }];
-    
     [self performSelectorOnMainThread:@selector(tvDataReload) withObject:tVData waitUntilDone:YES];
 }
+
+
 -(void)tvDataReload{
 
     [_statusTableView reloadData];
 }
 
+
+-(void)showFilter:(id)sender
+{
+    if(_filterView.hidden==YES)
+    {
+        _filterView.hidden=NO;
+    }
+    else
+    {
+        _filterView.hidden=YES;
+        if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(Receipt_Date__c >= %@) AND (Receipt_Date__c <= %@)", _fromDateTf.text, _toDateTF.text];
+//            tvArray=[_cst.PDC__r.records filteredArrayUsingPredicate:predicate];
+//            NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Receipt_Date__c" ascending:YES];
+//            tvArray=[tvArray sortedArrayUsingDescriptors:@[sort]];
+//            [_listTableView reloadData];
+        }
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self addDoneButtontoKeyboard:textField];
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == _fromDateTf)
+    {
+        [self updateTextField:textField];
+    }
+    if(textField == _toDateTF)
+    {
+        [self updateTextField:textField];
+    }
+}
+
+-(void)updateTextField:(UITextField*)sender
+{
+    UIDatePicker *picker = (UIDatePicker*)sender.inputView;
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [DateFormatter stringFromDate:picker.date];
+    sender.text = [NSString stringWithFormat:@"%@",dateString];
+}
+-(void)addDoneButtontoKeyboard:(UITextField*)textField
+{
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
+    [keyboardToolbar sizeToFit];
+    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                      target:nil action:nil];
+    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                      target:self action:@selector(yourTextViewDoneButtonPressed)];
+    keyboardToolbar.items = @[flexBarButton,doneBarButton];
+    textField.inputAccessoryView = keyboardToolbar;
+}
+-(void)yourTextViewDoneButtonPressed
+{
+    [self.view endEditing:YES];
+}
 
 @end

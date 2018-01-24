@@ -12,6 +12,7 @@
 #import "Filters+CoreDataClass.h"
 #import "StockDetails+CoreDataClass.h"
 #import "ImagesArray+CoreDataClass.h"
+#import <SDWebImage/SDWebImageDownloader.h>
 
 #import "AppDelegate.h"
 
@@ -34,6 +35,9 @@
 -(void)getFilterFor:(NSString*)strFor withContext:(NSManagedObjectContext*)cntxt;
 -(NSMutableArray*)pickProductsFromFilters;
 -(void)downloadImagesandSavetolocalDataBase;
--(void)saveOrderWithAccessToken:(NSString*)jsonParameter;
+-(void)saveOrderWithAccessToken:(NSMutableArray*)jsonParameter;
 -(void)regenerateAuthtenticationToken;
+
+@property BOOL syncDataBase;
+
 @end

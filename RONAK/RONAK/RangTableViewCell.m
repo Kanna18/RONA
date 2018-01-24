@@ -6,6 +6,8 @@
 //  Copyright © 2017 RONAKOrganizationName. All rights reserved.
 //
 
+#define NUMBERS_ONLY @"1234567890"
+
 #import "RangTableViewCell.h"
 
 @implementation RangTableViewCell
@@ -159,6 +161,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    return ([string isEqualToString:filtered]);
 }
 
 @end

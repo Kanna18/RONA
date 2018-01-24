@@ -11,6 +11,10 @@
 #import "CollectionPopUp.h"
 #import "SaleOrderWrapper.h"
 
+#define saleOrderBtnTag 19
+#define saveDraftBtnTag 20
+
+
 @interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate,RemarksViewProtocol>
 
 @end
@@ -133,30 +137,36 @@
     _futureDateLabl.text=str;
     _percentageLabel.text=_cstdDataModel.defaultsCustomer.discount;
     
-    int total=0,sunGlassesGST=0,framesGST=0;
+    int total=0;
+//    int sunGlassesGST=0,framesGST=0;
     
     for (ItemMaster *item in _cstdDataModel.defaultsCustomer.itemsCount)
     {
         total+=item.filters.wS_Price__c;
-        if([item.filters.product__c isEqualToString:@"Sunglasses"])
-        {
-            sunGlassesGST+=item.filters.wS_Price__c;
-        }
-        if([item.filters.product__c isEqualToString:@"Frames"])
-        {
-            framesGST+=item.filters.wS_Price__c;
-        }
+//        if([item.filters.product__c isEqualToString:@"Sunglasses"])
+//        {
+//            sunGlassesGST+=item.filters.wS_Price__c;
+//        }
+//        if([item.filters.product__c isEqualToString:@"Frames"])
+//        {
+//            framesGST+=item.filters.wS_Price__c;
+//        }
     }
     
-    sunGlassesGST=sunGlassesGST*28/100;
-    framesGST=framesGST*14/100;
-    _sunGST.text=[NSString stringWithFormat:@"GST on SG 28%%"];
-    _gstSGValueLbl.text=[NSString stringWithFormat:@"%0.2f",(float)sunGlassesGST];
+//    sunGlassesGST=sunGlassesGST*28/100;
+//    framesGST=framesGST*14/100;
+//    _sunGST.text=[NSString stringWithFormat:@"GST on SG 28%%"];
+        _sunGST.text=@"";
+//    _gstSGValueLbl.text=[NSString stringWithFormat:@"%0.2f",(float)sunGlassesGST];
+//    _frameGST.text=[NSString stringWithFormat:@"GST on FR 14%%"];
+    _frameGST.text=@"";
+//    _gstFRValueLbl.text=[NSString stringWithFormat:@"%0.2f",(float)framesGST];
+//    _totalAmount.text=[NSString stringWithFormat:@"%0.2f",(float)(total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100)];
+//    _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)([_totalAmount.text floatValue]+sunGlassesGST+framesGST)];
 
-    _frameGST.text=[NSString stringWithFormat:@"GST on FR 14%%"];
-    _gstFRValueLbl.text=[NSString stringWithFormat:@"%0.2f",(float)framesGST];
     _totalAmount.text=[NSString stringWithFormat:@"%0.2f",(float)(total-(total*[_cstdDataModel.defaultsCustomer.discount intValue])/100)];
-    _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)([_totalAmount.text floatValue]+sunGlassesGST+framesGST)];
+    _netAmount.text=[NSString stringWithFormat:@"₹ %0.2f",(float)([_totalAmount.text floatValue])];
+    
     
     _ropilLabel.text=_cstdDataModel.defaultsCustomer.customerROIPL;
     _remarksLabel.text=_cstdDataModel.defaultsCustomer.customerRemarks;
@@ -417,7 +427,9 @@
         _draftBtn.selected=YES;
         if(![self.view.subviews containsObject:draftDCpop]){
         draftDCpop=[[CollectionPopUp alloc]initWithFrame:CGRectZero witTitle:@"Do you want to save as Draft" withSuperView:self];
+        draftDCpop.yesBtn.tag=saveDraftBtnTag;
         draftDCpop.center=self.view.center;
+            [draftDCpop.yesBtn addTarget:self action:@selector(saveOrderToProceed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:draftDCpop];
         }
     }
@@ -475,21 +487,26 @@
         saveOrderCollectionPop=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
         saveOrderCollectionPop.center=self.view.center;
         saveOrderCollectionPop.titleLabel.text=@"Do you want to Save Order";
-        [saveOrderCollectionPop.yesBtn addTarget:self action:@selector(saveOrderToProceed) forControlEvents:UIControlEventTouchUpInside];
+        saveOrderCollectionPop.yesBtn.tag=saleOrderBtnTag;
+        [saveOrderCollectionPop.yesBtn addTarget:self action:@selector(saveOrderToProceed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:saveOrderCollectionPop];
     }
-
 }
--(void)saveOrderToProceed{
+
+-(void)saveOrderToProceed:(UIButton*)sender{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveOrderMessage:) name:@"SaveOrderStatus" object:nil];
     [saveOrderCollectionPop removeFromSuperview];
     SaleOrderWrapper *sale=[[SaleOrderWrapper alloc]init];
-    [sale sendResponse];
+    if(sender.tag==saleOrderBtnTag){
+    [sale sendResponseForString:kSaleOrder];
+    }else if(sender.tag==saveDraftBtnTag){
+        [sale sendResponseForString:ksaveDraft];
+    }
     [load loadingWithlightAlpha:self.view with_message:@"Saving Order...."];
     [load start];
-    
 }
+
 -(void)saveOrderMessage:(NSNotification*)notification{
 
     NSString *str=notification.object;
@@ -513,8 +530,6 @@
         [load stop];
         });
     }
-    
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SaveOrderStatus" object:nil];
 }
 
@@ -697,8 +712,6 @@
             [load stop];
             showMessage(@"Please Configure Mail Settings in your Device", self.view);
         }
-
-        
     });
 }
 

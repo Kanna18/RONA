@@ -45,6 +45,10 @@
     }
     _amountLabel.text=[NSString stringWithFormat:@"180 + = ₹%d",(int)due];
     self.cstData=data;
+    
+    if(data.PDC__r.records.count>0){        
+        NSLog(@"");
+    }
 
 }
 -(void)loadSelectedCustomerFromArrat:(NSMutableArray*)arr

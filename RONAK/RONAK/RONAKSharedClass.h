@@ -37,4 +37,6 @@
 //StockDetails IDS
 @property NSArray *stockIDsArray;
 
+@property NSMutableArray *saveSaleOrderOffline;
+
 @end

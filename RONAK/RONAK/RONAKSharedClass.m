@@ -33,7 +33,13 @@
 //       _delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
 //        _context=_delegate.managedObjectContext;
         _selectedItemsTocartArr=[[NSMutableArray alloc]init];
-        NSLog(@"%@",_selectedFilter);
+        
+        if(!defaultGet(saveOrDraftsOrderArrayOffline)){
+        _saveSaleOrderOffline=[[NSMutableArray alloc]init];
+            defaultSet([NSKeyedArchiver archivedDataWithRootObject:_saveSaleOrderOffline], saveOrDraftsOrderArrayOffline);
+        }
+        NSLog(@"%@--%@",_selectedFilter,defaultGet(saveOrDraftsOrderArrayOffline));
+
     }
     return self;
 }

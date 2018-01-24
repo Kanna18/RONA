@@ -19,4 +19,11 @@
 
 @property (strong, nonatomic) IBOutlet UIView *headingsView;
 
+@property (strong, nonatomic) IBOutlet UIView *filterView;
+@property (strong, nonatomic) IBOutlet UITextField *fromDateTf;
+@property (strong, nonatomic) IBOutlet UITextField *toDateTF;
+@property (strong, nonatomic) IBOutlet UITextField *customerNameTF;
+
+@property (strong, nonatomic) IBOutlet UITextField *StatusTF;
+
 @end

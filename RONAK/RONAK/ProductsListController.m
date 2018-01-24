@@ -9,8 +9,9 @@
 #import "ProductsListController.h"
 #import "Calculator.h"
 #import "CategoryBased.h"
+#import "StockListView.h"
 
-@interface ProductsListController ()
+@interface ProductsListController ()<GestureProtocol,UITextFieldDelegate>
 
 @end
 
@@ -33,14 +34,14 @@
     Calculator *cal;
     
     NSMutableArray *categoryBasedSort;
-    
+    StockListView *stockListCountView;
     
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do additional setup after loading the view.
     
     index=0;
     modelIndex=0;
@@ -59,6 +60,12 @@
     [self getProductItemsFilter];
     [self zoomImageFunctionality];
 //    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
+    
+    stockListCountView=[[StockListView alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
+    stockListCountView.hidden=YES;
+    [self.productsCollectionView addSubview:stockListCountView];
+    _searchField.delegate=self;
+
 }
 
 -(void)getProductItemsFilter{
@@ -190,10 +197,14 @@
 
 -(void)swipeActions:(UISwipeGestureRecognizer*)swipe
 {
-    if(showItemsOnscrnArry.count>0){
+   
+    _searchField.text=@"";
+    if(showItemsOnscrnArry.count>0&&ronakGlobal.filterdProductsArray.count>0){
         
         _allModelsTopBtn.selected=NO;
         _allColorsTopBtn.selected=NO;
+        _displayLable.hidden=NO;
+        _allModelsTopBtn.enabled=YES;
         switch (swipe.numberOfTouches) {
                 
             case 2:
@@ -266,7 +277,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Dispose of resources that can be recreated.
 }
 
 #pragma mark Collection View Delegates
@@ -323,6 +334,8 @@
             cell.bordrrViewColor.backgroundColor=RGB(207, 207, 207);
         }
         [cell bindData:showItemsOnscrnArry[indexPath.row]];
+        cell.delegate=self;
+        
         return cell;
     }
     if(collectionView==self.customersCollectionView)
@@ -481,11 +494,11 @@
     if(_searchEveryWhereOptn.selected==YES)
     {
       _searchEveryWhereOptn.selected=NO;
-        [_searchEveryWhereOptn setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
+//        [_searchEveryWhereOptn setBackgroundImage:[UIImage imageNamed:@"checkBlue"] forState:UIControlStateNormal];
     }
     else
     {
-        [_searchEveryWhereOptn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//        [_searchEveryWhereOptn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         _searchEveryWhereOptn.selected=YES;
     }
 }
@@ -570,7 +583,7 @@
 }
 - (IBAction)sideMenuClick:(id)sender {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+   
         _sideMenuButton.hidden=YES;
         CGRect newFrame=_sideView.frame;
         CGRect mainFrame=_containerView.frame;
@@ -586,6 +599,7 @@
         //        mainFrame.origin.x=350;
         //
         //    }
+     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.3 animations:^{
             _sideView.frame=newFrame;
             //        _containerView.frame=mainFrame;
@@ -844,5 +858,118 @@
     }
     return YES;
 }
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if(!stockListCountView.isHidden){
+    stockListCountView.hidden=YES;
+    }
+}
+
+-(void)showStockCountofProduct:(StockDetails *)st frame:(CGRect)frame
+{
+    CGRect fra=stockListCountView.frame;
+    fra.origin.y=frame.origin.y;
+    stockListCountView.frame=fra;
+    AppDelegate *del=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *contextF= del.managedObjectContext;
+    NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
+    NSPredicate *pre=[NSPredicate predicateWithFormat:@"codeId_s == %@",st.codeId_s];
+    [fet setPredicate:pre];
+    NSArray *res=[contextF executeFetchRequest:fet error:nil];
+    if(res.count>0){
+        [stockListCountView showStockfromStockMaster:res];
+        stockListCountView.hidden=NO;
+    }
+    
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self getpredicateforlocalorGlobalSearch:textField.text];
+    [textField resignFirstResponder];
+    return YES;
+}
+-(void)getpredicateforlocalorGlobalSearch:(NSString*)str{
+
+    AppDelegate *del=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *filtercontextF= del.managedObjectContext;
+    
+
+    NSPredicate *p1=[NSPredicate predicateWithFormat:@"SELF.filters.brand__c LIKE[c] %@",str];
+    NSPredicate *p2=[NSPredicate predicateWithFormat:@"SELF.filters.color_Code__c LIKE[c] %@",str];
+    NSPredicate *p3 =[NSPredicate predicateWithFormat:@"SELF.filters.collection_Name__c LIKE[c] %@",str];
+    NSPredicate *p4=[NSPredicate predicateWithFormat:@"SELF.filters.tips_Color__c LIKE[c] %@",str];
+    NSPredicate *p5=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Material__c LIKE[c] %@",str];
+    NSPredicate *p6=[NSPredicate predicateWithFormat:@"SELF.filters.temple_Color__c LIKE[c] %@",str];
+    NSPredicate *p7=[NSPredicate predicateWithFormat:@"SELF.filters.style_Code__c LIKE[c] %@",str];
+    NSPredicate *p8=[NSPredicate predicateWithFormat:@"SELF.filters.size__c LIKE[c] %@",str];
+    NSPredicate *p9=[NSPredicate predicateWithFormat:@"SELF.filters.shape__c LIKE[c] %@",str];
+    NSPredicate *p10=[NSPredicate predicateWithFormat:@"SELF.filters.product__c LIKE[c] %@",str];
+    NSPredicate *p11=[NSPredicate predicateWithFormat:@"SELF.filters.logo_Type__c LIKE[c] %@",str];
+    NSPredicate *p12=[NSPredicate predicateWithFormat:@"SELF.filters.logo_Size__c LIKE[c] %@",str];
+    NSPredicate *p13=[NSPredicate predicateWithFormat:@"SELF.filters.logo_Color__c LIKE[c] %@",str];
+    NSPredicate *p14=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Description__c LIKE[c] %@",str];
+    NSPredicate *p15=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Color__c LIKE[c] %@",str];
+    NSPredicate *p16=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Code__c LIKE[c] %@",str];
+    NSPredicate *p17=[NSPredicate predicateWithFormat:@"SELF.filters.item_No__c LIKE[c] %@",str];
+    NSPredicate *p18=[NSPredicate predicateWithFormat:@"SELF.filters.item_Group_Product_Family__c LIKE[c] %@",str];
+    NSPredicate *p19=[NSPredicate predicateWithFormat:@"SELF.filters.item_Description__c LIKE[c] %@",str];
+    NSPredicate *p20=[NSPredicate predicateWithFormat:@"SELF.filters.inactive_To__c LIKE[c] %@",str];
+    NSPredicate *p21=[NSPredicate predicateWithFormat:@"SELF.filters.inactive_From__c LIKE[c] %@",str];
+    NSPredicate *p22=[NSPredicate predicateWithFormat:@"SELF.filters.inactive__c LIKE[c] %@",str];
+    NSPredicate *p23=[NSPredicate predicateWithFormat:@"SELF.filters.group_Name__c LIKE[c] %@",str];
+    NSPredicate *p24=[NSPredicate predicateWithFormat:@"SELF.filters.group_Name__c LIKE[c] %@",str];
+    NSPredicate *p25=[NSPredicate predicateWithFormat:@"SELF.filters.front_Color__c LIKE[c] %@",str];
+    NSPredicate *p26=[NSPredicate predicateWithFormat:@"SELF.filters.frame_Structure__c LIKE[c] %@",str];
+    NSPredicate *p27=[NSPredicate predicateWithFormat:@"SELF.filters.frame_Material__c LIKE[c] %@",str];
+    NSPredicate *p28=[NSPredicate predicateWithFormat:@"SELF.filters.foreign_Name__c LIKE[c] %@",str];
+    NSPredicate *p29=[NSPredicate predicateWithFormat:@"SELF.filters.flex_Temple__c LIKE[c] %@",str];
+    NSPredicate *p30=[NSPredicate predicateWithFormat:@"SELF.filters.factory_Company__c LIKE[c] %@",str];
+    NSPredicate *p31=[NSPredicate predicateWithFormat:@"SELF.filters.drawing_Code__c LIKE[c] %@",str];
+    NSPredicate *p32=[NSPredicate predicateWithFormat:@"SELF.filters.delivery_Month__c LIKE[c] %@",str];
+    NSPredicate *p33=[NSPredicate predicateWithFormat:@"SELF.filters.custom__c LIKE[c] %@",str];
+    NSPredicate *p34=[NSPredicate predicateWithFormat:@"SELF.filters.color_Code__c LIKE[c] %@",str];
+    NSPredicate *p35=[NSPredicate predicateWithFormat:@"SELF.filters.color_Code__c LIKE[c] %@",str];
+    NSPredicate *p36=[NSPredicate predicateWithFormat:@"SELF.filters.collection__c LIKE[c] %@",str];
+    NSPredicate *p37=[NSPredicate predicateWithFormat:@"SELF.filters.category__c LIKE[c] %@",str];
+    NSPredicate *p38=[NSPredicate predicateWithFormat:@"SELF.filters.stock_Warehouse__c LIKE[c] %@",str];
+    NSPredicate *p39=[NSPredicate predicateWithFormat:@"SELF.filters.active_To__c LIKE[c] %@",str];
+    NSPredicate *p40=[NSPredicate predicateWithFormat:@"SELF.filters.active_From__c LIKE[c] %@",str];
+    NSPredicate *p41=[NSPredicate predicateWithFormat:@"SELF.filters.rim__c LIKE[c] %@",str];
+    NSPredicate *p42=[NSPredicate predicateWithFormat:@"SELF.filters.lens_Material__c LIKE[c] %@",str];
+    NSPredicate *p43=[NSPredicate predicateWithFormat:@"SELF.filters.picture_Name__c LIKE[c] %@",str];
+    NSPredicate *p44=[NSPredicate predicateWithFormat:@"SELF.stock != nil"];
+    
+    NSCompoundPredicate *andPre;
+    if(_searchEveryWhereOptn.selected == YES){
+        NSCompoundPredicate *finalPre=[NSCompoundPredicate orPredicateWithSubpredicates:@[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p24,p25,p26,p27,p28,p29,p30,p31,p32,p33,p34,p35,p36,p37,p38,p39,p40,p41,p42,p43]];
+        andPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[finalPre,p44]];
+    }else{
+        NSPredicate *brabdP=[NSPredicate predicateWithFormat:@"SELF.filters.brand__c LIKE[c] %@",ronakGlobal.selectedFilter.brand];
+        NSCompoundPredicate *finalPre=[NSCompoundPredicate orPredicateWithSubpredicates:@[p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,p21,p22,p23,p24,p24,p25,p26,p27,p28,p29,p30,p31,p32,p33,p34,p35,p36,p37,p38,p39,p40,p41,p42,p43]];
+        andPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[finalPre,p44,brabdP]];
+    }
+    NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
+    [fetch setPredicate:andPre];
+    NSArray *arr=[filtercontextF executeFetchRequest:fetch error:nil];
+    NSLog(@"%@",arr);
+    
+    if(arr.count>0){
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.color_Code__c" ascending:YES];
+        NSArray *sort=[arr sortedArrayUsingDescriptors:@[sortDescriptor]];
+        showItemsOnscrnArry=(NSMutableArray*)sort;
+        [self changeLablesBasedOnitemsIndex:0];
+//    _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
+        [ronakGlobal.selectedItemsTocartArr removeAllObjects];
+        [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+        [_productsCollectionView reloadData];
+        _displayLable.hidden=YES;
+        _allModelsTopBtn.enabled=NO;
+    }
+    else{
+        showMessage(@"No Items Found", self.view);
+    }
+}
+
 @end
 

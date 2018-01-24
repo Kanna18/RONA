@@ -51,15 +51,19 @@
 		F615AFB01FAD89A700BF2CBC /* RepotrsPopTV.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */; };
 		F615AFB41FAD975300BF2CBC /* ReportsStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */; };
 		F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */; };
+		F63C63B4200F57B700A945DF /* StockListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F63C63B3200F57B700A945DF /* StockListView.m */; };
+		F63C63B6200F57C600A945DF /* StockListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F63C63B5200F57C600A945DF /* StockListView.xib */; };
 		F6404EE31F2124F400530188 /* SF.OTF in Resources */ = {isa = PBXBuildFile; fileRef = F6404EE21F2124F400530188 /* SF.OTF */; };
 		F6404EE81F212BEF00530188 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6404EE71F212BEF00530188 /* UITextField+Padding.m */; };
 		F6496B9A1F52A83E00028FF0 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496B991F52A83E00028FF0 /* CustomSwitch.m */; };
 		F6496BE11F54378000028FF0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6496BE01F54378000028FF0 /* Launch Screen.storyboard */; };
 		F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */ = {isa = PBXBuildFile; fileRef = F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */; };
 		F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64F10E41F2E57FD001BC880 /* LoadingView.m */; };
+		F661620C2015C7510018F43A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F661620A2015C74E0018F43A /* Reachability.m */; };
 		F6624FEF1FBE11E200B34E03 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = F6624FEC1FBE11E000B34E03 /* Calculator.m */; };
 		F6624FF01FBE13E600B34E03 /* Calculator.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6624FEE1FBE11E100B34E03 /* Calculator.xib */; };
 		F684E3781FA18BF7005CF9B8 /* SaleOrderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */; };
+		F697D5B220098D0C009D7000 /* SyncDBClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F697D5B120098D0C009D7000 /* SyncDBClass.m */; };
 		F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */; };
 		F69DCEA41F69626F00156396 /* BillWiseDetailsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F69DCEA21F69626F00156396 /* BillWiseDetailsCustomCell.m */; };
 		F69DCEA51F69626F00156396 /* BillWiseDetailsCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69DCEA31F69626F00156396 /* BillWiseDetailsCustomCell.xib */; };
@@ -235,6 +239,9 @@
 		F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsStatusCell.m; sourceTree = "<group>"; };
 		F633665F1FA9E7D400E045B4 /* OrderStatsResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatsResponse.h; sourceTree = "<group>"; };
 		F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatsResponse.m; sourceTree = "<group>"; };
+		F63C63B2200F57B700A945DF /* StockListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockListView.h; sourceTree = "<group>"; };
+		F63C63B3200F57B700A945DF /* StockListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockListView.m; sourceTree = "<group>"; };
+		F63C63B5200F57C600A945DF /* StockListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockListView.xib; sourceTree = "<group>"; };
 		F6404EE21F2124F400530188 /* SF.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SF.OTF; sourceTree = "<group>"; };
 		F6404EE61F212BEF00530188 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
 		F6404EE71F212BEF00530188 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
@@ -245,11 +252,15 @@
 		F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Zooming.m"; sourceTree = "<group>"; };
 		F64F10E31F2E57FD001BC880 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F64F10E41F2E57FD001BC880 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F661620A2015C74E0018F43A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		F661620B2015C7500018F43A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		F6624FEC1FBE11E000B34E03 /* Calculator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		F6624FED1FBE11E000B34E03 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		F6624FEE1FBE11E100B34E03 /* Calculator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Calculator.xib; sourceTree = "<group>"; };
 		F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleOrderWrapper.h; sourceTree = "<group>"; };
 		F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleOrderWrapper.m; sourceTree = "<group>"; };
+		F697D5B020098D0C009D7000 /* SyncDBClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncDBClass.h; sourceTree = "<group>"; };
+		F697D5B120098D0C009D7000 /* SyncDBClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncDBClass.m; sourceTree = "<group>"; };
 		F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDataModel.h; sourceTree = "<group>"; };
 		F69A10ED1F428ED9005C2432 /* ProductsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDataModel.m; sourceTree = "<group>"; };
 		F69DCEA11F69626F00156396 /* BillWiseDetailsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillWiseDetailsCustomCell.h; sourceTree = "<group>"; };
@@ -421,6 +432,8 @@
 				84D4B2E81F63BF5400B76DD7 /* Constants.h */,
 				F6D10AE71F25C886003AF699 /* ServerAPIManager.h */,
 				F6D10AE81F25C886003AF699 /* ServerAPIManager.m */,
+				F661620B2015C7500018F43A /* Reachability.h */,
+				F661620A2015C74E0018F43A /* Reachability.m */,
 				F6A59D3B1F65C5E4007469F8 /* CategoryBased.h */,
 				F6A59D3C1F65C5E4007469F8 /* CategoryBased.m */,
 				84D4B2E91F63BFB400B76DD7 /* RESTCalls.h */,
@@ -458,6 +471,8 @@
 				84D4B3041F63C1D400B76DD7 /* RONAKSharedClass.m */,
 				84D4B3001F63C1D400B76DD7 /* DownloadProducts.h */,
 				84D4B3031F63C1D400B76DD7 /* DownloadProducts.m */,
+				F697D5B020098D0C009D7000 /* SyncDBClass.h */,
+				F697D5B120098D0C009D7000 /* SyncDBClass.m */,
 				84D4B3021F63C1D400B76DD7 /* SelectedFilters.h */,
 				84D4B3051F63C1D400B76DD7 /* SelectedFilters.m */,
 				F606FF941FA63F9200D0290A /* CustomPassCode.h */,
@@ -544,6 +559,16 @@
 				F6B056F61FB20F370092701E /* OrderStatusCustomResponse.m */,
 			);
 			name = OrdeStatusResponse;
+			sourceTree = "<group>";
+		};
+		F63C63B7200F57DA00A945DF /* StockPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				F63C63B2200F57B700A945DF /* StockListView.h */,
+				F63C63B3200F57B700A945DF /* StockListView.m */,
+				F63C63B5200F57C600A945DF /* StockListView.xib */,
+			);
+			name = StockPopUp;
 			sourceTree = "<group>";
 		};
 		F6404EE51F212BDD00530188 /* Categories */ = {
@@ -781,6 +806,7 @@
 		F6D085091F548DD7001A76C5 /* CustomPopups */ = {
 			isa = PBXGroup;
 			children = (
+				F63C63B7200F57DA00A945DF /* StockPopUp */,
 				F69DCEAA1F697C0A00156396 /* CollectionPopUp.h */,
 				F69DCEAB1F697C0A00156396 /* CollectionPopUp.m */,
 				F69DCEAC1F697C0A00156396 /* CollectionPopUp.xib */,
@@ -1011,6 +1037,7 @@
 				F6624FF01FBE13E600B34E03 /* Calculator.xib in Resources */,
 				F6FA18511FAA5F7C0082A89E /* WSCalendarView.xib in Resources */,
 				84D4B33C1F63C3B400B76DD7 /* righticon.png in Resources */,
+				F63C63B6200F57C600A945DF /* StockListView.xib in Resources */,
 				F6A4F9991F60358E00472A96 /* CancelorderBlue.png in Resources */,
 				F6A4F9AF1F60358E00472A96 /* cancelblue.png in Resources */,
 				F6A4F99D1F60358E00472A96 /* calcgrey.png in Resources */,
@@ -1168,10 +1195,12 @@
 				F6496BE41F54468A00028FF0 /* UIImageView+Zooming.m in Sources */,
 				F6B41C361FAA4F6500471C1A /* ImagesArray+CoreDataClass.m in Sources */,
 				F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */,
+				F661620C2015C7510018F43A /* Reachability.m in Sources */,
 				84D4B32C1F63C34B00B76DD7 /* ProductCollectionViewCell.m in Sources */,
 				84D4B3071F63C1D400B76DD7 /* RONAKSharedClass.m in Sources */,
 				84D4B3461F63C43D00B76DD7 /* DefaultFilter2.m in Sources */,
 				F6B41C331FAA4F6500471C1A /* ItemMaster+CoreDataProperties.m in Sources */,
+				F697D5B220098D0C009D7000 /* SyncDBClass.m in Sources */,
 				84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */,
 				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
 				84D4B3451F63C43D00B76DD7 /* DefaultFilter1.m in Sources */,
@@ -1181,6 +1210,7 @@
 				F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */,
 				84D4B3201F63C2F900B76DD7 /* PDCViewController.m in Sources */,
 				F6B41C161FAA432100471C1A /* WSLabel.m in Sources */,
+				F63C63B4200F57B700A945DF /* StockListView.m in Sources */,
 				F6B41C181FAA432100471C1A /* WSCalendarView.m in Sources */,
 				F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */,
 				84D4B33A1F63C3AA00B76DD7 /* Discount.m in Sources */,
