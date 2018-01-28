@@ -842,17 +842,23 @@
 {
     if([identifier isEqualToString:@"orderSummaryNavigate"])
     {
-        int CartCount=[[_cartOption currentTitle] intValue];
-//        NSMutableArray *countsArr=[[NSMutableArray alloc]init];
-//        for (int i=0; i<ronakGlobal.selectedCustomersArray.count; i++) {
-//            [countsArr addObject:[NSNumber numberWithInteger:[[ronakGlobal.selectedCustomersArray valueForKeyPath:@"defaultsCustomer.itemsCount"] count]]];
-//        }
-//        CartCount=[[countsArr valueForKey:@"Max"] intValue];
-        if(CartCount>0){
+        BOOL cartValid = false;
+        for (int i=0;i<ronakGlobal.selectedCustomersArray.count;i++){
+            CustomerDataModel *cstDmo=ronakGlobal.selectedCustomersArray[i];
+            if(!(cstDmo.defaultsCustomer.itemsCount.count>0)){
+                cartValid = false;
+                break;
+            }else{
+                cartValid = true;
+            }
+        }
+        //        int CartCount=[[_cartOption currentTitle] intValue];
+        //        if(CartCount>0)
+        if(cartValid){
             return YES;
         }
         else{
-            showMessage(@"No items to view in Cart", self.view);
+            showMessage(@"Add items to all the Selected Customers", self.view);
             return NO;
         }
     }

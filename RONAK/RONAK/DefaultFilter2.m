@@ -58,7 +58,11 @@
 {
     [super viewWillAppear:animated];
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [tblView reloadData];
+}
 #pragma mark - TableView methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -394,6 +394,7 @@
         remarksView=[[RemarksView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) withTitle:@"CUSTOMER REMARKS" withSuperView:self];
         [self.view addSubview:remarksView];
         [remarksView.textView becomeFirstResponder];
+        remarksView.textView.text=_cstdDataModel.defaultsCustomer.customerRemarks;
         remarksView.delegate=self;
     }
 }
@@ -410,6 +411,7 @@
         _roiplBtn.selected=YES;
         remarksView=[[RemarksView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) withTitle:@"ROIPL REMARKS" withSuperView:self];
         [self.view addSubview:remarksView];
+        remarksView.textView.text=_cstdDataModel.defaultsCustomer.customerROIPL;
         [remarksView.textView becomeFirstResponder];
         remarksView.delegate=self;
     }
@@ -511,16 +513,12 @@
 
     NSString *str=notification.object;
 
-    if([str isEqualToString:@"Succes"])
+    if([str isEqualToString:@"Succes"])//Internet Availability Case
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-        [load waringLabelText:@"Order Saved Successfully" onView:self.view];
-        [load stop];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self jumptoMenuVC:nil];
-        });
-        
+            [load waringLabelText:@"Order Saved Successfully" onView:self.view];
+            [load stop];
+            [self deleteDraft];
         });
     }
     else
@@ -530,7 +528,18 @@
         [load stop];
         });
     }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self jumptoMenuVC:nil];
+    });
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SaveOrderStatus" object:nil];
+}
+-(void)deleteDraft{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        DownloadProducts *dow=[[DownloadProducts alloc]init];
+        [dow deleteDraftWithRecID:ronakGlobal.currentDraftRecord];
+        ronakGlobal.currentDraftRecord=nil;
+    });
 }
 
 -(void)removeAllSubviewsandDeselectall

@@ -70,6 +70,7 @@
 {
     [super viewDidAppear:YES];
     tableViewRect=tblView.frame;
+    [tblView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

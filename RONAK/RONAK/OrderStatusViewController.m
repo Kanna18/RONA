@@ -44,7 +44,7 @@
     [self allocAwindowOntop];
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissStatus:)];
     [self.view addGestureRecognizer:tap];
-    tap.numberOfTapsRequired=2;
+    tap.numberOfTapsRequired=1;
     tVData=[[NSMutableArray alloc]init];
     
     _fromDateTf.delegate=self;

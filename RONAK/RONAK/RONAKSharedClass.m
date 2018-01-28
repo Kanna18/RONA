@@ -38,6 +38,10 @@
         _saveSaleOrderOffline=[[NSMutableArray alloc]init];
             defaultSet([NSKeyedArchiver archivedDataWithRootObject:_saveSaleOrderOffline], saveOrDraftsOrderArrayOffline);
         }
+        if(!defaultGet(deleteDraftOfflineArray)){
+            _deleteDraftRecordsOfflineArray=[[NSMutableArray alloc]init];
+            defaultSet(_deleteDraftRecordsOfflineArray, deleteDraftOfflineArray);
+        }
         NSLog(@"%@--%@",_selectedFilter,defaultGet(saveOrDraftsOrderArrayOffline));
 
     }

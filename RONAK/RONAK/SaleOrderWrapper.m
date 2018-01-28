@@ -128,9 +128,9 @@
 //        }
         [responseArr addObject:dict];
     }];
-//    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
-//    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//    NSLog(@"%@",jsinStr);
+    NSData *data=[NSJSONSerialization dataWithJSONObject:responseArr options:0 error:nil];
+    NSString *jsinStr=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",jsinStr);
     DownloadProducts *dow=[[DownloadProducts alloc]init];
 //    [dow regenerateAuthtenticationToken];
     [dow saveOrderWithAccessToken:responseArr];

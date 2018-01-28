@@ -63,6 +63,11 @@
 {
     [super viewWillAppear:animated];
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [tblView reloadData];
+}
 
 #pragma mark - TableView methods
 
@@ -279,9 +284,8 @@
     }else{
         [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters2[indexForSearch][@"options"]}];
     }
-    [textField resignFirstResponder];
-    [tblView reloadData];
-    
+//    [textField resignFirstResponder];
+    [tblView reloadData];    
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -295,6 +299,13 @@
     }
     NSLog(@"address of table view %@",textField);
 }
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    textField.text=@"";
+    [self searchEnabledForAdvancedTwo:textField];
+    return YES;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:textField];
 }

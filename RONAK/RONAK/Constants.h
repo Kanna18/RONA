@@ -46,6 +46,8 @@
 #define rest_warehouseMaster_b @"https://cs6.salesforce.com/services/apexrest/WarehouseMaster1/"
 #define rest_saveOrder_b  @"https://cs6.salesforce.com/services/apexrest/SaveSaleOrder"
 #define rest_OrderStatus_b  @"https://cs6.salesforce.com/services/apexrest/SalesOrderStatus/"
+#define rest_DrafsList_b @"https://cs6.salesforce.com/services/apexrest/SaleOrderDraftList/"
+#define rest_DeleteDreaft_b @"https://cs6.salesforce.com/services/apexrest/SalesOrderDelete/"
 
 //constants to save in defaults
 #define kaccess_token @"access_token"
@@ -111,7 +113,8 @@
 #define kSaleOrder @"SaleOrder"
 #define ksaveDraft @"SaveDraft"
 #define saveOrDraftsOrderArrayOffline @"SaveDraftOrder"
-
+#define draftsListOfflineArray @"offlineDratsArray"
+#define deleteDraftOfflineArray @"draftDelete"
 
 //Additional
 #define storyBoard(mvc) [self.storyboard instantiateViewControllerWithIdentifier:mvc]

@@ -148,17 +148,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 //    self.context=self.persistentContainer.viewContext;
     reachability= [Reachability reachabilityForInternetConnection];
     reachability.reachableBlock = ^(Reachability *reachability) {
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            //Background Thread
-            NSMutableArray *demoArr=[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(saveOrDraftsOrderArrayOffline)]];
-            if(demoArr.count>0){
-                DownloadProducts *dow=[[DownloadProducts alloc]init];
-                for (NSMutableArray *arr in demoArr) {
-                    [dow saveOrderWithAccessToken:arr];
-                }
-            }
-        });
-          NSLog(@"UnReaching Network");
+        [self offlineRestServices];
+        NSLog(@"Reaching Network");
     };
     reachability.unreachableBlock = ^(Reachability *reachability) {
         NSLog(@"UnReaching Network");
@@ -166,9 +157,27 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     [reachability startNotifier];
     
     NSLog(@"CoreData Path--->%@",[self applicationDocumentsDirectory]);
+    [self offlineRestServices];
     return YES;
 }
-
+-(void)offlineRestServices{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        //Background Thread
+        DownloadProducts *dow=[[DownloadProducts alloc]init];
+        NSMutableArray *demoArr=[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(saveOrDraftsOrderArrayOffline)]];
+        if(demoArr.count>0){
+            for (NSMutableArray *arr in demoArr) {
+                [dow saveOrderWithAccessToken:arr];
+            }
+        }
+        NSMutableArray *draftsDelet=defaultGet(deleteDraftOfflineArray);
+        if(draftsDelet.count>0){
+            for (NSString *strRec in draftsDelet) {
+                [dow deleteDraftWithRecID:strRec];
+            }
+        }
+    });
+}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {

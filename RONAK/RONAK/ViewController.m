@@ -58,6 +58,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [tblView reloadData];
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
@@ -272,20 +277,25 @@
     }else{
         [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters1[indexForSearch][@"options"]}];
     }
-    [textField resignFirstResponder];
+//    [textField resignFirstResponder];
     [tblView reloadData];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedOne:) name:UITextFieldTextDidChangeNotification object:textField];
-    
     if(textField.tag == indexForSearch+1000){
         textField.text=searchtext;
     }else{
         textField.text=@"";
     }
     NSLog(@"address of table view %@",textField);
+}
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    textField.text=@"";
+    [self searchEnabledForAdvancedOne:textField];
+    return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:textField];

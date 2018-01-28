@@ -29,7 +29,6 @@
         frame.size.height=330;
         self.frame=frame;
         self.numArray = [[NSMutableArray alloc]init];
-        
 
     }
     return self;
@@ -41,8 +40,9 @@
     NSLog(@"text is %@",sender.titleLabel.text);
     
     NSString *numStr = sender.titleLabel.text;
-    
+    if(self.numArray.count<2){
     [self.numArray addObject:numStr];
+    }
     
     [self strMethod:self.numArray];
     
@@ -60,12 +60,12 @@
 }
 
 - (IBAction)okBtnActn:(id)sender {
-    
     [_delegate reslut:self.myTF.text];
     self.myTF.text = @"";
     [self removeFromSuperview];
-    
 }
+
+
 
 
 

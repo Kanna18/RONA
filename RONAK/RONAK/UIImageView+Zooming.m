@@ -18,7 +18,6 @@
     [super awakeFromNib];
     self.userInteractionEnabled=YES;
     
-    
 }
 -(void)tappedtwice:(id)sender
 {

@@ -100,8 +100,7 @@ int totalImages=0, currentImage=0, savedImages=0;
 -(void)fetchData:(NSMutableArray*)arr
 {
     NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    productsContext.parentContext=downloadContext;
-    
+    productsContext.parentContext=downloadContext;    
     [productsContext performBlock:^{
         NSMutableArray *ids=[arr valueForKeyPath:@"Id"];//Get All IdsArray From Response
         NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:@"Filters"];
@@ -275,8 +274,10 @@ int totalImages=0, currentImage=0, savedImages=0;
     ronakGlobal.stockArr=stockF;
     
     NSLog(@"%@",brandsF);
+    NSMutableArray *bArr=[NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]];
+    [bArr reverse];
     ronakGlobal.DefFiltersOne=   @[@{ @"heading":kBrand,
-                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]?[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]:@[]},
+                                      @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]?bArr:@[]},
                                    @{ @"heading":kCategories,
                                       @"options":categoriesF},
                                    @{ @"heading":kCollection,
@@ -709,7 +710,7 @@ int totalImages=0, currentImage=0, savedImages=0;
              [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:dict[@"error_description"]];
          }
      } andErrorBlock:^(NSError *error) {
-         [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:@"Order not saved please try again later :("];
+         [[NSNotificationCenter defaultCenter]postNotificationName:@"SaveOrderStatus" object:@"Order will be saved when there is active internet connection"];
          [self addtoOfflineDraftsArray:jsonParameter];
      }];
 }
@@ -720,6 +721,14 @@ int totalImages=0, currentImage=0, savedImages=0;
         [demoArr addObject:jsonStr];
     }
     defaultSet([NSKeyedArchiver archivedDataWithRootObject:demoArr], saveOrDraftsOrderArrayOffline);
+    
+    if(ronakGlobal.currentDraftRecord!=nil){//if Draft Rec is available;
+        NSMutableArray *drfsArr=[[NSMutableArray alloc]initWithArray:defaultGet(deleteDraftOfflineArray)];
+        [drfsArr addObject:ronakGlobal.currentDraftRecord];
+        ronakGlobal.currentDraftRecord=nil;
+        defaultSet(drfsArr, deleteDraftOfflineArray);
+    }
+    
 }
 -(void)removeFromOfflineDraftsArray:(NSMutableArray*)jsonStr
 {
@@ -752,5 +761,30 @@ int totalImages=0, currentImage=0, savedImages=0;
     float percentage = total-remainig+current;
     float Pdown=(percentage / total)*100;
     return Pdown;
+}
+-(void)deleteDraftWithRecID:(NSString*)recID{
+    
+    NSDictionary *headers = @{ @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)],
+                               @"content-type": @"application/json" };
+    NSDictionary *parameters = @{ @"recordId": recID,
+                                  };
+    
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_DeleteDreaft_b]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                      {
+                                          NSArray *jsonD=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                          ronakGlobal.currentDraftRecord=nil;
+                                      }];
+    [dataTask resume];
 }
 @end

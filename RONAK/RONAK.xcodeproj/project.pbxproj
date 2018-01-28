@@ -50,6 +50,10 @@
 		F60FB46C1FB884D400F0B546 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60FB46B1FB884D400F0B546 /* MessageUI.framework */; };
 		F615AFB01FAD89A700BF2CBC /* RepotrsPopTV.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */; };
 		F615AFB41FAD975300BF2CBC /* ReportsStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */; };
+		F627929B20190508001EC297 /* NSMutableArray+ArrayReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = F627929A20190508001EC297 /* NSMutableArray+ArrayReverse.m */; };
+		F627929E2019711A001EC297 /* DraftsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627929D2019711A001EC297 /* DraftsListViewController.m */; };
+		F62792A22019747D001EC297 /* DraftsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F62792A12019747D001EC297 /* DraftsCell.m */; };
+		F62792A620197522001EC297 /* DraftsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F62792A520197522001EC297 /* DraftsDataModel.m */; };
 		F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */; };
 		F63C63B4200F57B700A945DF /* StockListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F63C63B3200F57B700A945DF /* StockListView.m */; };
 		F63C63B6200F57C600A945DF /* StockListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F63C63B5200F57C600A945DF /* StockListView.xib */; };
@@ -237,6 +241,14 @@
 		F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepotrsPopTV.m; sourceTree = "<group>"; };
 		F615AFB21FAD975200BF2CBC /* ReportsStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsStatusCell.h; sourceTree = "<group>"; };
 		F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsStatusCell.m; sourceTree = "<group>"; };
+		F627929920190508001EC297 /* NSMutableArray+ArrayReverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ArrayReverse.h"; sourceTree = "<group>"; };
+		F627929A20190508001EC297 /* NSMutableArray+ArrayReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ArrayReverse.m"; sourceTree = "<group>"; };
+		F627929C2019711A001EC297 /* DraftsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftsListViewController.h; sourceTree = "<group>"; };
+		F627929D2019711A001EC297 /* DraftsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraftsListViewController.m; sourceTree = "<group>"; };
+		F62792A02019747D001EC297 /* DraftsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftsCell.h; sourceTree = "<group>"; };
+		F62792A12019747D001EC297 /* DraftsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraftsCell.m; sourceTree = "<group>"; };
+		F62792A420197522001EC297 /* DraftsDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftsDataModel.h; sourceTree = "<group>"; };
+		F62792A520197522001EC297 /* DraftsDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraftsDataModel.m; sourceTree = "<group>"; };
 		F633665F1FA9E7D400E045B4 /* OrderStatsResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatsResponse.h; sourceTree = "<group>"; };
 		F63366601FA9E7D400E045B4 /* OrderStatsResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderStatsResponse.m; sourceTree = "<group>"; };
 		F63C63B2200F57B700A945DF /* StockListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StockListView.h; sourceTree = "<group>"; };
@@ -492,6 +504,7 @@
 				F66352A31F501EDD00128137 /* OrderSummary */,
 				F633665C1FA9E65400E045B4 /* SaleOrderWrapper */,
 				F633665D1FA9E66200E045B4 /* OrderStatusVc */,
+				F627929F20197125001EC297 /* DraftsListVC */,
 				F6496BE01F54378000028FF0 /* Launch Screen.storyboard */,
 				84D4B2E61F63BF3500B76DD7 /* Main.storyboard */,
 				F69A10EC1F428ED9005C2432 /* ProductsDataModel.h */,
@@ -529,6 +542,19 @@
 				F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */,
 			);
 			name = ReportsTV;
+			sourceTree = "<group>";
+		};
+		F627929F20197125001EC297 /* DraftsListVC */ = {
+			isa = PBXGroup;
+			children = (
+				F627929C2019711A001EC297 /* DraftsListViewController.h */,
+				F627929D2019711A001EC297 /* DraftsListViewController.m */,
+				F62792A02019747D001EC297 /* DraftsCell.h */,
+				F62792A12019747D001EC297 /* DraftsCell.m */,
+				F62792A420197522001EC297 /* DraftsDataModel.h */,
+				F62792A520197522001EC297 /* DraftsDataModel.m */,
+			);
+			name = DraftsListVC;
 			sourceTree = "<group>";
 		};
 		F633665C1FA9E65400E045B4 /* SaleOrderWrapper */ = {
@@ -580,6 +606,8 @@
 				F6B2DC281F8481940055E3E1 /* UILabel+Padding.m */,
 				F6496BE21F54468A00028FF0 /* UIImageView+Zooming.h */,
 				F6496BE31F54468A00028FF0 /* UIImageView+Zooming.m */,
+				F627929920190508001EC297 /* NSMutableArray+ArrayReverse.h */,
+				F627929A20190508001EC297 /* NSMutableArray+ArrayReverse.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1002,7 +1030,7 @@
 				TargetAttributes = {
 					4F8D5E9C1B6C0568005E64D4 = {
 						CreatedOnToolsVersion = 6.4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1203,6 +1231,7 @@
 				F697D5B220098D0C009D7000 /* SyncDBClass.m in Sources */,
 				84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */,
 				F69A10EE1F428ED9005C2432 /* ProductsDataModel.m in Sources */,
+				F627929E2019711A001EC297 /* DraftsListViewController.m in Sources */,
 				84D4B3451F63C43D00B76DD7 /* DefaultFilter1.m in Sources */,
 				84D4B3501F63C46200B76DD7 /* ViewController2.m in Sources */,
 				84D4B3311F63C36B00B76DD7 /* OrderCell.m in Sources */,
@@ -1216,6 +1245,7 @@
 				84D4B33A1F63C3AA00B76DD7 /* Discount.m in Sources */,
 				84D4B34E1F63C46200B76DD7 /* AdvancedViewController.m in Sources */,
 				F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */,
+				F62792A620197522001EC297 /* DraftsDataModel.m in Sources */,
 				F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */,
 				F6B41C321FAA4F6500471C1A /* ItemMaster+CoreDataClass.m in Sources */,
 				F6B056F71FB20F370092701E /* OrderStatusCustomResponse.m in Sources */,
@@ -1234,6 +1264,7 @@
 				84D4B3321F63C36B00B76DD7 /* OrderSummaryVC.m in Sources */,
 				F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */,
 				F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */,
+				F62792A22019747D001EC297 /* DraftsCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6B41C351FAA4F6500471C1A /* Filters+CoreDataProperties.m in Sources */,
@@ -1254,6 +1285,7 @@
 				84D4B3471F63C43D00B76DD7 /* DefaultFiltersViewController.m in Sources */,
 				F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */,
 				4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */,
+				F627929B20190508001EC297 /* NSMutableArray+ArrayReverse.m in Sources */,
 				F6B41C171FAA432100471C1A /* WSEventView.m in Sources */,
 				84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */,
 				F6B41C311FAA4F6500471C1A /* Att+CoreDataProperties.m in Sources */,
@@ -1372,8 +1404,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1389,8 +1421,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "50c8800e-f19f-4d70-b4b0-87787f3cb9b4";
+				PROVISIONING_PROFILE_SPECIFIER = appStoreDist;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1401,8 +1433,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = P8MMY2XZGJ;
 				ENABLE_BITCODE = NO;
@@ -1418,8 +1450,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bodhtree.ronak.RONAK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "50c8800e-f19f-4d70-b4b0-87787f3cb9b4";
+				PROVISIONING_PROFILE_SPECIFIER = appStoreDist;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

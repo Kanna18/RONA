@@ -37,6 +37,7 @@
 -(void)downloadImagesandSavetolocalDataBase;
 -(void)saveOrderWithAccessToken:(NSMutableArray*)jsonParameter;
 -(void)regenerateAuthtenticationToken;
+-(void)deleteDraftWithRecID:(NSString*)recID;
 
 @property BOOL syncDataBase;
 

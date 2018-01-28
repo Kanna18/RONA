@@ -84,14 +84,11 @@
     }
 }
 -(void)DefaultMaxMinValues
-{
-    
+{    
     SelectedFilters *sel=ronakGlobal.selectedFilter;
     NSLog(@"%@",sel);
-
     _minTf.keyboardType=UIKeyboardTypePhonePad;
     _maxTF.keyboardType=UIKeyboardTypePhonePad;
-    
     if([_filterType isEqualToString:kDiscount])
     {
 //        NSNumber *maxNum=[ronakGlobal.discArr valueForKeyPath:@"@max.self"];
@@ -159,14 +156,17 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{    
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    return ([string isEqualToString:filtered]);
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    if([_filterType isEqual: kDiscount]){
+        return (newLength <= 2)&&([string isEqualToString:filtered]);
+    }else{
+        return [string isEqualToString:filtered];
+    }
 }
 
 @end

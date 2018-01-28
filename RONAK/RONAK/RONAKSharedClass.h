@@ -38,5 +38,7 @@
 @property NSArray *stockIDsArray;
 
 @property NSMutableArray *saveSaleOrderOffline;
+@property NSMutableArray *deleteDraftRecordsOfflineArray;
+@property NSString *currentDraftRecord;
 
 @end

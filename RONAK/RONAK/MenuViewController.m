@@ -10,6 +10,7 @@
 #import "DownloadProducts.h"
 #import "SignInViewController.h"
 #import "CustomersViewController.h"
+#import "DraftsListViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
 
@@ -168,6 +169,7 @@
 {
     [ronakGlobal.selectedCustomersArray removeAllObjects];
     [ronakGlobal.selectedFilter clearAllFilters];
+    ronakGlobal.currentDraftRecord=nil;
     //[ronakGlobal.selectedFilter.wsPriceMinMax setValue:@"1" forKey:@"Min"];
     //[ronakGlobal.selectedFilter.priceMinMax setValue:@"1" forKey:@"Min"];
     [ronakGlobal.selectedFilter.stockMinMax setValue:@"1" forKey:@"Min"];
@@ -252,6 +254,8 @@
 }
 
 - (IBAction)multimedia_click:(id)sender {
+    DraftsListViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"draftsListVC"];
+    [self.navigationController pushViewController:ovc animated:YES];
 }
 
 - (IBAction)settings_click:(id)sender {
