@@ -33,6 +33,7 @@
 @property NSString *Remarks;
 @property NSString *WarehouseCode;
 @property NSString *TaxCode;
+@property NSString *customerName;
 @property BOOL draft;
 @property NSString *salesforceID;
 

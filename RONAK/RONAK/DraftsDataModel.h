@@ -46,6 +46,7 @@
 @property (nonatomic) NSString<Optional> *Draft__c;
 @property (nonatomic) NSString<Optional> *Brand__c;
 @property (nonatomic) NSString<Optional> *Quantity__c;
+@property (nonatomic) NSString<Optional> *customerName__c;
 @property (nonatomic) Order_Line_Items__r<Optional> *Order_Line_Items__r;
 
 

@@ -103,8 +103,8 @@
     if(cst){
         [ronakGlobal.selectedCustomersArray addObject:cst];
         for (ItemRecord *im in drft.Order_Line_Items__r.records){
-            NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
-            NSPredicate *pre=[NSPredicate predicateWithFormat:@"filters.codeId == %@",im.Id];
+            NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];    
+            NSPredicate *pre=[NSPredicate predicateWithFormat:@"filters.item_No__c == %@",im.Product__c];
             [fet setPredicate:pre];
             NSError *myEr;
             NSArray *items=[draftsContext executeFetchRequest:fet error:&myEr];

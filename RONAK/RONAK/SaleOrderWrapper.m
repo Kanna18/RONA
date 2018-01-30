@@ -14,7 +14,7 @@
     self=[super init];
     if(self)
     {
-        _ProductName=item.filters.brand__c;
+        _ProductName=item.filters.item_No__c;
         _Brand=item.filters.brand__c;
         _Description=@"description";//item.filters.description;
         _Quantity=[NSString stringWithFormat:@"%d",count];
@@ -41,9 +41,9 @@
         _shipToParty=rec.Id;
         _DeliveryChallan=@"challan";
         _NetAmount=@"";
+        _customerName=cst.Name;
         _Discount=cst.defaultsCustomer.discount>0?cst.defaultsCustomer.discount:0;
         
-    
         NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
         [monthFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr=[monthFormatter stringFromDate: cst.defaultsCustomer.dateFuture];

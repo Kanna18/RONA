@@ -65,12 +65,16 @@
     [self.toDateTF setInputView:datePicker];
     [self.fromDateTf setInputView:datePicker];
     
+    UITapGestureRecognizer *tapHome=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(backButton:)];
+    tap.numberOfTouchesRequired=1;
+    [_headingLabel addGestureRecognizer:tapHome];
+}
 
+- (IBAction)backButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)dismissStatus:(id)sender{
-    
     overlayView.hidden=YES;
-    
 }
 -(void)showStatus:(UIButton*)sender{
     overlayView.hidden=NO;

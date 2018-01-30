@@ -66,9 +66,9 @@
             btn.titleLabel.font=gothMedium(15);
         }
     }
-    
     SyncDBClass *sync=[[SyncDBClass alloc]init];
     [sync syncProductMaster];
+
 }
 
 -(void)updateProductLabel:(NSNotification*)notification{
@@ -77,7 +77,7 @@
     if(percentage>=99){
         productsFetched=YES;
         dispatch_async(dispatch_get_main_queue(), ^{
-            _downloadStatus.text=@"Completed";
+            _downloadStatus.text=@"Products Download Completed";
         });
         [self allDownloadsCompleted];
     }else{
@@ -91,7 +91,7 @@
     if(percentage>=99){
         imagesFetched=YES;
         dispatch_async(dispatch_get_main_queue(), ^{
-            _imagesDownload.text=@"Completed";
+            _imagesDownload.text=@"Images Download Completed";
         });
         [self allDownloadsCompleted];
     }else{
@@ -105,7 +105,7 @@
     if(percentage>=99){
         stockFetched=YES;
         dispatch_async(dispatch_get_main_queue(), ^{
-           _downloadStockDetails.text=@"Completed";
+           _downloadStockDetails.text=@"Stock Details Download Completed";
         });
         [self allDownloadsCompleted];
     }else{
@@ -119,7 +119,7 @@
     if(percentage>=99){
         savedData=YES;
         dispatch_async(dispatch_get_main_queue(), ^{
-            _matchingLabel.text=@"Completed";
+            _matchingLabel.text=@"Data Saving Completed";
         });
         [self allDownloadsCompleted];
     }else{

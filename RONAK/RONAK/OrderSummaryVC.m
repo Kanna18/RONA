@@ -518,7 +518,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [load waringLabelText:@"Order Saved Successfully" onView:self.view];
             [load stop];
-            [self deleteDraft];
+            if(ronakGlobal.currentDraftRecord){
+                [self deleteDraft];
+            }
         });
     }
     else

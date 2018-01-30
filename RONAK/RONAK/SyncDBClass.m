@@ -29,10 +29,10 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
     self=[super init];
     if(self){
 
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
             delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
             syncMainContext=delegate.managedObjectContext;
-        });
+//        });
         custDataOffsetArray=[[NSMutableArray alloc]init];
         productsOffsetArray=[[NSMutableArray alloc]init];
         stockDetailsOffsetArray=[[NSMutableArray alloc]init];
@@ -88,7 +88,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
 -(void)fetchData:(NSMutableArray*)arr
 {
     NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    productsContext.parentContext=syncMainContext;
+    productsContext.parentContext=delegate.managedObjectContext;
     [productsContext performBlock:^{
         for (int i=0;i<arr.count;i++) {
             NSDictionary *dic =arr[i];

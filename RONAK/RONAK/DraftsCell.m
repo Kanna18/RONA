@@ -31,7 +31,7 @@
     _brandLabel.text=[arr componentsJoinedByString:@","];
     _discountLabel.text=[drft.Discount__c stringByAppendingString:@"%"];
     [_amountLabel setTitle:drft.Net_Amount__c forState:UIControlStateNormal];
-    _cstNameLabel.text=drft.Account__c;
+    _cstNameLabel.text=drft.customerName__c;
 }
 
 @end

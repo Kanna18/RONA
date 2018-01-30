@@ -26,6 +26,7 @@
     NSMutableArray *arr;
     int indexForSearch;
     NSString *searchtext;
+    UITextField *currentSearchTextField;
 }
 @end
 
@@ -67,8 +68,14 @@
 {
     [super viewDidAppear:YES];
     [tblView reloadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedTwo:) name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
+}
 #pragma mark - TableView methods
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -285,33 +292,18 @@
         [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters2[indexForSearch][@"options"]}];
     }
 //    [textField resignFirstResponder];
-    [tblView reloadData];    
+//    [tblView reloadData];
+    [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedTwo:) name:UITextFieldTextDidChangeNotification object:textField];
-    
+    currentSearchTextField=textField;
     if(textField.tag == indexForSearch+1000){
         textField.text=searchtext;
     }else{
         textField.text=@"";
     }
-    NSLog(@"address of table view %@",textField);
 }
--(BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    textField.text=@"";
-    [self searchEnabledForAdvancedTwo:textField];
-    return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:textField];
-}
-
-
-
 #pragma mark - Memory Warning
 
 - (void)didReceiveMemoryWarning

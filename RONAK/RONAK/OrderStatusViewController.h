@@ -13,6 +13,8 @@
 @interface OrderStatusViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *statusTableView;
 
+@property (strong, nonatomic) IBOutlet UIImageView *headingLabel;
+
 - (IBAction)homeClick:(id)sender;
 
 @property RepotrsPopTV *reportStatus;

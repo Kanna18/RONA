@@ -420,7 +420,12 @@
 
 -(void)changeLablesBasedOnitemsIndex:(int)myIndex
 {
-    ItemMaster *item=showItemsOnscrnArry[myIndex];
+    ItemMaster *item;
+    if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[myIndex]]){
+        item=showItemsOnscrnArry[myIndex];
+    }else{
+        item=ronakGlobal.selectedItemsTocartArr.lastObject;
+    }
     NSArray *imgsPaths=[item.stock.imagesArr allObjects];
     NSLog(@"%@",item.filters.item_No__c);
     [imagesArray removeAllObjects];
