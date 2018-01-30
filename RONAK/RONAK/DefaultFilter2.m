@@ -52,16 +52,27 @@
     
     customHeight=44;
     
+
+}
+-(void)filtersQueryFetchedBy{
+    arr=ronakGlobal.DefFiltersTwo;
+    [tblView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filtersQueryFetchedBy) name:filtersQueryFetched object:nil];
     [super viewWillAppear:animated];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     [tblView reloadData];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:filtersQueryFetched object:nil];
 }
 #pragma mark - TableView methods
 

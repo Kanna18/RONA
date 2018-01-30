@@ -51,10 +51,18 @@
     arr=[NSMutableArray arrayWithArray:ronakGlobal.DefFiltersOne];
     
     [tblView registerNib:[UINib nibWithNibName:@"RangTableViewCell" bundle:nil] forCellReuseIdentifier:@"RangeCell"];
-    tblView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
+    tblView.separatorStyle=UITableViewCellSeparatorStyleNone;    
     customHeight=44;
+}
+-(void)filtersQueryFetchedBy{
+    arr=[NSMutableArray arrayWithArray:ronakGlobal.DefFiltersOne];
+    [tblView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filtersQueryFetchedBy) name:filtersQueryFetched object:nil];
+    [super viewWillAppear:YES];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -66,6 +74,8 @@
 {
     [super viewWillDisappear:YES];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:filtersQueryFetched object:nil];
+    
 }
 
 

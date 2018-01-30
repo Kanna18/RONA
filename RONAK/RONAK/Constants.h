@@ -140,6 +140,7 @@ typedef NS_ENUM(NSUInteger, TypeOfRecord) {
 
 #define orderStatusFolder @"ORDERSTATUS/"
 #define orderSummaryFolder @"ORDERSUMMARYFOLDER/"
+#define filtersQueryFetched @"FiltersQueryFetched"
 #endif /* Constants_h */
 
 

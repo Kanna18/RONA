@@ -78,5 +78,5 @@
 @property (strong, nonatomic) IBOutlet UIView *bottomCalculationsView;
 - (IBAction)dowloadPDF:(id)sender;
 - (IBAction)sendEmailClick:(id)sender;
-
+-(void)deleteDraft;
 @end

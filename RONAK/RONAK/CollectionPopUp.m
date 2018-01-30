@@ -67,6 +67,23 @@
             [cst.defaultsCustomer.itemsCount removeAllObjects];
             cst.defaultsCustomer.discount=@"";
         }
+        if(ronakGlobal.currentDraftRecord){
+            [self checkInternetConnectivityandDeleteDraft];
+        }
+    }
+}
+-(void)checkInternetConnectivityandDeleteDraft{
+    
+    Reachability *reachability= [Reachability reachabilityForInternetConnection];
+    if([reachability isReachable]){
+        [_osVC deleteDraft];
+    }else{
+        if(ronakGlobal.currentDraftRecord!=nil){//if Draft Rec is available;
+            NSMutableArray *drfsArr=[[NSMutableArray alloc]initWithArray:defaultGet(deleteDraftOfflineArray)];
+            [drfsArr addObject:ronakGlobal.currentDraftRecord];
+            ronakGlobal.currentDraftRecord=nil;
+            defaultSet(drfsArr, deleteDraftOfflineArray);
+        }
     }
 }
 @end

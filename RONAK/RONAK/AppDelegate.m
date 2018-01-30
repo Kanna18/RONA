@@ -375,9 +375,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
     // Create the coordinator and store
-    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"RONAK.sqlite"];
     NSError *error = nil;
@@ -394,7 +392,6 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 

@@ -17,7 +17,9 @@
 
 @end
 
-@implementation DefaultFiltersViewController
+@implementation DefaultFiltersViewController{
+    LoadingView *load;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,6 +34,18 @@
     taped.numberOfTouchesRequired=1;
     [_headingLabel addGestureRecognizer:taped];
     
+    if(!(ronakGlobal.DefFiltersOne.count>0)){
+        load=[[LoadingView alloc]init];
+        [load loadingWithlightAlpha:self.view with_message:@"Loading Filters"];
+        [load start];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filtersQueryFetchedBy) name:filtersQueryFetched object:nil];
+}
+
+-(void)filtersQueryFetchedBy{
+    if(load){
+        [load performSelectorOnMainThread:@selector(stop) withObject:nil waitUntilDone:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

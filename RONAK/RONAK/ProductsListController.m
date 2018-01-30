@@ -95,10 +95,10 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.color_Code__c" ascending:YES];
     NSArray *sort=[col.listItemsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
     showItemsOnscrnArry=(NSMutableArray*)sort;
-    [self changeLablesBasedOnitemsIndex:0];
     _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
     [ronakGlobal.selectedItemsTocartArr removeAllObjects];
     [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+    [self changeLablesBasedOnitemsIndex:0];
 }
 
 
@@ -420,7 +420,7 @@
 
 -(void)changeLablesBasedOnitemsIndex:(int)myIndex
 {
-    ItemMaster *item;
+    ItemMaster *item=nil;
     if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[myIndex]]){
         item=showItemsOnscrnArry[myIndex];
     }else{

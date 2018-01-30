@@ -17,9 +17,7 @@
 #import "AppDelegate.h"
 
 @protocol FetchedAllProducts <NSObject>
-
 -(void)productsListFetched;
-
 @end
 
 @interface DownloadProducts : NSObject

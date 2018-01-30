@@ -22,9 +22,9 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.4.0):
     - CocoaLumberjack/Default
-  - Crashlytics (3.9.0):
-    - Fabric (~> 1.7.0)
-  - Fabric (1.7.1)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - Fabric (1.7.2)
   - JSONModel (1.7.0)
   - MARKRangeSlider (1.1.1)
   - SalesforceAnalytics (5.2.0):
@@ -91,8 +91,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
-  Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
-  Fabric: c7cfc652f036180a72fe2539646c8a624420419d
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MARKRangeSlider: ef7e1fe84d22996f47fd72dcb8de50b9410aac47
   SalesforceAnalytics: 9c415d350f3acf6f41d45077436226c4b19008d1
@@ -105,4 +105,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ff3c5ddff26f839d77359054bbf41eb35ffba763
 
-COCOAPODS: 1.3.0.beta.2
+COCOAPODS: 1.3.1

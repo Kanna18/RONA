@@ -454,6 +454,7 @@
             draftDCpop.center=self.view.center;
         }
     }
+    
 }
 
 
@@ -543,7 +544,6 @@
         ronakGlobal.currentDraftRecord=nil;
     });
 }
-
 -(void)removeAllSubviewsandDeselectall
 {
     for (UIButton *butt in _bottomBarView.subviews)

@@ -87,7 +87,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Moving1");
-    [self getCustomersListFromDB:dataResp[indexPath.row]];
+    [load loadingWithlightAlpha:self.view with_message:@"Loading Draft"];
+    [load start];
+//    getCustomersListFromDB:dataResp[indexPath.row]
+    [self performSelector:@selector(getCustomersListFromDB:) withObject:dataResp[indexPath.row] afterDelay:0.2];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [load stop];
 }
 -(void)getCustomersListFromDB:(DraftsDataModel*)drft{
 

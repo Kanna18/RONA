@@ -322,6 +322,8 @@ int totalImages=0, currentImage=0, savedImages=0;
                                       @"options":[lensColF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":@"Poster Model",
                                       @"options":@[@"Yes",@"No"]}];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:filtersQueryFetched object:nil];
     NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);
 }
 
@@ -721,14 +723,12 @@ int totalImages=0, currentImage=0, savedImages=0;
         [demoArr addObject:jsonStr];
     }
     defaultSet([NSKeyedArchiver archivedDataWithRootObject:demoArr], saveOrDraftsOrderArrayOffline);
-    
     if(ronakGlobal.currentDraftRecord!=nil){//if Draft Rec is available;
         NSMutableArray *drfsArr=[[NSMutableArray alloc]initWithArray:defaultGet(deleteDraftOfflineArray)];
         [drfsArr addObject:ronakGlobal.currentDraftRecord];
         ronakGlobal.currentDraftRecord=nil;
         defaultSet(drfsArr, deleteDraftOfflineArray);
     }
-    
 }
 -(void)removeFromOfflineDraftsArray:(NSMutableArray*)jsonStr
 {

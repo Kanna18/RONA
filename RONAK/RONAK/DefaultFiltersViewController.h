@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DownloadProducts.h"
+
 
 @interface DefaultFiltersViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipe;

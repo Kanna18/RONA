@@ -11,6 +11,7 @@
 		4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EA51B6C0568005E64D4 /* AppDelegate.m */; };
 		4F8D5EC81B6C0F94005E64D4 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5EC71B6C0F94005E64D4 /* InitialViewController.m */; };
 		4F8D5ECB1B6C0FE4005E64D4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */; };
+		7FCD64CBB2E68E78B03395BF /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784B4577F37E7F8D35F32B70 /* Pods_RONAK.framework */; };
 		84D4B2CF1F62E8B000B76DD7 /* GMItalic.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */; };
 		84D4B2E71F63BF3500B76DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B2E61F63BF3500B76DD7 /* Main.storyboard */; };
 		84D4B2EB1F63BFB400B76DD7 /* RESTCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B2EA1F63BFB400B76DD7 /* RESTCalls.m */; };
@@ -43,7 +44,6 @@
 		84D4B3551F63C48900B76DD7 /* ViewControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3521F63C48900B76DD7 /* ViewControllerCell.m */; };
 		84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */; };
 		84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B3571F63C53F00B76DD7 /* Images.xcassets */; };
-		BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */; };
 		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
 		F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */; };
 		F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */; };
@@ -155,8 +155,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.release.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.release.xcconfig"; sourceTree = "<group>"; };
-		40A81E085A53C777F54B5D66 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
 		4F277E8C1DC7F5DF00E5A77C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		4F8D5E9D1B6C0568005E64D4 /* RONAK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RONAK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8D5EA11B6C0568005E64D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -168,7 +166,7 @@
 		4F8D5EC91B6C0FE4005E64D4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F8D5ECA1B6C0FE4005E64D4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4FF12F911DCA9E6B004D9EF9 /* RONAK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RONAK.entitlements; sourceTree = "<group>"; };
-		5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RONAK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		784B4577F37E7F8D35F32B70 /* Pods_RONAK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RONAK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D4B2CE1F62E8B000B76DD7 /* GMItalic.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = GMItalic.OTF; sourceTree = "<group>"; };
 		84D4B2E61F63BF3500B76DD7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		84D4B2E81F63BF5400B76DD7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -229,6 +227,7 @@
 		84D4B3531F63C48900B76DD7 /* ViewControllerCellHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCellHeader.h; sourceTree = "<group>"; };
 		84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCellHeader.m; sourceTree = "<group>"; };
 		84D4B3571F63C53F00B76DD7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F385CA56EB588DE1F7E0D8C2 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
 		F606FF941FA63F9200D0290A /* CustomPassCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPassCode.h; sourceTree = "<group>"; };
 		F606FF951FA63F9200D0290A /* CustomPassCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPassCode.m; sourceTree = "<group>"; };
 		F6095E991FA7817300B7C455 /* OrderStatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderStatusViewController.h; sourceTree = "<group>"; };
@@ -388,6 +387,7 @@
 		F6FBB7891F55E8C800CF2732 /* RangTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RangTableViewCell.xib; sourceTree = "<group>"; };
 		F6FF3C4A1F583C7B003269EC /* collapsed1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collapsed1.png; sourceTree = "<group>"; };
 		F6FF3C4B1F583C7B003269EC /* expanded1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expanded1.png; sourceTree = "<group>"; };
+		F75F4CFAA15C7BAD2EC24E30 /* Pods-RONAK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.release.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,7 +397,7 @@
 			files = (
 				F60FB46C1FB884D400F0B546 /* MessageUI.framework in Frameworks */,
 				F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */,
-				BB268CADA795F37D788917FD /* Pods_RONAK.framework in Frameworks */,
+				7FCD64CBB2E68E78B03395BF /* Pods_RONAK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +410,7 @@
 				F60FB46B1FB884D400F0B546 /* MessageUI.framework */,
 				F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */,
 				F60A77521F39E716008CB094 /* LocalAuthentication.framework */,
-				5CE15A1FB8AD33B2BB90F7D7 /* Pods_RONAK.framework */,
+				784B4577F37E7F8D35F32B70 /* Pods_RONAK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 				4F8D5E9F1B6C0568005E64D4 /* RONAK */,
 				4F8D5E9E1B6C0568005E64D4 /* Products */,
 				37B95F29A292887A2CC072C3 /* Frameworks */,
-				B783143B6192D2DE4C6DBEA4 /* Pods */,
+				F62CC824BD3F529E9066B16A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -513,15 +513,6 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		B783143B6192D2DE4C6DBEA4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				40A81E085A53C777F54B5D66 /* Pods-RONAK.debug.xcconfig */,
-				082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F615AFB11FAD972700BF2CBC /* statusTV */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +546,15 @@
 				F62792A520197522001EC297 /* DraftsDataModel.m */,
 			);
 			name = DraftsListVC;
+			sourceTree = "<group>";
+		};
+		F62CC824BD3F529E9066B16A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F385CA56EB588DE1F7E0D8C2 /* Pods-RONAK.debug.xcconfig */,
+				F75F4CFAA15C7BAD2EC24E30 /* Pods-RONAK.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		F633665C1FA9E65400E045B4 /* SaleOrderWrapper */ = {
@@ -1002,13 +1002,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F8D5EC01B6C0568005E64D4 /* Build configuration list for PBXNativeTarget "RONAK" */;
 			buildPhases = (
-				5C99358B38CF5C85D0AA5ED2 /* [CP] Check Pods Manifest.lock */,
+				162194585C6F2CF1CD553C5A /* [CP] Check Pods Manifest.lock */,
 				4F8D5E991B6C0568005E64D4 /* Sources */,
 				4F8D5E9A1B6C0568005E64D4 /* Frameworks */,
 				4F8D5E9B1B6C0568005E64D4 /* Resources */,
 				F6ABDAC31F95A56F00B7CEC8 /* ShellScript */,
-				BF7CE53724BE577E7BFC3B85 /* [CP] Embed Pods Frameworks */,
-				D2990DB9FC5A46D96DB274DC /* [CP] Copy Pods Resources */,
+				71AB78A9808EF6BF42E961EB /* [CP] Embed Pods Frameworks */,
+				031687AE8B7612A409229C4B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1129,7 +1129,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5C99358B38CF5C85D0AA5ED2 /* [CP] Check Pods Manifest.lock */ = {
+		031687AE8B7612A409229C4B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		162194585C6F2CF1CD553C5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1147,7 +1162,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BF7CE53724BE577E7BFC3B85 /* [CP] Embed Pods Frameworks */ = {
+		71AB78A9808EF6BF42E961EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1183,21 +1198,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D2990DB9FC5A46D96DB274DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6ABDAC31F95A56F00B7CEC8 /* ShellScript */ = {
@@ -1352,7 +1352,10 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
+				WARNING_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					" ",
+				);
 			};
 			name = Debug;
 		};
@@ -1394,13 +1397,16 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
+				WARNING_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					" ",
+				);
 			};
 			name = Release;
 		};
 		4F8D5EC11B6C0568005E64D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40A81E085A53C777F54B5D66 /* Pods-RONAK.debug.xcconfig */;
+			baseConfigurationReference = F385CA56EB588DE1F7E0D8C2 /* Pods-RONAK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
@@ -1429,7 +1435,7 @@
 		};
 		4F8D5EC21B6C0568005E64D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 082D176697537E35D169E970 /* Pods-RONAK.release.xcconfig */;
+			baseConfigurationReference = F75F4CFAA15C7BAD2EC24E30 /* Pods-RONAK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RONAK/RONAK.entitlements;
