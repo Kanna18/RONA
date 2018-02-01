@@ -281,19 +281,21 @@
     }else if([notification isKindOfClass:[UITextField class]]){
         textField=(UITextField*)notification;
     }
-    indexForSearch=(int)textField.tag-1000;
-    searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *head=ronakGlobal.advancedFilters2[indexForSearch][@"heading"];
-    if(searchtext.length>0){
-        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF BEGINSWITH[c] %@",searchtext];
-        NSArray *filArr = [ronakGlobal.advancedFilters2[indexForSearch][@"options"] filteredArrayUsingPredicate:predicate];
-        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":filArr}];
-    }else{
-        [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters2[indexForSearch][@"options"]}];
+    if(textField.tag){
+        indexForSearch=(int)textField.tag-1000;
+        searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSString *head=ronakGlobal.advancedFilters2[indexForSearch][@"heading"];
+        if(searchtext.length>0){
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF BEGINSWITH[c] %@",searchtext];
+            NSArray *filArr = [ronakGlobal.advancedFilters2[indexForSearch][@"options"] filteredArrayUsingPredicate:predicate];
+            [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":filArr}];
+        }else{
+            [arr replaceObjectAtIndex:indexForSearch withObject:@{@"heading":head,@"options":ronakGlobal.advancedFilters2[indexForSearch][@"options"]}];
+        }
+        //    [textField resignFirstResponder];
+        //    [tblView reloadData];
+        [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
     }
-//    [textField resignFirstResponder];
-//    [tblView reloadData];
-    [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{

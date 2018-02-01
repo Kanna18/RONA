@@ -114,8 +114,8 @@
 //        self.rangeSlider.minimumDistance = 1;
         _maxTF.text = ronakGlobal.selectedFilter.wsPriceMinMax[@"Max"];
         _minTf.text = ronakGlobal.selectedFilter.wsPriceMinMax[@"Min"];
-        _minLabel.hidden=YES;
-        _maxLabel.hidden=YES;
+//        _minLabel.hidden=YES;
+//        _maxLabel.hidden=YES;
         return;
     }
     if([_filterType isEqualToString:kMRP])
@@ -131,8 +131,8 @@
 //        self.rangeSlider.minimumDistance = 1;
         _maxTF.text = ronakGlobal.selectedFilter.priceMinMax[@"Max"];
         _minTf.text = ronakGlobal.selectedFilter.priceMinMax[@"Min"];
-        _minLabel.hidden=YES;
-        _maxLabel.hidden=YES;
+//        _minLabel.hidden=YES;
+//        _maxLabel.hidden=YES;
         return;
     }
     if([_filterType isEqualToString:kStockvalue])
@@ -148,8 +148,8 @@
 //        self.rangeSlider.minimumDistance = 1;
        _maxTF.text = ronakGlobal.selectedFilter.stockMinMax[@"Max"];
         _minTf.text = ronakGlobal.selectedFilter.stockMinMax[@"Min"];
-        _minLabel.hidden=YES;
-        _maxLabel.hidden=YES;
+//        _minLabel.hidden=YES;
+//        _maxLabel.hidden=YES;
         return;
     }
 }
@@ -158,7 +158,8 @@
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{    
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     NSUInteger newLength = [textField.text length] + [string length] - range.length;

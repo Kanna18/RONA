@@ -109,6 +109,14 @@
     CustomerDataModel *cst=nwArr.lastObject;
     if(cst){
         [ronakGlobal.selectedCustomersArray addObject:cst];
+        cst.defaultsCustomer.discount=[drft.Discount__c stringByAppendingString:@"%"];
+        NSString *dateString =  drft.Future_Delivery_date__c;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date = [dateFormatter dateFromString:dateString];
+        cst.defaultsCustomer.dateFuture=date;
+        cst.defaultsCustomer.customerROIPL=drft.ROIPL__c;
+        cst.defaultsCustomer.customerRemarks=drft.Remarks__c;
         for (ItemRecord *im in drft.Order_Line_Items__r.records){
             NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];    
             NSPredicate *pre=[NSPredicate predicateWithFormat:@"filters.item_No__c == %@",im.Product__c];

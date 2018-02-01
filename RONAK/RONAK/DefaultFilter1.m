@@ -210,12 +210,14 @@
 }
 
 -(void)searchEnabled:(id)notification{
+    
     UITextField *textField;
     if([notification isKindOfClass:[NSNotification class]]){
         textField=[(NSNotification*)notification object];
     }else if([notification isKindOfClass:[UITextField class]]){
         textField=(UITextField*)notification;
     }
+    if(textField.tag){
     indexForSearch=(int)textField.tag-1000;
     searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *head=ronakGlobal.DefFiltersOne[indexForSearch][@"heading"];
@@ -229,6 +231,7 @@
 //    [textField resignFirstResponder];
 //      [tblView reloadData];
     [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
+    }
 
 }
 

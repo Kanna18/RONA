@@ -20,8 +20,8 @@
     self=[super initWithFrame:frame];
     if(self){
         self=[[NSBundle mainBundle]loadNibNamed:@"StockListView" owner:self options:nil][0];
-        vw_Width=frame.size.width;
-        vw_Height=frame.size.height;
+        vw_Width=200;
+        vw_Height=200;
         self.frame=frame;
         self.layer.cornerRadius=10.0f;
         self.clipsToBounds=YES;
@@ -30,6 +30,11 @@
 }
 -(void)showStockfromStockMaster:(NSArray*)st{
     
+    for (UIView *sub in containerView.subviews) {
+        if([sub isKindOfClass:[UILabel class]]){
+            [sub removeFromSuperview];
+        }
+    }    
     int ax=0,ay=10,bx=vw_Width/2,by=10;
     for (StockDetails *std in st) {
         UILabel *warehouseName=[[UILabel alloc]initWithFrame:CGRectMake(ax, ay, vw_Width/2-5, 30)];

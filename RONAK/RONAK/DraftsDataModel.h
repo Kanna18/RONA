@@ -47,6 +47,8 @@
 @property (nonatomic) NSString<Optional> *Brand__c;
 @property (nonatomic) NSString<Optional> *Quantity__c;
 @property (nonatomic) NSString<Optional> *customerName__c;
+@property (nonatomic) NSString<Optional> *Future_Delivery_date__c;
+@property (nonatomic) NSString<Optional> *ROIPL__c;
 @property (nonatomic) Order_Line_Items__r<Optional> *Order_Line_Items__r;
 
 

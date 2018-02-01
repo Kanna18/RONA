@@ -50,6 +50,8 @@
         _FutureDeliveryDate=dateStr?dateStr:[NSNull null];
         NSString *str=cst.defaultsCustomer.customerRemarks;
         _Remarks=str.length>0?str:@" ";
+        NSString *str2=cst.defaultsCustomer.customerROIPL;
+        _Roipl=str2.length>0?str2 : @"";
         
         _WarehouseCode=@"warehouse";
         _TaxCode=@"taxcode";
@@ -122,7 +124,8 @@
             sl.TaxCode,@"TaxCode",
             itemsArr,@"saleOrdeLineItems",
             [NSNumber numberWithBool:sl.draft],@"draft",
-                                   nil];
+            sl.Roipl,@"roipl",
+            nil];
 //        if([oderStr isEqualToString:ksaveDraft]){
 //            [dict setValue:sl.salesforceID forKey:@"salesforceID"];
 //        }

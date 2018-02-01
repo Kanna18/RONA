@@ -11,7 +11,6 @@
 
 @implementation ProductCollectionViewCell
 
-
 -(void)awakeFromNib
 {
     [super awakeFromNib];

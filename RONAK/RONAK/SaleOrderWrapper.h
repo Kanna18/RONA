@@ -31,6 +31,7 @@
 @property NSString *Discount;
 @property NSString *FutureDeliveryDate;
 @property NSString *Remarks;
+@property NSString *Roipl;
 @property NSString *WarehouseCode;
 @property NSString *TaxCode;
 @property NSString *customerName;

@@ -30,8 +30,13 @@
     _quantityLabel.text=[NSString stringWithFormat:@"%@",sum];
     _brandLabel.text=[arr componentsJoinedByString:@","];
     _discountLabel.text=[drft.Discount__c stringByAppendingString:@"%"];
-    [_amountLabel setTitle:drft.Net_Amount__c forState:UIControlStateNormal];
-    _cstNameLabel.text=drft.customerName__c;
+    _cstNameLabel.text=drft.customerName__c;    
+    NSArray *amount=[drft.Order_Line_Items__r.records valueForKey:@"Total__c"];
+    int pri=0;
+    for (NSString *price in amount) {
+        pri+=[price intValue];
+    }
+    [_amountLabel setTitle:[NSString stringWithFormat:@"%d",pri] forState:UIControlStateNormal];
 }
 
 @end

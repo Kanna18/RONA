@@ -1352,10 +1352,7 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = (
-					"-DSQLITE_HAS_CODEC",
-					" ",
-				);
+				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
 			};
 			name = Debug;
 		};
@@ -1397,10 +1394,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = (
-					"-DSQLITE_HAS_CODEC",
-					" ",
-				);
+				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
 			};
 			name = Release;
 		};

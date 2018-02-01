@@ -60,9 +60,8 @@
     [self getProductItemsFilter];
     [self zoomImageFunctionality];
 //    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
-    
-    stockListCountView=[[StockListView alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
-    stockListCountView.hidden=YES;
+
+    stockListCountView=[[StockListView alloc]init];
     [self.productsCollectionView addSubview:stockListCountView];
     _searchField.delegate=self;
 
@@ -872,27 +871,37 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if(!stockListCountView.isHidden){
-    stockListCountView.hidden=YES;
+    if(!stockListCountView.hidden){
+        [UIView transitionWithView:stockListCountView
+                          duration:0.4
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            stockListCountView.hidden=YES;
+                        }
+                        completion:NULL];
     }
 }
 
 -(void)showStockCountofProduct:(StockDetails *)st frame:(CGRect)frame
 {
-    CGRect fra=stockListCountView.frame;
-    fra.origin.y=frame.origin.y;
-    stockListCountView.frame=fra;
+
+    stockListCountView.frame=CGRectMake(0, frame.origin.y, 200, 200);
     AppDelegate *del=(AppDelegate*)[UIApplication sharedApplication].delegate;
     NSManagedObjectContext *contextF= del.managedObjectContext;
     NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
-    NSPredicate *pre=[NSPredicate predicateWithFormat:@"codeId_s == %@",st.codeId_s];
+    NSPredicate *pre=[NSPredicate predicateWithFormat:@"item_Code_s == %@",st.item_Code_s];
     [fet setPredicate:pre];
     NSArray *res=[contextF executeFetchRequest:fet error:nil];
     if(res.count>0){
         [stockListCountView showStockfromStockMaster:res];
-        stockListCountView.hidden=NO;
+        [UIView transitionWithView:stockListCountView
+                          duration:0.4
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            stockListCountView.hidden=NO;
+                        }
+                        completion:NULL];
     }
-    
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -969,10 +978,10 @@
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.color_Code__c" ascending:YES];
         NSArray *sort=[arr sortedArrayUsingDescriptors:@[sortDescriptor]];
         showItemsOnscrnArry=(NSMutableArray*)sort;
-        [self changeLablesBasedOnitemsIndex:0];
 //    _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
         [ronakGlobal.selectedItemsTocartArr removeAllObjects];
         [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+        [self changeLablesBasedOnitemsIndex:0];
         [_productsCollectionView reloadData];
         _displayLable.hidden=YES;
         _allModelsTopBtn.enabled=NO;

@@ -13,7 +13,7 @@
 - (void)labelleftPadding{
     
     NSString *txt=self.text;
-    txt=[txt stringByAppendingString:[NSString stringWithFormat:@"\t"]];
+//    txt=[txt stringByAppendingString:[NSString stringWithFormat:@"\t"]];
     self.text=txt;
 }
 
