@@ -138,8 +138,7 @@
     if(respData.Sale_Order_Date__c)
     {
         [tvData addObject:@"SO"];
-    }
-    
+    }    
     [_statusBtn setTitle:tvData.lastObject forState:UIControlStateNormal];
 }
 - (IBAction)statusClick:(id)sender {

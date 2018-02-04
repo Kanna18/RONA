@@ -219,7 +219,8 @@
     }
     if(textField.tag){
     indexForSearch=(int)textField.tag-1000;
-    searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    searchtext=[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    searchtext=textField.text;
     NSString *head=ronakGlobal.DefFiltersOne[indexForSearch][@"heading"];
     if(searchtext.length>0){
         NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF BEGINSWITH[c] %@",searchtext];
@@ -231,6 +232,8 @@
 //    [textField resignFirstResponder];
 //      [tblView reloadData];
     [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
+        UITextField *tf=[self.view viewWithTag:currentSearchTextField.tag];
+        [tf becomeFirstResponder];
     }
 
 }

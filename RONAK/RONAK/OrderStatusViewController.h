@@ -10,7 +10,7 @@
 #import "OrderStatusCell.h"
 #import "RepotrsPopTV.h"
 
-@interface OrderStatusViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface OrderStatusViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *statusTableView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *headingLabel;

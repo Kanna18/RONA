@@ -80,7 +80,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
     [self addSubview:self.trackImageView];
 
     // Init range image
-    self.rangeImageView = [[UIImageView alloc] initWithImage:self.rangeImage];
+//    self.rangeImageView = [[UIImageView alloc] initWithImage:self.rangeImage];
     [self addSubview:self.rangeImageView];
 
     // Init left thumb image

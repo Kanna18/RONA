@@ -83,6 +83,9 @@
             categoryBasedSort=[cat returnSortedItems];
             [self divideWholeitemsintoCategories];
         }
+        else{
+            [load waringLabelText:@"No Items to View" onView:self.view];
+        }
         [load stop];
     });
     

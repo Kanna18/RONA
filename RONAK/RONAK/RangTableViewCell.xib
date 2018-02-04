@@ -53,13 +53,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="315" height="61"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6c-uq-zfA" userLabel="Min">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6c-uq-zfA" userLabel="Min">
                         <rect key="frame" x="57" y="61" width="21.5" height="15"/>
                         <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTa-cX-Uyk" userLabel="Min">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTa-cX-Uyk" userLabel="Min">
                         <rect key="frame" x="235" y="62" width="25" height="15"/>
                         <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="12"/>
                         <nil key="textColor"/>
@@ -90,7 +90,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="maxLabel" destination="BTa-cX-Uyk" id="3PC-HZ-tsS"/>
                 <outlet property="maxTF" destination="vJR-5p-onp" id="ruQ-F6-Fqd"/>
+                <outlet property="minLabel" destination="g6c-uq-zfA" id="wUx-u7-dfB"/>
                 <outlet property="minTf" destination="iLU-3x-OlT" id="ObF-WY-57O"/>
                 <outlet property="sliderView" destination="UMK-go-ucX" id="GdN-Zx-6f4"/>
             </connections>

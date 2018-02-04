@@ -58,12 +58,10 @@
 
 -(void)showFilter:(id)sender
 {
-    if(_filterView.hidden==YES)
-    {
+    if(_filterView.hidden==YES){
         _filterView.hidden=NO;
     }
-    else
-    {
+    else{
         _filterView.hidden=YES;
         if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
         {
@@ -75,31 +73,25 @@
         }
     }
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
     [self addDoneButtontoKeyboard:textField];
 }
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if(textField == _fromDateTf)
-    {
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if(textField == _fromDateTf){
         [self updateTextField:textField];
     }
-    if(textField == _toDateTF)
-    {
+    if(textField == _toDateTF){
         [self updateTextField:textField];
     }
 }
 
--(void)updateTextField:(UITextField*)sender
-{
+-(void)updateTextField:(UITextField*)sender{
     UIDatePicker *picker = (UIDatePicker*)sender.inputView;
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd"];

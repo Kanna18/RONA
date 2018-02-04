@@ -17,8 +17,9 @@
 {
     NSMutableArray *dataResp;
     UIView *overlayView;
-    NSMutableArray *tVData;
+    NSMutableArray *tVData,*storeTVData;
     LoadingView *load;
+    
     
 }
 
@@ -32,6 +33,8 @@
     _statusTableView.layer.borderWidth=1.0f;
     _statusTableView.layer.borderColor=RGB(209, 210, 212).CGColor;
     _statusTableView.clipsToBounds=YES;
+    
+    _customerNameTF.delegate=self;
     
     load=[[LoadingView alloc]init];
     [load loadingWithlightAlpha:self.view with_message:@"Loading Order Status Reports"];
@@ -217,6 +220,7 @@
             [tVData addObject:ordCSt];
         }];
     }];
+    storeTVData=[[NSMutableArray alloc]initWithArray:tVData];
     [self performSelectorOnMainThread:@selector(tvDataReload) withObject:tVData waitUntilDone:YES];
 }
 
@@ -225,24 +229,22 @@
 
     [_statusTableView reloadData];
 }
-
-
 -(void)showFilter:(id)sender
 {
     if(_filterView.hidden==YES)
     {
         _filterView.hidden=NO;
+        _fromDateTf.text=@"";
+        _toDateTF.text=@"";
+        _customerNameTF.text=@"";
+        _StatusTF.text=@"";
     }
     else
     {
         _filterView.hidden=YES;
         if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
         {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(Receipt_Date__c >= %@) AND (Receipt_Date__c <= %@)", _fromDateTf.text, _toDateTF.text];
-//            tvArray=[_cst.PDC__r.records filteredArrayUsingPredicate:predicate];
-//            NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"Receipt_Date__c" ascending:YES];
-//            tvArray=[tvArray sortedArrayUsingDescriptors:@[sort]];
-//            [_listTableView reloadData];
+            [self DatePredicate];
         }
     }
 }
@@ -261,6 +263,10 @@
     {
         [self updateTextField:textField];
     }
+    if(textField == _customerNameTF){
+        [self customerNameFilterPredicate];
+    }
+    [textField resignFirstResponder];
 }
 
 -(void)updateTextField:(UITextField*)sender
@@ -286,7 +292,41 @@
 }
 -(void)yourTextViewDoneButtonPressed
 {
+    if((_fromDateTf.text.length>0||_toDateTF.text.length>0)&&
+       (!(_fromDateTf.text.length>0)||!(_toDateTF.text.length>0)))
+    {
+        
+    }
+    
+    else if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
+    {
+        [self DatePredicate];
+    }
+    else
+    {
+        tVData=storeTVData;
+        [_statusTableView reloadData];
+    }
     [self.view endEditing:YES];
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
+
+-(void)DatePredicate{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(CreatedDate >=  %@) AND (CreatedDate <=  %@)", _fromDateTf.text,_toDateTF.text];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"record.typeDate__c >=  %@ AND record.typeDate__c <=  %@", _fromDateTf.text,_toDateTF.text];
+    NSCompoundPredicate *fPre=[NSCompoundPredicate orPredicateWithSubpredicates:@[predicate,predicate1]];
+    tVData=(NSMutableArray*)[storeTVData filteredArrayUsingPredicate:fPre];
+    [_statusTableView reloadData];
+    [self.view resignFirstResponder];
+}
+-(void)customerNameFilterPredicate{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Customer_Name__c CONTAINS[cd] %@",_customerNameTF.text];
+    tVData=(NSMutableArray*)[storeTVData filteredArrayUsingPredicate:predicate];
+    [_statusTableView reloadData];
+}
 @end

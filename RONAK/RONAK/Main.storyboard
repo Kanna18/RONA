@@ -1194,7 +1194,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW8-XX-8xs">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="csdcvnskjdvnkds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW8-XX-8xs">
                                                 <rect key="frame" x="10" y="165" width="250" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="8hD-L9-6o8"/>
@@ -5656,7 +5656,7 @@
         <image name="futureinvblue.png" width="200" height="200"/>
         <image name="futureinvgrey.png" width="200" height="200"/>
         <image name="grayBackground" width="60" height="60"/>
-        <image name="home" width="542" height="548"/>
+        <image name="home" width="20" height="20"/>
         <image name="home01" width="544" height="556"/>
         <image name="listblue.png" width="200" height="200"/>
         <image name="listgrey.png" width="200" height="200"/>
@@ -5679,6 +5679,6 @@
         <image name="sortArrow" width="8" height="8"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xEs-LT-TWw"/>
+        <segue reference="ubh-A2-8eN"/>
     </inferredMetricsTieBreakers>
 </document>
