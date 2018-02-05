@@ -782,8 +782,10 @@ int totalImages=0, currentImage=0, savedImages=0;
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                       {
+                                          if(data){
                                           NSArray *jsonD=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                           ronakGlobal.currentDraftRecord=nil;
+                                          }
                                       }];
     [dataTask resume];
 }

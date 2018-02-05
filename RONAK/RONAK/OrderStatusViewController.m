@@ -239,14 +239,28 @@
         _customerNameTF.text=@"";
         _StatusTF.text=@"";
     }
+    else if((_fromDateTf.text.length>0||_toDateTF.text.length>0)&&
+       (!(_fromDateTf.text.length>0)||!(_toDateTF.text.length>0)))
+    {
+        [load waringLabelText:@"Please select from Date and to Date" onView:self.view];
+    }
     else
     {
         _filterView.hidden=YES;
-        if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
+        if(!(_fromDateTf.text.length>0)&&
+           !(_toDateTF.text.length>0)&&
+           !(_customerNameTF.text.length>0)&&
+           !(_StatusTF.text.length>0))
         {
-            [self DatePredicate];
+            tVData=[[NSMutableArray alloc]initWithArray:storeTVData];
+            [_statusTableView reloadData];
         }
+        else{
+            [self allPredicatesFinalResult];
+        }
+        
     }
+    [self.view endEditing:YES];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -255,16 +269,13 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if(textField == _fromDateTf)
-    {
+    if(textField == _fromDateTf){
         [self updateTextField:textField];
     }
-    if(textField == _toDateTF)
-    {
+    if(textField == _toDateTF){
         [self updateTextField:textField];
     }
     if(textField == _customerNameTF){
-        [self customerNameFilterPredicate];
     }
     [textField resignFirstResponder];
 }
@@ -292,21 +303,6 @@
 }
 -(void)yourTextViewDoneButtonPressed
 {
-    if((_fromDateTf.text.length>0||_toDateTF.text.length>0)&&
-       (!(_fromDateTf.text.length>0)||!(_toDateTF.text.length>0)))
-    {
-        
-    }
-    
-    else if(_fromDateTf.text.length>0&&_toDateTF.text.length>0)
-    {
-        [self DatePredicate];
-    }
-    else
-    {
-        tVData=storeTVData;
-        [_statusTableView reloadData];
-    }
     [self.view endEditing:YES];
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -316,17 +312,52 @@
 }
 
 
--(void)DatePredicate{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(CreatedDate >=  %@) AND (CreatedDate <=  %@)", _fromDateTf.text,_toDateTF.text];
-    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"record.typeDate__c >=  %@ AND record.typeDate__c <=  %@", _fromDateTf.text,_toDateTF.text];
-    NSCompoundPredicate *fPre=[NSCompoundPredicate orPredicateWithSubpredicates:@[predicate,predicate1]];
-    tVData=(NSMutableArray*)[storeTVData filteredArrayUsingPredicate:fPre];
-    [_statusTableView reloadData];
-    [self.view resignFirstResponder];
+#pragma mark Predicates.
+-(NSPredicate*)datesPredicate{
+    if(_fromDateTf.text.length>0&&_toDateTF.text.length>0){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(CreatedDate >=  %@) AND (CreatedDate <=  %@)", _fromDateTf.text,_toDateTF.text];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"record.typeDate__c >=  %@ AND record.typeDate__c <=  %@", _fromDateTf.text,_toDateTF.text];
+        NSCompoundPredicate *fPre=[NSCompoundPredicate orPredicateWithSubpredicates:@[predicate,predicate1]];
+        return fPre;
+    }else{
+        return nil;
+    }
 }
--(void)customerNameFilterPredicate{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Customer_Name__c CONTAINS[cd] %@",_customerNameTF.text];
-    tVData=(NSMutableArray*)[storeTVData filteredArrayUsingPredicate:predicate];
+
+-(NSPredicate*)customersPredicate{
+    if(_customerNameTF.text.length>0){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Customer_Name__c CONTAINS[cd] %@",_customerNameTF.text];
+        return predicate;
+    }else{
+        
+        return nil;
+    }
+    
+}
+-(NSPredicate*)statusPredicate{
+    if(_StatusTF.text.length>0){
+        NSPredicate *predicateStatus = [NSPredicate predicateWithFormat:@"statusCode_Response CONTAINS[cd] %@",_StatusTF.text];
+        return predicateStatus;
+    }else{
+        return nil;
+    }
+}
+-(void)allPredicatesFinalResult{
+    NSMutableArray *arr=[[NSMutableArray alloc]init];
+    BOOL pre1=[self datesPredicate];
+    BOOL pre2=[self customersPredicate];
+    BOOL pre3=[self statusPredicate];
+    if(pre1){[arr addObject:[self datesPredicate]];}
+    if(pre2){[arr addObject:[self customersPredicate]];}
+    if(pre3){[arr addObject:[self statusPredicate]];}
+    
+    NSCompoundPredicate *pre=[NSCompoundPredicate andPredicateWithSubpredicates:arr];
+    tVData=(NSMutableArray*)[storeTVData filteredArrayUsingPredicate:pre];
     [_statusTableView reloadData];
+    
+    if(!(tVData.count>0)){
+        [load waringLabelText:@"No reports available" onView:self.view];
+    }
+    
 }
 @end

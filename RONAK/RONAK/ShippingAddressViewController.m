@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self scrollViewDisplayListofCstmrs];
+//    [self scrollViewDisplayListofCstmrs];
     _pdcLbl.userInteractionEnabled=YES;
     
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pdcLabelTapped:)];
@@ -54,7 +54,11 @@
 //    _customerNamelbl.userInteractionEnabled=YES;
 //    [_customerNamelbl addGestureRecognizer:custLblTapped];
     
-
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    [self scrollViewDisplayListofCstmrs];
+    
 }
 -(void)showBillsOfCustomer:(id)sender
 {
@@ -74,10 +78,6 @@
     {
         [load waringLabelText:@"No PDC Details" onView:self.view];
     }
-}
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
 }
 -(void)scrollViewDisplayListofCstmrs
 {

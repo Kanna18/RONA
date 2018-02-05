@@ -259,6 +259,7 @@
 }
 
 - (IBAction)settings_click:(id)sender {
+    
     LoadingView *load=[[LoadingView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [load WithView:self.view with_message:@"Syncing All data"];
     [load start];

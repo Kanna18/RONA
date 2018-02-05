@@ -33,8 +33,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeSlider:) name:UITextFieldTextDidChangeNotification object:_maxTF];
     self.rangeSlider = [[MARKRangeSlider alloc] init];
     [self.rangeSlider addTarget:self action:@selector(rangeSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
-        [self.rangeSlider setMinValue:1 maxValue:100];
-        [self.rangeSlider setLeftValue:1 rightValue:20];
+        [self.rangeSlider setMinValue:0 maxValue:100];
+        [self.rangeSlider setLeftValue:0 rightValue:20];
         self.rangeSlider.minimumDistance = 1;
     [self.sliderView addSubview:self.rangeSlider];
     // Configure the view for the selected state

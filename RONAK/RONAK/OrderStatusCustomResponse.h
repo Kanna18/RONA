@@ -43,9 +43,12 @@
 @property (nonatomic) NSString *RSM_Date__c;
 @property (nonatomic) NSString *SAP_Date__c;
 @property (nonatomic) NSString *Sale_Order_No_Created_Date__c;
-
 @property (nonatomic) TypeOfRecord *typeOfRec; //INVOICE or DELIVERY
 @property (nonatomic) CustomRecord *record;
+@property (nonatomic) NSString *statusCode_Response;
+@property NSMutableArray *tvData;
+
 -(instancetype)initWithDict:(OrderStatsResponse*)dict;
 -(instancetype)initWithDict:(OrderStatsResponse*)dict andRecord:(id)rec;
+
 @end

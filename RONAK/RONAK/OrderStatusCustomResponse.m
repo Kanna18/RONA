@@ -17,6 +17,7 @@
     {
         if(rec==INVOICE_Type)
         {
+//            _tvData=[[NSMutableArray alloc]init];
             InvoiceRecords *invRec=dict;
             _typeOrder__c=invRec.Sale_Order__c;
             _typeId=invRec.Id;
@@ -50,6 +51,7 @@
     self=[super init];
     if(self)
     {
+        _tvData=[[NSMutableArray alloc]init];
         _cdId=dict.Id;
         _Name=dict.Name;
         _CreatedDate=dict.CreatedDate;
@@ -70,14 +72,45 @@
         _RSM_Date__c=dict.RSM_Date__c;
         _SAP_Date__c=dict.SAP_Date__c;
         _Sale_Order_No_Created_Date__c=dict.Sale_Order_Date__c;
+        [self statusCodesOnCell];
     }
     return self;
+}
+
+-(void)statusCodesOnCell
+{
+    if(_CreatedDate)
+    {
+        [_tvData addObject:@"SR"];
+    }
+    if(_RSM_Date__c)
+    {
+        [_tvData addObject:@"RSM"];
+    }
+    if(_HOD_Date__c)
+    {
+        [_tvData addObject:@"HOD"];
+    }
+    if(_MD_Date__c)
+    {
+        [_tvData addObject:@"MD"];
+    }
+    if(_SAP_Date__c)
+    {
+        [_tvData addObject:@"SAP"];
+    }
+    if(_Sale_Order_Date__c)
+    {
+        [_tvData addObject:@"SO"];
+    }
+    _statusCode_Response=_tvData.lastObject;
 }
 -(instancetype)initWithDict:(OrderStatsResponse*)dict andRecord:(id)rec;
 {
     self=[super init];
     if(self)
     {
+        _tvData=[[NSMutableArray alloc]init];
         _cdId=dict.Id;
         _Name=dict.Name;
         _CreatedDate=dict.CreatedDate;
@@ -108,7 +141,9 @@
         {
             _typeOfRec=DELIVERY_Type;
             _record=[[CustomRecord alloc]initWithDict:rec withRecodeType:DELIVERY_Type];
-        }        
+        }
+        [self statusCodesOnCell];
+        
     }
     return self;
 }
