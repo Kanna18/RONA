@@ -29,10 +29,10 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
     self=[super init];
     if(self){
 
-//        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
             syncMainContext=delegate.managedObjectContext;
-//        });
+        });
         custDataOffsetArray=[[NSMutableArray alloc]init];
         productsOffsetArray=[[NSMutableArray alloc]init];
         stockDetailsOffsetArray=[[NSMutableArray alloc]init];
@@ -88,7 +88,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
 
 -(void)fetchData:(NSMutableArray*)arr
 {
-    NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *productsContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     productsContext.parentContext=delegate.managedObjectContext;
     [productsContext performBlock:^{
         for (int i=0;i<arr.count;i++) {
@@ -156,15 +156,18 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                 filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
                 filter.codeId=filtersDict[@"Id"];
                 filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
+                NSError *errior;
                 [productsContext save:nil];
-                [syncMainContext save:nil];
+                [syncMainContext save:&errior];
             }
             if(i==arr.count-1){
             [self syncStockWarehouse];
+            [syncMainContext reset];
             }
         }
         if(arr.count==0){
             [self syncStockWarehouse];
+            [syncMainContext reset];
         }
     }];
 }
@@ -212,10 +215,9 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
 
 -(void)saveStockDetailstoCoreData:(NSMutableArray*)arr
 {
-    NSManagedObjectContext *stockContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *stockContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSMainQueueConcurrencyType];
     stockContext.parentContext=syncMainContext;
     [stockContext performBlock:^{
-        
         for (int i=0 ;i<arr.count;i++) {
             NSDictionary *dict = arr[i];
             NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
@@ -229,6 +231,8 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                     stockE=[[StockDetails alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:stockContext];
                 }else{
                     stockE=coreIds.lastObject;
+                    NSSet *imagesArr=stockE.imagesArr;
+                    [stockE removeImagesArr:imagesArr];
                 };
                 NSDictionary *stDict=dict[@"stock"];
                 stockE.codeId_s=stDict[@"Id"];
@@ -239,7 +243,6 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                 stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
                 NSSet *imagsArr=stockE.imagesArr;
                 [stockE removeImagesArr:imagsArr];
-                
                 for (NSString *key in dict[@"imageURL"]) {
                     NSLog(@"My Key-%@--Value-%@",key,[dict[@"imageURL"] valueForKey:key]);
                     NSEntityDescription *enti=[NSEntityDescription entityForName:NSStringFromClass([ImagesArray class]) inManagedObjectContext:stockContext];                
@@ -250,14 +253,18 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                     [stockE addImagesArrObject:imgD];
                 }
                 [stockContext save:nil];
-                [syncMainContext save:nil];
+                NSError *erroor;
+                [syncMainContext save:&erroor];
+                NSLog(@"%@",erroor);
             }
             if(i==arr.count-1){
                 [self matchStockIDSwithProductIDSandSavetoit:arr];
+                [syncMainContext reset];
             }
         }
         if(arr.count==0){
             [self matchStockIDSwithProductIDSandSavetoit:arr];
+            [syncMainContext reset];
         }
     }];
 }
@@ -320,7 +327,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
 
 -(void)matchStockIDSwithProductIDSandSavetoit:(NSMutableArray*)arr
 {
-    NSManagedObjectContext *mathingContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *mathingContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSMainQueueConcurrencyType];
         mathingContext.parentContext=syncMainContext;
         [mathingContext performBlock:^{
             for (int i=0; i<arr.count; i++) {
@@ -343,9 +350,9 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                         NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
                         item.stock=st;
                         st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
-                        NSError *error;
+                        NSError *error,*erroorr;
                         [mathingContext save:&error];
-                        [syncMainContext save:nil];
+                        [syncMainContext save:&erroorr];
                         NSLog(@"Error while saving--%@",error);
                         /*----------------------------------------------------*/
                     }else{
@@ -354,11 +361,13 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                 }];
                 if(i==arr.count-1){
                     [[NSNotificationCenter defaultCenter] postNotificationName:syncProductMasternotification object:nil];
+                    [syncMainContext reset];
                 }
             }
             if(arr.count==0){
                 if(arr.count==0){
                     [[NSNotificationCenter defaultCenter] postNotificationName:syncProductMasternotification object:nil];
+                    [syncMainContext reset];
                 }
             }
         }];
