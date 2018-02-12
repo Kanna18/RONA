@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>4.8</string>
+	<string>4.10</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -42,6 +42,11 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>SFDCOAuthLoginHost</key>
 	<string>login.salesforce.com</string>
 	<key>UIAppFonts</key>

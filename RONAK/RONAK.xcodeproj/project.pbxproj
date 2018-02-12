@@ -50,6 +50,7 @@
 		F60FB46C1FB884D400F0B546 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60FB46B1FB884D400F0B546 /* MessageUI.framework */; };
 		F615AFB01FAD89A700BF2CBC /* RepotrsPopTV.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */; };
 		F615AFB41FAD975300BF2CBC /* ReportsStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */; };
+		F61A252D202D671800084DAA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61A252C202D671800084DAA /* WebViewController.m */; };
 		F627929B20190508001EC297 /* NSMutableArray+ArrayReverse.m in Sources */ = {isa = PBXBuildFile; fileRef = F627929A20190508001EC297 /* NSMutableArray+ArrayReverse.m */; };
 		F627929E2019711A001EC297 /* DraftsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F627929D2019711A001EC297 /* DraftsListViewController.m */; };
 		F62792A22019747D001EC297 /* DraftsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F62792A12019747D001EC297 /* DraftsCell.m */; };
@@ -135,6 +136,7 @@
 		F6C2BBE11F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6C2BBDF1F73E8EF009126C0 /* GU 6739 BLK-35item1.jpg */; };
 		F6C2BBE21F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6C2BBE01F73E8EF009126C0 /* GU 6739 BLK-35item2.jpg */; };
 		F6D025AA2028234B00842FAC /* FTPopOverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D025A92028234B00842FAC /* FTPopOverMenu.m */; };
+		F6D025B220297B3200842FAC /* IPInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D025B120297B3200842FAC /* IPInsetLabel.m */; };
 		F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D085051F548DD1001A76C5 /* PlaceOrder.m */; };
 		F6D085081F548DD1001A76C5 /* Draft6.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D085061F548DD1001A76C5 /* Draft6.xib */; };
 		F6D10AE51F25C295003AF699 /* CustomerDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D10AE41F25C295003AF699 /* CustomerDataModel.m */; };
@@ -147,6 +149,7 @@
 		F6DADCD21F19DA1800DC635E /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD11F19DA1800DC635E /* CustomLabel.m */; };
 		F6DADCD51F19DA3100DC635E /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCD41F19DA3100DC635E /* CustomTextField.m */; };
 		F6DADCEB1F1A24C800DC635E /* YMCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */; };
+		F6EF940C202F297D00DB7804 /* CustomTapGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF940B202F297D00DB7804 /* CustomTapGesture.m */; };
 		F6FA18511FAA5F7C0082A89E /* WSCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6B41C131FAA432000471C1A /* WSCalendarView.xib */; };
 		F6FBB7801F5553AB00CF2732 /* CustomSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */; };
 		F6FBB78A1F55E8C800CF2732 /* RangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FBB7881F55E8C800CF2732 /* RangTableViewCell.m */; };
@@ -242,6 +245,8 @@
 		F615AFAF1FAD89A700BF2CBC /* RepotrsPopTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepotrsPopTV.m; sourceTree = "<group>"; };
 		F615AFB21FAD975200BF2CBC /* ReportsStatusCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportsStatusCell.h; sourceTree = "<group>"; };
 		F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportsStatusCell.m; sourceTree = "<group>"; };
+		F61A252B202D671800084DAA /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		F61A252C202D671800084DAA /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		F627929920190508001EC297 /* NSMutableArray+ArrayReverse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+ArrayReverse.h"; sourceTree = "<group>"; };
 		F627929A20190508001EC297 /* NSMutableArray+ArrayReverse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+ArrayReverse.m"; sourceTree = "<group>"; };
 		F627929C2019711A001EC297 /* DraftsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraftsListViewController.h; sourceTree = "<group>"; };
@@ -364,6 +369,8 @@
 		F6D025A82028234B00842FAC /* FTPopOverMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPopOverMenu.h; sourceTree = "<group>"; };
 		F6D025A92028234B00842FAC /* FTPopOverMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPopOverMenu.m; sourceTree = "<group>"; };
 		F6D025AD202838B600842FAC /* SevenSwitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SevenSwitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6D025B020297B3200842FAC /* IPInsetLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPInsetLabel.h; sourceTree = "<group>"; };
+		F6D025B120297B3200842FAC /* IPInsetLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPInsetLabel.m; sourceTree = "<group>"; };
 		F6D085041F548DD1001A76C5 /* PlaceOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOrder.h; sourceTree = "<group>"; };
 		F6D085051F548DD1001A76C5 /* PlaceOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOrder.m; sourceTree = "<group>"; };
 		F6D085061F548DD1001A76C5 /* Draft6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Draft6.xib; sourceTree = "<group>"; };
@@ -385,6 +392,8 @@
 		F6DADCDC1F19DC4800DC635E /* RONAK.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RONAK.pch; sourceTree = "<group>"; };
 		F6DADCE91F1A24C800DC635E /* YMCollectionIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMCollectionIndexView.h; sourceTree = "<group>"; };
 		F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCollectionIndexView.m; sourceTree = "<group>"; };
+		F6EF940A202F297D00DB7804 /* CustomTapGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTapGesture.h; sourceTree = "<group>"; };
+		F6EF940B202F297D00DB7804 /* CustomTapGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTapGesture.m; sourceTree = "<group>"; };
 		F6FBB77E1F5553AB00CF2732 /* CustomSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwipe.h; sourceTree = "<group>"; };
 		F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwipe.m; sourceTree = "<group>"; };
 		F6FBB7871F55E8C800CF2732 /* RangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangTableViewCell.h; sourceTree = "<group>"; };
@@ -494,6 +503,7 @@
 				84D4B3051F63C1D400B76DD7 /* SelectedFilters.m */,
 				F606FF941FA63F9200D0290A /* CustomPassCode.h */,
 				F606FF951FA63F9200D0290A /* CustomPassCode.m */,
+				F61A252E202D672D00084DAA /* Web */,
 				F6DADCD61F19DA5E00DC635E /* SalesForce */,
 				F6DADCE71F1A249F00DC635E /* Features */,
 				F64F10E61F2E5802001BC880 /* Loading */,
@@ -547,6 +557,15 @@
 				F615AFB31FAD975300BF2CBC /* ReportsStatusCell.m */,
 			);
 			name = ReportsTV;
+			sourceTree = "<group>";
+		};
+		F61A252E202D672D00084DAA /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				F61A252B202D671800084DAA /* WebViewController.h */,
+				F61A252C202D671800084DAA /* WebViewController.m */,
+			);
+			name = Web;
 			sourceTree = "<group>";
 		};
 		F627929F20197125001EC297 /* DraftsListVC */ = {
@@ -893,12 +912,16 @@
 		F6DADCCC1F19D9EA00DC635E /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F6EF940A202F297D00DB7804 /* CustomTapGesture.h */,
+				F6EF940B202F297D00DB7804 /* CustomTapGesture.m */,
 				F6FBB77E1F5553AB00CF2732 /* CustomSwipe.h */,
 				F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */,
 				F6DADCCD1F19DA0700DC635E /* CustomButton.h */,
 				F6DADCCE1F19DA0700DC635E /* CustomButton.m */,
 				F6DADCD01F19DA1800DC635E /* CustomLabel.h */,
 				F6DADCD11F19DA1800DC635E /* CustomLabel.m */,
+				F6D025B020297B3200842FAC /* IPInsetLabel.h */,
+				F6D025B120297B3200842FAC /* IPInsetLabel.m */,
 				F6DADCD31F19DA3100DC635E /* CustomTextField.h */,
 				F6DADCD41F19DA3100DC635E /* CustomTextField.m */,
 				F6496B981F52A83E00028FF0 /* CustomSwitch.h */,
@@ -1273,14 +1296,17 @@
 				F6D085071F548DD1001A76C5 /* PlaceOrder.m in Sources */,
 				F6DADCCF1F19DA0700DC635E /* CustomButton.m in Sources */,
 				F6B41C371FAA4F6500471C1A /* ImagesArray+CoreDataProperties.m in Sources */,
+				F6EF940C202F297D00DB7804 /* CustomTapGesture.m in Sources */,
 				84D4B32A1F63C34B00B76DD7 /* ProductsListController.m in Sources */,
 				84D4B34F1F63C46200B76DD7 /* ViewController.m in Sources */,
 				F64F10E51F2E57FD001BC880 /* LoadingView.m in Sources */,
 				84D4B3321F63C36B00B76DD7 /* OrderSummaryVC.m in Sources */,
 				F63366611FA9E7D400E045B4 /* OrderStatsResponse.m in Sources */,
+				F61A252D202D671800084DAA /* WebViewController.m in Sources */,
 				F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */,
 				F62792A22019747D001EC297 /* DraftsCell.m in Sources */,
 				F6D10AE91F25C886003AF699 /* ServerAPIManager.m in Sources */,
+				F6D025B220297B3200842FAC /* IPInsetLabel.m in Sources */,
 				4F8D5EA61B6C0568005E64D4 /* AppDelegate.m in Sources */,
 				F6B41C351FAA4F6500471C1A /* Filters+CoreDataProperties.m in Sources */,
 				F6BFD94C1F4C9CFE0057C4A0 /* RONAK.xcdatamodeld in Sources */,

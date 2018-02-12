@@ -11,10 +11,14 @@
 @implementation UILabel (Padding)
 
 - (void)labelleftPadding{
-    
+
     NSString *txt=self.text;
-//    txt=[txt stringByAppendingString:[NSString stringWithFormat:@"\t"]];
+    txt=[txt stringByAppendingString:@" "];
     self.text=txt;
+
+
+    
 }
+
 
 @end

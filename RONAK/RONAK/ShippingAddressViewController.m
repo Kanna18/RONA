@@ -55,8 +55,13 @@
 //    [_customerNamelbl addGestureRecognizer:custLblTapped];
     
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    for (UIView *view in self.scrollView_Cmlist.subviews)
+    {
+        if ([view isKindOfClass:[CustomButton class]])
+            [view removeFromSuperview];
+    }
     [self scrollViewDisplayListofCstmrs];
     
 }
@@ -171,11 +176,17 @@
     _pdcLbl.textColor=BlueClr;
     [self showaddresses:btn];
     
-    
+
     [_creditLimitLbl labelleftPadding];
     [_acntBalanceLbl labelleftPadding];
     [_pdcLbl labelleftPadding];
     [_statusLbl labelleftPadding];
+    
+    
+//    [_creditLimitLbl resizeHeightToFitText];
+//    [_acntBalanceLbl resizeHeightToFitText];
+//    [_pdcLbl resizeHeightToFitText];
+//    [_statusLbl resizeHeightToFitText];
 }
 
 -(NSString*)numberFormatter:(float)fValue

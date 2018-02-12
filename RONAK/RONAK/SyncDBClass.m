@@ -77,6 +77,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                                                   return ;
                                               }
                                               else{
+                                                  SyncproductsOffset=0;
                                                   [self fetchData:productsOffsetArray];
                                                   return ;
                                               }
@@ -96,8 +97,14 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"SELF.filters.codeId == %@",dic[@"Id"]];
             [fetch setPredicate:predicate];
             NSArray *coreIds=[productsContext executeFetchRequest:fetch error:nil];//Get All IdsArray From Co`re Da
-            if(coreIds.count>0){
-                ItemMaster *item=coreIds.lastObject;
+            if(coreIds.count>0||coreIds.count==0){
+                ItemMaster *item;
+                if(coreIds.count>0){
+                    item=coreIds.lastObject;
+                }else if(coreIds.count==0){
+                    NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([ItemMaster class]) inManagedObjectContext:productsContext];
+                    item=[[ItemMaster alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:productsContext];
+                }
                     item.imageUrl=dic[@"imageURL"];
                     item.imageName=dic[@"imageName"];
                 Filters *filter=item.filters;
@@ -152,6 +159,12 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                 [productsContext save:nil];
                 [syncMainContext save:nil];
             }
+            if(i==arr.count-1){
+            [self syncStockWarehouse];
+            }
+        }
+        if(arr.count==0){
+            [self syncStockWarehouse];
         }
     }];
 }
@@ -187,6 +200,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                                                   [self syncStockWarehouse];
                                               }
                                               else{
+                                                  SyncstockOffset=0;
                                                   NSArray *imgs=[stockDetailsOffsetArray valueForKeyPath:@"imageURL"];
                                                   [self firstSaveAllImagestoLocalDataBase:imgs];
                                                   [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
@@ -202,27 +216,33 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
     stockContext.parentContext=syncMainContext;
     [stockContext performBlock:^{
         
-        for (NSDictionary *dict in arr) {
+        for (int i=0 ;i<arr.count;i++) {
+            NSDictionary *dict = arr[i];
             NSFetchRequest *fetch=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
-            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"codeId_s == %@",dict[@"Id"]];
+            NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s == %@",dict[@"stock"][@"Item_Code__c"]];
             [fetch setPredicate:predicate];
             NSArray *coreIds=[stockContext executeFetchRequest:fetch error:nil];
-            if(coreIds.count>0){
-                StockDetails *stockE=coreIds.lastObject;
-                NSDictionary *stDict=dict;
+            if(coreIds.count>0||coreIds.count==0){
+                StockDetails *stockE;
+                if(coreIds.count==0){
+                    NSEntityDescription *entitydesc=[NSEntityDescription entityForName:NSStringFromClass([StockDetails class]) inManagedObjectContext:stockContext];
+                    stockE=[[StockDetails alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:stockContext];
+                }else{
+                    stockE=coreIds.lastObject;
+                };
+                NSDictionary *stDict=dict[@"stock"];
                 stockE.codeId_s=stDict[@"Id"];
                 stockE.item_Code_s=stDict[@"Item_Code__c"];
                 stockE.product__s=stDict[@"Product__c"];
                 stockE.stock__s=[stDict[@"Stock__c"] floatValue];
                 stockE.warehouse_Name_s=stDict[@"Warehouse_Name__c"];
                 stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
-                
                 NSSet *imagsArr=stockE.imagesArr;
                 [stockE removeImagesArr:imagsArr];
                 
                 for (NSString *key in dict[@"imageURL"]) {
                     NSLog(@"My Key-%@--Value-%@",key,[dict[@"imageURL"] valueForKey:key]);
-                    NSEntityDescription *enti=[NSEntityDescription entityForName:NSStringFromClass([ImagesArray class]) inManagedObjectContext:stockContext];
+                    NSEntityDescription *enti=[NSEntityDescription entityForName:NSStringFromClass([ImagesArray class]) inManagedObjectContext:stockContext];                
                     ImagesArray *imgD=[[ImagesArray alloc]initWithEntity:enti insertIntoManagedObjectContext:stockContext];
                     imgD.imageName=key;
                     imgD.itemCode=stDict[@"Item_Code__c"];
@@ -232,11 +252,15 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                 [stockContext save:nil];
                 [syncMainContext save:nil];
             }
+            if(i==arr.count-1){
+                [self matchStockIDSwithProductIDSandSavetoit:arr];
+            }
+        }
+        if(arr.count==0){
+            [self matchStockIDSwithProductIDSandSavetoit:arr];
         }
     }];
-    
 }
-
 
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
@@ -293,6 +317,54 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
         }
     }
 }
+
+-(void)matchStockIDSwithProductIDSandSavetoit:(NSMutableArray*)arr
+{
+    NSManagedObjectContext *mathingContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        mathingContext.parentContext=syncMainContext;
+        [mathingContext performBlock:^{
+            for (int i=0; i<arr.count; i++) {
+                NSDictionary *dict = arr[i];
+                NSDictionary *stDict=dict[@"stock"];
+                NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
+                NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s == %@",stDict[@"Item_Code__c"]];
+                [fetchIds setPredicate:predicate];//Get All Stock Details in to array and macth the id to  Item master
+                NSArray *idsarr=[mathingContext executeFetchRequest:fetchIds error:nil];
+                [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    StockDetails *st=obj;
+                    NSLog(@"checking Code %@",st.item_Code_s);
+                    /*-Attach Stock Object to Item  master Object in Core Data*/
+                    NSFetchRequest *fetchitems=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ItemMaster class])];
+                    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"filters.item_No__c == %@",st.item_Code_s];
+                    [fetchitems setPredicate:predicate];
+                    NSArray *itemsObjs=[mathingContext executeFetchRequest:fetchitems error:nil];
+                    if(itemsObjs.count>0){
+                        ItemMaster *item=itemsObjs.lastObject;
+                        NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
+                        item.stock=st;
+                        st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
+                        NSError *error;
+                        [mathingContext save:&error];
+                        [syncMainContext save:nil];
+                        NSLog(@"Error while saving--%@",error);
+                        /*----------------------------------------------------*/
+                    }else{
+                        NSLog(@"Id not matching in product Master-- %@",st.item_Code_s);
+                    }
+                }];
+                if(i==arr.count-1){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:syncProductMasternotification object:nil];
+                }
+            }
+            if(arr.count==0){
+                if(arr.count==0){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:syncProductMasternotification object:nil];
+                }
+            }
+        }];
+}
+
+
 
 -(void)syncOrderStatusResponse{
     

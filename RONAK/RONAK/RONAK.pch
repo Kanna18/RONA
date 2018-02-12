@@ -19,7 +19,7 @@
 #import "YMCollectionIndexView.h"
 #import "UITextField+Padding.h"
 #import "UIImageView+Zooming.h"
-
+#import "IPInsetLabel.h"
 #import "LoadingView.h"
 #import "RESTCalls.h"
 #import "RONAKSharedClass.h"
@@ -29,6 +29,8 @@
 #import "CustomSwitch.h"
 #import "MenuViewController.h"
 #import "Discount.h"
+#import "CustomTapGesture.h"
+
 
 #import "WSCalendarView.h"
 #import "Calculator.h"

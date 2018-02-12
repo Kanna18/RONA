@@ -37,16 +37,40 @@
            _thubImage.image=image;
             _item=item;
             _codeName.text=item.filters.color_Code__c;
-//        });
-//    });
-//    if([item.filters.stock__c intValue]>50)
-//    {
-//        _codeName.textColor=[UIColor blackColor];
-//    }
-//    else{
-//        _codeName.textColor=RGB(213,201,101);
-////    }
+    [self getStockColorCount:item.filters.item_No__c];
 }
+-(void)getStockColorCount:(NSString*)itemCode{
+    
+    
+    AppDelegate *del=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *countContext= del.managedObjectContext;
+    
+    NSMutableArray *wreHseArr=[[NSMutableArray alloc]init];
+    for (NSString *wreHse in ronakGlobal.selectedFilter.warehouseFilter) {
+        NSPredicate *predicate=[NSPredicate predicateWithFormat:@"warehouse_Name_s LIKE %@",wreHse];
+        [wreHseArr addObject:predicate];
+    }
+    NSPredicate *itmCode=[NSPredicate predicateWithFormat:@"item_Code_s LIKE %@",itemCode];
+    NSCompoundPredicate *cmpPre=[NSCompoundPredicate orPredicateWithSubpredicates:wreHseArr];
+    NSCompoundPredicate *fPred=[NSCompoundPredicate andPredicateWithSubpredicates:@[itmCode,cmpPre]];
+    NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
+    [fet setPredicate:fPred];
+    NSArray *arr=[countContext executeFetchRequest:fet error:nil];
+    NSMutableArray *stockCnt=[[NSMutableArray alloc]initWithArray:[arr valueForKeyPath:@"stock__s"]];
+    NSMutableArray *poCnt=[[NSMutableArray alloc]initWithArray:[arr valueForKeyPath:@"ordered_Quantity_s"]];
+    int stockCount =[stockCnt countOfAllIndexes];;    
+    int poCount=[poCnt countOfAllIndexes];
+    if(stockCount>0){
+        _codeName.textColor=[UIColor blackColor];
+    }else if (poCount>0){
+       _codeName.textColor=[UIColor yellowColor];
+    }else{
+        _codeName.textColor=[UIColor redColor];
+    }
+    
+}
+
+
 - (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
     UIGraphicsBeginImageContext(size);
     [image drawInRect:CGRectMake(0, 0, size.width, size.height)];

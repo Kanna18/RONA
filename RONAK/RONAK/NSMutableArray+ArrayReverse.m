@@ -24,4 +24,14 @@
     }
 }
 
+-(int)countOfAllIndexes{
+    int totalCount=0;
+    if ([self count] < 1)
+        return 0;
+    for (int i=0;i<self.count;i++) {
+        totalCount+=[self[i] intValue];
+    }
+    return totalCount;
+}
+
 @end

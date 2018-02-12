@@ -24,15 +24,23 @@
     AppDelegate *delegate;
     NSManagedObjectContext *context;
     BOOL productsFetched,stockFetched,imagesFetched,savedData;
+    BOOL syncCustomerMasterFlag, syncBrandStockFlag, syncProductMasterFlag;
+    
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
     _ProgressView.hidden=YES;
     
+    load=[[LoadingView alloc]init];
     delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     context=delegate.managedObjectContext;
+    
+    syncCustomerMasterFlag=NO;
+    syncBrandStockFlag=NO;
+    syncProductMasterFlag=NO;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProductLabel:) name:PRODUC_FETCHING_STATUS_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImagesLabel:) name:IMAGES_FETCHING_STATUS_NOTIFICATION object:nil];
@@ -66,9 +74,6 @@
             btn.titleLabel.font=gothMedium(15);
         }
     }
-    SyncDBClass *sync=[[SyncDBClass alloc]init];
-    [sync syncProductMaster];
-
 }
 
 -(void)updateProductLabel:(NSNotification*)notification{
@@ -238,20 +243,42 @@
 }
 
 - (IBAction)activity_click:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://test.salesforce.com"]];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://test.salesforce.com"]];
 }
 
 - (IBAction)logout_click:(id)sender {
     
-    SignInViewController *signIN=[self.storyboard instantiateViewControllerWithIdentifier:@"signInVC"];
-    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:signIN];
-    [self presentViewController:nav animated:YES completion:nil];
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Are you sure you want to logout" message:@"Logout will erase all your stored data" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        SignInViewController *signIN=[self.storyboard instantiateViewControllerWithIdentifier:@"signInVC"];
+        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:signIN];
+        [self presentViewController:nav animated:YES completion:nil];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserPassword];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserEmail];        
+        NSUserDefaults *def= [NSUserDefaults standardUserDefaults];
+        NSDictionary *dic=[def dictionaryRepresentation];
+        for (NSString *key in dic) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        }
+        [self deleteStoredData];
+    }];
+    UIAlertAction *cancel=[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+-(void)deleteStoredData{
     
-    
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserPassword];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:savedUserEmail];
+    NSError *err;
+    NSArray *arr=[fileManager contentsOfDirectoryAtPath:docPath error:&err];
+    for (NSString *str in arr){
+        [fileManager removeItemAtPath:[docPath stringByAppendingPathComponent:str] error:&err];
+    }
+    NSLog(@"%@",arr);
     
 }
+
 
 - (IBAction)multimedia_click:(id)sender {
     DraftsListViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"draftsListVC"];
@@ -260,17 +287,43 @@
 
 - (IBAction)settings_click:(id)sender {
     
-    LoadingView *load=[[LoadingView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncCustomerMasterNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncBrandsStockNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncProductMasternotification object:nil];
+    
     [load WithView:self.view with_message:@"Syncing All data"];
     [load start];
     SyncDBClass *sync=[[SyncDBClass alloc]init];
     [sync syncProductMaster];
-    [sync syncStockWarehouse];
+//    [sync syncStockWarehouse];//After Product Master download stock Warehouse in sync DB class
     [sync syncOrderStatusResponse];
     DownloadProducts *dow=[[DownloadProducts alloc]init];
     [dow downloadCustomersListInBackground];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{        
-        [load stop];
-    });
+    [dow getBrandsAndWarehousesListandsavetoDefaults];    
+}
+
+-(void)syncingDone:(NSNotification*)notification{
+    
+    if([notification.name isEqualToString:syncCustomerMasterNotification]){
+        syncCustomerMasterFlag=YES;
+    }if([notification.name isEqualToString:syncBrandsStockNotification]){
+        syncBrandStockFlag=YES;
+    }if([notification.name isEqualToString:syncProductMasternotification]){
+        syncProductMasterFlag=YES;
+    }
+    
+    if(syncBrandStockFlag==YES&&syncCustomerMasterFlag==YES&&syncProductMasterFlag){
+        NSError *err=notification.object;
+        NSLog(@"%@",err);
+        [load performSelectorOnMainThread:@selector(stop) withObject:nil waitUntilDone:YES];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:syncCustomerMasterNotification object:nil];
+         [[NSNotificationCenter defaultCenter] removeObserver:self name:syncBrandsStockNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:syncProductMasternotification object:nil];
+        syncCustomerMasterFlag=NO;
+        syncBrandStockFlag=NO;
+        syncProductMasterFlag=NO;
+        
+        [self getFetchFiltersAfteDataFetched];
+    }
 }
 @end

@@ -6,7 +6,7 @@
 //  Copyright © 2017 RONAKOrganizationName. All rights reserved.
 //
 
-#define NUMBERS_ONLY @"1234567890"
+#define NUMBERS_ONLY @"123456789"
 
 #import "RangTableViewCell.h"
 
@@ -33,7 +33,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeSlider:) name:UITextFieldTextDidChangeNotification object:_maxTF];
     self.rangeSlider = [[MARKRangeSlider alloc] init];
     [self.rangeSlider addTarget:self action:@selector(rangeSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
-        [self.rangeSlider setMinValue:0 maxValue:100];
+        [self.rangeSlider setMinValue:1 maxValue:100];
         [self.rangeSlider setLeftValue:0 rightValue:20];
         self.rangeSlider.minimumDistance = 1;
     [self.sliderView addSubview:self.rangeSlider];
@@ -41,7 +41,9 @@
     _minTf.delegate=self;
     _maxTF.delegate=self;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(rangeSliderValueDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
-    
+    if(!(_minTf.text.length>0)){
+        _minTf.text=@"0";
+    }
 }
 -(void)changeSlider:(id)sender
 {

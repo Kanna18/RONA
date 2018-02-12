@@ -90,6 +90,7 @@ int totalImages=0, currentImage=0, savedImages=0;
                 return ;
             }
             else{
+                productsOffset=0;
                 [self fetchData:productsOffsetArray];
                 return ;
             }
@@ -390,8 +391,10 @@ int totalImages=0, currentImage=0, savedImages=0;
             }
             else{
                     NSError *cerr;
+                    offSet=0;
                     NSData *jsonData=[NSJSONSerialization dataWithJSONObject:custDataOffsetArray options:0 error:nil];
                     [rest writeJsonDatatoFile:jsonData toPathExtension:customersFilePath error:cerr];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:syncCustomerMasterNotification object:cerr];
                 }
             }
     }];
@@ -399,13 +402,17 @@ int totalImages=0, currentImage=0, savedImages=0;
 
 }
 #pragma mark Warehouse Master Integration
+static NSString * extracted() {
+    return rest_warehouseMaster_b;
+}
+
 -(void)getBrandsAndWarehousesListandsavetoDefaults{
     
     NSDictionary *headers = @{@"content-type": @"application/json",
                               @"authorization": [@"Bearer " stringByAppendingString:defaultGet(kaccess_token)]};
     NSDictionary *parameters = @{ @"userName": defaultGet(savedUserEmail)};
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:rest_warehouseMaster_b] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:extracted()] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:headers];
     [request setHTTPBody:postData];
@@ -423,6 +430,7 @@ int totalImages=0, currentImage=0, savedImages=0;
                 defaultSet([NSKeyedArchiver archivedDataWithRootObject:brandsA], brandsArrayList);
                 defaultSet([NSKeyedArchiver archivedDataWithRootObject:warehouseLisA], warehouseArrayList);
                 NSLog(@"%@--%@",[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)],  [NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]);
+                [[NSNotificationCenter defaultCenter] postNotificationName:syncBrandsStockNotification object:nil];
                 }
             }
     }];
@@ -460,6 +468,7 @@ int totalImages=0, currentImage=0, savedImages=0;
                           [self downLoadStockDetails];
                       }
               else{
+                      stockOffset=0;
                       NSArray *imgs=[stockDetailsOffsetArray valueForKeyPath:@"imageURL"];
                       [self firstSaveAllImagestoLocalDataBase:imgs];
                       [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
@@ -522,6 +531,8 @@ int totalImages=0, currentImage=0, savedImages=0;
         }];
     });
 }
+
+
 -(void)saveStockDetailstoCoreData:(NSMutableArray*)arr
 {
     NSManagedObjectContext *stockContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];

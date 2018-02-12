@@ -63,7 +63,8 @@
 
     stockListCountView=[[StockListView alloc]init];
     [self.productsCollectionView addSubview:stockListCountView];
-    _searchField.delegate=self;
+    _searchField.delegate=self;    
+    _customersCollectionView.delaysContentTouches=NO;
 
 }
 
@@ -207,6 +208,7 @@
         _allColorsTopBtn.selected=NO;
         _displayLable.hidden=NO;
         _allModelsTopBtn.enabled=YES;
+        [_customersCollectionView reloadData];
         switch (swipe.numberOfTouches) {
                 
             case 2:
@@ -337,7 +339,10 @@
         }
         [cell bindData:showItemsOnscrnArry[indexPath.row]];
         cell.delegate=self;
-        
+        UITapGestureRecognizer *doubleTaptoadd=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addtoCartArrayWhenDoubleTaps:)];
+        doubleTaptoadd.numberOfTouchesRequired=1;
+        doubleTaptoadd.numberOfTapsRequired=2;
+        [cell addGestureRecognizer:doubleTaptoadd];
         return cell;
     }
     if(collectionView==self.customersCollectionView)
@@ -354,7 +359,9 @@
     return nil;
 }
 
-
+-(void)addtoCartArrayWhenDoubleTaps{
+    
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

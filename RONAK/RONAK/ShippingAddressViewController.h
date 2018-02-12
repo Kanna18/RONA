@@ -13,10 +13,10 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *billAddress_scrlView;
 @property (strong, nonatomic) IBOutlet UIScrollView *shipAddress_scrlView;
 
-@property (strong, nonatomic) IBOutlet CustomLabel *statusLbl;
-@property (strong, nonatomic) IBOutlet CustomLabel *creditLimitLbl;
-@property (strong, nonatomic) IBOutlet CustomLabel *acntBalanceLbl;
-@property (strong, nonatomic) IBOutlet CustomLabel *pdcLbl;
+@property (strong, nonatomic) IBOutlet IPInsetLabel *statusLbl;
+@property (strong, nonatomic) IBOutlet IPInsetLabel *creditLimitLbl;
+@property (strong, nonatomic) IBOutlet IPInsetLabel *acntBalanceLbl;
+@property (strong, nonatomic) IBOutlet IPInsetLabel *pdcLbl;
 
 @property (strong, nonatomic) IBOutlet CustomLabel *Lbl90;
 @property (strong, nonatomic) IBOutlet CustomLabel *lbl150;

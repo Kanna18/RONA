@@ -147,7 +147,7 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
     }
 
     CGFloat trackY = (height - trackHeight) / 2;
-    CGFloat gap = 1.0;
+    CGFloat gap = 10.0;
 
     // Set track frame
     CGFloat trackX = gap;

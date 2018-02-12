@@ -49,6 +49,7 @@
         ay+=40;
         by+=40;
     }
+    containerView.contentSize=CGSizeMake(0, by+10);
 }
 /*
 // Only override drawRect: if you perform custom drawing.

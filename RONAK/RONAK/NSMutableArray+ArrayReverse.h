@@ -10,4 +10,5 @@
 
 @interface NSMutableArray (ArrayReverse)
 - (void)reverse;
+-(int)countOfAllIndexes;
 @end
