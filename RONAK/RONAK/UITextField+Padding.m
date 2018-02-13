@@ -29,6 +29,16 @@
     [paddingView addSubview:img];
 }
 
+-(void)setRightPaddingiCon:(NSString*)imageName{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.rightView = paddingView;
+    self.rightViewMode = UITextFieldViewModeAlways;
+    
+    UIImageView *img=[[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
+    img.frame=CGRectMake(0, 5, 20, 20);
+    [paddingView addSubview:img];
+}
+
 -(void)setLeftpasswordPadding{
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     self.leftView = paddingView;

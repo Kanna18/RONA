@@ -22,7 +22,7 @@
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
-    CGFloat customHeight,customHeightSecondCell;
+    CGFloat customHeight,customHeightSecondCell,customHeaderHeight;
     NSMutableArray *arr;
     int indexForSearch;
     NSString *searchtext;
@@ -151,9 +151,24 @@
 
 }
 
+-(void)btnEdgeInsets:(UIButton*)sender{
+    
+    CGRect frame=sender.frame;
+    UIEdgeInsets edge=sender.imageEdgeInsets;
+    edge.bottom=frame.size.height-30;
+    sender.imageEdgeInsets=edge;
+    
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50.0f;
+    if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]]&&[ronakGlobal.advancedFilters2[section][@"options"] count]>searchFiilterCount)
+    {
+        customHeaderHeight=90.0f;
+    }else{
+        customHeaderHeight=50.0f;
+    }
+    return customHeaderHeight;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -188,6 +203,8 @@
         headerView.btnShowHide.selected = YES;
         if([ronakGlobal.advancedFilters2[section][@"options"] count]>searchFiilterCount){
             headerView.searchField.hidden=NO;
+            [self btnEdgeInsets:headerView.btnShowHide];
+            [headerView.searchField setRightPaddingiCon:@"searchIcon"];
         }
     }
     if(section+1000 == indexForSearch+1000){

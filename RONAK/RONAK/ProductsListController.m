@@ -36,6 +36,8 @@
     NSMutableArray *categoryBasedSort;
     StockListView *stockListCountView;
     
+    UITextView *desctextView;
+    NSString *descriptionText;
     
 }
 
@@ -65,7 +67,22 @@
     [self.productsCollectionView addSubview:stockListCountView];
     _searchField.delegate=self;    
     _customersCollectionView.delaysContentTouches=NO;
-
+    
+    
+    UILongPressGestureRecognizer *descriptionLongPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(showDescriptionOnLongPress)];
+    descriptionLongPress.minimumPressDuration=2.0;
+    [_detailedImageView addGestureRecognizer:descriptionLongPress];
+    
+    
+    desctextView=[[UITextView alloc]init];
+    desctextView.frame=_productDetailView.bounds;
+    desctextView.backgroundColor=[UIColor cyanColor];
+    [_productDetailView addSubview:desctextView];
+    desctextView.hidden=YES;
+}
+-(void)showDescriptionOnLongPress{
+    desctextView.hidden=NO;
+    desctextView.text=descriptionText;
 }
 
 -(void)getProductItemsFilter{
@@ -477,6 +494,7 @@
     [_allColoursBtn setTitle:strSele forState:UIControlStateNormal];
     _itemModelNameLabel.text=item.filters.item_No__c;
     [_productsCollectionView reloadData];
+    descriptionText=item.filters.brand__c;
 //    ronakGlobal.item=item;
     index=0; //Count For imgages Array
 }
@@ -890,6 +908,7 @@
                         }
                         completion:NULL];
     }
+    desctextView.hidden=YES;
 }
 
 -(void)showStockCountofProduct:(StockDetails *)st frame:(CGRect)frame

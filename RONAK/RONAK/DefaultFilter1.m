@@ -20,11 +20,10 @@
     IBOutlet UITableView *tblView;
     NSMutableArray *arrSelectedSectionIndex;
     BOOL isMultipleExpansionAllowed;
-    CGFloat customHeight;
+    CGFloat customHeight,customHeaderHeight;
     NSMutableArray *arr;
     int indexForSearch;
     NSString *searchtext;
-  
     CGRect tableViewRect;
     UITextField *currentSearchTextField;
     
@@ -41,7 +40,6 @@
     
     //Set isMultipleExpansionAllowed = true is multiple expanded sections to be allowed at a time. Default is NO.
     isMultipleExpansionAllowed = YES;
-    
     arrSelectedSectionIndex = [[NSMutableArray alloc] init];
     
     if (!isMultipleExpansionAllowed) {
@@ -126,7 +124,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50.0f;
+    if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]]&&[ronakGlobal.DefFiltersOne[section][@"options"] count]>searchFiilterCount)
+    {
+        customHeaderHeight=90.0f;
+    }else{
+        customHeaderHeight=50.0f;
+    }
+    return customHeaderHeight;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -140,12 +144,13 @@
         headerView = [tableView dequeueReusableCellWithIdentifier:@"ViewControllerCellHeader"];
     }    
     headerView.lbTitle.text=arr[section][@"heading"];
-    
     if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:section]])
     {
         headerView.btnShowHide.selected = YES;
         if([ronakGlobal.DefFiltersOne[section][@"options"] count]>searchFiilterCount){
-        headerView.searchField.hidden=NO;
+            headerView.searchField.hidden=NO;
+            [self btnEdgeInsets:headerView.btnShowHide];
+            [headerView.searchField setRightPaddingiCon:@"searchIcon"];
         }
     }
     if(section+1000 == indexForSearch+1000){
@@ -153,8 +158,16 @@
     }
     [[headerView btnShowHide] setTag:section];
     [[headerView btnShowHide] addTarget:self action:@selector(btnTapShowHideSection:) forControlEvents:UIControlEventTouchUpInside];
-    
     return headerView.contentView;
+}
+
+-(void)btnEdgeInsets:(UIButton*)sender{
+    
+    CGRect frame=sender.frame;
+    UIEdgeInsets edge=sender.imageEdgeInsets;
+    edge.bottom=frame.size.height-30;
+    sender.imageEdgeInsets=edge;
+    
 }
 
 -(IBAction)btnTapShowHideSection:(UIButton*)sender

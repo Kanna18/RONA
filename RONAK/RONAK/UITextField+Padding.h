@@ -19,6 +19,7 @@
 -(BOOL)hasValidPassword;
 -(void)setLeftpasswordPadding;
 -(void)middlePadding;
+-(void)setRightPaddingiCon:(NSString*)imageName;
 
 
 @end
