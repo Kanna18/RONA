@@ -95,10 +95,7 @@
     {
         static NSString *CellIdentifier = @"RangeCell";
         RangTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil)
-        {
-            cell =[[[NSBundle mainBundle] loadNibNamed:@"RangTableViewCell" owner:self options:nil] lastObject];
-        }
+        cell =[[[NSBundle mainBundle] loadNibNamed:@"RangTableViewCell" owner:self options:nil] lastObject];
         cell.filterType=[arr[indexPath.section] valueForKey:@"heading"];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         if(indexPath.section==8){

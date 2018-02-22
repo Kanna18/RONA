@@ -11,4 +11,5 @@
 @interface StockListView : UIView
 -(instancetype)initWithFrame:(CGRect)frame;
 -(void)showStockfromStockMaster:(NSArray*)st;
+@property (strong, nonatomic) IBOutlet UILabel *itemName;
 @end

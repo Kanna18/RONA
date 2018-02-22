@@ -48,6 +48,8 @@
 @property (nonatomic) NSString *statusCode_Response;
 @property NSMutableArray *tvData;
 
+@property (nonatomic) NSString *finalizedDate;
+
 -(instancetype)initWithDict:(OrderStatsResponse*)dict;
 -(instancetype)initWithDict:(OrderStatsResponse*)dict andRecord:(id)rec;
 

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ProductCollectionViewCell.h"
 @protocol GestureProtocol
--(void)showStockCountofProduct:(StockDetails*)st frame:(CGRect)frame;
+-(void)showStockCountofProduct:(ItemMaster *)st superView:(id)cell;
 @end
 
 @interface ProductCollectionViewCell : UICollectionViewCell

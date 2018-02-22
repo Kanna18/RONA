@@ -6,7 +6,7 @@
 //  Copyright © 2017 RONAKOrganizationName. All rights reserved.
 //
 
-#define NUMBERS_ONLY @"123456789"
+#define NUMBERS_ONLY @"1234567890"
 
 #import "RangTableViewCell.h"
 
@@ -101,6 +101,10 @@
 //        [self.rangeSlider setMinValue:[minNum floatValue] maxValue:[maxNum floatValue]];
 //        [self.rangeSlider setLeftValue:[[dict objectForKey:@"Min"] floatValue] rightValue:[[dict objectForKey:@"Max"] floatValue]];
 //        self.rangeSlider.minimumDistance = 1;
+        _minTf.text=ronakGlobal.selectedFilter.disCountMinMax[@"Min"];
+        _maxTF.text=ronakGlobal.selectedFilter.disCountMinMax[@"Max"];
+        [self.rangeSlider setLeftValue:[ronakGlobal.selectedFilter.disCountMinMax[@"Min"] floatValue] rightValue:[ronakGlobal.selectedFilter.disCountMinMax[@"Max"] floatValue]];
+        
         return;
     }
     if([_filterType isEqualToString:kWSPrice])

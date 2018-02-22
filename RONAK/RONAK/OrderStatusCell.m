@@ -92,12 +92,12 @@
     _customerNameLabel.text=resp.Customer_Name__c;
     orderStatusVC=superVc;
     currentresponse=resp;
-    _dateLbl.text=resp.CreatedDate;
     _brandLabel.text=resp.Brand__c;
     _qtyLabel.text=resp.Quantity__c;
     _discLabel.text=resp.Discount__c;
     _amountLabel.text=resp.Net_Amount__c;
-    _dateLbl.text=[resp.CreatedDate substringToIndex:10];
+//    _dateLbl.text=[resp.CreatedDate substringToIndex:10];
+    _dateLbl.text=resp.finalizedDate;    
     
     [self getDatesToshowStatus:resp];
     if(resp.typeOfRec==INVOICE_Type)
@@ -113,6 +113,19 @@
     }
     
 }
+
+-(NSString*)convertUTCdateStr:(NSString*)date{
+    
+    NSDateFormatter *fmt=[[NSDateFormatter alloc]init];
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *utc = [fmt dateFromString:date];
+    
+    NSDateFormatter *fmt2=[[NSDateFormatter alloc]init];
+    fmt2.dateFormat = @"YYYY-MM-DD";
+    fmt2.timeZone = [NSTimeZone systemTimeZone];
+    return [fmt2 stringFromDate:utc];
+}
+
 -(void)getDatesToshowStatus:(OrderStatusCustomResponse*)respData
 {
     if(respData.CreatedDate)

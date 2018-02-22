@@ -231,8 +231,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                     stockE=[[StockDetails alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:stockContext];
                 }else{
                     stockE=coreIds.lastObject;
-                    NSSet *imagesArr=stockE.imagesArr;
-                    [stockE removeImagesArr:imagesArr];
+                    [self deleteExistedImagesforItem:stockE.item_Code_s];
                 };
                 NSDictionary *stDict=dict[@"stock"];
                 stockE.codeId_s=stDict[@"Id"];
@@ -267,6 +266,24 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
             [syncMainContext reset];
         }
     }];
+}
+
+-(void)deleteExistedImagesforItem:(NSString*)itmCode{
+    
+//    NSManagedObjectContext *mainQc=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSMainQueueConcurrencyType];
+//    mainQc.parentContext=syncMainContext;
+//
+//    [mainQc performBlock:^{
+        NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([ImagesArray class])];
+        NSPredicate *pred=[NSPredicate predicateWithFormat:@"itemCode LIKE %@",itmCode];
+        [fet setPredicate:pred];
+        NSArray *arr=[syncMainContext  executeFetchRequest:fet error:nil];
+        for (ImagesArray *im in arr) {
+            [syncMainContext deleteObject:im];
+        }
+//        [mainQc save:nil];
+        [syncMainContext save:nil];
+//    }];
 }
 
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr

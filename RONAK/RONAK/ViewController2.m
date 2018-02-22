@@ -288,7 +288,7 @@
                  break;
          }
      }
-    [tableView reloadData];
+    [tblView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)searchEnabledForAdvancedTwo:(id)notification{

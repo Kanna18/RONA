@@ -53,8 +53,8 @@
         NSString *str2=cst.defaultsCustomer.customerROIPL;
         _Roipl=str2.length>0?str2 : @"";
         
-        _WarehouseCode=@"warehouse";
-        _TaxCode=@"taxcode";
+        _WarehouseCode=@"";
+        _TaxCode=@"";
         
         NSSet *setItems=[NSSet setWithArray:cst.defaultsCustomer.itemsCount];
         NSCountedSet *countSet=[[NSCountedSet alloc]initWithArray:cst.defaultsCustomer.itemsCount];

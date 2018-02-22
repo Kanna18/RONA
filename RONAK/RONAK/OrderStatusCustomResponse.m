@@ -72,6 +72,7 @@
         _RSM_Date__c=dict.RSM_Date__c;
         _SAP_Date__c=dict.SAP_Date__c;
         _Sale_Order_No_Created_Date__c=dict.Sale_Order_Date__c;
+        _finalizedDate=[dict.CreatedDate substringToIndex:10];
         [self statusCodesOnCell];
     }
     return self;
@@ -131,16 +132,17 @@
         _RSM_Date__c=dict.RSM_Date__c;
         _SAP_Date__c=dict.SAP_Date__c;
         _Sale_Order_No_Created_Date__c=dict.Sale_Order_Date__c;
-        
         if([rec isKindOfClass:[InvoiceRecords class]])
         {
             _typeOfRec=INVOICE_Type;
             _record=[[CustomRecord alloc]initWithDict:rec withRecodeType:INVOICE_Type];
+//            _finalizedDate=rec[@"Invoice_Date__c"];
         }
         else if ([rec isKindOfClass:[DeliveryRecords class]])
         {
             _typeOfRec=DELIVERY_Type;
             _record=[[CustomRecord alloc]initWithDict:rec withRecodeType:DELIVERY_Type];
+//            _finalizedDate=rec[@"Delivery_Date__c"];
         }
         [self statusCodesOnCell];
         

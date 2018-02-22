@@ -39,15 +39,20 @@
     UITextView *desctextView;
     NSString *descriptionText;
     
+    UIView *dullView;
+    
+    
+    CGFloat scr_Wdth, scr_hgt;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do additional setup after loading the view.
-    
     index=0;
     modelIndex=0;
     categoryIndex=0;
+    scr_Wdth=[UIScreen mainScreen].bounds.size.width;
+    scr_hgt=[UIScreen mainScreen].bounds.size.height;
 //    imagesArray=@[@"Angel1",@"Angel2",@"Angel3",@"Angel4",@"Angel5"];
     imagesArray=[[NSMutableArray alloc]init];
     UICollectionViewFlowLayout *productsViewLayout = (UICollectionViewFlowLayout*)self.productsCollectionView.collectionViewLayout;
@@ -63,9 +68,16 @@
     [self zoomImageFunctionality];
 //    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
 
+    
+    dullView=[[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.view addSubview:dullView];
+    dullView.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:0.5];
+    dullView.hidden=YES;
+    
     stockListCountView=[[StockListView alloc]init];
-    [self.productsCollectionView addSubview:stockListCountView];
-    _searchField.delegate=self;    
+    stockListCountView.clipsToBounds=YES;
+    [dullView addSubview:stockListCountView];
+    _searchField.delegate=self;
     _customersCollectionView.delaysContentTouches=NO;
     
     
@@ -76,13 +88,18 @@
     
     desctextView=[[UITextView alloc]init];
     desctextView.frame=_productDetailView.bounds;
-    desctextView.backgroundColor=[UIColor cyanColor];
+    desctextView.editable=NO;
+    desctextView.backgroundColor=[UIColor whiteColor];
+    desctextView.font=[UIFont fontWithName:@"Gotham-Medium" size:20];
+    desctextView.layer.borderColor=[[UIColor blackColor] CGColor];
+    desctextView.layer.borderWidth=1.0f;
+    desctextView.textColor=[UIColor blackColor];
     [_productDetailView addSubview:desctextView];
     desctextView.hidden=YES;
 }
 -(void)showDescriptionOnLongPress{
     desctextView.hidden=NO;
-    desctextView.text=descriptionText;
+    desctextView.text=[@"\n\n\nDescription\n" stringByAppendingString:descriptionText];
 }
 
 -(void)getProductItemsFilter{
@@ -117,7 +134,8 @@
     showItemsOnscrnArry=(NSMutableArray*)sort;
     _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
     [ronakGlobal.selectedItemsTocartArr removeAllObjects];
-    [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+//    [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+    _currentItem=showItemsOnscrnArry[0];
     [self changeLablesBasedOnitemsIndex:0];
 }
 
@@ -341,12 +359,14 @@
 {
     if(collectionView==self.productsCollectionView)
     {
+        stockListCountView.hidden=YES;
+        dullView.hidden=YES;
         ProductCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"productCVCell" forIndexPath:indexPath];
         if(cell==nil)
         {
             cell=[[ProductCollectionViewCell alloc]init];
         }
-        if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[indexPath.row]])
+        if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[indexPath.row]]||[_currentItem isEqual:showItemsOnscrnArry[indexPath.row]])
         {
             cell.bordrrViewColor.backgroundColor=RGB(188, 1, 28);
         }
@@ -356,9 +376,10 @@
         }
         [cell bindData:showItemsOnscrnArry[indexPath.row]];
         cell.delegate=self;
-        UITapGestureRecognizer *doubleTaptoadd=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addtoCartArrayWhenDoubleTaps:)];
-        doubleTaptoadd.numberOfTouchesRequired=1;
-        doubleTaptoadd.numberOfTapsRequired=2;
+        CustomTapGesture *doubleTaptoadd=[[CustomTapGesture alloc]initWithTarget:self action:@selector(addtoCartArrayWhenDoubleTaps:)];
+        doubleTaptoadd.tapTag=indexPath.row;
+        doubleTaptoadd.numberOfTouchesRequired=2;
+        doubleTaptoadd.numberOfTapsRequired=1;
         [cell addGestureRecognizer:doubleTaptoadd];
         return cell;
     }
@@ -376,18 +397,25 @@
     return nil;
 }
 
--(void)addtoCartArrayWhenDoubleTaps{
-    
+-(void)addtoCartArrayWhenDoubleTaps:(CustomTapGesture*)sender{
+    NSLog(@"Tapped %lu",sender.tapTag);
+    ItemMaster *item=showItemsOnscrnArry[sender.tapTag];
+    NSArray *arr=@[item];
+    [self addOrRemoveItemsfromSelection:arr];
+    [_customersCollectionView reloadData];
+    [_productsCollectionView reloadData];
+
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if(collectionView==_productsCollectionView)
     {
-        ItemMaster *item=showItemsOnscrnArry[indexPath.row];
-        NSArray *arr=@[item];
-        [self addOrRemoveItemsfromSelection:arr];
-        [_customersCollectionView reloadData];
+//        ItemMaster *item=showItemsOnscrnArry[indexPath.row];
+//        NSArray *arr=@[item];
+//        [self addOrRemoveItemsfromSelection:arr];
+//        [_customersCollectionView reloadData];
+        _currentItem=showItemsOnscrnArry[indexPath.row];
         [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
         
     }
@@ -427,12 +455,12 @@
             ItemMaster *item=obj;
         
         if([ronakGlobal.selectedItemsTocartArr containsObject:item]){
-            
             [ronakGlobal.selectedItemsTocartArr removeObject:item];
             if(ronakGlobal.selectedItemsTocartArr.count==0)
             {
-                showMessage(@"Atleast One item must be selected", self.view);
-                [ronakGlobal.selectedItemsTocartArr addObject:firstObj];
+                 _currentItem=showItemsOnscrnArry[0];
+//                showMessage(@"Atleast One item must be selected", self.view);
+//                [ronakGlobal.selectedItemsTocartArr addObject:firstObj];
                 return;
             }
         }
@@ -447,11 +475,11 @@
 -(void)changeLablesBasedOnitemsIndex:(int)myIndex
 {
     ItemMaster *item=nil;
-    if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[myIndex]]){
+//    if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[myIndex]]){
         item=showItemsOnscrnArry[myIndex];
-    }else{
-        item=ronakGlobal.selectedItemsTocartArr.lastObject;
-    }
+//    }else{
+//        item=ronakGlobal.selectedItemsTocartArr.lastObject;
+//    }
     NSArray *imgsPaths=[item.stock.imagesArr allObjects];
     NSLog(@"%@",item.filters.item_No__c);
     [imagesArray removeAllObjects];
@@ -798,7 +826,6 @@
 - (IBAction)allColorsTopClick:(id)sender {
     
     if(showItemsOnscrnArry.count>0){
-        
         if(_allColorsTopBtn.selected==YES)
         {
             _allColorsTopBtn.selected=NO;
@@ -905,29 +932,39 @@
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
                             stockListCountView.hidden=YES;
+                            dullView.hidden=YES;
                         }
                         completion:NULL];
     }
     desctextView.hidden=YES;
 }
 
--(void)showStockCountofProduct:(StockDetails *)st frame:(CGRect)frame
+-(void)showStockCountofProduct:(ItemMaster *)st superView:(id)celll
 {
 
-    stockListCountView.frame=CGRectMake(0, frame.origin.y, 200, 200);
+    ProductCollectionViewCell *cell=(ProductCollectionViewCell*)celll;
+    CGRect frame = [cell convertRect:cell.bounds toView:self.view];
+    CGFloat yValue=scr_hgt-frame.origin.y;
+    if(yValue>200){
+    stockListCountView.frame=CGRectMake(frame.origin.x, frame.origin.y+102, 250, 175);
+    }else{
+    stockListCountView.frame=CGRectMake(frame.origin.x, frame.origin.y+102-200, 250, 175);
+    }
     AppDelegate *del=(AppDelegate*)[UIApplication sharedApplication].delegate;
     NSManagedObjectContext *contextF= del.managedObjectContext;
     NSFetchRequest *fet=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
-    NSPredicate *pre=[NSPredicate predicateWithFormat:@"item_Code_s == %@",st.item_Code_s];
+    NSPredicate *pre=[NSPredicate predicateWithFormat:@"item_Code_s == %@",st.stock.item_Code_s];
     [fet setPredicate:pre];
     NSArray *res=[contextF executeFetchRequest:fet error:nil];
     if(res.count>0){
+        stockListCountView.itemName.text=[NSString stringWithFormat:@"%@ %@",st.filters.style_Code__c,st.filters.color_Code__c];
         [stockListCountView showStockfromStockMaster:res];
         [UIView transitionWithView:stockListCountView
                           duration:0.4
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
                             stockListCountView.hidden=NO;
+                            dullView.hidden=NO;
                         }
                         completion:NULL];
     }
@@ -1009,7 +1046,8 @@
         showItemsOnscrnArry=(NSMutableArray*)sort;
 //    _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
         [ronakGlobal.selectedItemsTocartArr removeAllObjects];
-        [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+//        [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+        _currentItem=showItemsOnscrnArry[0];
         [self changeLablesBasedOnitemsIndex:0];
         [_productsCollectionView reloadData];
         _displayLable.hidden=YES;

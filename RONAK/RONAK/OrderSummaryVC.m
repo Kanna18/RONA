@@ -135,7 +135,15 @@
     [monthFormatter setDateFormat:@"dd MMMM yyyy"];
     NSString *str=[monthFormatter stringFromDate:_cstdDataModel.defaultsCustomer.dateFuture];
     _futureDateLabl.text=str;
-    _percentageLabel.text=_cstdDataModel.defaultsCustomer.discount;
+    
+    if(!_cstdDataModel.defaultsCustomer.discount||[_cstdDataModel.defaultsCustomer.discount isEqualToString:@"0"]){
+        _percentageLabel.hidden=YES;
+        _discountHeadinglbl.hidden=YES;
+    }else{
+        _percentageLabel.text=_cstdDataModel.defaultsCustomer.discount;
+        _percentageLabel.hidden=NO;
+        _discountHeadinglbl.hidden=NO;
+    }
     
     int total=0;
 //    int sunGlassesGST=0,framesGST=0;
@@ -174,6 +182,7 @@
     [self dynamicscrollViewContentHeight];
     [_summaryTableView reloadData];
     _cstdDataModel.defaultsCustomer.netAmount=_netAmount.text;
+    _itemsTotlaQuantity.text=[NSString stringWithFormat:@"%lu",(unsigned long)[_cstdDataModel.defaultsCustomer.itemsCount count]];
 }
 
 -(void)clikedOnCustomer:(CustomButton*)sender

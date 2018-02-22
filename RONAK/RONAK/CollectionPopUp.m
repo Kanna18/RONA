@@ -64,6 +64,10 @@
         }];
         for (CustomerDataModel *cst in selectedCustomersList)
         {
+            cst.defaultsCustomer.customerROIPL=@"";
+            cst.defaultsCustomer.customerRemarks=@"";
+            cst.defaultsCustomer.dateFuture=nil;
+            cst.defaultsCustomer.discount=@"";
             [cst.defaultsCustomer.itemsCount removeAllObjects];
             cst.defaultsCustomer.discount=@"";
         }

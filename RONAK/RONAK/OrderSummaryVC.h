@@ -34,7 +34,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
 @property (strong, nonatomic) IBOutlet CustomLabel *customerNameLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *discountHeadinglbl;
 
+@property (strong, nonatomic) IBOutlet UILabel *itemsTotlaQuantity;
 
 @property (strong, nonatomic) IBOutlet UIButton *placeOrderBtn;
 

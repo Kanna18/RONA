@@ -18,6 +18,7 @@
     UILongPressGestureRecognizer *longgest=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(showStockCount)];
     longgest.minimumPressDuration=1;
     [self addGestureRecognizer:longgest];
+    self.clipsToBounds=NO;
 }
 -(void)bindData:(ItemMaster*)item{
     
@@ -81,7 +82,7 @@
 
 -(void)showStockCount{
     
-    [_delegate showStockCountofProduct:_item.stock frame:self.frame];
+    [_delegate showStockCountofProduct:_item superView:self];
     
 }
 

@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GMedium.OTF">
+            <string>Gotham-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,21 +22,58 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UEd-Qa-bxE" userLabel="contaView">
-                    <rect key="frame" x="0.0" y="0.0" width="424" height="388"/>
+                    <rect key="frame" x="0.0" y="40" width="424" height="308"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZO-jT-8vr">
+                    <rect key="frame" x="20" y="11" width="404" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="rHX-7l-3JS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="19"/>
+                    <color key="textColor" red="0.65458124880000002" green="0.66259753700000001" blue="0.67499578000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warehouse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwa-Ue-eb8">
+                    <rect key="frame" x="20" y="356" width="100" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="muN-yZ-BVz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txL-Wt-6WM">
+                    <rect key="frame" x="304" y="356" width="100" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="dxi-2Q-CYf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="14"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="0.26651585100000003" green="0.27054956559999999" blue="0.27467769380000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="UEd-Qa-bxE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="2zX-9g-L3Y"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="UEd-Qa-bxE" secondAttribute="bottom" id="CzH-k6-7yj"/>
+                <constraint firstItem="Lwa-Ue-eb8" firstAttribute="top" secondItem="UEd-Qa-bxE" secondAttribute="bottom" constant="8" id="0AD-F3-zBi"/>
+                <constraint firstItem="UEd-Qa-bxE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="2zX-9g-L3Y"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hZO-jT-8vr" secondAttribute="trailing" id="41S-34-23j"/>
+                <constraint firstItem="hZO-jT-8vr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="61j-Pa-f0e"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="UEd-Qa-bxE" secondAttribute="bottom" constant="40" id="CzH-k6-7yj"/>
+                <constraint firstItem="txL-Wt-6WM" firstAttribute="top" secondItem="UEd-Qa-bxE" secondAttribute="bottom" constant="8" id="MED-OM-7W7"/>
                 <constraint firstItem="UEd-Qa-bxE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Mil-mC-0Y0"/>
+                <constraint firstItem="hZO-jT-8vr" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="NUV-2X-A8k"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="UEd-Qa-bxE" secondAttribute="trailing" id="Qvp-vj-Ebj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="txL-Wt-6WM" secondAttribute="bottom" constant="11" id="gEf-HI-Ftb"/>
+                <constraint firstItem="txL-Wt-6WM" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-20" id="sAn-bx-NdN"/>
+                <constraint firstItem="Lwa-Ue-eb8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="sOl-Uw-dJt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Lwa-Ue-eb8" secondAttribute="bottom" constant="11" id="uoP-7B-8o6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="containerView" destination="UEd-Qa-bxE" id="Pyv-dU-yFt"/>
+                <outlet property="itemName" destination="hZO-jT-8vr" id="ikR-C3-mXV"/>
             </connections>
             <point key="canvasLocation" x="66" y="76"/>
         </view>

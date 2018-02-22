@@ -315,8 +315,8 @@
 #pragma mark Predicates.
 -(NSPredicate*)datesPredicate{
     if(_fromDateTf.text.length>0&&_toDateTF.text.length>0){
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(CreatedDate >=  %@) AND (CreatedDate <=  %@)", _fromDateTf.text,_toDateTF.text];
-        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"record.typeDate__c >=  %@ AND record.typeDate__c <=  %@", _fromDateTf.text,_toDateTF.text];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(finalizedDate >=  %@) AND (finalizedDate <=  %@)", _fromDateTf.text,_toDateTF.text];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"(record.typeDate__c >=  %@) AND (record.typeDate__c <=  %@)", _fromDateTf.text,_toDateTF.text];
         NSCompoundPredicate *fPre=[NSCompoundPredicate orPredicateWithSubpredicates:@[predicate,predicate1]];
         return fPre;
     }else{
@@ -353,6 +353,8 @@
     
     NSCompoundPredicate *pre=[NSCompoundPredicate andPredicateWithSubpredicates:arr];
     tVData=(NSMutableArray*)[storeTVData filteredArrayUsingPredicate:pre];
+    NSSortDescriptor *sort=[[NSSortDescriptor alloc]initWithKey:@"CreatedDate" ascending:YES];
+    tVData=(NSMutableArray*)[tVData sortedArrayUsingDescriptors:@[sort]];
     [_statusTableView reloadData];
     
     if(!(tVData.count>0)){

@@ -311,7 +311,6 @@
     }if([notification.name isEqualToString:syncProductMasternotification]){
         syncProductMasterFlag=YES;
     }
-    
     if(syncBrandStockFlag==YES&&syncCustomerMasterFlag==YES&&syncProductMasterFlag){
         NSError *err=notification.object;
         NSLog(@"%@",err);
