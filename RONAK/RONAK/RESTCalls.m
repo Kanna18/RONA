@@ -10,13 +10,9 @@
 
 
 @implementation RESTCalls
-
-
 {
-
     NSArray *jsonArray;
     NSDictionary *jsonDictionary;
-    
 }
 
 -(id)init

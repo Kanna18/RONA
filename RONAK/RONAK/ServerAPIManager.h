@@ -12,7 +12,6 @@
 typedef void (^NetworkManagerCompletionBlock)(id responseObj);
 typedef void ( ^NetworkManagerFailureBlock)(NSError *error);
 
-
 @interface ServerAPIManager : NSObject{
  }
 

@@ -96,6 +96,17 @@
     desctextView.textColor=[UIColor blackColor];
     [_productDetailView addSubview:desctextView];
     desctextView.hidden=YES;
+    
+    UISwipeGestureRecognizer *swipeNextColor=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(changeColoronSingleSwipe:)];
+    swipeNextColor.direction=UISwipeGestureRecognizerDirectionUp;
+    swipeNextColor.numberOfTouchesRequired=1;
+    [_detailedImageView addGestureRecognizer:swipeNextColor];
+    
+    UISwipeGestureRecognizer *swipePreviousColor=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(changeColoronSingleSwipe:)];
+    swipePreviousColor.direction=UISwipeGestureRecognizerDirectionDown;
+    swipePreviousColor.numberOfTouchesRequired=1;
+    [_detailedImageView addGestureRecognizer:swipePreviousColor];
+    
 }
 -(void)showDescriptionOnLongPress{
     desctextView.hidden=NO;
@@ -134,7 +145,7 @@
     showItemsOnscrnArry=(NSMutableArray*)sort;
     _displayLable.text=[NSString stringWithFormat:@"%lu/%lu",(unsigned long)modelIndex+1,(unsigned long)model.ColorsArray.count];
     [ronakGlobal.selectedItemsTocartArr removeAllObjects];
-//    [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
+    [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
     _currentItem=showItemsOnscrnArry[0];
     [self changeLablesBasedOnitemsIndex:0];
 }
@@ -366,7 +377,7 @@
         {
             cell=[[ProductCollectionViewCell alloc]init];
         }
-        if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[indexPath.row]]||[_currentItem isEqual:showItemsOnscrnArry[indexPath.row]])
+        if([ronakGlobal.selectedItemsTocartArr containsObject:showItemsOnscrnArry[indexPath.row]]/*||[_currentItem isEqual:showItemsOnscrnArry[indexPath.row]]*/)
         {
             cell.bordrrViewColor.backgroundColor=RGB(188, 1, 28);
         }
@@ -376,11 +387,19 @@
         }
         [cell bindData:showItemsOnscrnArry[indexPath.row]];
         cell.delegate=self;
+
+        CustomTapGesture *singleTaptoadd=[[CustomTapGesture alloc]initWithTarget:self action:@selector(addtoCartWhenSingleTap:)];
+        singleTaptoadd.tapTag=indexPath.row;
+        singleTaptoadd.numberOfTapsRequired=1;
+        [cell.thubImage addGestureRecognizer:singleTaptoadd];
+        
         CustomTapGesture *doubleTaptoadd=[[CustomTapGesture alloc]initWithTarget:self action:@selector(addtoCartArrayWhenDoubleTaps:)];
         doubleTaptoadd.tapTag=indexPath.row;
-        doubleTaptoadd.numberOfTouchesRequired=2;
-        doubleTaptoadd.numberOfTapsRequired=1;
-        [cell addGestureRecognizer:doubleTaptoadd];
+        doubleTaptoadd.numberOfTapsRequired=2;
+        [cell.thubImage addGestureRecognizer:doubleTaptoadd];
+        
+        [singleTaptoadd requireGestureRecognizerToFail:doubleTaptoadd];
+        
         return cell;
     }
     if(collectionView==self.customersCollectionView)
@@ -397,26 +416,37 @@
     return nil;
 }
 
+-(void)addtoCartWhenSingleTap:(CustomTapGesture*)sender{
+    
+    _allColorsTopBtn.selected=NO;
+    [ronakGlobal.selectedItemsTocartArr removeAllObjects];
+    _currentItem=showItemsOnscrnArry[sender.tapTag];
+    [self changeLablesBasedOnitemsIndex:(int)sender.tapTag];
+    ItemMaster *item=showItemsOnscrnArry[sender.tapTag];
+    NSArray *arr=@[item];
+    [self addOrRemoveItemsfromSelection:arr];
+    [_customersCollectionView reloadData];
+}
 -(void)addtoCartArrayWhenDoubleTaps:(CustomTapGesture*)sender{
-    NSLog(@"Tapped %lu",sender.tapTag);
+
+    NSLog(@"Tapped %lu",(long)sender.tapTag);
     ItemMaster *item=showItemsOnscrnArry[sender.tapTag];
     NSArray *arr=@[item];
     [self addOrRemoveItemsfromSelection:arr];
     [_customersCollectionView reloadData];
     [_productsCollectionView reloadData];
-
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if(collectionView==_productsCollectionView)
     {
-//        ItemMaster *item=showItemsOnscrnArry[indexPath.row];
-//        NSArray *arr=@[item];
-//        [self addOrRemoveItemsfromSelection:arr];
-//        [_customersCollectionView reloadData];
-        _currentItem=showItemsOnscrnArry[indexPath.row];
-        [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
+////        ItemMaster *item=showItemsOnscrnArry[indexPath.row];
+////        NSArray *arr=@[item];
+////        [self addOrRemoveItemsfromSelection:arr];
+////        [_customersCollectionView reloadData];
+//        _currentItem=showItemsOnscrnArry[indexPath.row];
+//        [self changeLablesBasedOnitemsIndex:(int)indexPath.row];
         
     }
     if(collectionView == _customersCollectionView)
@@ -453,14 +483,14 @@
     ItemMaster *firstObj=arr[0];
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             ItemMaster *item=obj;
-        
         if([ronakGlobal.selectedItemsTocartArr containsObject:item]){
             [ronakGlobal.selectedItemsTocartArr removeObject:item];
             if(ronakGlobal.selectedItemsTocartArr.count==0)
             {
-                 _currentItem=showItemsOnscrnArry[0];
-//                showMessage(@"Atleast One item must be selected", self.view);
-//                [ronakGlobal.selectedItemsTocartArr addObject:firstObj];
+//                 _currentItem=showItemsOnscrnArry[0];
+                _currentItem=firstObj;
+                showMessage(@"Atleast One item must be selected", self.view);
+                [ronakGlobal.selectedItemsTocartArr addObject:firstObj];
                 return;
             }
         }
@@ -468,7 +498,6 @@
             [ronakGlobal.selectedItemsTocartArr addObject:item];
         }
     }];
-
     [_productsCollectionView reloadData];
 }
 
@@ -732,17 +761,22 @@
     zoomimageV.image=_detailedImageView.image;
     zoomimageV.userInteractionEnabled=YES;
     
+    UISwipeGestureRecognizer *swipeNextColor=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(changeColoronSingleSwipeforZoomImage:)];
+    swipeNextColor.direction=UISwipeGestureRecognizerDirectionUp;
+    swipeNextColor.numberOfTouchesRequired=1;
+    [zoomimageV addGestureRecognizer:swipeNextColor];
+
+    UISwipeGestureRecognizer *swipePreviousColor=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(changeColoronSingleSwipeforZoomImage:)];
+    swipePreviousColor.direction=UISwipeGestureRecognizerDirectionDown;
+    swipePreviousColor.numberOfTouchesRequired=1;
+    [zoomimageV addGestureRecognizer:swipePreviousColor];
+    
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tappedScrollView:)];
     tap.numberOfTapsRequired=2;
     [ZoomscrollVw addGestureRecognizer:tap];
-    
-    
-    
     if(_detailedImageView.highlighted==YES){
-        
         _detailedImageView.highlighted=NO;
         [ZoomscrollVw removeFromSuperview];
-        
     }
     else{
         _detailedImageView.highlighted=YES;
@@ -826,17 +860,20 @@
 - (IBAction)allColorsTopClick:(id)sender {
     
     if(showItemsOnscrnArry.count>0){
-        if(_allColorsTopBtn.selected==YES)
+        if(_allColorsTopBtn.selected==YES)//if of all colors selected
         {
             _allColorsTopBtn.selected=NO;
+            [ronakGlobal.selectedItemsTocartArr removeAllObjects];
+            [self addOrRemoveItemsfromSelection:@[showItemsOnscrnArry[0]]];
         }
-        else
+        else//if of all colors are not selected
         {
             [ronakGlobal.selectedItemsTocartArr removeAllObjects];
             _allColorsTopBtn.selected=YES;
+            [self addOrRemoveItemsfromSelection:showItemsOnscrnArry];
         }
-        [self addOrRemoveItemsfromSelection:showItemsOnscrnArry];
         [self changeLablesBasedOnitemsIndex:0];
+        
     }
     
 }
@@ -1048,6 +1085,7 @@
         [ronakGlobal.selectedItemsTocartArr removeAllObjects];
 //        [ronakGlobal.selectedItemsTocartArr addObject:showItemsOnscrnArry[0]];
         _currentItem=showItemsOnscrnArry[0];
+        [ronakGlobal.selectedItemsTocartArr addObject:_currentItem];
         [self changeLablesBasedOnitemsIndex:0];
         [_productsCollectionView reloadData];
         _displayLable.hidden=YES;
@@ -1056,6 +1094,45 @@
     else{
         showMessage(@"No Items Found", self.view);
     }
+}
+
+-(void)changeColoronSingleSwipeforZoomImage:(UISwipeGestureRecognizer*)sender{
+
+    [self changeColoronSingleSwipe:sender];
+    [ZoomscrollVw removeFromSuperview];
+    _detailedImageView.highlighted=NO;
+    [self tappedImage:nil];
+}
+-(void)changeColoronSingleSwipe:(UISwipeGestureRecognizer*)sender
+{
+    NSInteger indVal= [showItemsOnscrnArry indexOfObject:_currentItem];
+    switch (sender.direction) {
+            case UISwipeGestureRecognizerDirectionUp/*caseUp*/:
+            {
+                indVal++;
+            }
+                break;
+            case UISwipeGestureRecognizerDirectionDown/*case Down*/:
+            {
+                indVal--;
+            }
+                break;
+            default:
+                break;
+        }
+     if( (indVal>=0) && (indVal<showItemsOnscrnArry.count))
+     {
+        _allColorsTopBtn.selected=NO;
+        [ronakGlobal.selectedItemsTocartArr removeAllObjects];
+        _currentItem=showItemsOnscrnArry[indVal];
+        [self changeLablesBasedOnitemsIndex:(int)indVal];
+        ItemMaster *item=showItemsOnscrnArry[indVal];
+        NSArray *arr=@[item];
+        [self addOrRemoveItemsfromSelection:arr];
+        [_customersCollectionView reloadData];
+     }else{
+         showMessage(@"No Color is available", self.view);
+     }
 }
 
 @end

@@ -129,7 +129,8 @@
     
     _itemsCount=[NSCountedSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount];
     _items=[NSSet setWithArray:_cstdDataModel.defaultsCustomer.itemsCount];
-    _itemsArray=[[_items allObjects] mutableCopy];
+    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"filters.codeId" ascending:YES];
+    _itemsArray=[[(NSMutableArray*)[_items allObjects] mutableCopy] sortedArrayUsingDescriptors:@[sort]];
     
     NSDateFormatter *monthFormatter=[[NSDateFormatter alloc] init];
     [monthFormatter setDateFormat:@"dd MMMM yyyy"];

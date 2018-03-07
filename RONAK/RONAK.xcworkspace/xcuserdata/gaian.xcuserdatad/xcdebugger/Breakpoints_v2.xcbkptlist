@@ -4,18 +4,28 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RONAK/SideMenuFilters.m"
-            timestampString = "540627707.237132"
+            filePath = "RONAK/ProductsListController.m"
+            timestampString = "541623260.963881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "755"
+            endingLineNumber = "755"
+            landmarkName = "-tappedImage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,47 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RONAK/RangTableViewCell.m"
-            timestampString = "540464211.976316"
+            filePath = "RONAK/DownloadProducts.m"
+            timestampString = "542031809.577309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-DefaultMaxMinValues"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            condition = "(BOOL)(pdcAmount&gt;0)"
-            continueAfterRunningActions = "No"
-            filePath = "RONAK/ShippingAddressViewController.m"
-            timestampString = "540628562.220009"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-fillLabelsWithText:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            condition = "pdcAmount&gt;0"
-            continueAfterRunningActions = "No"
-            filePath = "RONAK/ShippingAddressViewController.m"
-            timestampString = "540628608.6880831"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-fillLabelsWithText:"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
+            landmarkName = "-downLoadStockDetails"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -75,30 +51,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RONAK/OrderStatusCell.m"
-            timestampString = "540703414.4785841"
+            filePath = "RONAK/DownloadProducts.m"
+            timestampString = "542031809.577817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-convertUTCdateStr:"
+            startingLineNumber = "541"
+            endingLineNumber = "541"
+            landmarkName = "-saveStockDetailstoCoreData:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RONAK/SaleOrderWrapper.m"
-            timestampString = "540732736.462176"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-sendResponseForString:"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DownloadProducts saveStockDetailstoCoreData:]"
+                  moduleName = "RONAK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gaian/Projects/Git_RONA/RONAK/RONAK/DownloadProducts.m"
+                  timestampString = "542028015.639345"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "541"
+                  endingLineNumber = "541"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[DownloadProducts saveStockDetailstoCoreData:]_block_invoke"
+                  moduleName = "RONAK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gaian/Projects/Git_RONA/RONAK/RONAK/DownloadProducts.m"
+                  timestampString = "542028015.643224"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "541"
+                  endingLineNumber = "541"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
