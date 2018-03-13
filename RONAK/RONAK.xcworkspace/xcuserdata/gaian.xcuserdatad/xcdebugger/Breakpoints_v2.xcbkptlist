@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/DownloadProducts.m"
-            timestampString = "542031809.577309"
+            timestampString = "542270094.857142"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
             landmarkName = "-downLoadStockDetails"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/DownloadProducts.m"
-            timestampString = "542031809.577817"
+            timestampString = "542270094.859105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
             landmarkName = "-saveStockDetailstoCoreData:"
             landmarkType = "7">
             <Locations>
@@ -68,11 +68,11 @@
                   moduleName = "RONAK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gaian/Projects/Git_RONA/RONAK/RONAK/DownloadProducts.m"
-                  timestampString = "542028015.639345"
+                  timestampString = "542271610.2532589"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "541"
-                  endingLineNumber = "541"
+                  startingLineNumber = "560"
+                  endingLineNumber = "560"
                   offsetFromSymbolStart = "149">
                </Location>
                <Location
@@ -83,14 +83,46 @@
                   moduleName = "RONAK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/gaian/Projects/Git_RONA/RONAK/RONAK/DownloadProducts.m"
-                  timestampString = "542028015.643224"
+                  timestampString = "542271610.257568"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "541"
-                  endingLineNumber = "541"
+                  startingLineNumber = "560"
+                  endingLineNumber = "560"
                   offsetFromSymbolStart = "39">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RONAK/SyncDBClass.m"
+            timestampString = "542113757.213272"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-fetchData:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RONAK/SyncDBClass.m"
+            timestampString = "542113757.213863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-syncProductMaster"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

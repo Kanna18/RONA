@@ -210,6 +210,8 @@
             break;
         case 1:
             globalArr=ronakGlobal.selectedFilter.categories;
+            
+//            if([text isEqualToString:@"Sunglasses"]||[text isEqualToString:@"Frames"])
             [globalArr containsObject:text]?[globalArr removeObject:text]:[globalArr addObject:text];
             break;
         case 2:

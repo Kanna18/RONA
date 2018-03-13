@@ -8,6 +8,7 @@
 
 #import "OrderStatusCell.h"
 #import "RepotrsPopTV.h"
+#import "WebViewController.h"
 @implementation OrderStatusCell{
     
     OrderStatusViewController *orderStatusVC;
@@ -229,7 +230,10 @@
     NSLog(@"%@",documentDirectoryFilename);
     [pdfData writeToFile:documentDirectoryFilename atomically:YES];
     showMessage(@"Status Saved as PDF ", orderStatusVC.view);
+    
+    WebViewController *wbView=[orderStatusVC.storyboard instantiateViewControllerWithIdentifier:@"webViewController"];
+    wbView.urlAddressLoad=documentDirectoryFilename;
+    [orderStatusVC presentViewController:wbView animated:YES completion:NULL];
 }
-
 
 @end

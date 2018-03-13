@@ -11,4 +11,5 @@
 @interface NSMutableArray (ArrayReverse)
 - (void)reverse;
 -(int)countOfAllIndexes;
+-(NSMutableArray*)convertToDates;
 @end

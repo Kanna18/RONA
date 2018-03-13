@@ -19,8 +19,6 @@
     UIView *overlayView;
     NSMutableArray *tVData,*storeTVData;
     LoadingView *load;
-    
-    
 }
 
 
@@ -220,13 +218,31 @@
             [tVData addObject:ordCSt];
         }];
     }];
+    
     storeTVData=[[NSMutableArray alloc]initWithArray:tVData];
     [self performSelectorOnMainThread:@selector(tvDataReload) withObject:tVData waitUntilDone:YES];
+    
+//    NSSortDescriptor *sortDescriptor;
+//    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"finalizedDateFormat"
+//                                                 ascending:YES];
+//    NSArray *sortedArray = [tVData sortedArrayUsingDescriptors:@[sortDescriptor]];
+//    storeTVData=[[NSMutableArray alloc]initWithArray:sortedArray];
+//    [self performSelectorOnMainThread:@selector(tvDataReload) withObject:tVData waitUntilDone:YES];
 }
 
 
 -(void)tvDataReload{
-
+       
+    NSDateFormatter *df=[[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    NSArray *sortedArray = [tVData sortedArrayUsingComparator:^NSComparisonResult(OrderStatusCustomResponse *obj1, OrderStatusCustomResponse *obj2) {
+            NSDate *d1 = [df dateFromString: obj1.finalizedDate];
+            NSDate *d2 = [df dateFromString: obj2.finalizedDate];
+            NSLog(@"comparing (%@ with %@) =%ld",obj2.finalizedDate,obj1.finalizedDate,(long)[d2 compare: d1]);
+            return [d2 compare: d1];
+    }];
+    storeTVData=[[NSMutableArray alloc]initWithArray:sortedArray];
+    tVData=[[NSMutableArray alloc]initWithArray:sortedArray];
     [_statusTableView reloadData];
 }
 -(void)showFilter:(id)sender

@@ -18,8 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSString *urlAddress = @"https://test.salesforce.com";
-    NSURL *url = [NSURL URLWithString:urlAddress];
+    NSString *urlAddress;
+    NSURL *url;
+    if(!_urlAddressLoad){
+        urlAddress = @"https://test.salesforce.com";
+        url = [NSURL URLWithString:urlAddress];
+    }else{
+        url = [NSURL URLWithString:_urlAddressLoad];
+    }
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:requestObj];
     _webView.delegate=self;

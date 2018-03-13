@@ -269,6 +269,25 @@ int totalImages=0, currentImage=0, savedImages=0;
          
     }];
     
+    NSDateFormatter *df=[[NSDateFormatter alloc]init];
+    [collectionF removeObject:@"OLD"];
+    [collectionF removeObject:@"Old"];
+//    [collectionF removeObject:@"Sept-17"];
+    NSSet *dupDat=[NSSet setWithArray:collectionF];
+    NSArray *finalAr=[dupDat allObjects];
+    [df setDateFormat:@"MM-yy"];
+    NSArray *sortedArray = [finalAr sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        NSDate *d1 = [df dateFromString: obj1];
+        NSDate *d2 = [df dateFromString: obj2];
+        NSLog(@"comparing (%@ with %@) =%ld",obj2,obj1,(long)[d2 compare: d1]);
+        if([d2 compare: d1]!=0){
+            return [d2 compare: d1];
+        }else{
+            return nil;
+        }
+    }];
+    
+    
     ronakGlobal.discArr=discountF;
     ronakGlobal.wsPriceArr=wsPrice;
     ronakGlobal.priceArr=mrpF;
@@ -282,7 +301,7 @@ int totalImages=0, currentImage=0, savedImages=0;
                                    @{ @"heading":kCategories,
                                       @"options":categoriesF},
                                    @{ @"heading":kCollection,
-                                      @"options":[collectionF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]}];
+                                      @"options":sortedArray}];
     ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kStockWareHouse,
                                       @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]?[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(warehouseArrayList)]:@[]},
 //                                   @{ @"heading":kStockWareHouse,

@@ -49,8 +49,8 @@
     
     if(respData.CreatedDate)
     {
-        [dict setValue:[respData.CreatedDate substringToIndex:10] forKey:@"SR"];
-        [tvData addObject:@"SR"];
+        [dict setValue:[respData.CreatedDate substringToIndex:10] forKey:@"SFDC"];
+        [tvData addObject:@"SFDC"];
     }
     if(respData.RSM_Date__c)
     {

@@ -136,14 +136,19 @@
         {
             _typeOfRec=INVOICE_Type;
             _record=[[CustomRecord alloc]initWithDict:rec withRecodeType:INVOICE_Type];
-//            _finalizedDate=rec[@"Invoice_Date__c"];
+            InvoiceRecords *invRec=rec;
+            _finalizedDate=invRec.Invoice_Date__c;
         }
         else if ([rec isKindOfClass:[DeliveryRecords class]])
         {
             _typeOfRec=DELIVERY_Type;
             _record=[[CustomRecord alloc]initWithDict:rec withRecodeType:DELIVERY_Type];
-//            _finalizedDate=rec[@"Delivery_Date__c"];
+            DeliveryRecords *invRec=rec;
+            _finalizedDate=invRec.Delivery_Date__c;
         }
+        NSDateFormatter *df=[[NSDateFormatter alloc]init];
+        [df setDateFormat:@"yyyy-MM-dd"];
+        _finalizedDateFormat=[df dateFromString: _finalizedDate];
         [self statusCodesOnCell];
         
     }

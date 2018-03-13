@@ -49,7 +49,7 @@
 @property NSMutableArray *tvData;
 
 @property (nonatomic) NSString *finalizedDate;
-
+@property (nonatomic) NSDate *finalizedDateFormat;
 -(instancetype)initWithDict:(OrderStatsResponse*)dict;
 -(instancetype)initWithDict:(OrderStatsResponse*)dict andRecord:(id)rec;
 
