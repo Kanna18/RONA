@@ -82,7 +82,7 @@
 {
     if(_CreatedDate)
     {
-        [_tvData addObject:@"SR"];
+        [_tvData addObject:@"SFDC"];
     }
     if(_RSM_Date__c)
     {

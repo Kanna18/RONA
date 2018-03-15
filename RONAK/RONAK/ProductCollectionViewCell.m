@@ -42,7 +42,6 @@
 }
 -(void)getStockColorCount:(NSString*)itemCode{
     
-    
     AppDelegate *del=(AppDelegate*)[UIApplication sharedApplication].delegate;
     NSManagedObjectContext *countContext= del.managedObjectContext;
     
@@ -70,7 +69,6 @@
     }
     
 }
-
 
 - (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
     UIGraphicsBeginImageContext(size);
