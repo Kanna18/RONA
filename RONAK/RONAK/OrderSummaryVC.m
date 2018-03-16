@@ -49,7 +49,7 @@
 //    [self.view addGestureRecognizer:tap];
 //    
 
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveDraftReportsWhenCrashing) name:UIApplicationWillTerminateNotification object:nil];
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumptoMenuVC:)];
     taped.numberOfTouchesRequired=1;
     [_headingLabel addGestureRecognizer:taped];
@@ -520,6 +520,11 @@
     [load start];
 }
 
+-(void)saveDraftReportsWhenCrashing{
+    UIButton *butt=[UIButton buttonWithType:UIButtonTypeSystem];
+    butt.tag=saveDraftBtnTag;
+    [self saveOrderToProceed:butt];
+}
 -(void)saveOrderMessage:(NSNotification*)notification{
 
     NSString *str=notification.object;

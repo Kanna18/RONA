@@ -435,6 +435,10 @@
     [self addOrRemoveItemsfromSelection:arr];
     [_customersCollectionView reloadData];
     [_productsCollectionView reloadData];
+    
+    if (ronakGlobal.selectedItemsTocartArr.count>1){
+        [_allColoursBtn setTitle:@"Multiple Colors" forState:UIControlStateNormal];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -663,11 +667,11 @@
     CGRect mainFrame=_containerView.frame;
     newFrame.origin.x=0;
     mainFrame.origin.x=350;
-    [UIView animateWithDuration:0.3 animations:^{
+//    [UIView animateWithDuration:0.3 animations:^{
         _sideView.frame=newFrame;
-        //        _containerView.frame=mainFrame;
-        
-    }];
+//        //        _containerView.frame=mainFrame;
+//
+//    }];
     }
 }
 - (IBAction)sideMenuClick:(id)sender {
@@ -688,13 +692,13 @@
         //        mainFrame.origin.x=350;
         //
         //    }
-     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.3 animations:^{
-            _sideView.frame=newFrame;
-            //        _containerView.frame=mainFrame;
-            
-        }];
-    });
+//     dispatch_async(dispatch_get_main_queue(), ^{
+//        [UIView animateWithDuration:0.3 animations:^{
+//            _sideView.frame=newFrame;
+//            //        _containerView.frame=mainFrame;
+//            
+//        }];
+//    });
 }
 
 
