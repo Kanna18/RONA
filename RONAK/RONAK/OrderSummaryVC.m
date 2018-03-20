@@ -525,10 +525,9 @@
     butt.tag=saveDraftBtnTag;
     [self saveOrderToProceed:butt];
 }
+
 -(void)saveOrderMessage:(NSNotification*)notification{
-
     NSString *str=notification.object;
-
     if([str isEqualToString:@"Succes"])//Internet Availability Case
     {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -551,6 +550,7 @@
     });
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SaveOrderStatus" object:nil];
 }
+
 -(void)deleteDraft{
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
@@ -559,6 +559,7 @@
         ronakGlobal.currentDraftRecord=nil;
     });
 }
+
 -(void)removeAllSubviewsandDeselectall
 {
     for (UIButton *butt in _bottomBarView.subviews)

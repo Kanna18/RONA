@@ -126,6 +126,9 @@
         if(ronakGlobal.filterdProductsArray.count>0)
         {
             CategoryBased *cat=[[CategoryBased alloc]initWithArray:ronakGlobal.filterdProductsArray];
+//            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.style_Code__c" ascending:YES];
+//            NSArray *arr=[categoryBasedSort sortedArrayUsingDescriptors:@[sortDescriptor]];
+//            categoryBasedSort=[arr mutableCopy];
             categoryBasedSort=[cat returnSortedItems];
             [self divideWholeitemsintoCategories];
         }
@@ -138,6 +141,7 @@
 }
 -(void)divideWholeitemsintoCategories
 {
+    
     ModelBased *model=categoryBasedSort[categoryIndex];
     ColorBased *col=model.ColorsArray[modelIndex];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"filters.color_Code__c" ascending:YES];
@@ -785,9 +789,9 @@
     else{
         _detailedImageView.highlighted=YES;
         [self.view.window addSubview:ZoomscrollVw];
-        [UIView animateWithDuration:0.4 animations:^{
+//        [UIView animateWithDuration:0.4 animations:^{
             ZoomscrollVw.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-        }];
+//        }];
      }
     UISwipeGestureRecognizer *swipeLeft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(showNextImageonZoom:)];
     swipeLeft.direction=UISwipeGestureRecognizerDirectionLeft;
@@ -1135,7 +1139,7 @@
         [self addOrRemoveItemsfromSelection:arr];
         [_customersCollectionView reloadData];
      }else{
-         showMessage(@"No Color is available", self.view);
+//         showMessage(@"No Color is available", self.view);
      }
 }
 

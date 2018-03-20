@@ -48,7 +48,9 @@
             colorB.model=obj;
             [_ColorsArray addObject:colorB];
         }];
-
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"model" ascending:YES];
+        NSArray *arr=[_ColorsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+        _ColorsArray=[[NSMutableArray alloc]initWithArray:arr];
     }
     return self;
 }
@@ -63,13 +65,13 @@
         _ModelsArray=[[NSMutableArray alloc]init];
         NSArray *cat = [[NSSet setWithArray:[arr valueForKeyPath:@"filters.product__c"]] allObjects];
         [cat enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
             NSPredicate *catPre=[NSPredicate predicateWithFormat:@"SELF.filters.product__c == %@",obj];
             NSArray *catArr=[arr filteredArrayUsingPredicate:catPre];
             ModelBased *model=[[ModelBased alloc]initWithArray:catArr];
             model.category=obj;
             [_ModelsArray addObject:model];
         }];
+        
     }
     return self;
 }

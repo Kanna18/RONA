@@ -4408,7 +4408,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uv5-IT-xuh">
-                                                    <rect key="frame" x="50" y="11" width="61" height="20"/>
+                                                    <rect key="frame" x="50" y="11" width="54" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Mwq-Wt-Ww5"/>
                                                     </constraints>
@@ -4705,7 +4705,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-fA-Atv">
-                                                    <rect key="frame" x="50" y="11" width="61" height="22"/>
+                                                    <rect key="frame" x="50" y="11" width="54" height="26"/>
                                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="22"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4835,7 +4835,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJe-AA-erK">
-                                                    <rect key="frame" x="90" y="10.5" width="342" height="18"/>
+                                                    <rect key="frame" x="90" y="7.5" width="342" height="21"/>
                                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4864,7 +4864,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMr-lL-ZFc">
-                                                    <rect key="frame" x="50" y="11" width="61" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="54" height="21"/>
                                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="22"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -5722,7 +5722,7 @@
         <image name="futureinvblue.png" width="200" height="200"/>
         <image name="futureinvgrey.png" width="200" height="200"/>
         <image name="grayBackground" width="60" height="60"/>
-        <image name="home" width="542" height="548"/>
+        <image name="home" width="20" height="20"/>
         <image name="home01" width="544" height="556"/>
         <image name="listblue.png" width="200" height="200"/>
         <image name="listgrey.png" width="200" height="200"/>

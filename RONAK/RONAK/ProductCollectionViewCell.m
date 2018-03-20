@@ -63,11 +63,10 @@
     if(stockCount>0){
         _codeName.textColor=[UIColor blackColor];
     }else if (poCount>0){
-       _codeName.textColor=[UIColor yellowColor];
+        _codeName.textColor=RGB(247,201,46);//Dark Yellow
     }else{
         _codeName.textColor=[UIColor redColor];
     }
-    
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
