@@ -489,13 +489,14 @@ static NSString * extracted() {
               else{
                       stockOffset=0;
                       NSArray *imgs=[stockDetailsOffsetArray valueForKeyPath:@"imageURL"];
-                      [self firstSaveAllImagestoLocalDataBase:imgs];
                       [self saveStockDetailstoCoreData:stockDetailsOffsetArray];
+                      [self firstSaveAllImagestoLocalDataBase:imgs];
                   }
               }
           }];
     [dataTask resume];
 }
+
 
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
@@ -672,12 +673,12 @@ static NSString * extracted() {
     }
 }
 -(void) downloadImageFromURL :(NSString *)imageUrl withName:(NSString*)name{
+    
     currentImage++;//SampleCode
     NSArray *listImageNames=[fileManager contentsOfDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES/"] error:nil];
     savedImages=(int)listImageNames.count;
     float ImagesPercentage=((float)currentImage/(float)totalImages) * 100.0;
     [[NSNotificationCenter defaultCenter]postNotificationName:IMAGES_FETCHING_STATUS_NOTIFICATION object:[NSNumber numberWithInteger:ImagesPercentage]];
-
     if([listImageNames containsObject:name])
     {
         return;

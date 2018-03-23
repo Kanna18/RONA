@@ -93,7 +93,7 @@
 }
 -(void)updateImagesLabel:(NSNotification*)notification{
     int percentage=[notification.object intValue];
-    if(percentage>=99){
+    if(percentage>=90){
         imagesFetched=YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             _imagesDownload.text=@"Images Download Completed";

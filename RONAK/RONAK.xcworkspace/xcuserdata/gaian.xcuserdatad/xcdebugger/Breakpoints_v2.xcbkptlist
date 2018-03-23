@@ -8,30 +8,15 @@
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
+            condition = "BOOL(currentImage&gt;27000) "
             continueAfterRunningActions = "No"
             filePath = "RONAK/DownloadProducts.m"
-            timestampString = "543466152.186815"
+            timestampString = "543497989.066741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "745"
-            endingLineNumber = "745"
-            landmarkName = "-saveOrderWithAccessToken:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RONAK/CollectionPopUp.m"
-            timestampString = "543466152.187258"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-checkInternetConnectivityandDeleteDraft"
+            startingLineNumber = "676"
+            endingLineNumber = "676"
+            landmarkName = "-downloadImageFromURL:withName:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +27,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/DownloadProducts.m"
-            timestampString = "543466152.187999"
+            timestampString = "543497989.06776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "735"
-            endingLineNumber = "735"
-            landmarkName = "-saveOrderWithAccessToken:"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
+            landmarkName = "-saveStockDetailstoCoreData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +43,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/DownloadProducts.m"
-            timestampString = "543466152.188123"
+            timestampString = "543497989.068202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "733"
-            endingLineNumber = "733"
-            landmarkName = "-saveOrderWithAccessToken:"
+            startingLineNumber = "581"
+            endingLineNumber = "581"
+            landmarkName = "-saveStockDetailstoCoreData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,28 +59,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/DownloadProducts.m"
-            timestampString = "543466152.189415"
+            timestampString = "543498940.150354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
-            landmarkName = "-downLoadStockDetails"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RONAK/MenuViewController.m"
-            timestampString = "543466411.6540999"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "-syncingDone:"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
+            landmarkName = "-firstSaveAllImagestoLocalDataBase:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
