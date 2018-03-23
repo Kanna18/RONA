@@ -161,7 +161,8 @@
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                       {
                                           if(data){
-                                              NSArray *dict=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                              NSSortDescriptor *sor=[NSSortDescriptor sortDescriptorWithKey:@"customerName__c" ascending:YES];
+                                              NSArray *dict=[[NSJSONSerialization JSONObjectWithData:data options:0 error:nil] sortedArrayUsingDescriptors:@[sor]];                                              
                                               NSError *err;
                                               defaultSet(dict, draftsListOfflineArray);//Saving to defaults
                                               dataResp=[DraftsDataModel arrayOfModelsFromDictionaries:dict error:&err];

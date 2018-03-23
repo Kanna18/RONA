@@ -769,6 +769,7 @@ static NSString * extracted() {
     defaultSet([NSKeyedArchiver archivedDataWithRootObject:demoArr], saveOrDraftsOrderArrayOffline);
 }
 
+
 #pragma mark -Getting Auth Token--
 -(void)regenerateAuthtenticationToken{
     NSString *bodyStr =[NSString stringWithFormat:@"client_id=%@&RedirectURL=%@&grant_type=password&username=%@&password=%@",rest_clientID_B,rest_redirectURI_B,defaultGet(savedUserEmail),defaultGet(savedUserPassword)];
@@ -813,7 +814,7 @@ static NSString * extracted() {
                                                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                       {
                                           if(data){
-                                          NSArray *jsonD=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                          NSString *jsonD=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                                           ronakGlobal.currentDraftRecord=nil;
                                           }
                                       }];
