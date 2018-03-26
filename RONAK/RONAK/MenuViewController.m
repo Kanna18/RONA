@@ -25,7 +25,7 @@
     NSManagedObjectContext *context;
     BOOL productsFetched,stockFetched,imagesFetched,savedData;
     BOOL syncCustomerMasterFlag, syncBrandStockFlag, syncProductMasterFlag;
-    
+    Reachability *reachability;
 }
 
 - (void)viewDidLoad {
@@ -74,6 +74,7 @@
             btn.titleLabel.font=gothMedium(15);
         }
     }
+    [self InternetStatus];
 }
 
 -(void)updateProductLabel:(NSNotification*)notification{
@@ -93,7 +94,7 @@
 }
 -(void)updateImagesLabel:(NSNotification*)notification{
     int percentage=[notification.object intValue];
-    if(percentage>=90){
+    if(percentage>=99){
         imagesFetched=YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             _imagesDownload.text=@"Images Download Completed";
@@ -324,5 +325,22 @@
         
         [self getFetchFiltersAfteDataFetched];
     }
+}
+-(void)InternetStatus{
+    
+    /*__weak*/ typeof(self) weakSelf = self;
+    reachability= [Reachability reachabilityForInternetConnection];
+    reachability.reachableBlock = ^(Reachability *reachability) {
+        NSLog(@"Reaching Network");
+        weakSelf.internetStatusLbl.text=@"Internet is Active";
+        weakSelf.internetStatusLbl.textColor=[UIColor whiteColor];
+    };
+    reachability.unreachableBlock = ^(Reachability *reachability) {
+        NSLog(@"UnReaching Network");
+        weakSelf.internetStatusLbl.text=@"No Internet Connection";
+        weakSelf.internetStatusLbl.textColor=[UIColor redColor];
+    };
+    [reachability startNotifier];
+
 }
 @end

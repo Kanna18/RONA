@@ -500,8 +500,10 @@ static NSString * extracted() {
 
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
+    NSSet *set=[NSSet setWithArray:arr];
+    NSArray *dupArr=[set allObjects];
 //    NSMutableArray *allImagesArray=[[NSMutableArray alloc]init];
-    for (NSDictionary *dic in arr)
+    for (NSDictionary *dic in dupArr)
     {
         totalImages+=(int)dic.allKeys.count;
     }
@@ -520,13 +522,14 @@ static NSString * extracted() {
 //    });
     
     NSLog(@"Thread 2-Started Saving Images");
-    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
-    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
+    NSArray* firstHalf = [dupArr subarrayWithRange:NSMakeRange(0, [dupArr count]/2)];
+    NSArray* secondHalf = [dupArr subarrayWithRange:NSMakeRange([dupArr count]/2, [dupArr count] - [dupArr count]/2)];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
         [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSDictionary *imgDict=obj;
             for (NSString *keyName in imgDict) {
+                currentImage++;//SampleCode
                 if(keyName&&imgDict[keyName]!=[NSNull null])
                 {
                     [self downloadImageFromURL:imgDict[keyName] withName:keyName];
@@ -542,6 +545,7 @@ static NSString * extracted() {
         [secondHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSDictionary *imgDict=obj;
             for (NSString *keyName in imgDict) {
+                currentImage++;//SampleCode
                 if(keyName&&imgDict[keyName]!=[NSNull null])
                 {
                     [self downloadImageFromURL:imgDict[keyName] withName:keyName];
@@ -628,12 +632,14 @@ static NSString * extracted() {
     if(fetchedStockMaster&&fetchedProductMaster)
     {
         [[NSNotificationCenter defaultCenter]removeObserver:Local_CallBackFor_Products_Stock_Fetched];
-        NSManagedObjectContext *mathingContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+       __block NSManagedObjectContext *mathingContext=[[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         mathingContext.parentContext=downloadContext;
         [mathingContext performBlock:^{
             NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
             NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s LIKE item_Code_s"];
-            [fetchIds setPredicate:predicate];//Get All Stock Details in to array and macth the id to  Item master
+            NSPredicate *brnD=[NSPredicate predicateWithFormat:@"brand_s == nil"];
+            NSCompoundPredicate *fPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[brnD,predicate]];
+            [fetchIds setPredicate:fPre];//Get All Stock Details in to array and macth the id to  Item master
             NSArray *idsarr=[mathingContext executeFetchRequest:fetchIds error:nil];
             [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 StockDetails *st=obj;
@@ -648,12 +654,13 @@ static NSString * extracted() {
                     NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
                     item.stock=st;
                     st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
-                    NSError *error;
-                    [mathingContext save:&error];
-                    [downloadContext save:nil];
-                    NSLog(@"Error while saving--%@",error);
+//                    NSError *error;
+//                    [mathingContext save:&error];
+//                    [downloadContext save:nil];
+//                    NSLog(@"Error while saving--%@",error);
                     /*----------------------------------------------------*/
                 }else{
+                    st.brand_s=@"Id not matching in product Master";
                     NSLog(@"Id not matching in product Master-- %@",st.item_Code_s);
                 }
                 if(idsarr.count-idx==1)
@@ -662,6 +669,9 @@ static NSString * extracted() {
                 }
                 float percent=((float)idx/(float)idsarr.count)*100.0;
                 [[NSNotificationCenter defaultCenter] postNotificationName:STOCK_PRODUCT_ID_MATCHING_NOTIFICATION object:[NSNumber numberWithInteger:percent]];
+                NSError *error;
+                [mathingContext save:&error];
+                [downloadContext save:nil];
             }];
             
             if(idsarr.count==0){
@@ -674,7 +684,7 @@ static NSString * extracted() {
 }
 -(void) downloadImageFromURL :(NSString *)imageUrl withName:(NSString*)name{
     
-    currentImage++;//SampleCode
+//    currentImage++;//SampleCode
     NSArray *listImageNames=[fileManager contentsOfDirectoryAtPath:[docPath stringByAppendingString:@"IMAGES/"] error:nil];
     savedImages=(int)listImageNames.count;
     float ImagesPercentage=((float)currentImage/(float)totalImages) * 100.0;
@@ -694,7 +704,7 @@ static NSString * extracted() {
             NSString *filePath = [NSString stringWithFormat:@"%@%@",documentsDirectory,name];
             //            NSLog(@"FILE : %@",filePath);
             [urlData writeToFile:filePath atomically:YES];
-            //            NSLog(@"Completed...");
+                        NSLog(@"imageUrl Completed...");
         }
     }
 }

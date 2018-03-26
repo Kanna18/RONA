@@ -29,5 +29,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *imagesDownload;
 @property (strong, nonatomic) IBOutlet UIView *ProgressView;
 @property (strong, nonatomic) IBOutlet UILabel *matchingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *internetStatusLbl;
 
 @end

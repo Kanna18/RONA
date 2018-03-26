@@ -288,9 +288,11 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
 
 -(void)firstSaveAllImagestoLocalDataBase:(NSArray*)arr
 {
+    NSSet *set=[NSSet setWithArray:arr];
+    NSArray *dupArr=[set allObjects];
     NSLog(@"Thread 2-Started Saving Images");
-    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [arr count]/2)];
-    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([arr count]/2, [arr count] - [arr count]/2)];
+    NSArray* firstHalf = [arr subarrayWithRange:NSMakeRange(0, [dupArr count]/2)];
+    NSArray* secondHalf = [arr subarrayWithRange:NSMakeRange([dupArr count]/2, [dupArr count] - [dupArr count]/2)];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
         [firstHalf enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -352,7 +354,9 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                 NSDictionary *stDict=dict[@"stock"];
                 NSFetchRequest *fetchIds=[[NSFetchRequest alloc]initWithEntityName:NSStringFromClass([StockDetails class])];
                 NSPredicate *predicate=[NSPredicate predicateWithFormat:@"item_Code_s == %@",stDict[@"Item_Code__c"]];
-                [fetchIds setPredicate:predicate];//Get All Stock Details in to array and macth the id to  Item master
+                NSPredicate *brnD=[NSPredicate predicateWithFormat:@"brand_s == nil"];
+                NSCompoundPredicate *fPre=[NSCompoundPredicate andPredicateWithSubpredicates:@[brnD,predicate]];
+                [fetchIds setPredicate:fPre];//Get All Stock Details in to array and macth the id to  Item master
                 NSArray *idsarr=[mathingContext executeFetchRequest:fetchIds error:nil];
                 [idsarr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     StockDetails *st=obj;
@@ -367,14 +371,15 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                         NSLog(@"ProItemCode %@--StocItemCode%@",item.filters.item_No__c,st.item_Code_s);
                         item.stock=st;
                         st.brand_s=item.filters.brand__c; /*save product item brand to stock details item*/
-                        NSError *error,*erroorr;
-                        [mathingContext save:&error];
-                        [syncMainContext save:&erroorr];
-                        NSLog(@"Error while saving--%@",error);
                         /*----------------------------------------------------*/
                     }else{
+                        st.brand_s=@"Id not matching in product Master";
                         NSLog(@"Id not matching in product Master-- %@",st.item_Code_s);
                     }
+                    NSError *error,*erroorr;
+                    [mathingContext save:&error];
+                    [syncMainContext save:&erroorr];
+                    NSLog(@"Error while saving--%@",error);
                 }];
                 if(i==arr.count-1){
                     [[NSNotificationCenter defaultCenter] postNotificationName:syncProductMasternotification object:nil];
