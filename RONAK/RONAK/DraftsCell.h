@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *brandLabel;
 @property (strong, nonatomic) IBOutlet UILabel *quantityLabel;
 @property (strong, nonatomic) IBOutlet UILabel *discountLabel;
-@property (strong, nonatomic) IBOutlet UIButton *amountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *amountLabel;
 @property DraftsDataModel *singleDraft;
 -(void)bindData:(DraftsDataModel*)drft;
 @end

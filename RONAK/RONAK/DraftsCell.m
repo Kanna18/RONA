@@ -36,7 +36,8 @@
     for (NSString *price in amount) {
         pri+=[price intValue];
     }
-    [_amountLabel setTitle:[NSString stringWithFormat:@"%d",pri] forState:UIControlStateNormal];
+    _amountLabel.text=[NSString stringWithFormat:@"%d",pri];
+//    [_amountLabel setTitle:[NSString stringWithFormat:@"%d",pri] forState:UIControlStateNormal];
 }
 
 @end

@@ -18,7 +18,6 @@
     while (i < j) {
         [self exchangeObjectAtIndex:i
                   withObjectAtIndex:j];
-        
         i++;
         j--;
     }

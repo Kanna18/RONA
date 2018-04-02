@@ -239,8 +239,10 @@
 
 - (IBAction)reports_click:(id)sender {
     
-    OrderStatusViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"orderStatusVC"];
-    [self.navigationController pushViewController:ovc animated:YES];
+    if(ronakGlobal.booleanToWorkFunctionalities){
+        OrderStatusViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"orderStatusVC"];
+        [self.navigationController pushViewController:ovc animated:YES];
+    }
 }
 
 - (IBAction)activity_click:(id)sender {
@@ -282,28 +284,33 @@
 
 
 - (IBAction)multimedia_click:(id)sender {
-    DraftsListViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"draftsListVC"];
-    [self.navigationController pushViewController:ovc animated:YES];
+    if(ronakGlobal.booleanToWorkFunctionalities){
+        DraftsListViewController *ovc=[self.storyboard instantiateViewControllerWithIdentifier:@"draftsListVC"];
+        [self.navigationController pushViewController:ovc animated:YES];
+    }
 }
 
 - (IBAction)settings_click:(id)sender {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncCustomerMasterNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncBrandsStockNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncProductMasternotification object:nil];
-    
-    [load WithView:self.view with_message:@"Syncing All data"];
-    [load start];
-    SyncDBClass *sync=[[SyncDBClass alloc]init];
-    [sync syncProductMaster];
-//    [sync syncStockWarehouse];//After Product Master download stock Warehouse in sync DB class
-    [sync syncOrderStatusResponse];
-    DownloadProducts *dow=[[DownloadProducts alloc]init];
-    [dow downloadCustomersListInBackground];
-    [dow getBrandsAndWarehousesListandsavetoDefaults];    
+     if(ronakGlobal.booleanToWorkFunctionalities){
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncCustomerMasterNotification object:nil];
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncBrandsStockNotification object:nil];
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncingDone:) name:syncProductMasternotification object:nil];
+         
+         [load WithView:self.view with_message:@"Syncing All data"];
+         [load start];
+         SyncDBClass *sync=[[SyncDBClass alloc]init];
+         [sync syncProductMaster];
+         //    [sync syncStockWarehouse];//After Product Master download stock Warehouse in sync DB class
+         [sync syncOrderStatusResponse];
+         DownloadProducts *dow=[[DownloadProducts alloc]init];
+         [dow downloadCustomersListInBackground];
+         [dow getBrandsAndWarehousesListandsavetoDefaults];
+     }
 }
 
 -(void)syncingDone:(NSNotification*)notification{
+
     
     if([notification.name isEqualToString:syncCustomerMasterNotification]){
         syncCustomerMasterFlag=YES;

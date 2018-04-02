@@ -119,6 +119,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self getDate];
     [Fabric with:@[[Crashlytics class]]];
     DownloadProducts *dwn=[[DownloadProducts alloc]init];
     [dwn regenerateAuthtenticationToken];
@@ -530,6 +531,45 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     return NO;
     
 }
+-(void)getDate{
+    
+    ServerAPIManager *server=[ServerAPIManager sharedinstance];
+    [server processRequest:@"http://dpsamalapuram.com/ronak/" params:nil requestType:@"GET" cusHeaders:nil successBlock:^(id responseObj) {
+        if(responseObj){
+            NSArray *arr=[NSJSONSerialization JSONObjectWithData:responseObj options:0 error:nil];
+            NSLog(@"%@",arr);
+            if(arr.count>0){
+                NSString *da = [arr[0] valueForKey:@"date"];
+                 defaultSet(da, serverDateCheck); /*Save Server Date to Defaults*/
+                [self compareDates:da];
+            }
+        }
+    } andErrorBlock:^(NSError *error) {
+        NSLog(@"%@",error);
+        [self compareDates:defaultGet(serverDateCheck)];
+    }];
+    
+}
 
+-(void)compareDates:(NSString*)str{
+    NSString *validDate = str;
+    NSDateFormatter *format =[[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSDate *serverDate =[format dateFromString:validDate];
+    
+    /*Get Current Date*/
+    NSDate *localDate = [NSDate date];
+    NSDateFormatter *format2 =[[NSDateFormatter alloc]init];
+    [format2 setDateFormat:@"yyyy-MM-dd"];
+    
+    NSComparisonResult comparere = [localDate compare:serverDate];
+    NSLog(@"---> %ld",(long)comparere);
+    
+    if(comparere == NSOrderedAscending||comparere == NSOrderedSame){
+        ronakGlobal.booleanToWorkFunctionalities = YES;
+    }else{
+        ronakGlobal.booleanToWorkFunctionalities = NO;
+    }
+}
 
 @end

@@ -499,7 +499,7 @@
         
         saveOrderCollectionPop=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
         saveOrderCollectionPop.center=self.view.center;
-        saveOrderCollectionPop.titleLabel.text=@"Do you want to Save Order";
+        saveOrderCollectionPop.titleLabel.text=@"Do you want to place the order";
         saveOrderCollectionPop.yesBtn.tag=saleOrderBtnTag;
         [saveOrderCollectionPop.yesBtn addTarget:self action:@selector(saveOrderToProceed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:saveOrderCollectionPop];

@@ -41,4 +41,6 @@
 @property NSMutableArray *deleteDraftRecordsOfflineArray;
 @property NSString *currentDraftRecord;
 
+
+@property BOOL booleanToWorkFunctionalities;
 @end
