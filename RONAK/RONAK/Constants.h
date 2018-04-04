@@ -138,6 +138,7 @@ typedef NS_ENUM(NSUInteger, TypeOfRecord) {
 #define IMAGES_FETCHING_STATUS_NOTIFICATION @"ImagesFecthingStatus"
 #define STOCK_PRODUCT_ID_MATCHING_NOTIFICATION @"StockAndProductMatching"
 
+#define MinMaxValidationNotification @"MinMaxNotification"
 
 #define syncCustomerMasterNotification @"SyncCustomerMaster"
 #define syncBrandsStockNotification @"SyncBrandsStock"
@@ -150,7 +151,9 @@ typedef NS_ENUM(NSUInteger, TypeOfRecord) {
 #define filtersQueryFetched @"FiltersQueryFetched"
 
 #define serverDateCheck @"serverDate"
-//#define NSLog(...)
+#define NSLog(...)
+
+
 
 #endif /* Constants_h */
 

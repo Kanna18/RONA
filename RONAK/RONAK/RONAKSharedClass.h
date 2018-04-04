@@ -43,4 +43,5 @@
 
 
 @property BOOL booleanToWorkFunctionalities;
+@property BOOL minMaxValidationBoolean;
 @end

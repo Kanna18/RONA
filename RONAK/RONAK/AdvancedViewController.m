@@ -31,13 +31,22 @@
     UITapGestureRecognizer *taped=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpMenuFunction:)];
     taped.numberOfTouchesRequired=1;
     [_headingLabel addGestureRecognizer:taped];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showToastForMinMaxFailed:) name:MinMaxValidationNotification object:nil];
+}
+
+-(void)showToastForMinMaxFailed:(NSNotification*)notification{
+    NSString *str = notification.object;
+    showMessage(str, self.view);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:MinMaxValidationNotification object:nil];
+}
 /*
 #pragma mark - Navigation
 
@@ -49,59 +58,71 @@
 */
 -(IBAction)leftSiwpeFunction:(id)sender
 {
-    NSArray *arr=self.navigationController.viewControllers;
-    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if([obj isKindOfClass:[DefaultFiltersViewController class]])
-        {
-            [self.navigationController popToViewController:(DefaultFiltersViewController*)obj animated:YES];
-            return ;
-        }
-    }];
-    
+    if(ronakGlobal.minMaxValidationBoolean){
+        NSArray *arr=self.navigationController.viewControllers;
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if([obj isKindOfClass:[DefaultFiltersViewController class]])
+            {
+                [self.navigationController popToViewController:(DefaultFiltersViewController*)obj animated:YES];
+                return ;
+            }
+        }];
+    }else{
+        showMessage(@"Please check Min & Max values", self.view);
+    }
 }
 -(IBAction)rightSiwpeFunction:(id)sender
 {
-    if(!(ronakGlobal.selectedFilter.brand.length>0))
-    {
-        showMessage(@"Select Brand", self.view);
+    if(ronakGlobal.minMaxValidationBoolean){
+        if(!(ronakGlobal.selectedFilter.brand.length>0))
+        {
+            showMessage(@"Select Brand", self.view);
+        }
+        else if(!(ronakGlobal.selectedFilter.categories.count>0))
+        {
+            showMessage(@"Select Category", self.view);
+        }
+        else if (!(ronakGlobal.selectedFilter.collection.count>0))
+        {
+            CollectionPopUp *colP=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
+            colP.center=self.view.center;
+            [colP.yesBtn addTarget:self action:@selector(moveToOrderBooking) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:colP];
+        }
+        else
+        {
+            ProductsListController *pro=storyBoard(@"productsVC");
+            [self.navigationController pushViewController:pro animated:YES];
+        }
+    }else{
+        showMessage(@"Please check Min & Max values", self.view);
     }
-    else if(!(ronakGlobal.selectedFilter.categories.count>0))
-    {
-        showMessage(@"Select Category", self.view);
-    }
-    else if (!(ronakGlobal.selectedFilter.collection.count>0))
-    {
-        CollectionPopUp *colP=[[CollectionPopUp alloc]initWithFrame:CGRectMake(0, 0, 100, 200)];
-        colP.center=self.view.center;
-        [colP.yesBtn addTarget:self action:@selector(moveToOrderBooking) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:colP];
-    }
-    else
-    {
-        ProductsListController *pro=storyBoard(@"productsVC");
-        [self.navigationController pushViewController:pro animated:YES];
-    }
-    
 }
 -(void)moveToOrderBooking
 {
-    ProductsListController *pro=storyBoard(@"productsVC");
-    [self.navigationController pushViewController:pro animated:YES];
-    
+    if(ronakGlobal.minMaxValidationBoolean){
+        ProductsListController *pro=storyBoard(@"productsVC");
+        [self.navigationController pushViewController:pro animated:YES];
+    }else{
+        showMessage(@"Please check Min & Max values", self.view);
+    }
 }
 - (IBAction)jumpMenuFunction:(id)sender
 {
-    
-    NSArray *arr=self.navigationController.viewControllers;
-    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if([obj isKindOfClass:[MenuViewController class]])
-        {
-            [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
-            return ;
-        }
-    }];
+    if(ronakGlobal.minMaxValidationBoolean){
+        NSArray *arr=self.navigationController.viewControllers;
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if([obj isKindOfClass:[MenuViewController class]])
+            {
+                [self.navigationController popToViewController:(MenuViewController*)obj animated:YES];
+                return ;
+            }
+        }];
+    }else{
+        showMessage(@"Please check Min & Max values", self.view);
+    }
 }
 
 

@@ -275,6 +275,7 @@
 		F6624FEC1FBE11E000B34E03 /* Calculator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		F6624FED1FBE11E000B34E03 /* Calculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		F6624FEE1FBE11E100B34E03 /* Calculator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Calculator.xib; sourceTree = "<group>"; };
+		F66998EC2073500400317B25 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		F684E3761FA18BF7005CF9B8 /* SaleOrderWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaleOrderWrapper.h; sourceTree = "<group>"; };
 		F684E3771FA18BF7005CF9B8 /* SaleOrderWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaleOrderWrapper.m; sourceTree = "<group>"; };
 		F697D5B020098D0C009D7000 /* SyncDBClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncDBClass.h; sourceTree = "<group>"; };
@@ -420,6 +421,7 @@
 		37B95F29A292887A2CC072C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F66998EC2073500400317B25 /* XcodeKit.framework */,
 				F6D025AD202838B600842FAC /* SevenSwitch.framework */,
 				F60FB46B1FB884D400F0B546 /* MessageUI.framework */,
 				F6BFD9481F4C9CED0057C4A0 /* CoreData.framework */,

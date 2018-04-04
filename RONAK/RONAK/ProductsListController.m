@@ -68,6 +68,7 @@
     [self zoomImageFunctionality];
 //    _detailedImageView.image=[UIImage imageNamed:imagesArray[0]];
 
+    [_pSymbol.titleLabel setAdjustsFontSizeToFitWidth:YES];
     
     dullView=[[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.view addSubview:dullView];
@@ -518,14 +519,16 @@
 //        item=ronakGlobal.selectedItemsTocartArr.lastObject;
 //    }
     NSArray *imgsPaths=[item.stock.imagesArr allObjects];
+//    NSSortDescriptor *sort= [[NSSortDescriptor alloc] initWithKey:@"imageName" ascending:YES];
+//    imgsPaths = [imgsPaths sortedArrayUsingDescriptors:@[sort]];
     NSLog(@"%@",item.filters.item_No__c);
     [imagesArray removeAllObjects];
-    [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-       
+    [imgsPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {       
         ImagesArray *coreImg=obj;
         NSString  *path=[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"IMAGES/%@",coreImg.imageName]];
         [imagesArray addObject:path];
     }];
+    [imagesArray sortUsingSelector:@selector(compare:)];
     NSLog(@"%@",imagesArray);
 //    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
     UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
@@ -562,6 +565,7 @@
     descriptionText=item.filters.brand__c;
 //    ronakGlobal.item=item;
     index=0; //Count For imgages Array
+    [_pSymbol setTitle:item.filters.lens_Material__c forState:UIControlStateNormal];
 }
 
 

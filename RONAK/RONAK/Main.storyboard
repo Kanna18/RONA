@@ -1199,7 +1199,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDY-Sy-cqK">
-                                                <rect key="frame" x="80" y="0.0" width="501" height="40"/>
+                                                <rect key="frame" x="120" y="0.0" width="461" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="wdm-w7-fQ3"/>
@@ -1386,14 +1386,15 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Go3-35-ztJ">
-                                                <rect key="frame" x="0.0" y="8" width="80" height="15"/>
-                                                <color key="backgroundColor" red="0.73725490199999999" green="0.0039215686269999999" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="0.0" y="8" width="120" height="15"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="9XI-bZ-qdw"/>
-                                                    <constraint firstAttribute="width" constant="80" id="QoO-Ut-W6N"/>
+                                                    <constraint firstAttribute="width" constant="120" id="QoO-Ut-W6N"/>
                                                 </constraints>
-                                                <state key="normal" title="P" backgroundImage="polarised">
-                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.42872336823800705" green="0.37044076806012127" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndH-a4-21O" customClass="SevenSwitch" customModule="SevenSwitch">
@@ -5544,7 +5545,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMx-JH-3IQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMx-JH-3IQ">
                                                     <rect key="frame" x="725" y="0.0" width="150" height="89"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5750,7 +5751,6 @@
         <image name="minus" width="64" height="64"/>
         <image name="multimedia" width="200" height="200"/>
         <image name="plus" width="64" height="64"/>
-        <image name="polarised" width="375" height="70"/>
         <image name="priceList" width="200" height="200"/>
         <image name="rememberMe" width="15" height="15"/>
         <image name="reports" width="200" height="200"/>
@@ -5763,6 +5763,6 @@
         <image name="sortArrow" width="8" height="8"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xEs-LT-TWw"/>
+        <segue reference="ubh-A2-8eN"/>
     </inferredMetricsTieBreakers>
 </document>

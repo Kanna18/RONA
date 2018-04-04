@@ -179,6 +179,7 @@
     //[ronakGlobal.selectedFilter.wsPriceMinMax setValue:@"1" forKey:@"Min"];
     //[ronakGlobal.selectedFilter.priceMinMax setValue:@"1" forKey:@"Min"];
     [ronakGlobal.selectedFilter.stockMinMax setValue:@"1" forKey:@"Min"];
+    ronakGlobal.minMaxValidationBoolean=YES;
     
     [super viewWillAppear:YES];
     [UIView beginAnimations:nil context:nil];

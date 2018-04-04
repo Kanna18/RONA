@@ -8,6 +8,7 @@
 
 #define NUMBERS_ONLY @"1234567890"
 
+
 #import "RangTableViewCell.h"
 
 @implementation RangTableViewCell
@@ -33,7 +34,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeSlider:) name:UITextFieldTextDidChangeNotification object:_maxTF];
     self.rangeSlider = [[MARKRangeSlider alloc] init];
     [self.rangeSlider addTarget:self action:@selector(rangeSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
-        [self.rangeSlider setMinValue:1 maxValue:100];
+        [self.rangeSlider setMinValue:0 maxValue:100];
         [self.rangeSlider setLeftValue:0 rightValue:20];
         self.rangeSlider.minimumDistance = 1;
     [self.sliderView addSubview:self.rangeSlider];
@@ -44,6 +45,8 @@
     if(!(_minTf.text.length>0)){
         _minTf.text=@"0";
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(minMaxValidation) name:UITextFieldTextDidChangeNotification object:nil];
 }
 -(void)changeSlider:(id)sender
 {
@@ -174,6 +177,40 @@
     }else{
         return [string isEqualToString:filtered];
     }
+}
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+        if(textField==_maxTF){
+            
+            if(_maxTF.text.integerValue>_minTf.text.integerValue){
+                return YES;
+            }else{
+                NSString *str=@"Max value must be greater than Min Value";
+                [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
+                return NO;
+            }
+        }else if(textField==_minTf)
+        {
+            if((_minTf.text.integerValue<_maxTF.text.integerValue)||_maxTF.text.length==0){
+                return YES;
+            }else{
+                NSString *str=@"Min value must be less than Max Value";
+                [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
+                return NO;
+            }
+        }else{
+            return YES;
+        }
+}
+
+-(void)minMaxValidation{
+    
+    if(_maxTF.text.integerValue<=_minTf.text.integerValue){
+        ronakGlobal.minMaxValidationBoolean=NO;
+    }else{
+        ronakGlobal.minMaxValidationBoolean=YES;
+    }
+    
 }
 
 @end

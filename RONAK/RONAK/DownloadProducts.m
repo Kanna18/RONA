@@ -169,7 +169,7 @@ int totalImages=0, currentImage=0, savedImages=0;
                 filter.active_From__c=filtersDict[@"Active_From__c"];
                 filter.stock_Warehouse__c=filtersDict[@"Stock_Warehouse__c"];
                 filter.rim__c=filtersDict[@"Rim__c"];
-                filter.lens_Material__c=filtersDict[@"Lens_Material__c"];
+                filter.lens_Material__c=filtersDict[@"lence_material__c"];
                 filter.discount__c=[filtersDict[@"Discount__c"] floatValue];
                 filter.codeId=filtersDict[@"Id"];
                 filter.picture_Name__c=filtersDict[@"Picture_Name__c"];
@@ -588,7 +588,7 @@ static NSString * extracted() {
             stockE.item_Code_s=stDict[@"Item_Code__c"];
             stockE.product__s=stDict[@"Product__c"];
             stockE.stock__s=[stDict[@"Stock__c"] floatValue];
-            stockE.warehouse_Name_s=stDict[@"Warehouse_Name__c"];
+            stockE.warehouse_Name_s=stDict[@"Warehouse_Name1__c"];
             stockE.ordered_Quantity_s=[NSString stringWithFormat:@"%@",stDict[@"Ordered_Quantity__c"]];
             
             /*-----------------*/

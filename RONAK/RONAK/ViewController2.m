@@ -228,7 +228,7 @@
             [arrSelectedSectionIndex addObject:[NSNumber numberWithInteger:sender.tag]];
         }
         customHeight=150;
-        customHeightSecondCell=80;
+        customHeightSecondCell=60;
         sender.selected = YES;
     }else{
         sender.selected = NO;
@@ -247,7 +247,7 @@
         [tblView reloadData];
     }else {
         customHeight=150;
-        customHeightSecondCell=80;
+        customHeightSecondCell=60;
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
