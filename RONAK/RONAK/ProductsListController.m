@@ -10,6 +10,8 @@
 #import "Calculator.h"
 #import "CategoryBased.h"
 #import "StockListView.h"
+#import <CalculatorKeyboard/CalculatorKeyboard-Swift.h>
+#import "CalculatorKeyboard/CalculatorKeyboard-Swift.h"
 
 @interface ProductsListController ()<GestureProtocol,UITextFieldDelegate>
 
@@ -31,7 +33,7 @@
     
     NSMutableArray *showItemsOnscrnArry;
     
-    Calculator *cal;
+    Calculator *cal__;
     
     NSMutableArray *categoryBasedSort;
     StockListView *stockListCountView;
@@ -43,6 +45,8 @@
     
     
     CGFloat scr_Wdth, scr_hgt;
+    
+    CalculatorKeyboard *clc;
 }
 
 - (void)viewDidLoad {
@@ -528,7 +532,7 @@
         NSString  *path=[docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"IMAGES/%@",coreImg.imageName]];
         [imagesArray addObject:path];
     }];
-    [imagesArray sortUsingSelector:@selector(compare:)];
+    [imagesArray sortUsingSelector:@selector(caseInsensitiveCompare:)];
     NSLog(@"%@",imagesArray);
 //    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
     UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
@@ -608,42 +612,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(IBAction)listImagesArray:(id)sender
-{    
-    if(!(imagesArray.count<=0))
-    {
-        UIButton *but=sender;
-        switch (but.tag) {
-            case 100:
-                if(!(index<=0))
-                {
-                    index--;
-                    
-                }
-                if(index==0)
-                {
-                    index=(int)imagesArray.count-1;
-                }
-                break;
-                
-            case 200:
-                if(index<imagesArray.count-1)
-                {
-                    index++;
-                }
-                if(index==imagesArray.count-1)
-                {
-                    index=0;
-                }
-                break;
-                
-            default:
-                break;
-        }
-        _detailedImageView.image=[UIImage imageNamed:imagesArray[index]];
-    }
-    
-}
 
 #pragma mark CustomerCollectionView Delegate
 
@@ -837,6 +805,45 @@
     }
     
 }
+
+-(IBAction)listImagesArray:(id)sender
+{
+    if(!(imagesArray.count<=0))
+    {
+        UIButton *but=sender;
+        switch (but.tag) {
+            case 100:
+                if(!(index<=0))
+                {
+                    index--;
+                    
+                }
+                else if(index==0)
+                {
+                    index=(int)imagesArray.count-1;
+                }
+                break;
+                
+            case 200:
+                if(index<imagesArray.count-1)
+                {
+                    index++;
+                }
+                else if(index==imagesArray.count-1)
+                {
+                    index=0;
+                }
+                break;
+                
+            default:
+                break;
+        }
+        _detailedImageView.image=[UIImage imageNamed:imagesArray[index]];
+    }
+    
+}
+
+
 -(void)tappedScrollView:(id)sender
 {
     [ZoomscrollVw removeFromSuperview];
@@ -909,19 +916,35 @@
         {
             CGRect frame= _calculatorBtn.frame;
             //cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-350-70,350,350)];
+            clc=[[CalculatorKeyboard alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-250-60,212,250)];
+            clc.delegate=self;
+            clc.showDecimal=true;
+            clc.numbersTextColor=[UIColor whiteColor];
             
+            _calcTextField.frame=CGRectMake(frame.origin.x-45,self.view.frame.size.height-290-80,212,40);
+            _calcTextField.hidden=NO;
+            _calcTextField.inputView=clc;
+            [self.view addSubview:clc];                        
             
-            cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
+//            cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
             
             _calculatorBtn.selected=YES;
-            [self.view addSubview:cal];
+//            [self.view addSubview:cal];
         }
         else
         {
-            [cal removeFromSuperview];
+//            [cal removeFromSuperview];
+            [clc removeFromSuperview];
+            _calcTextField.hidden=YES;
             _calculatorBtn.selected=NO;
         }
 }
+
+-(void)calculator:(CalculatorKeyboard *)calculator didChangeValue:(NSString *)value{
+    _calcTextField.text=value;
+}
+
+
 - (IBAction)clearCartClick:(id)sender {
     
         [ronakGlobal.selectedCustomersArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

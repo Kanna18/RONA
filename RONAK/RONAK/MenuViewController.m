@@ -349,6 +349,5 @@
         weakSelf.internetStatusLbl.textColor=[UIColor redColor];
     };
     [reachability startNotifier];
-
 }
 @end

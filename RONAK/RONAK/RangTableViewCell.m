@@ -180,37 +180,62 @@
 }
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-        if(textField==_maxTF){
-            
-            if(_maxTF.text.integerValue>_minTf.text.integerValue){
-                return YES;
-            }else{
-                NSString *str=@"Max value must be greater than Min Value";
-                [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
-                return NO;
-            }
-        }else if(textField==_minTf)
-        {
-            if((_minTf.text.integerValue<_maxTF.text.integerValue)||_maxTF.text.length==0){
-                return YES;
-            }else{
-                NSString *str=@"Min value must be less than Max Value";
-                [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
-                return NO;
-            }
-        }else{
-            return YES;
-        }
+//    if([_filterType isEqualToString:kStockvalue])
+//    {
+//        return [self discountTFValidations];
+//    }
+//    if(textField==_maxTF)
+//    {
+//        if(_maxTF.text.integerValue>_minTf.text.integerValue){
+//                return YES;
+//            }else{
+//                NSString *str=@"Max value must be greater than Min Value";
+//                [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
+//                return NO;
+//            }
+//        }
+//    if(textField==_minTf)
+//    {
+//        if((_minTf.text.integerValue<_maxTF.text.integerValue)||_maxTF.text.length==0){
+//            return YES;
+//        }else{
+//            NSString *str=@"Min value must be less than Max Value";
+//            [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification     object:str];
+//            return NO;
+//        }
+//    else{
+        return YES;
+//    }
+}
+
+-(BOOL)discountTFValidations{
+    int minStr= [_minTf.text intValue];
+    int maxStr= [_maxTF.text intValue];    
+    BOOL greater = (maxStr>minStr)||(maxStr==0&&minStr==0)||(minStr==0&&maxStr>0)||(minStr>0&&maxStr==0);
+    if(!greater){
+        NSString *str=@"Max value must be greater than Min Value";
+        [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
+    }
+    return greater;
 }
 
 -(void)minMaxValidation{
     
+    if([_filterType isEqual: kStockvalue]){
+     
+        if([self discountTFValidations]){
+            ronakGlobal.minMaxValidationBoolean=YES;
+        }else{
+            ronakGlobal.minMaxValidationBoolean=NO;
+        }
+        return;
+    }
     if(_maxTF.text.integerValue<=_minTf.text.integerValue){
         ronakGlobal.minMaxValidationBoolean=NO;
     }else{
         ronakGlobal.minMaxValidationBoolean=YES;
     }
-    
+
 }
 
 @end

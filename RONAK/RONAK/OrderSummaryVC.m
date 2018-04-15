@@ -11,18 +11,23 @@
 #import "CollectionPopUp.h"
 #import "SaleOrderWrapper.h"
 
+#import <CalculatorKeyboard/CalculatorKeyboard-Swift.h>
+#import "CalculatorKeyboard/CalculatorKeyboard-Swift.h"
 #define saleOrderBtnTag 19
 #define saveDraftBtnTag 20
+
+
 
 
 @interface OrderSummaryVC ()<WSCalendarViewDelegate,UITextFieldDelegate,RemarksViewProtocol>
 
 @end
 
+
 @implementation OrderSummaryVC
 {
     Discount *dis;
-    Calculator *cal;
+    Calculator *cal__;
     WSCalendarView *calendarViewEvent;
     NSMutableArray *eventArray;
     UIView *containerView;
@@ -32,6 +37,8 @@
     CollectionPopUp *draftDCpop,*saveOrderCollectionPop;
     
     LoadingView *load;
+    
+    CalculatorKeyboard *clc;
 }
 
 
@@ -208,21 +215,34 @@
         CGRect frame= _calculator.frame;
         //cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-40,self.view.frame.size.height-350-70,350,350)];
         
+        clc=[[CalculatorKeyboard alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-250-60,212,250)];
+        clc.delegate=self;
+        clc.showDecimal=true;
+        clc.numbersTextColor=[UIColor whiteColor];
         
-        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
-        
+        _calcTextField.frame=CGRectMake(frame.origin.x-45,self.view.frame.size.height-290-60,212,40);
+        _calcTextField.hidden=NO;
+        _calcTextField.inputView=clc;
+        [self.view addSubview:clc];
+//        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
+//
         _calculator.selected=YES;
-        [self.view addSubview:cal];
+//        [self.view addSubview:cal];
     }
     else
     {
-        [cal removeFromSuperview];
+//        [cal removeFromSuperview];
+        [clc removeFromSuperview];
         _calculator.selected=NO;
+        _calcTextField.hidden=YES;
     }
 }
 
--(IBAction)discountClick:(id)sender {
+-(void)calculator:(CalculatorKeyboard *)calculator didChangeValue:(NSString *)value{
+    _calcTextField.text=value;
+}
 
+-(IBAction)discountClick:(id)sender {
     if(_discountBtn.selected==YES)
     {
         [dis removeFromSuperview];
@@ -568,7 +588,9 @@
             butt.selected=NO;
         }
     }
-    [cal removeFromSuperview];
+//    [cal removeFromSuperview];
+    [clc removeFromSuperview];
+    _calcTextField.hidden=YES;
     [dis removeFromSuperview];
     [draftDCpop removeFromSuperview];
     [remarksView removeFromSuperview];

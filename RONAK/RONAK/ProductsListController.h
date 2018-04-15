@@ -15,7 +15,7 @@
 
 
 
-@interface ProductsListController : UIViewController<CustomerDeleted>
+@interface ProductsListController : UIViewController<CustomerDeleted,CalculatorDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *productsCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *customersCollectionView;
@@ -82,4 +82,5 @@
 @property (strong, nonatomic) IBOutlet SevenSwitch *switchPr;
 - (IBAction)priceWithRupeeSymbolClick:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextField *calcTextField;
 @end

@@ -291,7 +291,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="13" maxY="-23"/>
                                 <inset key="titleEdgeInsets" minX="-36" minY="0.0" maxX="-29" maxY="0.0"/>
-                                <state key="normal" title="Multimedia" backgroundImage="multimedia">
+                                <state key="normal" title="Draft Order" backgroundImage="multimedia">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1179,7 +1179,7 @@
                                             <constraint firstAttribute="bottom" secondItem="6Sk-gU-qL7" secondAttribute="bottom" id="vhL-jZ-QRr"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav-Ag-u63" userLabel="customersView">
+                                    <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav-Ag-u63" userLabel="customersView">
                                         <rect key="frame" x="400" y="488" width="604" height="200"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oy-58-4u7">
@@ -1394,7 +1394,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <state key="normal">
-                                                    <color key="titleColor" red="0.42872336823800705" green="0.37044076806012127" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndH-a4-21O" customClass="SevenSwitch" customModule="SevenSwitch">
@@ -1471,6 +1471,14 @@
                                             <constraint firstAttribute="height" constant="30" id="XnO-Ko-GEG"/>
                                         </constraints>
                                     </imageView>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wtF-QN-b0f">
+                                        <rect key="frame" x="424" y="155" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="23"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -1569,6 +1577,7 @@
                         <outlet property="allColorsTopBtn" destination="PCW-rG-eRa" id="CyW-1m-aQF"/>
                         <outlet property="allColoursBtn" destination="ucB-Gu-dkM" id="buw-CO-oOh"/>
                         <outlet property="allModelsTopBtn" destination="AaF-VH-Ojo" id="lJu-Ab-tjP"/>
+                        <outlet property="calcTextField" destination="wtF-QN-b0f" id="jVD-aJ-ZBh"/>
                         <outlet property="calculatorBtn" destination="kfb-B4-uFI" id="rH5-Et-pJY"/>
                         <outlet property="cancelOrderBtn" destination="Fqf-u3-B0M" id="eKF-5L-c3b"/>
                         <outlet property="cartOption" destination="GIg-Uw-mZf" id="DkK-yE-07N"/>
@@ -2432,6 +2441,14 @@
                                     <constraint firstItem="ltI-Je-9L0" firstAttribute="width" secondItem="duQ-cm-dRY" secondAttribute="width" id="zIB-WA-73T"/>
                                 </constraints>
                             </scrollView>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="om9-I8-guZ">
+                                <rect key="frame" x="71" y="163" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="23"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -2470,6 +2487,7 @@
                     <connections>
                         <outlet property="bottomBarView" destination="gE1-nn-QE8" id="t6d-fA-LFU"/>
                         <outlet property="bottomCalculationsView" destination="tkX-rn-N6N" id="EMg-yU-l5e"/>
+                        <outlet property="calcTextField" destination="om9-I8-guZ" id="NjL-0M-6e5"/>
                         <outlet property="calculator" destination="i6n-S5-Qlp" id="jwA-WR-3jc"/>
                         <outlet property="cancelOrderBtn" destination="mFY-8h-N6R" id="bi6-CK-xid"/>
                         <outlet property="cntnViewconstraint" destination="RZA-jl-DqS" id="jDF-Vk-0ox"/>
@@ -4422,7 +4440,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uv5-IT-xuh">
-                                                    <rect key="frame" x="50" y="11" width="61" height="20"/>
+                                                    <rect key="frame" x="50" y="11" width="54" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Mwq-Wt-Ww5"/>
                                                     </constraints>
@@ -4724,7 +4742,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-fA-Atv">
-                                                    <rect key="frame" x="50" y="11" width="61" height="22"/>
+                                                    <rect key="frame" x="50" y="11" width="54" height="26"/>
                                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="22"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4854,7 +4872,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJe-AA-erK">
-                                                    <rect key="frame" x="90" y="10.5" width="342" height="18"/>
+                                                    <rect key="frame" x="90" y="7.5" width="342" height="21"/>
                                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4883,7 +4901,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMr-lL-ZFc">
-                                                    <rect key="frame" x="50" y="11" width="61" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="54" height="21"/>
                                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="22"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -5741,7 +5759,7 @@
         <image name="futureinvblue.png" width="200" height="200"/>
         <image name="futureinvgrey.png" width="200" height="200"/>
         <image name="grayBackground" width="60" height="60"/>
-        <image name="home" width="20" height="20"/>
+        <image name="home" width="542" height="548"/>
         <image name="home01" width="544" height="556"/>
         <image name="listblue.png" width="200" height="200"/>
         <image name="listgrey.png" width="200" height="200"/>

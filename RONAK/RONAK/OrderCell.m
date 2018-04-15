@@ -122,6 +122,7 @@
         [imagesArray addObject:path];
     }];
     NSLog(@"%@",imagesArray);
+    [imagesArray sortUsingSelector:@selector(caseInsensitiveCompare:)];
     //    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
     UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
     image=[self imageWithImage:image convertToSize:CGSizeMake(120, 85)];

@@ -31,7 +31,7 @@
         [imagesArray addObject:path];
     }];
     
-    [imagesArray sortUsingSelector:@selector(compare:)];
+    [imagesArray sortUsingSelector:@selector(caseInsensitiveCompare:)];
     //    NSString  *path=[[docPath stringByAppendingPathComponent:@"IMAGES/"] stringByAppendingPathComponent:imagesArray[0]];
     UIImage *image=[UIImage imageNamed:[imagesArray count]>0?imagesArray[0]:@""];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {

@@ -342,7 +342,6 @@ int totalImages=0, currentImage=0, savedImages=0;
                                       @"options":[lensColF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":@"Poster Model",
                                       @"options":@[@"Yes",@"No"]}];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:filtersQueryFetched object:nil];
     NSLog(@"coredata managed objects count--%lu",(unsigned long)[[cntxt registeredObjects] count]);
 }

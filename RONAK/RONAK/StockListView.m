@@ -40,6 +40,7 @@
         UILabel *warehouseName=[[UILabel alloc]initWithFrame:CGRectMake(ax, ay, vw_Width/2-20, 30)];
         warehouseName.layer.borderWidth=1.0f;
         warehouseName.layer.borderColor=[[UIColor blackColor] CGColor];
+        [warehouseName setAdjustsFontSizeToFitWidth:YES];
         [containerView addSubview:warehouseName];
         warehouseName.text=std.warehouse_Name_s;
         warehouseName.backgroundColor=[UIColor clearColor];
@@ -50,6 +51,7 @@
         stocckCount.backgroundColor=[UIColor clearColor];
         stocckCount.layer.borderWidth=1.0f;
         stocckCount.layer.borderColor=[[UIColor blackColor] CGColor];
+        [stocckCount setAdjustsFontSizeToFitWidth:YES];
         stocckCount.textAlignment=NSTextAlignmentCenter;
         ay+=40;
         by+=40;

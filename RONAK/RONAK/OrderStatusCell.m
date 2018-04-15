@@ -96,10 +96,9 @@
     _brandLabel.text=resp.Brand__c;
     _qtyLabel.text=resp.Quantity__c;
     _discLabel.text=resp.Discount__c;
-    _amountLabel.text=resp.Net_Amount__c;
+    _amountLabel.text=[NSString stringWithFormat:@"%ld",[resp.Net_Amount__c integerValue]-([resp.Net_Amount__c integerValue]* [resp.Discount__c integerValue])/100];
 //    _dateLbl.text=[resp.CreatedDate substringToIndex:10];
-    _dateLbl.text=resp.finalizedDate;    
-    
+    _dateLbl.text=resp.finalizedDate;
     [self getDatesToshowStatus:resp];
     if(resp.typeOfRec==INVOICE_Type)
     {

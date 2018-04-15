@@ -179,31 +179,38 @@
 
 -(IBAction)btnTapShowHideSection:(UIButton*)sender
 {
-    if (!sender.selected)
-    {
-        if (!isMultipleExpansionAllowed) {
-            [arrSelectedSectionIndex replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:sender.tag]];
-        }else {
-            [arrSelectedSectionIndex addObject:[NSNumber numberWithInteger:sender.tag]];
-        }
-        customHeight=70;
-        sender.selected = YES;
+    if(!ronakGlobal.minMaxValidationBoolean){
+        NSString *str=@"Please enter valid Min Max Values";
+        [[NSNotificationCenter defaultCenter] postNotificationName:MinMaxValidationNotification object:str];
     }else{
-        sender.selected = NO;
         
-        if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:sender.tag]])
+        if (!sender.selected)
         {
-            [arrSelectedSectionIndex removeObject:[NSNumber numberWithInteger:sender.tag]];
+            if (!isMultipleExpansionAllowed) {
+                [arrSelectedSectionIndex replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:sender.tag]];
+            }else {
+                [arrSelectedSectionIndex addObject:[NSNumber numberWithInteger:sender.tag]];
+            }
+            customHeight=70;
+            sender.selected = YES;
+        }else{
+            sender.selected = NO;
+            
+            if ([arrSelectedSectionIndex containsObject:[NSNumber numberWithInteger:sender.tag]])
+            {
+                [arrSelectedSectionIndex removeObject:[NSNumber numberWithInteger:sender.tag]];
+            }
+            customHeight=44;
         }
-        customHeight=44;
-    }
+        
+        if (!isMultipleExpansionAllowed) {
+            customHeight=44;
+            [tblView reloadData];
+        }else {
+            customHeight=70;
+            [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     
-    if (!isMultipleExpansionAllowed) {
-        customHeight=44;
-        [tblView reloadData];
-    }else {
-        customHeight=70;
-        [tblView reloadSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

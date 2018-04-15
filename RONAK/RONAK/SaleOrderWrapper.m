@@ -18,9 +18,9 @@
         _Brand=item.filters.brand__c;
         _Description=@"description";//item.filters.description;
         _Quantity=[NSString stringWithFormat:@"%d",count];
-        float tot=count*item.filters.mRP__c;
+        float tot=count*item.filters.wS_Price__c;
         _Total=[NSString stringWithFormat:@"%f",tot];
-        _Price=[NSString stringWithFormat:@"%f",item.filters.mRP__c];
+        _Price=[NSString stringWithFormat:@"%f",item.filters.wS_Price__c];
         _Discount=[NSString stringWithFormat:@"%f",item.filters.discount__c];
     }
     return self;
@@ -112,7 +112,7 @@
         }];
         
         sl.draft=[oderStr isEqualToString:kSaleOrder]?false:true;
-        sl.salesforceID=[oderStr isEqualToString:ksaveDraft]?@"":@"";
+        sl.salesforceID=[oderStr isEqualToString:ksaveDraft]?@"":@"";        
         NSMutableDictionary *dict=[[NSMutableDictionary alloc]initWithObjectsAndKeys:                                       sl.account,@"account",
             sl.shipToParty,@"shipToParty",
             sl.DeliveryChallan,@"DeliveryChallan",

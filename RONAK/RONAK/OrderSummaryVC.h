@@ -10,7 +10,10 @@
 #import "OrderCell.h"
 #import "PlaceOrder.h"
 
-@interface OrderSummaryVC : UIViewController<UITableViewDelegate,UITableViewDataSource,DiscountResult,ReloadInstruction,MFMailComposeViewControllerDelegate>
+
+@protocol CalculatorDelegate;
+
+@interface OrderSummaryVC : UIViewController<UITableViewDelegate,UITableViewDataSource,DiscountResult,ReloadInstruction,MFMailComposeViewControllerDelegate,CalculatorDelegate>
 @property (strong, nonatomic) IBOutlet UIView *bottomBarView;
 
 @property (strong, nonatomic) IBOutlet UITableView *summaryTableView;
@@ -81,4 +84,7 @@
 - (IBAction)dowloadPDF:(id)sender;
 - (IBAction)sendEmailClick:(id)sender;
 -(void)deleteDraft;
+
+@property (strong, nonatomic) IBOutlet UITextField *calcTextField;
+
 @end
