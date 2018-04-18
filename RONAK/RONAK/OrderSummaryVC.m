@@ -204,9 +204,11 @@
     }
     [self fillLabelsWithText:sender];
 }
+
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (IBAction)calculatorClick:(id)sender {
     
     if(_calculator.isSelected==NO)
@@ -222,7 +224,7 @@
         
         _calcTextField.frame=CGRectMake(frame.origin.x-45,self.view.frame.size.height-290-60,212,40);
         _calcTextField.hidden=NO;
-        _calcTextField.inputView=clc;
+//        _calcTextField.inputView=clc;
         [self.view addSubview:clc];
 //        cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
 //
@@ -260,17 +262,15 @@
     }
     
 }
+
 #pragma markDiscount Delegate.
--(void)reslut:(NSString *)str
-{
+-(void)reslut:(NSString *)str{
     _cstdDataModel.defaultsCustomer.discount=[str stringByAppendingString:@"%"];
     [self removeAllSubviewsandDeselectall];
     [self fillLabelsWithText:_presentCustomerBtn];
-
 }
 
-- (IBAction)jumptoMenuVC:(id)sender
-{
+- (IBAction)jumptoMenuVC:(id)sender{
     
     NSArray *arr=self.navigationController.viewControllers;
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -282,6 +282,7 @@
         }
     }];
 }
+
 #pragma mark - OrderCell Delegate
 -(void)quantityChangedforCustomer:(CustomButton *)cst
 {

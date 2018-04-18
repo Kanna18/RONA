@@ -10,7 +10,7 @@
 #import "ProductCollectionViewCell.h"
 #import "CustomerViewCell.h"
 #import <SevenSwitch/SevenSwitch-Swift.h>
-
+@import CalculatorKeyboard;
 
 
 

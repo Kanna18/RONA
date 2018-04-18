@@ -121,6 +121,8 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 {
     [self getDate];
     [Fabric with:@[[Crashlytics class]]];
+    [[Fabric sharedSDK] setDebug: YES];
+    
     DownloadProducts *dwn=[[DownloadProducts alloc]init];
     [dwn regenerateAuthtenticationToken];
 //    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -161,6 +163,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     [self offlineRestServices];
     return YES;
 }
+
 -(void)offlineRestServices{
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         //Background Thread
@@ -180,6 +183,7 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
     });
 }
 
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     //
@@ -198,7 +202,6 @@ static NSString * const OAuthRedirectURI        = @"testsfdc:///mobilesdk/detect
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
-    
     // Uncomment the following line, if Authentication was attempted using handle advanced OAuth flow.
     // For Advanced Auth functionality to work, edit your apps plist files and add the URL scheme that you have
     // chosen for your app. The scheme should be the same as used in  the oauthRedirectURI settings of your Connected App.

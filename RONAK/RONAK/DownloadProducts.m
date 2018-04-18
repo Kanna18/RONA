@@ -82,7 +82,7 @@ int totalImages=0, currentImage=0, savedImages=0;
     {
         if(data){            
             NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            if(arr.count>1){
+            if(arr.count>=1){
                 NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
                 productsOffset=[slNoc[slNoc.count-1] intValue];
                 [productsOffsetArray addObjectsFromArray:arr];
@@ -401,7 +401,7 @@ int totalImages=0, currentImage=0, savedImages=0;
             NSArray *arr;
             if(data){
             arr=[NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingAllowFragments error:nil];
-            if(arr.count>1){
+            if(arr.count>=1){
                 NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
                 offSet=[slNoc[slNoc.count-1] intValue];
                 [custDataOffsetArray addObjectsFromArray:arr];
@@ -478,7 +478,7 @@ static NSString * extracted() {
                   if(data)
                   {
                       NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
-                      if(arr.count>1)
+                      if(arr.count>=1)
                       {
                           NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
                           stockOffset=[slNoc[slNoc.count-1] intValue];

@@ -69,7 +69,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                                       {
                                           if(data){
                                               NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                              if(arr.count>1){
+                                              if(arr.count>=1){
                                                   NSArray *slNoc=[arr valueForKeyPath:@"Sl_No__c"];
                                                   SyncproductsOffset=[slNoc[slNoc.count-1] intValue];
                                                   [productsOffsetArray addObjectsFromArray:arr];
@@ -195,7 +195,7 @@ int SyncoffSet=0, SyncproductsOffset=0,SyncstockOffset=0;
                                           if(data)
                                           {
                                               NSArray *arr=[NSJSONSerialization JSONObjectWithData:data options:1 error:nil];
-                                              if(arr.count>1)
+                                              if(arr.count>=1)
                                               {
                                                   NSArray *slNoc=[arr valueForKeyPath:@"stock.Sl_No__c"];
                                                   SyncstockOffset=[slNoc[slNoc.count-1] intValue];

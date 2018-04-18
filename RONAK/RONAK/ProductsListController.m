@@ -923,8 +923,8 @@
             
             _calcTextField.frame=CGRectMake(frame.origin.x-45,self.view.frame.size.height-290-80,212,40);
             _calcTextField.hidden=NO;
-            _calcTextField.inputView=clc;
-            [self.view addSubview:clc];                        
+//            _calcTextField.inputView=clc;
+            [self.view addSubview:clc];
             
 //            cal=[[Calculator alloc]initWithFrame:CGRectMake(frame.origin.x-45,self.view.frame.size.height-330-60,212,330)];
             

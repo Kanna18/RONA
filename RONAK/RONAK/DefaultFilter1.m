@@ -66,12 +66,11 @@
 {
     [super viewDidAppear:YES];
     [tblView reloadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabled:) name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
+ 
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:YES];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
+    [super viewWillDisappear:YES];    
     [[NSNotificationCenter defaultCenter]removeObserver:self name:filtersQueryFetched object:nil];
     
 }
@@ -255,18 +254,24 @@
 //      [tblView reloadData];
     [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
         UITextField *tf=[self.view viewWithTag:currentSearchTextField.tag];
-        [tf becomeFirstResponder];
+//        [tf becomeFirstResponder];
     }
 
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabled:) name:UITextFieldTextDidEndEditingNotification object:currentSearchTextField];
     currentSearchTextField=textField;
     if(textField.tag == indexForSearch+1000){
         textField.text=searchtext;
     }else{
         textField.text=@"";
     }
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidEndEditingNotification object:currentSearchTextField];
+    return NO;
 }
 
 

@@ -63,13 +63,11 @@
 {
     [super viewDidAppear:YES];
     [tblView reloadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedOne:) name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
 }
 #pragma mark - TableView methods
 
@@ -307,12 +305,15 @@
         //    [tblView reloadData];
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
         UITextField *tf=[self.view viewWithTag:currentSearchTextField.tag];
-        [tf becomeFirstResponder];
+//        [tf becomeFirstResponder];
     }
     
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedOne:) name:UITextFieldTextDidEndEditingNotification object:currentSearchTextField];
+    
     currentSearchTextField=textField;
     if(textField.tag == indexForSearch+1000){
         textField.text=searchtext;
@@ -320,6 +321,14 @@
         textField.text=@"";
     }
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidEndEditingNotification object:currentSearchTextField];
+    return NO;
+}
+
+
 
 #pragma mark - Memory Warning
 

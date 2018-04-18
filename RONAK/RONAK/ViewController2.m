@@ -68,13 +68,12 @@
 {
     [super viewDidAppear:YES];
     [tblView reloadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedTwo:) name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidChangeNotification object:currentSearchTextField];
+
 }
 #pragma mark - TableView methods
 
@@ -298,6 +297,12 @@
     [tblView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITextFieldTextDidEndEditingNotification object:currentSearchTextField];
+    return NO;
+}
+
 -(void)searchEnabledForAdvancedTwo:(id)notification{
     UITextField *textField;
     if([notification isKindOfClass:[NSNotification class]]){
@@ -321,11 +326,13 @@
         //    [tblView reloadData];
         [tblView reloadSections:[NSIndexSet indexSetWithIndex:textField.tag-1000] withRowAnimation:UITableViewRowAnimationNone];
         UITextField *tf=[self.view viewWithTag:currentSearchTextField.tag];
-        [tf becomeFirstResponder];
+//        [tf becomeFirstResponder];
     }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchEnabledForAdvancedTwo:) name:UITextFieldTextDidEndEditingNotification object:currentSearchTextField];
     currentSearchTextField=textField;
     if(textField.tag == indexForSearch+1000){
         textField.text=searchtext;

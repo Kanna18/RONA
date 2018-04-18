@@ -44,6 +44,8 @@
 		84D4B3561F63C48900B76DD7 /* ViewControllerCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B3541F63C48900B76DD7 /* ViewControllerCellHeader.m */; };
 		84D4B3581F63C53F00B76DD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D4B3571F63C53F00B76DD7 /* Images.xcassets */; };
 		E8CF669BFCD038E19C086854 /* Pods_RONAK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302CA475C544E13D264C2BC3 /* Pods_RONAK.framework */; };
+		F606FB452084807700840BC8 /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F625096E2082FF91007C659B /* CalculatorKeyboard.framework */; };
+		F606FB462084807700840BC8 /* CalculatorKeyboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F625096E2082FF91007C659B /* CalculatorKeyboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F606FF961FA63F9200D0290A /* CustomPassCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F606FF951FA63F9200D0290A /* CustomPassCode.m */; };
 		F6095E9B1FA7817300B7C455 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9A1FA7817300B7C455 /* OrderStatusViewController.m */; };
 		F6095E9E1FA781B800B7C455 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6095E9D1FA781B800B7C455 /* OrderStatusCell.m */; };
@@ -160,6 +162,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F606FB472084807700840BC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F62509682082FF91007C659B /* CalculatorKeyboard.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 45C5244D1C120F4E00510CF7;
+			remoteInfo = CalculatorKeyboard;
+		};
 		F625096D2082FF91007C659B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F62509682082FF91007C659B /* CalculatorKeyboard.xcodeproj */;
@@ -175,6 +184,20 @@
 			remoteInfo = CalculatorKeyboardTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F606FB492084807800840BC8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F606FB462084807700840BC8 /* CalculatorKeyboard.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		134BB8978E5C3BC631785868 /* Pods-RONAK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RONAK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RONAK/Pods-RONAK.debug.xcconfig"; sourceTree = "<group>"; };
@@ -430,6 +453,7 @@
 			files = (
 				F62509742082FFC0007C659B /* CalculatorKeyboard.framework in Frameworks */,
 				F60FB46C1FB884D400F0B546 /* MessageUI.framework in Frameworks */,
+				F606FB452084807700840BC8 /* CalculatorKeyboard.framework in Frameworks */,
 				F6BFD9491F4C9CED0057C4A0 /* CoreData.framework in Frameworks */,
 				E8CF669BFCD038E19C086854 /* Pods_RONAK.framework in Frameworks */,
 			);
@@ -1079,10 +1103,12 @@
 				F6ABDAC31F95A56F00B7CEC8 /* ShellScript */,
 				75D693A234C6687C572E2992 /* [CP] Embed Pods Frameworks */,
 				F7D4155FE2E97C5F4D1DDA06 /* [CP] Copy Pods Resources */,
+				F606FB492084807800840BC8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F606FB482084807700840BC8 /* PBXTargetDependency */,
 			);
 			name = RONAK;
 			productName = RONAK;
@@ -1402,6 +1428,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F606FB482084807700840BC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CalculatorKeyboard;
+			targetProxy = F606FB472084807700840BC8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4F8D5EBE1B6C0568005E64D4 /* Debug */ = {
