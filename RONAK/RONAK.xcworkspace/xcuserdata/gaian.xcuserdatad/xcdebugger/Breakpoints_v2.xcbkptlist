@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/ProductsListController.m"
-            timestampString = "545720263.8987989"
+            timestampString = "545915727.2555161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "778"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/ProductsListController.m"
-            timestampString = "545720263.899407"
+            timestampString = "545915727.256139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "811"
@@ -155,7 +155,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RONAK/ProductsListController.m"
-            timestampString = "545720263.900099"
+            timestampString = "545915727.2567281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "543"
@@ -273,22 +273,6 @@
             startingLineNumber = "59"
             endingLineNumber = "59"
             landmarkName = "-filtersQueryFetchedBy"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RONAK/RangTableViewCell.m"
-            timestampString = "545720263.904199"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-changeSlider:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
