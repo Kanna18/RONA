@@ -85,8 +85,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 -(void)drawBorders:(id)element{
-    
     UIView *cst=element;
     float shadowSize = 1.0f;
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake(cst.frame.origin.x - shadowSize / 2,
@@ -104,15 +104,11 @@
     cst.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     cst.layer.shadowOpacity = 0.5f;
     //    cst.layer.shadowPath = shadowPath.CGPath;
-    
-    
 }
 
 - (IBAction)deleteClick:(id)sender {
-    
     UIButton *btn=(UIButton*)sender;
-    if(_passscode.length>0)
-    {
+    if(_passscode.length>0){
         _passscode=[_passscode substringToIndex:_passscode.length-1];
     }
     [self clickednums:btn];

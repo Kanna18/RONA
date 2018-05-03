@@ -299,7 +299,7 @@ int totalImages=0, currentImage=0, savedImages=0;
     ronakGlobal.DefFiltersOne=   @[@{ @"heading":kBrand,
                                       @"options":[NSKeyedUnarchiver unarchiveObjectWithData:defaultGet(brandsArrayList)]?bArr:@[]},
                                    @{ @"heading":kCategories,
-                                      @"options":categoriesF},
+                                      @"options":[categoriesF sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]},
                                    @{ @"heading":kCollection,
                                       @"options":sortedArray}];
     ronakGlobal.DefFiltersTwo=   @[@{ @"heading":kStockWareHouse,

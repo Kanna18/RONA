@@ -64,7 +64,7 @@
 		16B4056423A8DF7F1353862675FBB330 /* SFSDKLoginHost.m in Sources */ = {isa = PBXBuildFile; fileRef = C275615CDAFD9CD1A191234917DC8331 /* SFSDKLoginHost.m */; };
 		17B8AE7AFC55328E48D7A0065F4EA125 /* CSFAuthRefresh+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A8189C5ED4B1435B801E4146DFF04ED /* CSFAuthRefresh+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1881C47C1E3809DC07D2859B941B87D4 /* SQLCipher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E71CD4B4634D801DF9C2B256042858 /* SQLCipher-dummy.m */; };
-		19049856375F8305C6C16DC8BC563A5E /* rangeSliderTrackRang.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAAAA49135D53B6B2C464EE8B8F907A /* rangeSliderTrackRang.png */; };
+		19049856375F8305C6C16DC8BC563A5E /* rangeSliderTrackRange.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAAAA49135D53B6B2C464EE8B8F907A /* rangeSliderTrackRange.png */; };
 		1938A592207D1F6471890DDF113DDC8F /* SFDefaultUserManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC1CB0E064F401E4EC78B1E5932D5C7 /* SFDefaultUserManagementViewController.m */; };
 		1972EB01D6A90C4334D1F3A034C9092E /* SFSmartSyncConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F5888AD445DCC8A02F05A59D1CF4A3 /* SFSmartSyncConstants.m */; };
 		19908620069EA52EF27022EEE4C43E55 /* SalesforceSDKManagerWithSmartStore.h in Headers */ = {isa = PBXBuildFile; fileRef = C81C943AD1D030567EAD785E3B9D4E54 /* SalesforceSDKManagerWithSmartStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -998,7 +998,7 @@
 		5E6C111A8D263288B374BB27550CA9F5 /* SFSDKWebViewStateManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKWebViewStateManager.h; sourceTree = "<group>"; };
 		5E7C1224D236D25727018ED7EB5D350D /* SmartSync-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SmartSync-umbrella.h"; sourceTree = "<group>"; };
 		5EA0BC794DF0589C9B2BA38A3204380B /* MARKRangeSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MARKRangeSlider.xcconfig; sourceTree = "<group>"; };
-		5EAAAA49135D53B6B2C464EE8B8F907A /* rangeSliderTrackRang.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = rangeSliderTrackRang.png; path = Resources/rangeSliderTrackRang.png; sourceTree = "<group>"; };
+		5EAAAA49135D53B6B2C464EE8B8F907A /* rangeSliderTrackRange.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = rangeSliderTrackRange.png; path = Resources/rangeSliderTrackRange.png; sourceTree = "<group>"; };
 		5F1934E583710560CB45143DC2E83267 /* SFSDKTransform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKTransform.h; sourceTree = "<group>"; };
 		5F20206A821EAF77DCA6C8D8B231B3E3 /* SFSDKFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKFileLogger.h; sourceTree = "<group>"; };
 		5F79BE338B137FC7626226241C66A998 /* SFRootViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFRootViewManager.m; sourceTree = "<group>"; };
@@ -2332,7 +2332,7 @@
 				57AA63794545BA2DFE300F127E4D6A67 /* rangeSliderTrack.png */,
 				9CDB4E1DC8074DB1AE980D4DB199E11D /* rangeSliderTrack@2x.png */,
 				81BA430CCE5BA80F31D8FDA0F3D0D4FD /* rangeSliderTrack@3x.png */,
-				5EAAAA49135D53B6B2C464EE8B8F907A /* rangeSliderTrackRang.png */,
+				5EAAAA49135D53B6B2C464EE8B8F907A /* rangeSliderTrackRange.png */,
 				AD3C3885991EE02AE81341AC797B1C7B /* rangeSliderTrackRang@2x.png */,
 				AF0DCDF3AD274035AA9D78B7664DACFA /* rangeSliderTrackRang@3x.png */,
 			);
@@ -3824,7 +3824,7 @@
 				7615DA25ED9E61C4A79CCE256CB63EC2 /* rangeSliderTrack.png in Resources */,
 				0440A1AF79F558BC7E143558687BC76D /* rangeSliderTrack@2x.png in Resources */,
 				28B104AE3370A7757154EC7CC6DEC856 /* rangeSliderTrack@3x.png in Resources */,
-				19049856375F8305C6C16DC8BC563A5E /* rangeSliderTrackRang.png in Resources */,
+				19049856375F8305C6C16DC8BC563A5E /* rangeSliderTrackRange.png in Resources */,
 				6A6E364B4C59FF572C1EF19236FFC6EA /* rangeSliderTrackRang@2x.png in Resources */,
 				1FD34BE013B307817F044173E52245DD /* rangeSliderTrackRang@3x.png in Resources */,
 			);

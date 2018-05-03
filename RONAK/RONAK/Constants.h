@@ -153,6 +153,16 @@ typedef NS_ENUM(NSUInteger, TypeOfRecord) {
 #define serverDateCheck @"serverDate"
 #define NSLog(...)
 
+typedef NS_ENUM(NSUInteger, TextFieldTags) {
+    discount_minTfTag = 6000,
+    discount_maxTfTag,
+    mrp_minTfTag,
+    mrp_maxTfTag,
+    ws_minTfTag,
+    ws_maxTfTag,
+    stock_minTfTag,
+    stock_maxTfTag,
+};
 
 
 #endif /* Constants_h */

@@ -437,6 +437,7 @@
 		F6DADCEA1F1A24C800DC635E /* YMCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMCollectionIndexView.m; sourceTree = "<group>"; };
 		F6EF940A202F297D00DB7804 /* CustomTapGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTapGesture.h; sourceTree = "<group>"; };
 		F6EF940B202F297D00DB7804 /* CustomTapGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTapGesture.m; sourceTree = "<group>"; };
+		F6F8AB6F20914399007084B2 /* MARKRangeSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MARKRangeSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FBB77E1F5553AB00CF2732 /* CustomSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwipe.h; sourceTree = "<group>"; };
 		F6FBB77F1F5553AB00CF2732 /* CustomSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwipe.m; sourceTree = "<group>"; };
 		F6FBB7871F55E8C800CF2732 /* RangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangTableViewCell.h; sourceTree = "<group>"; };
@@ -465,6 +466,7 @@
 		37B95F29A292887A2CC072C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6F8AB6F20914399007084B2 /* MARKRangeSlider.framework */,
 				F66998EC2073500400317B25 /* XcodeKit.framework */,
 				F6D025AD202838B600842FAC /* SevenSwitch.framework */,
 				F60FB46B1FB884D400F0B546 /* MessageUI.framework */,

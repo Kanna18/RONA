@@ -11,14 +11,15 @@
 
 #import "RangTableViewCell.h"
 
-@implementation RangTableViewCell
+@implementation RangTableViewCell{
+    
+    BOOL stockFilterBool, mrpFilterBool, wsFilterBool, discountFilterBool;
+}
 
 -(void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     // Enter Custom Code
-    
-    
     self.rangeSlider.frame=CGRectMake(50, 30, rect.size.width-90, 40);
     self.rangeSlider.leftThumbImage=[UIImage imageNamed:@"pause"];
     self.rangeSlider.rightThumbImage=[UIImage imageNamed:@"pause"];
@@ -26,11 +27,11 @@
     
 }
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeSlider:) name:UITextFieldTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(rangeSliderValueDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
     self.rangeSlider = [[MARKRangeSlider alloc] init];
     [self.rangeSlider addTarget:self action:@selector(rangeSliderValueDidChange:) forControlEvents:UIControlEventValueChanged];
         [self.rangeSlider setMinValue:0 maxValue:100];
@@ -44,7 +45,27 @@
         _minTf.text=@"0";
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(minMaxValidation) name:UITextFieldTextDidChangeNotification object:nil];
+    
+    [self performSelector:@selector(assignTextFieldTagsBasedonFilterType) withObject:nil afterDelay:0.1];
 }
+
+-(void)assignTextFieldTagsBasedonFilterType{
+    
+    if([_filterType isEqualToString:kDiscount]){
+        _minTf.tag = discount_minTfTag;
+        _maxTF.tag = discount_maxTfTag;
+    }if ([_filterType isEqualToString:kWSPrice]){
+        _minTf.tag = ws_minTfTag;
+        _maxTF.tag = ws_maxTfTag;
+    }if ([_filterType isEqualToString:kMRP]){
+        _minTf.tag = mrp_minTfTag;
+        _maxTF.tag = mrp_maxTfTag;
+    }if ([_filterType isEqualToString:kStockvalue]){
+        _minTf.tag = stock_minTfTag;
+        _maxTF.tag = stock_maxTfTag;
+    }
+}
+
 
 -(void)changeSlider:(id)sender{
     [_rangeSlider setLeftValue:[_minTf.text floatValue] rightValue:[_maxTF.text floatValue]];
@@ -58,27 +79,32 @@
         NSLog(@"%0.2f - %0.2f", sli.leftValue, sli.rightValue);
         _minTf.text=[NSString stringWithFormat:@"%.0f",sli.leftValue];
         _maxTF.text=[NSString stringWithFormat:@"%.0f",sli.rightValue];
+        
+        stockFilterBool=NO;
+        mrpFilterBool=NO;
+        wsFilterBool=YES;
+        discountFilterBool=YES;
     }
     
-    if([_filterType isEqualToString:kDiscount])
+    if([_filterType isEqualToString:kDiscount]&&discountFilterBool)
     {
         [ronakGlobal.selectedFilter.disCountMinMax setValue:_minTf.text forKey:@"Min"];
         [ronakGlobal.selectedFilter.disCountMinMax setValue:_maxTF.text forKey:@"Max"];
         return;
     }
-    if([_filterType isEqualToString:kWSPrice])
+    if([_filterType isEqualToString:kWSPrice]&&wsFilterBool)
     {
         [ronakGlobal.selectedFilter.wsPriceMinMax setValue:_minTf.text forKey:@"Min"];
         [ronakGlobal.selectedFilter.wsPriceMinMax setValue:_maxTF.text forKey:@"Max"];
         return;
     }
-    if([_filterType isEqualToString:kMRP])
+    if([_filterType isEqualToString:kMRP]&&mrpFilterBool)
     {
         [ronakGlobal.selectedFilter.priceMinMax setValue:_minTf.text forKey:@"Min"];
         [ronakGlobal.selectedFilter.priceMinMax setValue:_maxTF.text forKey:@"Max"];
         return;
     }
-    if([_filterType isEqualToString:kStockvalue])
+    if([_filterType isEqualToString:kStockvalue]&&stockFilterBool)
     {
         [ronakGlobal.selectedFilter.stockMinMax setValue:_minTf.text forKey:@"Min"];
         [ronakGlobal.selectedFilter.stockMinMax setValue:_maxTF.text forKey:@"Max"];
@@ -133,6 +159,36 @@
     }else{
         return [string isEqualToString:filtered];
     }
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if(textField.tag==stock_maxTfTag||textField.tag==stock_minTfTag){
+        stockFilterBool=YES;
+        mrpFilterBool=NO;
+        wsFilterBool=NO;
+        discountFilterBool=NO;
+        return YES;
+    }if(textField.tag==discount_maxTfTag||textField.tag==discount_minTfTag){
+        stockFilterBool=NO;
+        mrpFilterBool=NO;
+        wsFilterBool=NO;
+        discountFilterBool=YES;
+        return YES;
+    }if(textField.tag==ws_maxTfTag||textField.tag==ws_minTfTag){
+        stockFilterBool=NO;
+        mrpFilterBool=NO;
+        wsFilterBool=YES;
+        discountFilterBool=NO;
+        return YES;
+    }if(textField.tag==mrp_maxTfTag||textField.tag==mrp_minTfTag){
+        stockFilterBool=NO;
+        mrpFilterBool=YES;
+        wsFilterBool=NO;
+        discountFilterBool=NO;
+        return YES;
+    }
+    return YES;
 }
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {

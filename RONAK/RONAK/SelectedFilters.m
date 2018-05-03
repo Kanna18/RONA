@@ -45,7 +45,7 @@
         _stockMinMax=[[NSMutableDictionary alloc] init];
         _wsPriceMinMax=[[NSMutableDictionary alloc] init];
         
-        [_stockMinMax setValue:@"1" forKey:@"Min"];
+        [_stockMinMax setValue:@"0" forKey:@"Min"];
         [_priceMinMax setValue:@"1" forKey:@"Min"];
         [_wsPriceMinMax setValue:@"1" forKey:@"Min"];
         

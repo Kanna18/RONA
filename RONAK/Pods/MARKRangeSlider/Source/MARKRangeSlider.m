@@ -2,7 +2,8 @@
 
 static NSString * const kMARKRangeSliderThumbImage = @"rangeSliderThumb.png";
 static NSString * const kMARKRangeSliderTrackImage = @"rangeSliderTrack.png";
-static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRange.png";
+//static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang.png";
+static NSString * const kMARKRangeSliderTrackRangeImage = @"blueImage.png";
 
 @interface MARKRangeSlider ()
 
@@ -244,7 +245,8 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
 - (UIImage *)rangeImage
 {
     if (!_rangeImage) {
-        _rangeImage = [self bundleImageNamed: kMARKRangeSliderTrackRangeImage];
+//        _rangeImage = [self bundleImageNamed: kMARKRangeSliderTrackRangeImage];
+        _rangeImage = [UIImage imageNamed:kMARKRangeSliderTrackRangeImage];
     }
     return _rangeImage;
 }
@@ -395,7 +397,9 @@ static NSString * const kMARKRangeSliderTrackRangeImage = @"rangeSliderTrackRang
 - (void)setTrackImage:(UIImage *)trackImage
 {
     _trackImage = trackImage;
-    self.trackImageView.image = _trackImage;
+//    self.trackImageView.image = _trackImage;
+    self.trackImageView.backgroundColor = [UIColor grayColor];
+
 }
 
 - (void)setRangeImage:(UIImage *)rangeImage
