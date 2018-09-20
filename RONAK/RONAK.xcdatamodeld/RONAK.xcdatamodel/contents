@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Att" representedClassName="Att" syncable="YES">
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -84,10 +84,10 @@
         <relationship name="itemMaster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemMaster" inverseName="stock" inverseEntity="ItemMaster" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Att" positionX="-198" positionY="297" width="128" height="105"/>
-        <element name="Filters" positionX="88" positionY="45" width="128" height="780"/>
-        <element name="ImagesArray" positionX="-63" positionY="216" width="128" height="120"/>
+        <element name="Att" positionX="-209" positionY="126" width="128" height="105"/>
+        <element name="Filters" positionX="-36" positionY="63" width="128" height="780"/>
+        <element name="ImagesArray" positionX="-209" positionY="243" width="128" height="120"/>
         <element name="ItemMaster" positionX="-252" positionY="441" width="128" height="105"/>
-        <element name="StockDetails" positionX="-72" positionY="207" width="128" height="210"/>
+        <element name="StockDetails" positionX="-432" positionY="180" width="128" height="208"/>
     </elements>
 </model>

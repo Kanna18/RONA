@@ -48,7 +48,7 @@
             colorB.model=obj;
             [_ColorsArray addObject:colorB];
         }];
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"model" ascending:YES];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"model" ascending:NO];
         NSArray *arr=[_ColorsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
         _ColorsArray=[[NSMutableArray alloc]initWithArray:arr];
     }

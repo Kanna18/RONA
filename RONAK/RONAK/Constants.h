@@ -151,7 +151,7 @@ typedef NS_ENUM(NSUInteger, TypeOfRecord) {
 #define filtersQueryFetched @"FiltersQueryFetched"
 
 #define serverDateCheck @"serverDate"
-#define NSLog(...)
+//#define NSLog(...)
 
 typedef NS_ENUM(NSUInteger, TextFieldTags) {
     discount_minTfTag = 6000,

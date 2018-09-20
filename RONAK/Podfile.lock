@@ -78,6 +78,18 @@ DEPENDENCIES:
   - SmartStore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SmartSync (from `mobile_sdk/SalesforceMobileSDK-iOS`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - CocoaLumberjack
+    - Crashlytics
+    - Fabric
+    - JSONModel
+    - MARKRangeSlider
+    - SDWebImage
+    - SevenSwitch
+    - SQLCipher
+
 EXTERNAL SOURCES:
   SalesforceAnalytics:
     :path: mobile_sdk/SalesforceMobileSDK-iOS
@@ -95,14 +107,14 @@ SPEC CHECKSUMS:
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MARKRangeSlider: ef7e1fe84d22996f47fd72dcb8de50b9410aac47
-  SalesforceAnalytics: 9c415d350f3acf6f41d45077436226c4b19008d1
-  SalesforceSDKCore: f2523c9d55e2cc719f188d9dc4bf2362de9b7762
+  SalesforceAnalytics: 55e84cd47da19a78655b4192ee6c4f5e47572c47
+  SalesforceSDKCore: f3de02ab7d6a8c0411dfc1e660bed79ae6f9b7d7
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SevenSwitch: 5543327829b7bec5b29b73bad5f3cc3f92c1736d
-  SmartStore: 4c0a568644008ff0f876791df162f4be51a8a5fa
-  SmartSync: 822e24b5d7de8b7d105441121ec5503bda70441b
+  SmartStore: ce2748a4fac3abefce72b6ecab0e3fd3aaec4409
+  SmartSync: ba0f47fbb2354f8308747f2d85d39a51087dd60c
   SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
 
 PODFILE CHECKSUM: ff3c5ddff26f839d77359054bbf41eb35ffba763
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0

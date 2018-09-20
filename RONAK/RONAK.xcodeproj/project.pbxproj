@@ -1104,7 +1104,6 @@
 				4F8D5E9A1B6C0568005E64D4 /* Frameworks */,
 				F6ABDAC31F95A56F00B7CEC8 /* ShellScript */,
 				75D693A234C6687C572E2992 /* [CP] Embed Pods Frameworks */,
-				F7D4155FE2E97C5F4D1DDA06 /* [CP] Copy Pods Resources */,
 				F606FB492084807800840BC8 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -1319,21 +1318,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" c4d8d8a2d03da457ace67c60110c73d3d09bc879 929e7aaa8475acbc30a703ae0e73132f89393cd58c5f0ad4865e20b5e5f18019";
 		};
-		F7D4155FE2E97C5F4D1DDA06 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RONAK/Pods-RONAK-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1485,7 +1469,10 @@
 				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
+				WARNING_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					" ",
+				);
 			};
 			name = Debug;
 		};
@@ -1527,7 +1514,10 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "-DSQLITE_HAS_CODEC  ";
+				WARNING_CFLAGS = (
+					"-DSQLITE_HAS_CODEC",
+					" ",
+				);
 			};
 			name = Release;
 		};
